@@ -12,11 +12,12 @@ export default function PrimaryContainer(props) {
         </div>
         {props.children}
       </div>
-      <div className={styles.dropletFlex}>
+      {props.droplet && ( <div className={styles.dropletFlex}>
             <img src={droplet} alt=""/>
             <img src={droplet} alt=""/>
             <img src={droplet} alt=""/>
-        </div>
+        </div>)}
+     
         <div className={styles.footer}>
             <p>&#169;2022 iFuel. All rights reserved.</p>
         </div>

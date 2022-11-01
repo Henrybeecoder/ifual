@@ -1,0 +1,9 @@
+.flexContainer {
+    display: flex;
+}
+
+.flexContainer h1 {
+    color: #344437;
+    margin: 20px 0;
+    font-size: 3rem;
+}
