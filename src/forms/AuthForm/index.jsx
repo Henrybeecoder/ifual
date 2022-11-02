@@ -7,8 +7,10 @@ import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
+import { CheckBox } from '@material-ui/icons';
+import { useNavigate } from 'react-router-dom'
 
-export default function AuthForm({ login }) {
+export default function AuthForm(props) {
     const [values, setValues] = React.useState({
         password: "",
         showPassword: false,
@@ -26,10 +28,15 @@ export default function AuthForm({ login }) {
     const handlePasswordChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
+
+    const navigate = useNavigate();
+    const navigateToSignup = () => {
+        navigate("/signup");
+    };
     return (
         <div className={styles.holder}>
             <div className={styles.container}>
-                {login ? (
+                {props.login ? (
                     <form>
                         <div className={styles.formHolder}>
                             <label>EMAIL ADDRESS</label>
@@ -61,12 +68,16 @@ export default function AuthForm({ login }) {
                 <div className={styles.forgotPassword}>
                     <p>Forgot Password</p>
                 </div>
+                <div className={styles.rememberMe}>
+                    <input type="CheckBox" />
+                    <p>Remember me</p>
+                </div>
                 <div className={styles.footer}>
                     <button>
-                        {login ? "Login in" : "Register"}
+                        {props.login ? "Login in" : "Register"}
                     </button>
                     <p>
-                        {login ? "Don’t have an account? Sign up" : "Already have an account? Log in"}
+                        {props.login ? (<div className='sign-up'>Don’t have an account? <span onClick={navigateToSignup}>Sign up</span></div>) : "Already have an account? Log in"}
                     </p>
                 </div>
             </div>

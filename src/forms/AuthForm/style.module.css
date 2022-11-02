@@ -2,7 +2,7 @@
     background: #2F3930;
     border-radius: 10px;
     width: 500px;
-    padding: 20px 40px;
+    padding: 30px 40px;
 }
 
 .formHolder {
@@ -41,4 +41,17 @@
     color: rgba(255, 255, 255, 0.87);
     width: 100%;
     justify-content: end;
+}
+
+.rememberMe {
+    color: rgba(255, 255, 255, 0.87);
+    display: flex;
+}
+
+.sign-up {
+    color: #FFFFFF;
+}
+
+.sign-up span {
+    color: #36B44A;
 }
