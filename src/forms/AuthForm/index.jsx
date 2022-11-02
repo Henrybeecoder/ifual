@@ -42,6 +42,7 @@ export default function AuthForm({ login }) {
                                 onChange={handlePasswordChange("password")}
                                 style={{ background: "white", fontFamily: "Sofia pro", borderRadius: "5px", outline: "none" }}
                                 value={values.password}
+                                placeholder="Enter Password"
                                 endAdornment={
                                     <InputAdornment position="end">
                                         <IconButton
@@ -57,6 +58,9 @@ export default function AuthForm({ login }) {
 
                     </form>
                 ) : "Sign Up Auth Form"}
+                <div className={styles.forgotPassword}>
+                    <p>Forgot Password</p>
+                </div>
                 <div className={styles.footer}>
                     <button>
                         {login ? "Login in" : "Register"}
