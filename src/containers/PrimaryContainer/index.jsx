@@ -6,7 +6,7 @@ import droplet from "../../assets/svg/droplet.svg"
 export default function PrimaryContainer(props) {
   return (
     <div className={styles.container}>
-      <div className={styles.containerPart}>
+      <div className={styles.containerPart} style={!props.height ? {height: "60%"}: {height: props.height}}>
         <div className={styles.logoContainer}>
           <img src={logo} alt="" />
         </div>

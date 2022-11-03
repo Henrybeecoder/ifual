@@ -2,7 +2,7 @@
     background: #2F3930;
     border-radius: 10px;
     width: 500px;
-    padding: 30px 40px;
+    padding: 40px 40px;
 }
 
 .formHolder {
@@ -32,7 +32,7 @@
     outline: none;
     border: none;
     width: 100%;
-    padding: 10px;
+    padding: 13px;
     cursor: pointer;
 }
 
@@ -41,17 +41,73 @@
     color: rgba(255, 255, 255, 0.87);
     width: 100%;
     justify-content: end;
+    padding: 10px 0;
 }
 
 .rememberMe {
     color: rgba(255, 255, 255, 0.87);
     display: flex;
+    padding: 20px 0;
 }
 
-.sign-up {
+.rememberMe p {
+    margin: 0 0 0 8px;
+}
+
+.signUp {
     color: #FFFFFF;
+    text-align: center;
+    padding: 23px 0;
 }
 
-.sign-up span {
+.signUp span {
     color: #36B44A;
+}
+
+.holder {
+    position: relative;
+}
+
+.emoji {
+    position: absolute;
+    top: 70%;
+    left: -20%;
+}
+
+.passWrapper {
+  position: relative;
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.passWrapper input {
+    width: 100%;
+}
+
+i {
+  position: absolute;
+  top: 27%;
+  right: 10%;
+}
+
+
+@media screen and (max-width: 800px) {
+    .emoji {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        background: transparent;
+        padding: 40px 0;
+    }
+
+    .container label {
+        color: #344437;
+    }
+
+    .container input {
+        border: 0.5px solid #344437;
+        border-radius: 8px;
+    }
 }
