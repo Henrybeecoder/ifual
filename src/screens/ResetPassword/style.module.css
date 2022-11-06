@@ -1,0 +1,77 @@
+.passWrapper {
+  position: relative;
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.passWrapper input {
+    width: 100%;
+
+}
+
+.passWrapper {
+    width: 50%;
+    margin: 20px 0 0 250px;
+}
+
+i {
+  position: absolute;
+  top: 27%;
+  right: 10%;
+  cursor: pointer;
+}
+
+.icon {
+   color: rgba(52, 68, 55, 0.5);
+   
+}
+
+.container {
+    width: 100%;
+    padding: 60px 100px;
+    text-align: center;
+}
+
+.container p {
+    color: #344437;
+    font-size: 1.4rem;
+}
+
+.header {
+    margin: 40px 0;
+}
+
+.subText {
+    margin: 20px 0;
+}
+
+.container input {
+    padding: 20px 0 20px 10px;
+    border: 0.5px solid #3444373f;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.buttonContainer {
+    margin: 20px 250px;
+}
+
+@media  screen and (max-width: 800px) {
+    .container {
+        padding: 0;
+    
+    }
+    .container input {
+        width: 100%;
+    }
+    .passWrapper {
+        margin: 20px 0;
+        width: 100%;
+    }
+    .container p {
+        font-size: 0.9rem;
+    }
+    .buttonContainer {
+        margin: 20px 0;
+    }
+}

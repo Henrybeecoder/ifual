@@ -1,15 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./style.module.css";
 import emoji from "../../assets/svg/emoji.svg";
-import IconButton from "@material-ui/core/IconButton";
-import InputLabel from "@material-ui/core/InputLabel";
 import Visibility from "@material-ui/icons/Visibility";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import Input from "@material-ui/core/Input";
-import { CheckBox } from "@material-ui/icons";
 import { useNavigate } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
@@ -22,21 +16,21 @@ export default function AuthForm(props) {
     email: "",
   });
 
-  
   const onSubmit = (data) => {
     console.log(data);
   };
 
   const [passwordShown, setPasswordShown] = useState(false);
-   const togglePasswordVisiblity = () => {
+  const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
-
- 
 
   const navigate = useNavigate();
   const navigateToSignup = () => {
     navigate("/signup");
+  };
+  const navigateToForgotPassword = () => {
+    navigate("/forgot-password");
   };
   return (
     <div className={styles.holder}>
@@ -53,17 +47,21 @@ export default function AuthForm(props) {
                 <input
                   placeholder="Enter password"
                   name="password"
-
                   type={passwordShown ? "text" : "password"}
                 />
-                <i onClick={togglePasswordVisiblity}>{passwordShown ? <Visibility /> : <VisibilityOff />}</i>
+                <i onClick={togglePasswordVisiblity}>
+                  {passwordShown ? <Visibility /> : <VisibilityOff />}
+                </i>
               </div>
             </div>
           </form>
         ) : (
           "Sign Up Auth Form"
         )}
-        <div className={styles.forgotPassword}>
+        <div
+          className={styles.forgotPassword}
+          onClick={navigateToForgotPassword}
+        >
           <p>Forgot Password</p>
         </div>
         <div className={styles.rememberMe}>
