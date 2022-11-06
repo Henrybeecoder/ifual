@@ -5,6 +5,8 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Visibility from "@material-ui/icons/Visibility";
 import Button from "../../Components/Button";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../Components/Modals";
+import modalCheck from "../../assets/svg/modalCheck.svg"
 
 export default function ResetPassword() {
   const [newPasswordShown, setNewPasswordShown] = useState(false);
@@ -12,12 +14,17 @@ export default function ResetPassword() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [btnLoading, setBtnLoading] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
   const navigate = useNavigate();
  
-
+  const closeModal = () => {
+    setOpenModal(false)
+  }
   const ResetPassword = () => {
     setBtnLoading(true)
-    setTimeout(() => navigate("/"), 5000);
+    
+    setTimeout(() => setOpenModal(true), 5000);
+    setTimeout(() => navigate("/login"), 10000);
 
 
   }
@@ -31,6 +38,13 @@ export default function ResetPassword() {
   };
   return (
     <SecondaryContainer>
+        <Modal openModal={openModal} closeModal={closeModal}> 
+        <div className={styles.ModalContainer}>
+            <h4>Password Reset Successful</h4>
+            <img src={modalCheck} alt="" />
+            <p>Redirecting to Log in ...</p>
+        </div>
+        </Modal>
       <div className={styles.container}>
         <p className={styles.header}>Reset Password?</p>
         <p className={styles.subText}>Enter new password and confirm it</p>

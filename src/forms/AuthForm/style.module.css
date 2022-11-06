@@ -13,7 +13,7 @@
     margin: 15px 0 0 0;
 }
 
-.formHolder input {
+.formHolder input, .formHolder select {
     outline: none;
     border: none;
     padding: 14px 30px 14px 7px;
@@ -92,8 +92,43 @@ i {
   right: 10%;
 }
 
+.flexForm {
+  display: flex;
+  justify-content: space-between;
+}
+.flexForm .formHolder {
+    width: 48%;
+}
+
+::placeholder {
+    color: #DDE2E5;
+}
+
+.buttonContainer {
+    margin-top: 30px;
+}
 
 @media screen and (max-width: 800px) {
+    .flexForm {
+        flex-direction: column;
+    }
+.flexForm .formHolder {
+    width: 100%;
+}
+    ::placeholder {
+        color: rgba(52, 68, 55, 0.3);
+    }
+    .forgotPassword {
+        color: #2F3930;
+        font-size: 0.9rem;
+    }
+    .rememberMe {
+        color: #2F3930;
+        font-size: 0.9rem;
+    }
+    .signUp {
+        color: #2F3930;
+    }
     .emoji {
         display: none;
     }
@@ -101,7 +136,7 @@ i {
     .container {
         width: 100%;
         background: transparent;
-        padding: 40px 0;
+        padding: 20px 0;
         margin-bottom: 40px;
     }
 
