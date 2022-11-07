@@ -14,9 +14,30 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 
 export default function AuthForm(props) {
   const matches = useMediaQuery('(min-width: 800px)')
+  const [btnLoading, setBtnLoading] = useState(false)
   const [selectState, setSelectState] = useState("")
   const [firstPhase, setFirstPhase] = useState(true)
   const [secondPhase, setSecondPhase] = useState(false)
+  const [loginEmail, setLoginEmail] = useState("")
+  const [loginPassword, setLoginPassword] = useState("")
+  const [loginPasswordShown, setLoginPasswordShown] = useState(false)
+  const [companyName, setCompanyName] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [signUpEmail, setSignUpEmail] = useState("")
+  const [signUpPassword, setSignUpPassword] = useState("")
+  const [signUpPasswordShown, setSignUpPasswordShown] = useState("")
+  const [signUpConfirmPassword, setSignUpConfirmPassword] = useState("")
+  const [signUpConfirmPasswordShown, setSignUpConfirmPasswordShown] = useState("")
+  const [companyAddress, setCompanyAddress] = useState("")
+  const toggleLoginPasswordVisiblity = () => {
+    setLoginPasswordShown(loginPasswordShown ? false : true);
+  };
+  const toggleSignUpPasswordVisiblity = () => {
+    setSignUpPasswordShown(signUpPasswordShown ? false : true);
+  };
+  const toggleSignUpConfirmPasswordVisiblity = () => {
+    setSignUpPasswordShown(signUpConfirmPasswordShown ? false : true);
+  };
   const handleStateChange = (event) => {
     setSelectState(event.target.value);
   };
@@ -30,6 +51,9 @@ export default function AuthForm(props) {
   const navigateToSignup = () => {
     navigate("/signup");
   };
+  const navigateToLogin = () => {
+    navigate("/login");
+  };
   const navigateToForgotPassword = () => {
     navigate("/forgot-password");
   };
@@ -41,17 +65,25 @@ export default function AuthForm(props) {
 
   //The data
 
-  const [companyName, setCompanyName] = useState("")
-  const [phoneNumber, setPhoneNumber] = useState("")
-  const [signUpEmail, setSignUpEmail] = useState("")
+  const checkLoginValidation = () => {
+    if (loginEmail?.length && loginPassword?.length > 0) {
+      return false;
+    }
+    return true;
+  }
+
+  const SubmitLogin =() => {
+    setBtnLoading(true)
+    setTimeout(() => navigate("/dashboard"), 5000);
+  }
   return (
     <div className={styles.holder}>
       <div className={styles.container}>
         {props.login ? (
-          <form>
+          <>
             <div className={styles.formHolder}>
               <label>EMAIL ADDRESS</label>
-              <input placeholder="email@host.co.." type="email" />
+              <input placeholder="email@host.co.." type="email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
             </div>
             <div className={styles.formHolder}>
               <label>PASSWORD</label>
@@ -59,14 +91,47 @@ export default function AuthForm(props) {
                 <input
                   placeholder="Enter password"
                   name="password"
-                  type={passwordShown ? "text" : "password"}
+                  type={loginPasswordShown ? "text" : "password"}
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
                 />
-                <i onClick={togglePasswordVisiblity}>
+                <i onClick={toggleLoginPasswordVisiblity}>
                   {passwordShown ? <Visibility /> : <VisibilityOff />}
                 </i>
               </div>
             </div>
-          </form>
+            {props.login && (<div
+              className={styles.forgotPassword}
+              onClick={navigateToForgotPassword}
+            >
+              <p>Forgot Password</p>
+            </div>)}
+            {props.login && (<div className={styles.rememberMe}>
+              <input type="CheckBox" />
+              {props.login ? (<p>Remember me</p>) : (<p>I accept the <span>Terms and Conditions</span></p>)}
+
+            </div>)}
+            {props.login && (
+              <div className={styles.footer}>
+
+                <Button text={"Login in"}
+                  primary
+                  invalid={loginEmail?.length > 0 && loginPassword?.length > 0 ? false : true} 
+                  loading={btnLoading}
+                  onClick={SubmitLogin}
+                  />
+                <p>
+
+                  <div className={styles.signUp}>
+                    Don’t have an account?{" "}
+                    <span onClick={navigateToSignup}>Sign up</span>
+                  </div>
+
+                </p>
+              </div>
+            )}
+
+          </>
         ) : (
           <>
             {matches && (
@@ -123,10 +188,13 @@ export default function AuthForm(props) {
                       <input
                         placeholder="Enter Preferred Password"
                         name="password"
-                        type={passwordShown ? "text" : "password"}
+                        type={signUpPasswordShown ? "text" : "password"}
+                        value={signUpPassword}
+                        onChange={(e) => setSignUpPassword(e.target.value)}
+
                       />
-                      <i onClick={togglePasswordVisiblity}>
-                        {passwordShown ? <Visibility /> : <VisibilityOff />}
+                      <i onClick={toggleSignUpPasswordVisiblity}>
+                        {signUpPasswordShown ? <Visibility /> : <VisibilityOff />}
                       </i>
                     </div>
                   </div>
@@ -136,10 +204,10 @@ export default function AuthForm(props) {
                       <input
                         placeholder="Enter Preferred Password"
                         name="password"
-                        type={passwordShown ? "text" : "password"}
+                        type={signUpConfirmPasswordShown ? "text" : "password"}
                       />
                       <i onClick={togglePasswordVisiblity}>
-                        {passwordShown ? <Visibility /> : <VisibilityOff />}
+                        {signUpConfirmPasswordShown ? <Visibility /> : <VisibilityOff />}
                       </i>
                     </div>
 
@@ -185,9 +253,9 @@ export default function AuthForm(props) {
                     <Button
                       text="Next"
                       primary
-                      invalid={companyName?.length > 0 && phoneNumber?.length > 0 && signUpEmail?.length > 0 ? false : true} 
+                      invalid={companyName?.length > 0 && phoneNumber?.length > 0 && signUpEmail?.length > 0 ? false : true}
                       onClick={switchToSecondPhase}
-                      />
+                    />
                   </div>
                 </>
               ) : (null)}
@@ -195,7 +263,12 @@ export default function AuthForm(props) {
                 <>
                   <div className={styles.formHolder}>
                     <label>COMPANY ADDRESS</label>
-                    <input placeholder="Enter address" type="text" />
+                    <input 
+                    placeholder="Enter address" 
+                    type="text" 
+                    value={companyAddress} 
+                    onChange={(e) => setCompanyAddress(e.target.value)}/>
+
                   </div>
                   <div className={styles.formHolder}>
                     <label>SELECT STATE</label>
@@ -210,60 +283,80 @@ export default function AuthForm(props) {
                       })}
                     </select>
                   </div>
-                  <div className={styles.formHolder}>
+                 <div className={styles.formHolder}>
                     <label>PASSWORD</label>
                     <div className={styles.passWrapper}>
                       <input
                         placeholder="Enter Preferred Password"
                         name="password"
-                        type={passwordShown ? "text" : "password"}
+                        type={signUpPasswordShown ? "text" : "password"}
+                        value={signUpPassword}
+                        onChange={(e) => setSignUpPassword(e.target.value)}
+
                       />
-                      <i onClick={togglePasswordVisiblity}>
-                        {passwordShown ? <Visibility /> : <VisibilityOff />}
+                      <i onClick={toggleSignUpPasswordVisiblity}>
+                        {signUpPasswordShown ? <Visibility /> : <VisibilityOff />}
                       </i>
                     </div>
                   </div>
-                  <div className={styles.formHolder}>
+                 <div className={styles.formHolder}>
                     <label>RECONFIRM PASSWORD</label>
                     <div className={styles.passWrapper}>
                       <input
                         placeholder="Enter Preferred Password"
                         name="password"
-                        type={passwordShown ? "text" : "password"}
+                        type={signUpConfirmPasswordShown ? "text" : "password"}
                       />
                       <i onClick={togglePasswordVisiblity}>
-                        {passwordShown ? <Visibility /> : <VisibilityOff />}
+                        {signUpConfirmPasswordShown ? <Visibility /> : <VisibilityOff />}
                       </i>
                     </div>
 
                   </div>
+                  {!props.login && (<div className={styles.rememberMe}>
+                    <input type="CheckBox" />
+                    {props.login ? (<p>Remember me</p>) : (<p>I accept the <span>Terms and Conditions</span></p>)}
+
+                  </div>)}
+                  {!props.login && (<div className={styles.footer}>
+                    <button>{props.login ? "Login in" : "Register"}</button>
+                    <p>
+                      {props.login ? (
+                        <div className={styles.signUp}>
+                          Don’t have an account?{" "}
+                          <span onClick={navigateToSignup}>Sign up</span>
+                        </div>
+                      ) : (
+                        <div className={styles.signUp}>
+                          Already have an account?{" "}
+                          <span onClick={navigateToLogin}>Log in</span>
+                        </div>
+                      )}
+                    </p>
+                  </div>)}
+
+
                 </>
               ) : (null)}
 
             </form>
           </>
         )}
-        {props.login && (<div
-          className={styles.forgotPassword}
-          onClick={navigateToForgotPassword}
-        >
-          <p>Forgot Password</p>
-        </div>)}
 
-        {matches ? (
+        {matches && !props.login ? (
           <div className={styles.rememberMe}>
             <input type="CheckBox" />
             {props.login ? (<p>Remember me</p>) : (<p>I accept the <span>Terms and Conditions</span></p>)}
 
           </div>) : (null)}
-        {secondPhase && !matches ? (<div className={styles.rememberMe}>
-          <input type="CheckBox" />
-          {props.login ? (<p>Remember me</p>) : (<p>I accept the <span>Terms and Conditions</span></p>)}
 
-        </div>) : (null)}
-        {matches ? (
+        {matches && !props.login ? (
           <div className={styles.footer}>
-            <button>{props.login ? "Login in" : "Register"}</button>
+
+            <Button text={"Register"}
+              primary
+              invalid={
+                props.login ? { checkLoginValidation } : false} />
             <p>
               {props.login ? (
                 <div className={styles.signUp}>
@@ -271,7 +364,11 @@ export default function AuthForm(props) {
                   <span onClick={navigateToSignup}>Sign up</span>
                 </div>
               ) : (
-                "Already have an account? Log in"
+                <div className={styles.signUp}>
+                  Already have an account?{" "}
+                  <span onClick={navigateToLogin}>Log in</span>
+                </div>
+                
               )}
             </p>
           </div>

@@ -108,6 +108,10 @@ i {
     margin-top: 30px;
 }
 
+.rememberMe span {
+     color: #36B44A;
+}
+
 @media screen and (max-width: 800px) {
     .flexForm {
         flex-direction: column;
@@ -144,8 +148,9 @@ i {
         color: #344437;
     }
 
-    .container input {
+    .container input,  .formHolder select {
         border: 0.5px solid #344437;
         border-radius: 8px;
     }
+
 }

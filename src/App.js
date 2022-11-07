@@ -6,6 +6,7 @@ import Dashboard from "./screens/Dashboard";
 import ForgotPassword from "./screens/ForgotPassword";
 import ForgotPasswordMessage from "./screens/ForgotPasswordMessage";
 import ResetPassword from "./screens/ResetPassword";
+import OrderStatus from "./screens/OrderStatus";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           element={<ForgotPasswordMessage />}
         />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/order-status" element={<OrderStatus />} />
       </Routes>
     </Router>
   );

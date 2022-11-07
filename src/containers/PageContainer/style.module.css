@@ -1,0 +1,134 @@
+.container {
+    display: flex;
+    position: relative;
+}
+
+.container .body {
+    width: 80%;
+    min-height: 100vh;
+   background: #fdfffc;
+}
+
+.container .sidebar {
+    width: 20%;
+    border-right: 0.5px solid #34443744;
+    padding: 30px 40px;
+}
+
+.item, .active {
+    display: flex;
+    margin: 35px 0;
+    cursor: pointer;
+}
+
+.item p {
+    color: #2F3930;
+    margin-left: 10px;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.active p {
+    color: #36B44A;
+    margin-left: 10px;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.item img, .active img {
+    width: 10%;
+}
+
+.logo {
+    margin-bottom: 20px;
+}
+
+
+
+.iconContainer {
+    display: flex;
+}
+
+.iconHolder {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.mobilesidebar {
+    width: 85%;
+    position: fixed;
+    z-index: 6;
+    height: 100%;
+    padding: 10px;
+    background: white;
+   transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s
+}
+
+.header {
+    display: flex;
+    margin-left: 100px;
+    align-items: flex-end;
+    justify-content: end;
+    padding-right: 50px;
+    padding: 40px 50px 30px 0;
+}
+
+.header img {
+    margin: 0 10px;
+    width: 4%;
+}
+
+.searchbar {
+   position: relative;
+   width: 40%;
+
+}
+
+.searchbar img {
+   position: absolute;
+   left: 330px;
+   width: 5%;
+   top: 25%;
+}
+
+.profile {
+    border-radius: 50%;
+    width: 40px !important;
+    height: 40px;
+
+}
+
+.searchbar input {
+    opacity: 0.5;
+/* Tertiary Color */
+
+border: 0.5px solid #344437;
+border-radius: 8px;
+width: 100%;
+padding: 10px 10px;
+background: transparent;
+}
+
+
+
+@media screen and (max-width: 800px) {
+    .header {
+     background: white;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 1px 10px rgba(52, 68, 55, 0.1);
+    padding: 20px 10px;
+    z-index: 3;
+}
+
+.item, .active {
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid #34443775;
+}
+    .container {
+        flex-direction: column;
+    }
+    .container .body {
+        width: 100%;
+    }
+}

@@ -1,0 +1,6 @@
+.container {
+    position: fixed;
+    width: 20%;
+    height: 100vh;
+    background: white;
+}
