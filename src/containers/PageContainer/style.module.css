@@ -112,13 +112,14 @@ background: transparent;
 
 
 @media screen and (max-width: 800px) {
-    .header {
+    .mobileheader {
      background: white;
     display: flex;
     justify-content: space-between;
     box-shadow: 0px 1px 10px rgba(52, 68, 55, 0.1);
     padding: 20px 10px;
     z-index: 3;
+    width: 100%;
 }
 
 .item, .active {

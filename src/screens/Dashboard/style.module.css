@@ -1,3 +1,22 @@
+.delivered {
+ color: #36B44A;
+ background: #F3FFF3;
+border-radius: 20px;
+width: 100%;
+
+}
+
+.pending {
+    color: #344437;
+    background: #F2F6F2;
+    border-radius: 20px;
+}
+
+.cancelled {
+    color: #CD2B65;
+    background: #FCDEE4;
+  border-radius: 20px;
+}
 .dashoardContainer {
     padding: 0 40px;
 }
@@ -8,4 +27,160 @@
 
 border: 0.5px solid #3444374d;
 border-radius: 10px;
+width: 80%;
+
+}
+
+.chartHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10px;
+}
+
+.revenue {
+    color: #344437;
+font-weight: 600;
+opacity: 0.5;
+font-size: 0.8rem;
+}
+
+.linkContainer {
+    display: flex;
+    color: #344437;
+    opacity: 0.5;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.linkContainer p {
+    margin: 0 10px;
+}
+.firstCon b {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+.title {
+    color: #344437;
+    font-weight: 300;
+}
+
+.subText {
+    color: #344437;
+    font-weight: 200;
+}
+
+.subModal {
+    background: white;
+    box-shadow: 0px 1px 10px 2px rgba(52, 68, 55, 0.06);
+   border-radius: 15px 0px 15px 15px;
+   color: #344437;
+   width: 100px;
+   /* position: absolute; */
+   position: relative;
+   top: 90%;
+   left: 30%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 30px 10px;
+   flex-direction: column;
+}
+
+.subModal p {
+    cursor: pointer;
+}
+
+.tableHeader {
+    color: #344437;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+
+.orderLink {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+}
+.orderLink p {
+    text-decoration: underline;
+}
+.orderLink img {
+    margin-left: 10px;
+    width: 7%;
+}
+
+.containerHolder {
+    display: flex;
+}
+
+.orderStatusChart {
+    width: 30%;
+    margin: 0 0 0 20px;
+}
+
+.totalOrders {
+    display: flex;
+    border: 0.5px solid #3444374d;
+border-radius: 10px;
+padding: 20px 10px;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+}
+
+.totalOrders p {
+    color: #AD9FA0;
+    font-size: 0.8rem;
+    margin: 5px 0;
+}
+
+.totalOrders span {
+    color: #36B44A;
+}
+
+.totalOrders b {
+    font-size: 1.5rem;
+    margin: 5px 0;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.pendingCon {
+    margin-top: 30px;
+}
+
+.performance {
+    letter-spacing: 0.09em;
+    color: #2F3930;
+    margin: 20px 0;
+}
+
+@media screen and (max-width: 800px ){
+    .orderStatusChart {
+        padding-top: 50px;
+    }
+    .containerHolder {
+        flex-direction: column;
+    }
+
+    .orderStatusChart {
+        width: 100%;
+        margin: 0;
+    }
+
+    .chartContainer {
+        width: 100%;
+    }
+
+    .dashoardContainer {
+        padding: 0 10px;
+    }
+    .linkContainer {
+        display: none;
+    }
 }

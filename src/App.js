@@ -7,6 +7,9 @@ import ForgotPassword from "./screens/ForgotPassword";
 import ForgotPasswordMessage from "./screens/ForgotPasswordMessage";
 import ResetPassword from "./screens/ResetPassword";
 import OrderStatus from "./screens/OrderStatus";
+import ProductList from "./screens/ProductList";
+import SignUpMessage from "./screens/SignUpMessage";
+import SignUpNext from "./screens/SignUpNext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -24,6 +27,9 @@ function App() {
         />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/order-status" element={<OrderStatus />} />
+        <Route path="/product-list" element={<ProductList />} />
+        <Route path="/sign-up-message" element={<SignUpMessage />} />
+        <Route path="/sign-up-next" element={<SignUpNext />} />
       </Routes>
     </Router>
   );

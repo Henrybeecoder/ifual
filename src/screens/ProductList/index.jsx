@@ -12,7 +12,7 @@ import right from "../../assets/svg/right.svg"
 import left from "../../assets/svg/left.svg"
 import filter from "../../assets/svg/filter.svg"
 import tick from "../../assets/svg/tick.svg"
-
+import Button from '../../Components/Button';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -45,20 +45,20 @@ function createData(
 }
 
 const rows = [
-    createData('.88 Distilled Diesel', "100 l", "Delivered", "28/07/2022", "N30,000.00"),
-    createData('Unadulterated Petrol', "100 l", "Pending", "28/07/2022", "N30,000.00"),
-    createData('.9 Distilled Diesel', "100 l", "Cancelled", "28/07/2022", "N30,000.00"),
-    createData('Pure, distilled Kerosene', "100 l", "Delivered", "28/07/2022", "N30,000.00"),
-    createData('Pure, distilled Kerosene', "100 l", "Delivered", "28/07/2022", "N30,000.00"),
-    createData('.9 Distilled Diesel', "100 l", "Cancelled", "28/07/2022", "N30,000.00"),
-    createData('Pure, distilled Kerosene', "100 l", "Delivered", "28/07/2022", "N30,000.00"),
-    createData('.88 Distilled Diesel', "100 l", "Delivered", "28/07/2022", "N30,000.00"),
-    createData('Unadulterated Petrol', "100 l", "Pending", "28/07/2022", "N30,000.00"),
-    createData('.9 Distilled Diesel', "100 l", "Cancelled", "28/07/2022", "N30,000.00"),
+    createData('.88 Distilled Diesel', "Diesel", "In stock", "6 hours", "N300.00"),
+    createData('Unadulterated Petrol', "Petrol", "In stock", "6 hours", "N300.00"),
+    createData('.9 Distilled Diesel', "AGO Diesel", "Out of stock", "6 hours", "N300.00"),
+    createData('Pure, distilled Kerosene', "AGO Diesel", "In stock", "6 hours", "N300.00"),
+    createData('Pure, distilled Kerosene', "Diesel", "Out of stock", "6 hours", "N300.00"),
+    createData('.9 Distilled Diesel', "AGO Diesel", "In stock", "6 hours", "N300.00"),
+    createData('Pure, distilled Kerosene', "AGO Diesel", "In stock", "6 hours", "N300.00"),
+    createData('.88 Distilled Diesel', "Petrol", "Out of stock", "6 hours", "N300.00"),
+    createData('Unadulterated Petrol', "AGO Diesel", "Out of stock", "6 hours", "N300.00"),
+    createData('.9 Distilled Diesel', "Petrol", "In stock", "6 hours", "N300.00"),
 
 ];
 
-export default function OrderStatus() {
+export default function ProductList () {
     const [openSubModal, setOpenSubModal] = useState(false)
     const [filterSet, setFilter] = useState(false)
     const toggleSubModal = () => {
@@ -68,7 +68,8 @@ export default function OrderStatus() {
         setOpenSubModal(false)
     }
     return (
-        <PageContainer active="order-status">
+        <div>
+          <PageContainer active="product-list">
             {filterSet && (
             <div className={styles.filterContainer}>
     <div className={styles.filterHeader}>
@@ -87,7 +88,7 @@ export default function OrderStatus() {
 
             <div className={styles.pageContainer}>
                 <div className={styles.pageHeader}>
-                    <h1>Order Status</h1>
+                    <h1>Product List</h1>
                     <div className={styles.pagerHeaderContainer}>
                         <div className={styles.paginations}>
                             <p>1 - 6 of 6</p>
@@ -100,6 +101,7 @@ export default function OrderStatus() {
                             <h2>Filter</h2>
                             <img src={filter} alt="" />
                         </div>
+                        <button>Add Product</button>
                     </div>
                 </div>
 
@@ -108,10 +110,10 @@ export default function OrderStatus() {
                         <TableBody>
                             <StyledTableRow>
                                 <StyledTableCell><h2 className={styles.title}>Description</h2></StyledTableCell>
-                                <StyledTableCell align="center"><h2 className={styles.title}>Quantity</h2></StyledTableCell>
+                                <StyledTableCell align="center"><h2 className={styles.title}>Category</h2></StyledTableCell>
                                 <StyledTableCell align="center"><h2 className={styles.title}>Status</h2></StyledTableCell>
-                                <StyledTableCell align="center"><h2 className={styles.title}>Order Date</h2></StyledTableCell>
-                                <StyledTableCell align="center"><h2 className={styles.title}>Total Price</h2></StyledTableCell>
+                                <StyledTableCell align="center"><h2 className={styles.title}>Supply Time</h2></StyledTableCell>
+                                <StyledTableCell align="center"><h2 className={styles.title}>Price/Ltr</h2></StyledTableCell>
                                 <StyledTableCell align="right"></StyledTableCell>
                             </StyledTableRow>
                             {rows.map((row) => (
@@ -123,7 +125,7 @@ export default function OrderStatus() {
                                     </StyledTableCell>
                                     <StyledTableCell align="center"><h3 className={styles.subText}>{row.calories}</h3></StyledTableCell>
                                     <StyledTableCell align="center" >
-                                        <p className={`${row.fat === "Delivered" && styles.delivered} ${row.fat === "Pending" && styles.pending} ${row.fat === "Cancelled" && styles.cancelled} `}>
+                                        <p className={`${row.fat === "In stock" && styles.delivered} ${row.fat === "Pending" && styles.pending} ${row.fat === "Out of stock" && styles.cancelled} `}>
                                             {row.fat}
                                         </p>
                                     </StyledTableCell>
@@ -155,5 +157,7 @@ export default function OrderStatus() {
                 </TableContainer>
             </div>
         </PageContainer>
+            
+        </div>
     )
 }

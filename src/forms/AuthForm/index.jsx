@@ -9,6 +9,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { states } from "../../utils/state";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import Button from "../../Components/Button";
+import SignUpMessage from "../../screens/SignUpMessage";
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
@@ -29,6 +30,7 @@ export default function AuthForm(props) {
   const [signUpConfirmPassword, setSignUpConfirmPassword] = useState("")
   const [signUpConfirmPasswordShown, setSignUpConfirmPasswordShown] = useState("")
   const [companyAddress, setCompanyAddress] = useState("")
+  const [signupsuccess, setSignUpSucess] = useState(false)
   const toggleLoginPasswordVisiblity = () => {
     setLoginPasswordShown(loginPasswordShown ? false : true);
   };
@@ -65,16 +67,16 @@ export default function AuthForm(props) {
 
   //The data
 
-  const checkLoginValidation = () => {
-    if (loginEmail?.length && loginPassword?.length > 0) {
-      return false;
-    }
-    return true;
-  }
 
-  const SubmitLogin =() => {
+
+  const SubmitLogin = () => {
     setBtnLoading(true)
     setTimeout(() => navigate("/dashboard"), 5000);
+  }
+
+  const SubmitSignup = () => {
+    setBtnLoading(true)
+    setTimeout(() => navigate("/sign-up-message"), 5000);
   }
   return (
     <div className={styles.holder}>
@@ -116,10 +118,10 @@ export default function AuthForm(props) {
 
                 <Button text={"Login in"}
                   primary
-                  invalid={loginEmail?.length > 0 && loginPassword?.length > 0 ? false : true} 
+                  invalid={loginEmail?.length > 0 && loginPassword?.length > 0 ? false : true}
                   loading={btnLoading}
                   onClick={SubmitLogin}
-                  />
+                />
                 <p>
 
                   <div className={styles.signUp}>
@@ -205,6 +207,8 @@ export default function AuthForm(props) {
                         placeholder="Enter Preferred Password"
                         name="password"
                         type={signUpConfirmPasswordShown ? "text" : "password"}
+                          value={signUpConfirmPassword}
+                        onChange={(e) => setSignUpConfirmPassword(e.target.value)}
                       />
                       <i onClick={togglePasswordVisiblity}>
                         {signUpConfirmPasswordShown ? <Visibility /> : <VisibilityOff />}
@@ -263,11 +267,11 @@ export default function AuthForm(props) {
                 <>
                   <div className={styles.formHolder}>
                     <label>COMPANY ADDRESS</label>
-                    <input 
-                    placeholder="Enter address" 
-                    type="text" 
-                    value={companyAddress} 
-                    onChange={(e) => setCompanyAddress(e.target.value)}/>
+                    <input
+                      placeholder="Enter address"
+                      type="text"
+                      value={companyAddress}
+                      onChange={(e) => setCompanyAddress(e.target.value)} />
 
                   </div>
                   <div className={styles.formHolder}>
@@ -283,7 +287,7 @@ export default function AuthForm(props) {
                       })}
                     </select>
                   </div>
-                 <div className={styles.formHolder}>
+                  <div className={styles.formHolder}>
                     <label>PASSWORD</label>
                     <div className={styles.passWrapper}>
                       <input
@@ -299,7 +303,7 @@ export default function AuthForm(props) {
                       </i>
                     </div>
                   </div>
-                 <div className={styles.formHolder}>
+                  <div className={styles.formHolder}>
                     <label>RECONFIRM PASSWORD</label>
                     <div className={styles.passWrapper}>
                       <input
@@ -319,7 +323,7 @@ export default function AuthForm(props) {
 
                   </div>)}
                   {!props.login && (<div className={styles.footer}>
-                    <button>{props.login ? "Login in" : "Register"}</button>
+                    <button onClick={SubmitSignup}>{props.login ? "Login in" : "Register"}</button>
                     <p>
                       {props.login ? (
                         <div className={styles.signUp}>
@@ -356,7 +360,15 @@ export default function AuthForm(props) {
             <Button text={"Register"}
               primary
               invalid={
-                props.login ? { checkLoginValidation } : false} />
+                
+                  
+                  
+                  signUpEmail?.length > 0 
+                   ? false : true
+              }
+              onClick={SubmitSignup}
+              loading={btnLoading}
+            />
             <p>
               {props.login ? (
                 <div className={styles.signUp}>
@@ -368,7 +380,7 @@ export default function AuthForm(props) {
                   Already have an account?{" "}
                   <span onClick={navigateToLogin}>Log in</span>
                 </div>
-                
+
               )}
             </p>
           </div>
