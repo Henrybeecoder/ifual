@@ -10,15 +10,15 @@ export default function SecondaryContainer(props) {
     navigate("/");
   };
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={props.height ? {height: props.height} : {height: "100vh"}}>
       
         <div className={styles.logoContainer}>
           <img src={logo} alt="" onClick={navigateToHomePage} />
         </div>
         {props.children}
-      <div className={styles.footer}>
+      {/* <div className={styles.footer}>
         <p>&#169;2022 iFuel. All rights reserved.</p>
-      </div>
+      </div> */}
     </div>
   );
 }
