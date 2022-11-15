@@ -136,7 +136,7 @@ export default function ProductList () {
                                     </StyledTableCell>
                                     <StyledTableCell align="center"><h3 className={styles.subText}>{row.protein}</h3></StyledTableCell>
                                     <StyledTableCell align="right" style={{cursor: "pointer"}}>
-                                        <img src={tick} alt=""  onClick={() => setOpenSubModal(true)}/>
+                                        <img src={tick} alt=""  onClick={() => setOpenSubModal(row)}/>
                                         {openSubModal && (
                                     <div className={styles.subModal}>
                                         <p onClick={closeSubModal}>View</p>
