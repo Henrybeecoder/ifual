@@ -35,32 +35,39 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 function createData(
+    id,
     name,
     calories,
     fat,
     carbs,
     protein,
 ) {
-    return { name, calories, fat, carbs, protein };
+    return { id,name, calories, fat, carbs, protein };
 }
 
 const rows = [
-    createData('.88 Distilled Diesel', "Diesel", "In stock", "6 hours", "N300.00"),
-    createData('Unadulterated Petrol', "Petrol", "In stock", "6 hours", "N300.00"),
-    createData('.9 Distilled Diesel', "AGO Diesel", "Out of stock", "6 hours", "N300.00"),
-    createData('Pure, distilled Kerosene', "AGO Diesel", "In stock", "6 hours", "N300.00"),
-    createData('Pure, distilled Kerosene', "Diesel", "Out of stock", "6 hours", "N300.00"),
-    createData('.9 Distilled Diesel', "AGO Diesel", "In stock", "6 hours", "N300.00"),
-    createData('Pure, distilled Kerosene', "AGO Diesel", "In stock", "6 hours", "N300.00"),
-    createData('.88 Distilled Diesel', "Petrol", "Out of stock", "6 hours", "N300.00"),
-    createData('Unadulterated Petrol', "AGO Diesel", "Out of stock", "6 hours", "N300.00"),
-    createData('.9 Distilled Diesel', "Petrol", "In stock", "6 hours", "N300.00"),
+    createData(1,'.88 Distilled Diesel', "Diesel", "In stock", "6 hours", "N300.00"),
+    createData(2,'Unadulterated Petrol', "Petrol", "In stock", "6 hours", "N300.00"),
+    createData(3,'.9 Distilled Diesel', "AGO Diesel", "Out of stock", "6 hours", "N300.00"),
+    createData(4,'Pure, distilled Kerosene', "AGO Diesel", "In stock", "6 hours", "N300.00"),
+    createData(5,'Pure, distilled Kerosene', "Diesel", "Out of stock", "6 hours", "N300.00"),
+    createData(6,'.9 Distilled Diesel', "AGO Diesel", "In stock", "6 hours", "N300.00"),
+    createData(7,'Pure, distilled Kerosene', "AGO Diesel", "In stock", "6 hours", "N300.00"),
+    createData(8,'.88 Distilled Diesel', "Petrol", "Out of stock", "6 hours", "N300.00"),
+    createData(9,'Unadulterated Petrol', "AGO Diesel", "Out of stock", "6 hours", "N300.00"),
+    createData(10,'.9 Distilled Diesel', "Petrol", "In stock", "6 hours", "N300.00"),
 
 ];
+
 
 export default function ProductList () {
     const [openSubModal, setOpenSubModal] = useState(false)
     const [filterSet, setFilter] = useState(false)
+
+    const rowClick = (e) => {
+   
+    setOpenSubModal(e)
+}
     const toggleSubModal = () => {
         setOpenSubModal(true)
     }
@@ -136,7 +143,7 @@ export default function ProductList () {
                                     </StyledTableCell>
                                     <StyledTableCell align="center"><h3 className={styles.subText}>{row.protein}</h3></StyledTableCell>
                                     <StyledTableCell align="right" style={{cursor: "pointer"}}>
-                                        <img src={tick} alt=""  onClick={() => setOpenSubModal(row)}/>
+                                        <img src={tick} alt=""  onClick={() => rowClick(row.id)}/>
                                         {openSubModal && (
                                     <div className={styles.subModal}>
                                         <p onClick={closeSubModal}>View</p>
