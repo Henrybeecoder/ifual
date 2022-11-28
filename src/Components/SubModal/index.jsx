@@ -1,11 +1,13 @@
 import { useState } from "react";
 import styles from "./style.module.css";
+import tick from "../../assets/svg/tick.svg";
 
-const SubModal = ({ tick }) => {
+const SubModal = () => {
   const [openSubModal, setOpenSubModal] = useState(false);
   const closeSubModal = () => {
     setOpenSubModal(false);
   };
+
   return (
     <>
       <img src={tick} alt='' onClick={() => setOpenSubModal(true)} />

@@ -290,7 +290,7 @@ export default function Dashboard() {
                         </StyledTableCell>
                         <StyledTableCell
                           align='right'
-                          style={{ cursor: "pointer" }}>
+                          style={{ cursor: "pointer", position: "relative" }}>
                           <SubModal tick={tick} />
                         </StyledTableCell>
                       </StyledTableRow>
