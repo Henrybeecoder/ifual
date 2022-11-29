@@ -98,7 +98,7 @@ const Notification = () => {
       <Modal
         openModal={modal.open}
         closeModal={closeAcceptOrDeclineModal}
-        width={"36%"}>
+        width={"720px"}>
         <div className={styles.modalContainer}>
           <div>
             {modal.option === "decline" ? (
@@ -155,7 +155,7 @@ const Notification = () => {
       <Modal
         openModal={orderDeclinedModal}
         // closeModal={confirmDeclineOrderClose}
-        width={"31%"}>
+        width={"505px"}>
         <div className={styles.orderDeclined}>
           <div className={styles.orderDeclinedContent}>
             <h2>Why Are you declining this order?</h2>
@@ -208,6 +208,7 @@ const Notification = () => {
         </div>
       </Modal>
       <Modal
+        width='720px'
         openModal={orderAcceptedModal}
         closeModal={confirmAcceptOrderClose}>
         <div className={styles.orderAccepted}>
