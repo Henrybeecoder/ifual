@@ -10,27 +10,17 @@ export default function Button(props) {
         </div>
       )}
 
-      {props.invalid ? (
-        <button
-          className={styles.invalidButton}
-          style={props.width ? { width: props.width } : { width: "100%" }}
-          disabled
-        >
-          {props.text}
-        </button>
-      ) : (
-        <button
-          className={
-            props.primary
-              ? `${props.className} ${styles.primaryButton}`
-              : `${styles.secondaryButton}`
-          }
-          style={props.width ? { width: props.width } : { width: "100%" }}
-          onClick={props.onClick}
-        >
-          {props.text}
-        </button>
-      )}
+      <button
+        disabled={props.invalid}
+        className={`
+          ${props.primary ? styles.primaryButton : styles.secondaryButton} ${
+          props.className
+        } ${styles.Btn}
+        `}
+        style={{ width: props.width ? props.width : "100%" }}
+        onClick={props.onClick}>
+        {props.text}
+      </button>
     </>
   );
 }

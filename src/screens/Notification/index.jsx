@@ -8,9 +8,9 @@ import noneSelected from "../../assets/svg/noneSelected.svg";
 import { limitText } from "../../Custom hooks/helpers";
 import Modal from "../../Components/Modals";
 import modalCheck from "../../assets/svg/modalCheck.svg";
-import CheckBoxWithText from "../../Components/CheckboxWithText";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import { ChevronLeft } from "@material-ui/icons";
+import Checkbox from "../../Components/Checkbox";
 
 const notificationList = [
   {
@@ -53,7 +53,6 @@ const Notification = () => {
   const [modal, setModal] = useState({ open: false, option: "" });
   const [orderAcceptedModal, setOrderAcceptedModal] = useState(false);
   const [orderDeclinedModal, setOrderDeclinedModal] = useState(false);
-  const [page, setPage] = useState("home");
 
   const selectedContent = notificationList.find(
     (notification) => notification.id === selected
@@ -268,36 +267,41 @@ const Notification = () => {
           <div
             className={styles.notificationsList}
             style={{ display: !matches && selected ? "none" : "unset" }}>
-            {notificationList?.map((notification) => (
-              <div
-                key={notification.id}
-                className={styles.notificationContainer}
-                style={{
-                  borderBottom:
-                    selected === notification.id
-                      ? "none"
-                      : "0.5px solid #344437",
-                  backgroundColor:
-                    selected === notification.id ? "#F2F6F2" : "transparent",
-                }}
-                onClick={() => setSelected(notification.id)}>
-                <div>
-                  <div
-                    className={styles.badge}
-                    style={{
-                      backgroundColor: !notification.opened
-                        ? "#D4D8D5"
-                        : "#36B44A",
-                    }}
-                  />
-                </div>
-                <div className={styles.textContents}>
-                  <div className={styles.flexBetween}>
-                    <h2>{notification.heading}</h2>
-                    <p className={styles.timeAgo}>{notification.timeAgo}</p>
+            {notificationList?.map((notification, index) => (
+              <div>
+                <div
+                  key={notification.id}
+                  className={styles.notificationContainer}
+                  style={{
+                    backgroundColor:
+                      selected === notification.id ? "#F2F6F2" : "transparent",
+                  }}
+                  onClick={() => setSelected(notification.id)}>
+                  <div>
+                    <div
+                      className={styles.badge}
+                      style={{
+                        backgroundColor: !notification.opened
+                          ? "#D4D8D5"
+                          : "#36B44A",
+                      }}
+                    />
                   </div>
-                  <p>{limitText(notification.body, 82)}</p>
+                  <div className={styles.textContents}>
+                    <div className={styles.flexBetween}>
+                      <h2>{notification.heading}</h2>
+                      <p className={styles.timeAgo}>{notification.timeAgo}</p>
+                    </div>
+                    <p>{limitText(notification.body, 82)}</p>
+                  </div>
                 </div>
+                <div
+                  className={styles.divider}
+                  style={{
+                    display:
+                      index + 1 === notificationList.length ? "none" : "block",
+                  }}
+                />
               </div>
             ))}
           </div>
@@ -337,6 +341,15 @@ const Notification = () => {
         </div>
       </div>
     </PageContainer>
+  );
+};
+
+const CheckBoxWithText = ({ checked, setChecked, text }) => {
+  return (
+    <div className={styles.checkboxFlex}>
+      <Checkbox checked={checked} />
+      <p>{text}</p>
+    </div>
   );
 };
 

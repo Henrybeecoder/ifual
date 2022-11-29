@@ -11,7 +11,7 @@ import ProductList from "./screens/ProductList";
 import SignUpMessage from "./screens/SignUpMessage";
 import SignUpNext from "./screens/SignUpNext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Notification from "./screens/NotificationA";
+import Notification from "./screens/Notification";
 
 function App() {
   return (

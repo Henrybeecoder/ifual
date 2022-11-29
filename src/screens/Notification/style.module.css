@@ -271,14 +271,14 @@ button {
 .btnNo {
   border: 1px solid #344437;
   margin: 0 25px;
-  padding: 15px 100px;
+  padding: 10px 90px;
 }
 
 .btnYes {
   background-color: #36b44a;
   color: #ffffff;
   border: none;
-  padding: 15px 110px;
+  padding: 10px 90px;
 }
 
 .closeBtn {
@@ -331,7 +331,7 @@ button {
 .btnCancelDecline {
   margin: 0 10px;
   border: 0.5px solid #344437;
-  padding: 10px 100px;
+  padding: 10px 85px;
 }
 
 .btnDecline {
@@ -347,7 +347,7 @@ button {
   color: white;
   border: none;
   font-size: 18px;
-  padding: 10px 100px;
+  padding: 10px 85px;
   border: none;
 }
 
@@ -400,14 +400,14 @@ button {
   border: none;
   background-color: #36b44a;
   margin-left: 10px;
-  padding: 15px 80px;
+  padding: 10px 75px;
   color: #ffffff;
 }
 
 .btnSkip {
   border: 0.5px solid #344437;
   margin-right: 10px;
-  padding: 15px 50px;
+  padding: 10px 50px;
 }
 
 .checkBoxWithTextContainer {
@@ -416,6 +416,20 @@ button {
 
 .breadCrumb {
   display: none;
+}
+
+.checkboxFlex {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+}
+
+.checkboxFlex p {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 16px;
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 800px) {
