@@ -418,6 +418,20 @@ button {
   display: none;
 }
 
+.checkboxFlex {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+}
+
+.checkboxFlex p {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 16px;
+  margin-left: 20px;
+}
+
 @media screen and (max-width: 800px) {
   button {
     margin-right: 10px;

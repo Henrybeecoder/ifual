@@ -14,23 +14,24 @@ import SignUpMessage from "../../screens/SignUpMessage";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 export default function AuthForm(props) {
-  const matches = useMediaQuery('(min-width: 800px)')
-  const [btnLoading, setBtnLoading] = useState(false)
-  const [selectState, setSelectState] = useState("")
-  const [firstPhase, setFirstPhase] = useState(true)
-  const [secondPhase, setSecondPhase] = useState(false)
-  const [loginEmail, setLoginEmail] = useState("")
-  const [loginPassword, setLoginPassword] = useState("")
-  const [loginPasswordShown, setLoginPasswordShown] = useState(false)
-  const [companyName, setCompanyName] = useState("")
-  const [phoneNumber, setPhoneNumber] = useState("")
-  const [signUpEmail, setSignUpEmail] = useState("")
-  const [signUpPassword, setSignUpPassword] = useState("")
-  const [signUpPasswordShown, setSignUpPasswordShown] = useState("")
-  const [signUpConfirmPassword, setSignUpConfirmPassword] = useState("")
-  const [signUpConfirmPasswordShown, setSignUpConfirmPasswordShown] = useState("")
-  const [companyAddress, setCompanyAddress] = useState("")
-  const [signupsuccess, setSignUpSucess] = useState(false)
+  const matches = useMediaQuery("(min-width: 800px)");
+  const [btnLoading, setBtnLoading] = useState(false);
+  const [selectState, setSelectState] = useState("");
+  const [firstPhase, setFirstPhase] = useState(true);
+  const [secondPhase, setSecondPhase] = useState(false);
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [loginPasswordShown, setLoginPasswordShown] = useState(false);
+  const [companyName, setCompanyName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [signUpEmail, setSignUpEmail] = useState("");
+  const [signUpPassword, setSignUpPassword] = useState("");
+  const [signUpPasswordShown, setSignUpPasswordShown] = useState("");
+  const [signUpConfirmPassword, setSignUpConfirmPassword] = useState("");
+  const [signUpConfirmPasswordShown, setSignUpConfirmPasswordShown] =
+    useState("");
+  const [companyAddress, setCompanyAddress] = useState("");
+  const [signupsuccess, setSignUpSucess] = useState(false);
   const toggleLoginPasswordVisiblity = () => {
     setLoginPasswordShown(loginPasswordShown ? false : true);
   };
@@ -51,33 +52,31 @@ export default function AuthForm(props) {
 
   const navigate = useNavigate();
   const navigateToSignup = () => {
-    navigate("/signup");
+    navigate({ pathname: "/signup", search: "type=vendor" });
   };
   const navigateToLogin = () => {
-    navigate("/login");
+    navigate({ pathname: "/login", search: "type=vendor" });
   };
   const navigateToForgotPassword = () => {
-    navigate("/forgot-password");
+    navigate({ pathname: "/forgot-password", search: "type=vendor" });
   };
 
   const switchToSecondPhase = () => {
-    setFirstPhase(false)
-    setSecondPhase(true)
-  }
+    setFirstPhase(false);
+    setSecondPhase(true);
+  };
 
   //The data
 
-
-
   const SubmitLogin = () => {
-    setBtnLoading(true)
+    setBtnLoading(true);
     setTimeout(() => navigate("/dashboard"), 5000);
-  }
+  };
 
   const SubmitSignup = () => {
-    setBtnLoading(true)
+    setBtnLoading(true);
     setTimeout(() => navigate("/sign-up-message"), 5000);
-  }
+  };
   return (
     <div className={styles.holder}>
       <div className={styles.container}>
@@ -85,14 +84,19 @@ export default function AuthForm(props) {
           <>
             <div className={styles.formHolder}>
               <label>EMAIL ADDRESS</label>
-              <input placeholder="email@host.co.." type="email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
+              <input
+                placeholder='email@host.co..'
+                type='email'
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
+              />
             </div>
             <div className={styles.formHolder}>
               <label>PASSWORD</label>
               <div className={styles.passWrapper}>
                 <input
-                  placeholder="Enter password"
-                  name="password"
+                  placeholder='Enter password'
+                  name='password'
                   type={loginPasswordShown ? "text" : "password"}
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
@@ -102,37 +106,46 @@ export default function AuthForm(props) {
                 </i>
               </div>
             </div>
-            {props.login && (<div
-              className={styles.forgotPassword}
-              onClick={navigateToForgotPassword}
-            >
-              <p>Forgot Password</p>
-            </div>)}
-            {props.login && (<div className={styles.rememberMe}>
-              <input type="CheckBox" />
-              {props.login ? (<p>Remember me</p>) : (<p>I accept the <span>Terms and Conditions</span></p>)}
-
-            </div>)}
+            {props.login && (
+              <div
+                className={styles.forgotPassword}
+                onClick={navigateToForgotPassword}>
+                <p>Forgot Password</p>
+              </div>
+            )}
+            {props.login && (
+              <div className={styles.rememberMe}>
+                <input type='CheckBox' />
+                {props.login ? (
+                  <p>Remember me</p>
+                ) : (
+                  <p>
+                    I accept the <span>Terms and Conditions</span>
+                  </p>
+                )}
+              </div>
+            )}
             {props.login && (
               <div className={styles.footer}>
-
-                <Button text={"Login in"}
+                <Button
+                  text={"Login in"}
                   primary
-                  invalid={loginEmail?.length > 0 && loginPassword?.length > 0 ? false : true}
+                  invalid={
+                    loginEmail?.length > 0 && loginPassword?.length > 0
+                      ? false
+                      : true
+                  }
                   loading={btnLoading}
                   onClick={SubmitLogin}
                 />
                 <p>
-
                   <div className={styles.signUp}>
                     Don’t have an account?{" "}
                     <span onClick={navigateToSignup}>Sign up</span>
                   </div>
-
                 </p>
               </div>
             )}
-
           </>
         ) : (
           <>
@@ -142,25 +155,27 @@ export default function AuthForm(props) {
                   <div className={styles.formHolder}>
                     <label>COMPANY NAME</label>
                     <input
-                      placeholder="Enter name"
-                      type="text"
+                      placeholder='Enter name'
+                      type='text'
                       value={companyName}
-                      onChange={(e) => setCompanyName(e.target.value)} />
+                      onChange={(e) => setCompanyName(e.target.value)}
+                    />
                   </div>
                   <div className={styles.flexForm}>
                     <div className={styles.formHolder}>
                       <label>PHONE NUMBER </label>
                       <input
-                        placeholder="+234  708 ..."
-                        type="text"
+                        placeholder='+234  708 ...'
+                        type='text'
                         value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)} />
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                      />
                     </div>
                     <div className={styles.formHolder}>
                       <label>EMAIL ADDRESS</label>
                       <input
-                        placeholder="email@host.co.."
-                        type="email"
+                        placeholder='email@host.co..'
+                        type='email'
                         value={signUpEmail}
                         onChange={(e) => setSignUpEmail(e.target.value)}
                       />
@@ -169,12 +184,12 @@ export default function AuthForm(props) {
 
                   <div className={styles.formHolder}>
                     <label>COMPANY ADDRESS</label>
-                    <input placeholder="Enter address" type="text" />
+                    <input placeholder='Enter address' type='text' />
                   </div>
                   <div className={styles.formHolder}>
                     <label>SELECT STATE</label>
                     <select value={selectState} onChange={handleStateChange}>
-                      <option value="">Select state</option>
+                      <option value=''>Select state</option>
                       {states.map((state) => {
                         return (
                           <option key={state.code} value={state.name}>
@@ -188,15 +203,18 @@ export default function AuthForm(props) {
                     <label>PASSWORD</label>
                     <div className={styles.passWrapper}>
                       <input
-                        placeholder="Enter Preferred Password"
-                        name="password"
+                        placeholder='Enter Preferred Password'
+                        name='password'
                         type={signUpPasswordShown ? "text" : "password"}
                         value={signUpPassword}
                         onChange={(e) => setSignUpPassword(e.target.value)}
-
                       />
                       <i onClick={toggleSignUpPasswordVisiblity}>
-                        {signUpPasswordShown ? <Visibility /> : <VisibilityOff />}
+                        {signUpPasswordShown ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
                       </i>
                     </div>
                   </div>
@@ -204,20 +222,23 @@ export default function AuthForm(props) {
                     <label>RECONFIRM PASSWORD</label>
                     <div className={styles.passWrapper}>
                       <input
-                        placeholder="Enter Preferred Password"
-                        name="password"
+                        placeholder='Enter Preferred Password'
+                        name='password'
                         type={signUpConfirmPasswordShown ? "text" : "password"}
-                          value={signUpConfirmPassword}
-                        onChange={(e) => setSignUpConfirmPassword(e.target.value)}
+                        value={signUpConfirmPassword}
+                        onChange={(e) =>
+                          setSignUpConfirmPassword(e.target.value)
+                        }
                       />
                       <i onClick={togglePasswordVisiblity}>
-                        {signUpConfirmPasswordShown ? <Visibility /> : <VisibilityOff />}
+                        {signUpConfirmPasswordShown ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
                       </i>
                     </div>
-
                   </div>
-
-
                 </form>
               </>
             )}
@@ -227,8 +248,8 @@ export default function AuthForm(props) {
                   <div className={styles.formHolder}>
                     <label>COMPANY NAME</label>
                     <input
-                      placeholder="Enter name"
-                      type="text"
+                      placeholder='Enter name'
+                      type='text'
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
                     />
@@ -237,8 +258,8 @@ export default function AuthForm(props) {
                     <div className={styles.formHolder}>
                       <label>PHONE NUMBER </label>
                       <input
-                        placeholder="+234  708 ..."
-                        type="text"
+                        placeholder='+234  708 ...'
+                        type='text'
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                       />
@@ -246,8 +267,8 @@ export default function AuthForm(props) {
                     <div className={styles.formHolder}>
                       <label>EMAIL ADDRESS</label>
                       <input
-                        placeholder="email@host.co.."
-                        type="email"
+                        placeholder='email@host.co..'
+                        type='email'
                         value={signUpEmail}
                         onChange={(e) => setSignUpEmail(e.target.value)}
                       />
@@ -255,29 +276,35 @@ export default function AuthForm(props) {
                   </div>
                   <div className={styles.buttonContainer}>
                     <Button
-                      text="Next"
+                      text='Next'
                       primary
-                      invalid={companyName?.length > 0 && phoneNumber?.length > 0 && signUpEmail?.length > 0 ? false : true}
+                      invalid={
+                        companyName?.length > 0 &&
+                        phoneNumber?.length > 0 &&
+                        signUpEmail?.length > 0
+                          ? false
+                          : true
+                      }
                       onClick={switchToSecondPhase}
                     />
                   </div>
                 </>
-              ) : (null)}
+              ) : null}
               {secondPhase && !matches ? (
                 <>
                   <div className={styles.formHolder}>
                     <label>COMPANY ADDRESS</label>
                     <input
-                      placeholder="Enter address"
-                      type="text"
+                      placeholder='Enter address'
+                      type='text'
                       value={companyAddress}
-                      onChange={(e) => setCompanyAddress(e.target.value)} />
-
+                      onChange={(e) => setCompanyAddress(e.target.value)}
+                    />
                   </div>
                   <div className={styles.formHolder}>
                     <label>SELECT STATE</label>
                     <select value={selectState} onChange={handleStateChange}>
-                      <option value="">Select state</option>
+                      <option value=''>Select state</option>
                       {states.map((state) => {
                         return (
                           <option key={state.code} value={state.name}>
@@ -291,15 +318,18 @@ export default function AuthForm(props) {
                     <label>PASSWORD</label>
                     <div className={styles.passWrapper}>
                       <input
-                        placeholder="Enter Preferred Password"
-                        name="password"
+                        placeholder='Enter Preferred Password'
+                        name='password'
                         type={signUpPasswordShown ? "text" : "password"}
                         value={signUpPassword}
                         onChange={(e) => setSignUpPassword(e.target.value)}
-
                       />
                       <i onClick={toggleSignUpPasswordVisiblity}>
-                        {signUpPasswordShown ? <Visibility /> : <VisibilityOff />}
+                        {signUpPasswordShown ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
                       </i>
                     </div>
                   </div>
@@ -307,65 +337,76 @@ export default function AuthForm(props) {
                     <label>RECONFIRM PASSWORD</label>
                     <div className={styles.passWrapper}>
                       <input
-                        placeholder="Enter Preferred Password"
-                        name="password"
+                        placeholder='Enter Preferred Password'
+                        name='password'
                         type={signUpConfirmPasswordShown ? "text" : "password"}
                       />
                       <i onClick={togglePasswordVisiblity}>
-                        {signUpConfirmPasswordShown ? <Visibility /> : <VisibilityOff />}
+                        {signUpConfirmPasswordShown ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
                       </i>
                     </div>
-
                   </div>
-                  {!props.login && (<div className={styles.rememberMe}>
-                    <input type="CheckBox" />
-                    {props.login ? (<p>Remember me</p>) : (<p>I accept the <span>Terms and Conditions</span></p>)}
-
-                  </div>)}
-                  {!props.login && (<div className={styles.footer}>
-                    <button onClick={SubmitSignup}>{props.login ? "Login in" : "Register"}</button>
-                    <p>
+                  {!props.login && (
+                    <div className={styles.rememberMe}>
+                      <input type='CheckBox' />
                       {props.login ? (
-                        <div className={styles.signUp}>
-                          Don’t have an account?{" "}
-                          <span onClick={navigateToSignup}>Sign up</span>
-                        </div>
+                        <p>Remember me</p>
                       ) : (
-                        <div className={styles.signUp}>
-                          Already have an account?{" "}
-                          <span onClick={navigateToLogin}>Log in</span>
-                        </div>
+                        <p>
+                          I accept the <span>Terms and Conditions</span>
+                        </p>
                       )}
-                    </p>
-                  </div>)}
-
-
+                    </div>
+                  )}
+                  {!props.login && (
+                    <div className={styles.footer}>
+                      <button onClick={SubmitSignup}>
+                        {props.login ? "Login in" : "Register"}
+                      </button>
+                      <p>
+                        {props.login ? (
+                          <div className={styles.signUp}>
+                            Don’t have an account?{" "}
+                            <span onClick={navigateToSignup}>Sign up</span>
+                          </div>
+                        ) : (
+                          <div className={styles.signUp}>
+                            Already have an account?{" "}
+                            <span onClick={navigateToLogin}>Log in</span>
+                          </div>
+                        )}
+                      </p>
+                    </div>
+                  )}
                 </>
-              ) : (null)}
-
+              ) : null}
             </form>
           </>
         )}
 
         {matches && !props.login ? (
           <div className={styles.rememberMe}>
-            <input type="CheckBox" />
-            {props.login ? (<p>Remember me</p>) : (<p>I accept the <span>Terms and Conditions</span></p>)}
-
-          </div>) : (null)}
+            <input type='CheckBox' />
+            {props.login ? (
+              <p>Remember me</p>
+            ) : (
+              <p>
+                I accept the <span>Terms and Conditions</span>
+              </p>
+            )}
+          </div>
+        ) : null}
 
         {matches && !props.login ? (
           <div className={styles.footer}>
-
-            <Button text={"Register"}
+            <Button
+              text={"Register"}
               primary
-              invalid={
-                
-                  
-                  
-                  signUpEmail?.length > 0 
-                   ? false : true
-              }
+              invalid={signUpEmail?.length > 0 ? false : true}
               onClick={SubmitSignup}
               loading={btnLoading}
             />
@@ -380,16 +421,12 @@ export default function AuthForm(props) {
                   Already have an account?{" "}
                   <span onClick={navigateToLogin}>Log in</span>
                 </div>
-
               )}
             </p>
           </div>
-        ) : (null)}
-
-
-
+        ) : null}
       </div>
-      <img src={emoji} alt="" className={styles.emoji} />
+      <img src={emoji} alt='' className={styles.emoji} />
     </div>
   );
 }

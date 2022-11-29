@@ -1,9 +1,18 @@
 import React from "react";
 import PrimaryContainer from "../PrimaryContainer";
 import styles from "./style.module.css";
-import AuthForm from "../../forms/AuthForm";
+import VendorAuthForm from "../../forms/VendorAuthForm";
+import CustomerAuthForm from "../../forms/CustomerAuthForm";
+import { useSearchParams } from "react-router-dom";
 
 export default function AuthContainer(props) {
+  const [searchParams] = useSearchParams();
+  const loginType = searchParams.get("type");
+  const renderForm = {
+    customer: <CustomerAuthForm login={props.login} />,
+    vendor: <VendorAuthForm login={props.login} />,
+  };
+
   return (
     <PrimaryContainer height={`80%`}>
       <div className={styles.flexContainer}>
@@ -21,9 +30,7 @@ export default function AuthContainer(props) {
             local market.`}
           </p>
         </div>
-        <div className={styles.formContainer}>
-          <AuthForm login={props.login} />
-        </div>
+        <div className={styles.formContainer}>{renderForm[loginType]}</div>
       </div>
     </PrimaryContainer>
   );

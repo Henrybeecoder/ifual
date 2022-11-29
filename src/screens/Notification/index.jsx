@@ -8,9 +8,9 @@ import noneSelected from "../../assets/svg/noneSelected.svg";
 import { limitText } from "../../Custom hooks/helpers";
 import Modal from "../../Components/Modals";
 import modalCheck from "../../assets/svg/modalCheck.svg";
-import CheckBoxWithText from "../../Components/CheckboxWithText";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import { ChevronLeft } from "@material-ui/icons";
+import Checkbox from "../../Components/Checkbox";
 
 const notificationList = [
   {
@@ -341,6 +341,15 @@ const Notification = () => {
         </div>
       </div>
     </PageContainer>
+  );
+};
+
+const CheckBoxWithText = ({ checked, setChecked, text }) => {
+  return (
+    <div className={styles.checkboxFlex}>
+      <Checkbox checked={checked} />
+      <p>{text}</p>
+    </div>
   );
 };
 
