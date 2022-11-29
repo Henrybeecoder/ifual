@@ -35,7 +35,7 @@ export default function AuthForm(props) {
     setTimeout(() => navigate("/dashboard"), 5000);
   };
 
-  const submitSignUp = () => {
+  const submitSignup = () => {
     setBtnLoading(true);
     setTimeout(() => navigate("/sign-up-message"), 5000);
   };
@@ -54,7 +54,7 @@ export default function AuthForm(props) {
           <SignUp
             email={email}
             setEmail={setEmail}
-            signUp={submitSignUp}
+            signup={submitSignup}
             btnLoading={btnLoading}
           />
         )}
@@ -137,7 +137,7 @@ const Login = (props) => {
   );
 };
 
-const SignUp = ({ email, setEmail, btnLoading, signUp }) => {
+const SignUp = ({ email, setEmail, btnLoading, signup }) => {
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width: 800px)");
   const [password, setPassword] = useState("");
@@ -260,7 +260,7 @@ const SignUp = ({ email, setEmail, btnLoading, signUp }) => {
               text={"Register"}
               primary
               invalid={email?.length > 0 ? false : true}
-              onClick={signUp}
+              onClick={signup}
               loading={btnLoading}
             />
             <p>
@@ -272,7 +272,8 @@ const SignUp = ({ email, setEmail, btnLoading, signUp }) => {
           </div>
         </>
       )}
-      <form>
+      {/* mobile */}
+      <form onSubmit={(e) => e.preventDefault()}>
         {phase === "first" && !matches ? (
           <>
             <div className={styles.flexForm}>
@@ -317,17 +318,15 @@ const SignUp = ({ email, setEmail, btnLoading, signUp }) => {
             </div>
           </>
         ) : null}
+        {/* mobile second screen */}
         {phase === "second" && !matches ? (
           <>
-            <div className={styles.formHolder}>
-              <label>COMPANY ADDRESS</label>
-              <input
-                placeholder='Enter address'
-                type='text'
-                value={companyAddress}
-                onChange={(e) => setCompanyAddress(e.target.value)}
-              />
-            </div>
+            <InputTemp
+              label='HOUSE ADDRESS'
+              placeholder='Enter address'
+              inputType='text'
+              name='address'
+            />
             <div className={styles.formHolder}>
               <label>SELECT STATE</label>
               <select value={selectState} onChange={handleStateChange}>
@@ -341,71 +340,48 @@ const SignUp = ({ email, setEmail, btnLoading, signUp }) => {
                 })}
               </select>
             </div>
-            <div className={styles.formHolder}>
-              <label>PASSWORD</label>
-              <div className={styles.passWrapper}>
-                <input
-                  placeholder='Enter Preferred Password'
-                  name='password'
-                  type={signUpPasswordShown ? "text" : "password"}
-                  value={signUpPassword}
-                  onChange={(e) => setSignUpPassword(e.target.value)}
-                />
-                <i onClick={toggleSignUpPasswordVisiblity}>
-                  {signUpPasswordShown ? <Visibility /> : <VisibilityOff />}
-                </i>
-              </div>
-            </div>
-            <div className={styles.formHolder}>
-              <label>RECONFIRM PASSWORD</label>
-              <div className={styles.passWrapper}>
-                <input
-                  placeholder='Enter Preferred Password'
-                  name='password'
-                  type={signUpConfirmPasswordShown ? "text" : "password"}
-                />
-                <i onClick={togglePasswordVisiblity}>
-                  {signUpConfirmPasswordShown ? (
-                    <Visibility />
-                  ) : (
-                    <VisibilityOff />
-                  )}
-                </i>
-              </div>
-            </div>
+            <InputTemp
+              visibilityPadding
+              label='PASSWORD'
+              placeholder='Enter Preferred Password'
+              inputType={passwordVisible ? "text" : "password"}>
+              <i
+                className={styles.btnVisibility}
+                onClick={togglePasswordVisiblity}>
+                {passwordVisible ? <Visibility /> : <VisibilityOff />}
+              </i>
+            </InputTemp>
 
-            {!props.login && (
-              <div className={styles.rememberMe}>
-                <input type='CheckBox' />
-                {props.login ? (
-                  <p>Remember me</p>
-                ) : (
-                  <p>
-                    I accept the <span>Terms and Conditions</span>
-                  </p>
-                )}
-              </div>
-            )}
-            {!props.login && (
-              <div className={styles.footer}>
-                <button onClick={SubmitSignup}>
-                  {props.login ? "Login in" : "Register"}
-                </button>
-                <p>
-                  {props.login ? (
-                    <div className={styles.signUp}>
-                      Don’t have an account?{" "}
-                      <span onClick={navigateToSignup}>Sign up</span>
-                    </div>
-                  ) : (
-                    <div className={styles.signUp}>
-                      Already have an account?{" "}
-                      <span onClick={navigateToLogin}>Log in</span>
-                    </div>
-                  )}
-                </p>
-              </div>
-            )}
+            <InputTemp
+              visibilityPadding
+              label='RECONFIRM PASSWORD'
+              inputType={confirmPasswordVisible ? "text" : "password"}
+              placeholder='Enter Preferred Password'>
+              <i
+                onClick={toggleConfirmPasswordVisiblity}
+                className={styles.btnVisibility}>
+                {confirmPasswordVisible ? <Visibility /> : <VisibilityOff />}
+              </i>
+            </InputTemp>
+
+            <div className={styles.rememberMe}>
+              <Checkbox
+                checked={acceptTermsAndConditions}
+                setChecked={toggleATC}
+              />
+              <p>
+                I accept the <span>Terms and Conditions</span>
+              </p>
+            </div>
+            <div className={styles.footer}>
+              <Button text='Register' loading={btnLoading} onClick={signup} />
+              <p>
+                <div className={styles.signUp}>
+                  Already have an account?{" "}
+                  <span onClick={navigateToLogin}>Log in</span>
+                </div>
+              </p>
+            </div>
           </>
         ) : null}
       </form>
