@@ -9,9 +9,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { states } from "../../utils/state";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import Button from "../../Components/Button";
-import SignUpMessage from "../../screens/SignUpMessage";
 
-const eye = <FontAwesomeIcon icon={faEye} />;
 
 export default function AuthForm(props) {
   const matches = useMediaQuery('(min-width: 800px)')
@@ -66,9 +64,6 @@ export default function AuthForm(props) {
   }
 
   //The data
-
-
-
   const SubmitLogin = () => {
     setBtnLoading(true)
     setTimeout(() => navigate("/dashboard"), 5000);
@@ -216,8 +211,6 @@ export default function AuthForm(props) {
                     </div>
 
                   </div>
-
-
                 </form>
               </>
             )}
@@ -360,9 +353,6 @@ export default function AuthForm(props) {
             <Button text={"Register"}
               primary
               invalid={
-                
-                  
-                  
                   signUpEmail?.length > 0 
                    ? false : true
               }
