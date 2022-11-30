@@ -12,6 +12,7 @@ import orderStatusActive from "../../assets/navbericon/orderStatusActive.svg";
 import notification from "../../assets/navbericon/notification.svg";
 import notificationActive from "../../assets/navbericon/notificationActive.svg";
 import report from "../../assets/navbericon/report.svg";
+import reportActive from "../../assets/navbericon/reportActive.svg";
 import logOut from "../../assets/navbericon/logOut.svg";
 import mobileSearch from "../../assets/navbericon/searchIcon.svg";
 import hamburger from "../../assets/navbericon/hamburger.svg";
@@ -39,6 +40,9 @@ export default function PageContainer(props) {
   };
   const routeToNotification = () => {
     navigate("/notification");
+  };
+  const routeToReport = () => {
+    navigate("/report");
   };
 
   const routeToLogin = () => {
@@ -101,8 +105,16 @@ export default function PageContainer(props) {
               <p>Notification</p>
             </div>
 
-            <div className={styles.item}>
-              <img src={report} alt='' />
+            <div
+              className={`${
+                props.active === "report" ? styles.active : styles.item
+              }`}
+              onClick={routeToReport}>
+              {props.active === "report" ? (
+                <img src={reportActive} alt='' />
+              ) : (
+                <img src={report} alt='' />
+              )}
               <p>Report</p>
             </div>
             <div className={styles.item} onClick={routeToLogin}>
@@ -180,8 +192,16 @@ export default function PageContainer(props) {
               )}
               <p>Notification</p>
             </div>
-            <div className={styles.item}>
-              <img src={report} alt='' />
+            <div
+              className={`${
+                props.active === "report" ? styles.active : styles.item
+              }`}
+              onClick={routeToReport}>
+              {props.active === "report" ? (
+                <img src={reportActive} alt='' />
+              ) : (
+                <img src={report} alt='' />
+              )}
               <p>Report</p>
             </div>
             <div className={styles.item} onClick={routeToLogin}>

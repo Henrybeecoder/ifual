@@ -219,7 +219,7 @@ const Notification = () => {
         </div>
       </Modal>
 
-      {/* {filterSet && (
+      {filterSet && (
         <div className={styles.filterContainer}>
           <div className={styles.filterHeader}>
             <p>Filter</p>
@@ -233,7 +233,7 @@ const Notification = () => {
           </div>
         </div>
       )}
-       */}
+
       <div className={styles.pageContainer}>
         {!selected ? (
           <button className={styles.breadCrumb}>
