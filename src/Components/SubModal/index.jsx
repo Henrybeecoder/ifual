@@ -1,23 +1,22 @@
 import { useState } from "react";
 import styles from "./style.module.css";
-import tick from "../../assets/svg/tick.svg";
+import { SvgOptions } from "../../assets/Svgs";
 
-const SubModal = () => {
+const SubModal = ({ children }) => {
   const [openSubModal, setOpenSubModal] = useState(false);
   const closeSubModal = () => {
     setOpenSubModal(false);
   };
-
+  const toggle = () => {
+    setOpenSubModal((state) => !state);
+  };
   return (
-    <>
-      <img src={tick} alt='' onClick={() => setOpenSubModal(true)} />
-      {openSubModal && (
-        <div className={styles.subModal}>
-          <p onClick={closeSubModal}>View</p>
-          <p onClick={closeSubModal}>Report</p>
-        </div>
-      )}
-    </>
+    <div className={styles.container}>
+      <button onClick={toggle}>
+        <SvgOptions />
+      </button>
+      {openSubModal && <div className={styles.subModal}>{children}</div>}
+    </div>
   );
 };
 

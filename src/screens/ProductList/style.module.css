@@ -203,6 +203,25 @@ button {
   box-shadow: 0px 1px 8px 1px rgba(52, 68, 55, 0.2);
 }
 
+.subModalContainer {
+  width: 150px;
+  height: 125px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 20px;
+  justify-content: center;
+}
+
+.subModalContainer button {
+  padding: 5px;
+  font-size: 16px;
+}
+
+/* .subModal p {
+
+} */
+
 @media screen and (max-width: 800px) {
   button {
     margin-right: 10px;

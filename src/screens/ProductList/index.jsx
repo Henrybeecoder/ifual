@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import PageContainer from "../../containers/PageContainer";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -16,6 +16,7 @@ import Button from "../../Components/Button";
 import { SvgArrowback } from "../../assets/Svgs";
 import { InputTemp, SelectTemp } from "../../Components/InputTemp";
 import { states } from "../../utils/state";
+import SubModal from "../../Components/SubModal";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -124,109 +125,71 @@ const rows = [
   ),
 ];
 
-const statusOptions = [
-  { value: "In stock", label: "In stock" },
-  { value: "Out of stock", label: "Out of stock" },
-];
-
 export default function ProductList() {
-  const [openSubModal, setOpenSubModal] = useState(false);
   const [filterSet, setFilter] = useState(false);
   const [page, setPage] = useState("home");
+  const [selected, setSelected] = useState(null);
 
-  const rowClick = (e) => {
-    setOpenSubModal(e);
-  };
-  const toggleSubModal = () => {
-    setOpenSubModal(true);
-  };
-  const closeSubModal = () => {
-    setOpenSubModal(false);
-  };
+  const selectedProduct = rows
+    .map((row) => ({
+      id: row.id,
+      description: row.name,
+      category: row.calories,
+      status: rows.fat,
+      supplyTime: row.carbs,
+      price: row.protein,
+      locations: [],
+      discount: "",
+    }))
+    .find((row) => row.id === selected);
 
   const addProduct = () => {
     setPage("add-product");
   };
 
   const backToProductsList = () => {
+    setSelected(null);
     setPage("home");
   };
 
-  const statesOptions = states.map((state) => ({
-    value: state.name.toLowerCase(),
-    label: state.name,
-  }));
+  const editProduct = (id) => {
+    setSelected(id);
+    setPage("edit-product");
+  };
+
+  const viewProduct = (id) => {
+    setSelected(id);
+    setPage("add-product");
+  };
+
+  const emptyInitialState = {
+    price: "",
+    description: "",
+    category: "",
+    supplyTime: "",
+    status: "",
+    discount: "",
+    locations: [],
+  };
 
   return (
     <PageContainer active='product-list'>
       <div className={styles.pageContainer}>
-        {page === "add-product" ? (
-          <>
-            <button className={styles.btnBack} onClick={backToProductsList}>
-              <SvgArrowback />
-              <h2>Back</h2>
-            </button>
-            <div className={styles.pageHeader}>
-              <h1>Add Product</h1>
-            </div>
-            <div>
-              <div className={styles.flexForm}>
-                <InputTemp
-                  inputType='text'
-                  label='PRODUCT DESCRIPTION'
-                  placeholder='Enter Description'
-                  marginRight
-                />
-                <SelectTemp
-                  inputType='text'
-                  label='CATEGORY'
-                  placeholder='Select Category'
-                  marginLeft
-                />
-              </div>
-              <div className={styles.flexForm}>
-                <InputTemp
-                  inputType='text'
-                  label='SUPPLY TIME (IN HOURS)'
-                  placeholder='E.g 12 Hours'
-                  marginRight
-                />
-                <InputTemp
-                  inputType='text'
-                  label='PRODUCT DESCRIPTION'
-                  placeholder='Enter Description'
-                  marginLeft
-                />
-              </div>
-              <div className={styles.flexForm}>
-                <SelectTemp
-                  inputType='text'
-                  label='STATUS'
-                  placeholder='In stock'
-                  // value='In stock'
-                  marginRight
-                  options={statusOptions}
-                />
-                <InputTemp
-                  inputType='text'
-                  label='DISCOUNT (IN PERCENTAGE)'
-                  placeholder='E.g 50%'
-                  marginLeft
-                />
-              </div>
-              <SelectTemp
-                inputType='text'
-                label='LOCATION'
-                placeholder='Select all that applies'
-                isMulti
-                options={statesOptions}
-              />
-              <div className={styles.flexFooter}>
-                <button className={styles.btnBackFooter}>Back</button>
-                <button className={styles.btnSaveFooter}>Save</button>
-              </div>
-            </div>
-          </>
+        {page === "edit-product" ? (
+          <ProductsPage
+            backToProductsList={backToProductsList}
+            initialState={selectedProduct}
+          />
+        ) : page === "view-product" ? (
+          <ProductsPage
+            backToProductsList={backToProductsList}
+            initialState={selectedProduct}
+          />
+        ) : page === "add-product" ? (
+          <ProductsPage
+            backToProductsList={backToProductsList}
+            initialState={emptyInitialState}
+          />
         ) : (
           <>
             {filterSet && (
@@ -266,8 +229,8 @@ export default function ProductList() {
               </div>
 
               <TableContainer
-                // style={{ marginTop: "35px", borderRadius: "17px" }}
-                className={styles.tableContainer}
+                style={{ marginTop: "35px", borderRadius: "17px" }}
+                // className={styles.tableContainer}
                 component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label='customized table'>
                   <TableBody>
@@ -314,20 +277,24 @@ export default function ProductList() {
                           <StyledTableCell align='center'>
                             <h3 className={styles.subText}>{row.protein}</h3>
                           </StyledTableCell>
-                          <StyledTableCell
-                            align='right'
-                            style={{ cursor: "pointer" }}>
-                            <img
-                              src={tick}
-                              alt=''
-                              onClick={() => rowClick(row.id)}
-                            />
-                            {openSubModal && (
-                              <div className={styles.subModal}>
-                                <p onClick={closeSubModal}>View</p>
-                                <p onClick={closeSubModal}>Report</p>
+                          <StyledTableCell align='right'>
+                            <SubModal>
+                              <div className={styles.subModalContainer}>
+                                <button
+                                  onClick={() => {
+                                    viewProduct(row.id);
+                                  }}>
+                                  View
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    editProduct(row.id);
+                                  }}>
+                                  Edit
+                                </button>
+                                <button onClick={() => {}}>Delete</button>
                               </div>
-                            )}
+                            </SubModal>
                           </StyledTableCell>
                         </StyledTableRow>
                       </>
@@ -342,3 +309,128 @@ export default function ProductList() {
     </PageContainer>
   );
 }
+
+const ProductsPage = ({ backToProductsList, initialState }) => {
+  const statusOptions = [
+    { value: "In stock", label: "In stock" },
+    { value: "Out of stock", label: "Out of stock" },
+  ];
+
+  const statesOptions = states.map((state) => ({
+    value: state.name.toLowerCase(),
+    label: state.name,
+  }));
+
+  const categoryOptions = [
+    { value: "diesel", label: "Diesel" },
+    { value: "petrol", label: "Petrol" },
+    { value: "AGO-diesel", label: "AGO Diesel" },
+  ];
+
+  // const [description, setDescription] = useState(initialState.description);
+  // const [category, setCategory] = useState(initialState.category);
+  // const [supplyTime, setsupplyTime] = useState(initialState.supplyTime);
+  // const [price, setPrice] = useState(initialState.price);
+  // const [status, setStatus] = useState(initialState.status);
+  // const [discount, setDiscount] = useState(initialState.discount);
+  // const [location, setLocation] = useState(initialState.location);
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "description":
+        return { ...state, description: action.payload };
+      case "category":
+        return { ...state, category: action.payload };
+      case "supplyTime":
+        return { ...state, supplyTime: action.payload };
+      case "price":
+        return { ...state, price: action.payload };
+      case "status":
+        return { ...state, status: action.payload };
+      case "discount":
+        return { ...state, discount: action.payload };
+      case "locations":
+        return { ...state, locations: action.payload };
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <>
+      <button className={styles.btnBack} onClick={backToProductsList}>
+        <SvgArrowback />
+        <h2>Back</h2>
+      </button>
+      <div className={styles.pageHeader}>
+        <h1>Add Product</h1>
+      </div>
+      <div>
+        <div className={styles.flexForm}>
+          <InputTemp
+            inputType='text'
+            label='PRODUCT DESCRIPTION'
+            placeholder='Enter Description'
+            marginRight
+            value={state.description}
+            onValueChange={(e) => dispatch({ type: "description", payload: e })}
+          />
+          <SelectTemp
+            inputType='text'
+            label='CATEGORY'
+            placeholder='Select Category'
+            marginLeft
+            options={categoryOptions}
+          />
+        </div>
+        <div className={styles.flexForm}>
+          <InputTemp
+            inputType='text'
+            label='SUPPLY TIME (IN HOURS)'
+            placeholder='E.g 12 Hours'
+            marginRight
+            value={state.supplyTime}
+            onValueChange={(e) => dispatch({ type: "suplyTime", payload: e })}
+          />
+          <InputTemp
+            inputType='text'
+            label='PRICE/LITRE IN NAIRA'
+            placeholder='300.00'
+            marginLeft
+            value={state.price}
+            onValueChange={(e) => dispatch({ type: "price", payload: e })}
+          />
+        </div>
+        <div className={styles.flexForm}>
+          <SelectTemp
+            inputType='text'
+            label='STATUS'
+            placeholder='In stock'
+            // value='In stock'
+            marginRight
+            options={statusOptions}
+          />
+          <InputTemp
+            inputType='text'
+            label='DISCOUNT (IN PERCENTAGE)'
+            placeholder='E.g 50%'
+            marginLeft
+            value={state.discount}
+            onValueChange={(e) => dispatch({ type: "discount", payload: e })}
+          />
+        </div>
+        <SelectTemp
+          inputType='text'
+          label='LOCATION'
+          placeholder='Select all that applies'
+          isMulti
+          options={statesOptions}
+        />
+        <div className={styles.flexFooter}>
+          <button className={styles.btnBackFooter}>Back</button>
+          <button className={styles.btnSaveFooter}>Save</button>
+        </div>
+      </div>
+    </>
+  );
+};
