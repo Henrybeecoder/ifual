@@ -15,6 +15,7 @@ import tick from "../../assets/svg/tick.svg";
 import Button from "../../Components/Button";
 import { SvgArrowback } from "../../assets/Svgs";
 import { InputTemp, SelectTemp } from "../../Components/InputTemp";
+import { states } from "../../utils/state";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -123,6 +124,11 @@ const rows = [
   ),
 ];
 
+const statusOptions = [
+  { value: "In stock", label: "In stock" },
+  { value: "Out of stock", label: "Out of stock" },
+];
+
 export default function ProductList() {
   const [openSubModal, setOpenSubModal] = useState(false);
   const [filterSet, setFilter] = useState(false);
@@ -145,6 +151,11 @@ export default function ProductList() {
   const backToProductsList = () => {
     setPage("home");
   };
+
+  const statesOptions = states.map((state) => ({
+    value: state.name.toLowerCase(),
+    label: state.name,
+  }));
 
   return (
     <PageContainer active='product-list'>
@@ -188,13 +199,15 @@ export default function ProductList() {
                 />
               </div>
               <div className={styles.flexForm}>
-                <InputTemp
-                  inputType='text'
-                  label='PRODUCT DESCRIPTION'
-                  placeholder='Enter Description'
-                  marginRight
-                />
                 <SelectTemp
+                  inputType='text'
+                  label='STATUS'
+                  placeholder='In stock'
+                  // value='In stock'
+                  marginRight
+                  options={statusOptions}
+                />
+                <InputTemp
                   inputType='text'
                   label='DISCOUNT (IN PERCENTAGE)'
                   placeholder='E.g 50%'
@@ -205,6 +218,8 @@ export default function ProductList() {
                 inputType='text'
                 label='LOCATION'
                 placeholder='Select all that applies'
+                isMulti
+                options={statesOptions}
               />
               <div className={styles.flexFooter}>
                 <button className={styles.btnBackFooter}>Back</button>
@@ -250,7 +265,10 @@ export default function ProductList() {
                 </div>
               </div>
 
-              <TableContainer style={{ marginTop: "35px" }} component={Paper}>
+              <TableContainer
+                // style={{ marginTop: "35px", borderRadius: "17px" }}
+                className={styles.tableContainer}
+                component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label='customized table'>
                   <TableBody>
                     <StyledTableRow>
