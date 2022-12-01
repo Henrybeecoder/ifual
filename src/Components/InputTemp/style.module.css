@@ -1,0 +1,32 @@
+.formHolder input,
+.formHolder select {
+  outline: none;
+  border: none;
+  padding: 14px 16px;
+  border: 0.5px solid #344437;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.formHolder label {
+  font-size: 0.7rem;
+  margin: 0 0 8px 0;
+}
+
+.formHolder {
+  position: relative;
+  color: #acb5bd;
+  letter-spacing: 0.08em;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 0 0;
+  width: 100%;
+}
+
+.marginLeft {
+  margin-left: 15px;
+}
+
+.marginRight {
+  margin-right: 15px;
+}
