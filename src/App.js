@@ -12,6 +12,7 @@ import SignUpMessage from "./screens/SignUpMessage";
 import SignUpNext from "./screens/SignUpNext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Notification from "./screens/Notification";
+import Report from "./screens/Report";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='/order-status' element={<OrderStatus />} />
         <Route path='/product-list' element={<ProductList />} />
         <Route path='/notification' element={<Notification />} />
+        <Route path='/report' element={<Report />} />
         <Route path='/sign-up-message' element={<SignUpMessage />} />
         <Route path='/sign-up-next' element={<SignUpNext />} />
       </Routes>

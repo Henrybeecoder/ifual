@@ -1,0 +1,57 @@
+.formHolder input,
+.formHolder select {
+  outline: none;
+  border: none;
+  padding: 14px 16px;
+  height: 48px;
+  border: 0.5px solid rgba(50, 50, 50, 0.3);
+  border-radius: 5px;
+  width: 100%;
+  font-weight: 400;
+  font-size: "14px";
+  line-height: "18px";
+}
+
+input::placeholder {
+  font-weight: 400;
+  font-size: "15px";
+  line-height: "18px";
+}
+
+.formHolder label {
+  font-size: 0.7rem;
+  margin: 0 0 8px 0;
+}
+
+.formHolder {
+  position: relative;
+  color: #acb5bd;
+  letter-spacing: 0.08em;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 0 0;
+  width: 100%;
+  font-family: "Sofia Pro";
+  font-style: "normal";
+  font-weight: 400;
+  font-size: "18px";
+  line-height: "18px";
+}
+
+.marginLeft {
+  margin-left: 15px;
+}
+
+.marginRight {
+  margin-right: 15px;
+}
+
+@media screen and (max-width: 800px) {
+  .marginLeft {
+    margin-left: auto;
+  }
+
+  .marginRight {
+    margin-right: auto;
+  }
+}
