@@ -46,7 +46,7 @@ export default function PageContainer(props) {
   };
 
   const routeToLogin = () => {
-    navigate("/login");
+    navigate("/");
   };
   return (
     <div className={styles.container}>
