@@ -13,10 +13,11 @@ import left from "../../assets/svg/left.svg";
 import filter from "../../assets/svg/filter.svg";
 import tick from "../../assets/svg/tick.svg";
 import Button from "../../Components/Button";
-import { SvgArrowback } from "../../assets/Svgs";
+import { SvgArrowback, SvgDelete, SvgEdit } from "../../assets/Svgs";
 import { InputTemp, SelectTemp } from "../../Components/InputTemp";
 import { states } from "../../utils/state";
 import SubModal from "../../Components/SubModal";
+import Modal from "../../Components/Modals";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -129,6 +130,7 @@ export default function ProductList() {
   const [filterSet, setFilter] = useState(false);
   const [page, setPage] = useState("home");
   const [selected, setSelected] = useState(null);
+  const [deleteCfmModal, setDeleteCfmModal] = useState(false);
 
   const selectedProduct = rows
     .map((row) => ({
@@ -159,7 +161,15 @@ export default function ProductList() {
 
   const viewProduct = (id) => {
     setSelected(id);
-    setPage("add-product");
+    setPage("view-product");
+  };
+
+  const closeModal = () => {
+    setDeleteCfmModal(false);
+  };
+
+  const openModal = () => {
+    setDeleteCfmModal(true);
   };
 
   const emptyInitialState = {
@@ -175,18 +185,52 @@ export default function ProductList() {
   return (
     <PageContainer active='product-list'>
       <div className={styles.pageContainer}>
+        <Modal openModal={deleteCfmModal} closeModal={closeModal}>
+          yoo
+        </Modal>
         {page === "edit-product" ? (
           <ProductsPage
+            pageHeader='Edit Product'
             backToProductsList={backToProductsList}
-            initialState={selectedProduct}
-          />
+            initialState={selectedProduct}>
+            <div className={styles.editDeleteContainer}>
+              <button className={styles.btnEditActive}>
+                <span>Edit</span>
+                <div className={styles.svgContainer}>
+                  <SvgEdit className={styles.svgEdit} />
+                </div>
+              </button>
+              <button className={styles.btnDelete} onClick={openModal}>
+                <span>Delete</span>
+                <div className={styles.svgContainer}>
+                  <SvgDelete />
+                </div>
+              </button>
+            </div>
+          </ProductsPage>
         ) : page === "view-product" ? (
           <ProductsPage
+            pageHeader='Product Details'
             backToProductsList={backToProductsList}
-            initialState={selectedProduct}
-          />
+            initialState={selectedProduct}>
+            <div className={styles.editDeleteContainer}>
+              <button className={styles.btnEdit} onClick={editProduct}>
+                <span>Edit</span>
+                <div className={styles.svgContainer}>
+                  <SvgEdit className={styles.svgEdit} />
+                </div>
+              </button>
+              <button className={styles.btnDelete} onClick={openModal}>
+                <span>Delete</span>
+                <div className={styles.svgContainer}>
+                  <SvgDelete />
+                </div>
+              </button>
+            </div>
+          </ProductsPage>
         ) : page === "add-product" ? (
           <ProductsPage
+            pageHeader='Add Product'
             backToProductsList={backToProductsList}
             initialState={emptyInitialState}
           />
@@ -310,7 +354,12 @@ export default function ProductList() {
   );
 }
 
-const ProductsPage = ({ backToProductsList, initialState }) => {
+const ProductsPage = ({
+  children,
+  pageHeader,
+  backToProductsList,
+  initialState,
+}) => {
   const statusOptions = [
     { value: "In stock", label: "In stock" },
     { value: "Out of stock", label: "Out of stock" },
@@ -363,7 +412,8 @@ const ProductsPage = ({ backToProductsList, initialState }) => {
         <h2>Back</h2>
       </button>
       <div className={styles.pageHeader}>
-        <h1>Add Product</h1>
+        <h1>{pageHeader}</h1>
+        {children}
       </div>
       <div>
         <div className={styles.flexForm}>
