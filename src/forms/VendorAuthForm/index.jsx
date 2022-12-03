@@ -70,7 +70,7 @@ export default function AuthForm(props) {
 
   const SubmitLogin = () => {
     setBtnLoading(true);
-    setTimeout(() => navigate("/dashboard"), 5000);
+    setTimeout(() => navigate("/vendor/dashboard"), 5000);
   };
 
   const SubmitSignup = () => {

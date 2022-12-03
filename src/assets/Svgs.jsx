@@ -61,3 +61,152 @@ export const SvgDelete = (props) => (
     />
   </svg>
 );
+
+export const SvgSearchIcon = (props) => (
+  <svg
+    width={26}
+    height={26}
+    fill='none'
+    viewBox='0 0 30 30'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='m25 25-5.8-5.8m3.133-7.533c0 5.89-4.775 10.666-10.666 10.666S1 17.558 1 11.667 5.776 1 11.667 1c5.89 0 10.666 4.776 10.666 10.667Z'
+      stroke='#2F3930'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgArrowLeft = (props) => (
+  <svg
+    width={10}
+    height={18}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='M9 17 1 9l8-8'
+      stroke='#344437'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgArrowRight = (props) => (
+  <svg
+    width={10}
+    height={18}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='m1 17 8-8-8-8'
+      stroke='#2F3930'
+      strokeWidth={2}
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgFilterIcon = (props) => (
+  <svg
+    width={32}
+    height={32}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <rect
+      opacity={0.5}
+      x={0.25}
+      y={0.25}
+      width={31.5}
+      height={31.5}
+      rx={7.75}
+      fill='#fff'
+      stroke='#344437'
+      strokeWidth={0.5}
+    />
+    <path
+      d='M22 10H9l5.2 6.149v4.901l2.6 1.3v-6.201L22 10Z'
+      stroke='#2F3930'
+      strokeWidth={0.5}
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgBellOutline = (props) => (
+  <svg
+    width={48}
+    height={48}
+    viewBox='0 0 60 60'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <rect
+      opacity={0.5}
+      x={0.25}
+      y={0.25}
+      width={55.5}
+      height={55.5}
+      rx={7.75}
+      stroke='#344437'
+      strokeWidth={0.5}
+    />
+    <path
+      d='M28.436 19.13a7.306 7.306 0 0 0-7.305 7.306v5.219A3.13 3.13 0 0 1 18 34.785h20.873a3.131 3.131 0 0 1-3.131-3.13v-5.219a7.306 7.306 0 0 0-7.306-7.305Zm0 0V16m1.806 22.96a2.088 2.088 0 0 1-3.611 0'
+      stroke='#2F3930'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgCartOutline = (props) => (
+  <svg
+    width={48}
+    height={48}
+    viewBox='0 0 60 60'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <rect
+      opacity={0.5}
+      x={0.25}
+      y={0.25}
+      width={55.5}
+      height={55.5}
+      rx={7.75}
+      stroke='#344437'
+      strokeWidth={0.5}
+    />
+    <path
+      d='M40.143 16H35.57l-3.063 15.303a2.286 2.286 0 0 1-2.285 1.84H19.114a2.286 2.286 0 0 1-2.286-1.84L15 21.714h19.428m-4.57 17.143a1.143 1.143 0 1 0 2.285 0 1.143 1.143 0 0 0-2.286 0Zm-12.572 0a1.143 1.143 0 1 0 2.285 0 1.143 1.143 0 0 0-2.285 0Z'
+      stroke='#2F3930'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgRating = (props) => (
+  <svg
+    width={18}
+    height={18}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='m9 1 2.472 5.266 5.528.85-4 4.096.944 5.788L9 14.266 4.056 17 5 11.212 1 7.116l5.528-.85L9 1Z'
+      fill='#36B44A'
+      stroke='#36B44A'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);

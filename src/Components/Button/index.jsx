@@ -1,25 +1,33 @@
 import React from "react";
 import styles from "./style.module.css";
 
-export default function Button(props) {
+export default function Button({
+  loading,
+  invalid,
+  primary,
+  onClick,
+  width,
+  className,
+  text,
+}) {
   return (
     <>
-      {props.loading && (
+      {loading && (
         <div>
           <div className={styles.loading}></div>
         </div>
       )}
 
       <button
-        disabled={props.invalid}
+        disabled={invalid}
         className={`
-          ${props.primary ? styles.primaryButton : styles.secondaryButton} ${
-          props.className
-        } ${styles.Btn}
+          ${
+            primary ? styles.primaryButton : styles.secondaryButton
+          } ${className} ${styles.Btn}
         `}
-        style={{ width: props.width ? props.width : "100%" }}
-        onClick={props.onClick}>
-        {props.text}
+        style={{ width: width ? width : "100%" }}
+        onClick={onClick}>
+        {text}
       </button>
     </>
   );

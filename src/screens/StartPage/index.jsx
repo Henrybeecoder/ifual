@@ -5,7 +5,7 @@ import customer from "../../assets/svg/customer.svg";
 import vendor from "../../assets/svg/vendor.svg";
 import { useNavigate } from "react-router-dom";
 
-export default function StartPage() {
+export default function LoginPage() {
   const navigate = useNavigate();
   const navigateToVendorLogin = () => {
     navigate({ pathname: "/login", search: "type=vendor" });

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SideBar from "../../Components/SideBar";
 import styles from "./style.module.css";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import logo from "../../assets/logo.svg";
@@ -30,23 +29,23 @@ export default function PageContainer(props) {
     setOpenHamburger(!openHamburger);
   };
   const routeToDashboard = () => {
-    navigate("/dashboard");
+    navigate("/vendor/dashboard");
   };
   const routeToOrderStatus = () => {
-    navigate("/order-status");
+    navigate("/vendor/order-status");
   };
   const routeToProductList = () => {
-    navigate("/product-list");
+    navigate("/vendor/product-list");
   };
   const routeToNotification = () => {
-    navigate("/notification");
+    navigate("/vendor/notification");
   };
   const routeToReport = () => {
-    navigate("/report");
+    navigate("/vendor/report");
   };
 
   const routeToLogin = () => {
-    navigate("/login");
+    navigate("/vendor/login");
   };
   return (
     <div className={styles.container}>

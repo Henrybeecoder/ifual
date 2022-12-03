@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PageContainer from "../../containers/PageContainer";
+import PageContainer from "../../containers/VendorPageContainer";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";

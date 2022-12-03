@@ -1,38 +1,32 @@
-import React, { useReducer, useState } from "react";
+import React, { useState } from "react";
 import styles from "./style.module.css";
 import emoji from "../../assets/svg/emoji.svg";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { states } from "../../utils/state";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import Button from "../../Components/Button";
 import SignUpMessage from "../../screens/SignUpMessage";
 import Checkbox from "../../Components/Checkbox";
 
-const eye = <FontAwesomeIcon icon={faEye} />;
-
 export default function AuthForm(props) {
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width: 800px)");
   const [btnLoading, setBtnLoading] = useState(false);
-  const [firstPhase, setFirstPhase] = useState(true);
-  const [secondPhase, setSecondPhase] = useState(false);
   const [email, setEmail] = useState("");
-  const [signupsuccess, setSignUpSucess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const switchToSecondPhase = () => {
-    setFirstPhase(false);
-    setSecondPhase(true);
-  };
-
-  //The data
-
-  const submitLogin = () => {
-    setBtnLoading(true);
-    setTimeout(() => navigate("/dashboard"), 5000);
+  const login = (email) => {
+    setLoading(true);
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ email, name: "Bistro Badmus" })
+    );
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/");
+    }, 3000);
   };
 
   const submitSignup = () => {
@@ -47,7 +41,7 @@ export default function AuthForm(props) {
           <Login
             email={email}
             setEmail={setEmail}
-            login={submitLogin}
+            login={login}
             btnLoading={btnLoading}
           />
         ) : (
@@ -124,7 +118,7 @@ const Login = (props) => {
           primary
           invalid={email?.length > 0 && password?.length > 0 ? false : true}
           loading={btnLoading}
-          onClick={login}
+          onClick={() => login(email)}
         />
         <p>
           <div className={styles.signUp}>
@@ -140,7 +134,6 @@ const Login = (props) => {
 const SignUp = ({ email, setEmail, btnLoading, signup }) => {
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width: 800px)");
-  const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisibility] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisibility] =
     useState(false);
@@ -306,13 +299,6 @@ const SignUp = ({ email, setEmail, btnLoading, signup }) => {
               <Button
                 text='Next'
                 primary
-                // invalid={
-                //   companyName?.length > 0 &&
-                //   phoneNumber?.length > 0 &&
-                //   signUpEmail?.length > 0
-                //     ? false
-                //     : true
-                // }
                 onClick={() => switchPhase("second")}
               />
             </div>

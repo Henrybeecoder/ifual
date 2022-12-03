@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageContainer from "../../containers/PageContainer";
+import PageContainer from "../../containers/VendorPageContainer";
 import styles from "./style.module.css";
 import right from "../../assets/svg/right.svg";
 import left from "../../assets/svg/left.svg";
@@ -277,13 +277,13 @@ const Report = () => {
   );
 };
 
-const CheckBoxWithText = ({ checked, setChecked, text }) => {
-  return (
-    <div className={styles.checkboxFlex}>
-      <Checkbox checked={checked} />
-      <p>{text}</p>
-    </div>
-  );
-};
+// const CheckBoxWithText = ({ checked, setChecked, text }) => {
+//   return (
+//     <div className={styles.checkboxFlex}>
+//       <Checkbox checked={checked} />
+//       <p>{text}</p>
+//     </div>
+//   );
+// };
 
 export default Report;

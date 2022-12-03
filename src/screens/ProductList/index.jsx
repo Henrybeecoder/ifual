@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import PageContainer from "../../containers/PageContainer";
+import PageContainer from "../../containers/VendorPageContainer";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -11,8 +11,6 @@ import styles from "./style.module.css";
 import right from "../../assets/svg/right.svg";
 import left from "../../assets/svg/left.svg";
 import filter from "../../assets/svg/filter.svg";
-import tick from "../../assets/svg/tick.svg";
-import Button from "../../Components/Button";
 import { SvgArrowback, SvgDelete, SvgEdit } from "../../assets/Svgs";
 import { InputTemp, SelectTemp } from "../../Components/InputTemp";
 import { states } from "../../utils/state";
@@ -185,9 +183,7 @@ export default function ProductList() {
   return (
     <PageContainer active='product-list'>
       <div className={styles.pageContainer}>
-        <Modal openModal={deleteCfmModal} closeModal={closeModal}>
-          yoo
-        </Modal>
+        <Modal openModal={deleteCfmModal} closeModal={closeModal}></Modal>
         {page === "edit-product" ? (
           <ProductsPage
             pageHeader='Edit Product'

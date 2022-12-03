@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./style.module.css";
-import PageContainer from "../../containers/PageContainer";
+import PageContainer from "../../containers/VendorPageContainer";
 import {
   AreaChart,
   Area,

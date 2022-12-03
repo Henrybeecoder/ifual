@@ -1,6 +1,6 @@
 import React from "react";
 import Login from "./screens/Login";
-import StartPage from "./screens/StartPage";
+import LoginPage from "./screens/StartPage";
 import SignUp from "./screens/SignUp";
 import Dashboard from "./screens/Dashboard";
 import ForgotPassword from "./screens/ForgotPassword";
@@ -13,25 +13,28 @@ import SignUpNext from "./screens/SignUpNext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Notification from "./screens/Notification";
 import Report from "./screens/Report";
+import Home from "./screens/Home";
+import Checkout from "./screens/Checkout";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<StartPage />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/checkout' element={<Checkout />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/vendor/dashboard' element={<Dashboard />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route
           path='/forgot-password-message'
           element={<ForgotPasswordMessage />}
         />
         <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/order-status' element={<OrderStatus />} />
-        <Route path='/product-list' element={<ProductList />} />
-        <Route path='/notification' element={<Notification />} />
-        <Route path='/report' element={<Report />} />
+        <Route path='/vendor/order-status' element={<OrderStatus />} />
+        <Route path='/vendor/product-list' element={<ProductList />} />
+        <Route path='/vendor/notification' element={<Notification />} />
+        <Route path='/vendor/report' element={<Report />} />
         <Route path='/sign-up-message' element={<SignUpMessage />} />
         <Route path='/sign-up-next' element={<SignUpNext />} />
       </Routes>
