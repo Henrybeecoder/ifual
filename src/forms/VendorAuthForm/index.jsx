@@ -9,9 +9,6 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { states } from "../../utils/state";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import Button from "../../Components/Button";
-import SignUpMessage from "../../screens/SignUpMessage";
-
-const eye = <FontAwesomeIcon icon={faEye} />;
 
 export default function AuthForm(props) {
   const matches = useMediaQuery("(min-width: 800px)");
@@ -52,13 +49,13 @@ export default function AuthForm(props) {
 
   const navigate = useNavigate();
   const navigateToSignup = () => {
-    navigate({ pathname: "/signup", search: "type=vendor" });
+    navigate("/signup");
   };
   const navigateToLogin = () => {
-    navigate({ pathname: "/login", search: "type=vendor" });
+    navigate("/login");
   };
   const navigateToForgotPassword = () => {
-    navigate({ pathname: "/forgot-password", search: "type=vendor" });
+    navigate("/forgot-password");
   };
 
   const switchToSecondPhase = () => {
@@ -67,7 +64,6 @@ export default function AuthForm(props) {
   };
 
   //The data
-
   const SubmitLogin = () => {
     setBtnLoading(true);
     setTimeout(() => navigate("/vendor/dashboard"), 5000);

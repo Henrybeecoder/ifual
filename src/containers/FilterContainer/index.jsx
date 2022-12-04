@@ -5,6 +5,9 @@ export default function FilterContainer (props) {
     return (
         <div className={styles.filterContainerBackground}>
         <div className={styles.filterContainer}>
+            <div className={styles.filterHeader}>
+        <p>Filter</p>
+    </div>
  {props.children}
         </div>
         </div>
