@@ -16,6 +16,8 @@ const Header = ({ user }) => {
 
   const [open, setOpen] = useState(false);
 
+  const [menu, setMenu] = useState(false);
+
   const toLogin = () => {
     navigate({ pathname: "/login", search: "type=customer" });
   };
