@@ -198,6 +198,7 @@ export const SvgRating = (props) => (
   <svg
     width={18}
     height={18}
+    viewBox='0 0 19 22'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
     {...props}>
@@ -207,6 +208,62 @@ export const SvgRating = (props) => (
       stroke='#36B44A'
       strokeLinecap='round'
       strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgHamburger = (props) => (
+  <svg
+    width={48}
+    height={48}
+    viewBox='0 0 50 50'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <rect
+      opacity={0.5}
+      x={0.25}
+      y={0.25}
+      width={47.5}
+      height={47.5}
+      rx={7.75}
+      stroke='#344437'
+      strokeWidth={0.5}
+    />
+    <path
+      d='M14 23.667h20M14 17h20M14 30.333h20'
+      stroke='#2F3930'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgArrowUp = (props) => (
+  <svg
+    width={18}
+    height={10}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='M1.707 9.707A1 1 0 0 1 .293 8.293l1.414 1.414Zm16-1.414a1 1 0 0 1-1.414 1.414l1.414-1.414ZM9 1 8.293.293a1 1 0 0 1 1.414 0L9 1Zm7.293 8.707-8-8L9.707.293l8 8-1.414 1.414Zm-6.586-8-8 8L.293 8.293l8-8 1.414 1.414Z'
+      fill='#2F3930'
+    />
+  </svg>
+);
+
+export const SvgArrowDown = (props) => (
+  <svg
+    width={18}
+    height={10}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      opacity={0.5}
+      d='M1.354.646a.5.5 0 1 0-.708.708l.708-.708Zm16 .708a.5.5 0 0 0-.708-.708l.708.708ZM9 9l-.354.354a.5.5 0 0 0 .708 0L9 9ZM16.646.646l-8 8 .708.708 8-8-.708-.708Zm-7.292 8-8-8-.708.708 8 8 .708-.708Z'
+      fill='#2F3930'
     />
   </svg>
 );

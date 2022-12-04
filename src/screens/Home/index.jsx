@@ -1,7 +1,9 @@
 import {
   SvgArrowback,
+  SvgArrowDown,
   SvgArrowLeft,
   SvgArrowRight,
+  SvgArrowUp,
   SvgFilterIcon,
   SvgRating,
 } from "../../assets/Svgs";
@@ -18,6 +20,9 @@ import companyLogo from "../../assets/image/companyLogo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from "../../Components/Button";
+import { InputTemp, SelectTemp } from "../../Components/InputTemp";
+import { statesOptions } from "../ProductList";
+import OrderDetailsForm from "../../Components/OrderDetailsForm";
 
 export const data = [
   {
@@ -89,7 +94,6 @@ export const data = [
 
 const Home = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
 
   const [page, setPage] = useState("home");
   const [filterSet, setFilterSet] = useState(false);
@@ -112,7 +116,7 @@ const Home = () => {
   const selectedProduct = data.find((product) => product.id === selected);
 
   return (
-    <LayoutCustomer user={user}>
+    <LayoutCustomer>
       {page === "order-page" ? (
         <OrderPage backHome={backHome} selectedProduct={selectedProduct} />
       ) : (
@@ -222,6 +226,7 @@ const OrderPage = ({ backHome, selectedProduct }) => {
       search: `checkout=${selectedProduct.id}`,
     });
   };
+
   return (
     <>
       <button className={styles.btnBack} onClick={backHome}>
@@ -232,40 +237,21 @@ const OrderPage = ({ backHome, selectedProduct }) => {
         <h2>Diesel Order</h2>
       </div>
       <div className={""}>
-        <div className={styles.flex}>
-          <img src={companyLogo} />
-          <h3>companyName</h3>
-          <SvgRating />
-          <p>N737 / ltr</p>
-          <p>(30% discount applied)</p>
-          <p>(30% discount applied)</p>
-        </div>
-        {/* product detaila */}
-        <div className={styles.productDetials}>
-          <p>Product Details</p>
-          <div className={styles.flex}>
-            <p>Product</p>
-            <p>Diesel</p>
-            <div className={styles.flex}>
-              <p>Delivery time</p>
-              <p>6 hours</p>
+        <div className={styles.productMetaContainer}>
+          <div className={styles.productMeta}>
+            <img src={companyLogo} />
+            <h3>{selectedProduct.company.name}</h3>
+            <div className={styles.flexTight}>
+              <p className={styles.margin}>5</p> <SvgRating />
             </div>
-            <div className={styles.flex}>
-              <p>Price</p>
-              <p>N737 / ltr</p>
-            </div>
-            <div className={styles.flex}>
-              <p>Quantity</p>
-              <div className={styles.inputGroup}>
-                <input />
-              </div>
-            </div>
+            <p>N737 / ltr</p>
+            <p>(30% discount applied)</p>
+            <span>14 reviews</span>
           </div>
         </div>
-        {/* delivery details */}
-        <div className={styles.deliveryDetials}></div>
-
-        <div className={styles.flex}>
+        {/* gridlike */}
+        <OrderDetailsForm />
+        <div className={styles.footer}>
           <Button primary text='Proceed to Payment' onClick={checkout} />
           <Button text='Add to Cart' />
         </div>

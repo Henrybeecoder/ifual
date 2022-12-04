@@ -124,6 +124,11 @@ const rows = [
   ),
 ];
 
+export const statesOptions = states.map((state) => ({
+  value: state.name.toLowerCase(),
+  label: state.name,
+}));
+
 export default function ProductList() {
   const [filterSet, setFilter] = useState(false);
   const [page, setPage] = useState("home");
@@ -360,11 +365,6 @@ const ProductsPage = ({
     { value: "In stock", label: "In stock" },
     { value: "Out of stock", label: "Out of stock" },
   ];
-
-  const statesOptions = states.map((state) => ({
-    value: state.name.toLowerCase(),
-    label: state.name,
-  }));
 
   const categoryOptions = [
     { value: "diesel", label: "Diesel" },

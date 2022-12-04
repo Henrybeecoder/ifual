@@ -5,6 +5,7 @@ import Button from "../../Components/Button";
 import {
   SvgBellOutline,
   SvgCartOutline,
+  SvgHamburger,
   SvgSearchIcon,
 } from "../../assets/Svgs";
 import profile from "../../assets/image/bitch.png";
@@ -21,6 +22,10 @@ const Header = ({ user }) => {
 
   const toggleProfileModal = () => {
     setOpen((state) => !state);
+  };
+
+  const toCart = () => {
+    navigate("/cart");
   };
 
   return (
@@ -45,7 +50,10 @@ const Header = ({ user }) => {
             </div>
           )}
         </div>
-        <div className={styles.flexHeader}>
+        <div className={styles.mobileMenu}>
+          <SvgHamburger />
+        </div>
+        <div className={`${styles.flexHeader} ${styles.hiddenMobile}`}>
           <div className={styles.searchBar}>
             <input placeholder='Enter Keyword' />
             <div className={styles.searchIcon}>
@@ -56,8 +64,12 @@ const Header = ({ user }) => {
             <Button primary text='login' width='150px' onClick={toLogin} />
           ) : (
             <div className={styles.flexIcons}>
-              <SvgBellOutline />
-              <SvgCartOutline style={{ margin: "0 10px 0 10px" }} />
+              <button>
+                <SvgBellOutline />
+              </button>
+              <button onClick={toCart}>
+                <SvgCartOutline style={{ margin: "0 10px 0 10px" }} />
+              </button>
               <img src={profile} onClick={toggleProfileModal} />
               <ProfileModal user={user} open={open} />
             </div>

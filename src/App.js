@@ -15,6 +15,7 @@ import Notification from "./screens/Notification";
 import Report from "./screens/Report";
 import Home from "./screens/Home";
 import Checkout from "./screens/Checkout";
+import Cart from "./screens/Cart";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/checkout' element={<Checkout />} />
+        <Route path='/cart' element={<Cart />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/vendor/dashboard' element={<Dashboard />} />

@@ -46,16 +46,18 @@ export const SelectTemp = ({
   marginLeft,
   marginRight,
   isMulti,
+  width,
 }) => {
   //   const selectRef = useRef(null);
   return (
     <div
       className={`${styles.formHolder} ${marginLeft && styles.marginLeft} ${
         marginRight && styles.marginRight
-      }`}>
+      }`}
+      style={{ width: width ? width : "100%" }}>
       <label>{label}</label>
       <Select
-        // value={value}
+        value={value}
         styles={{
           multiValueLabel: (styles) => ({
             ...styles,

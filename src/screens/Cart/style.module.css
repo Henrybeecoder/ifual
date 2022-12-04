@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h2 {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 28px;
+}
+
+.header button {
+  display: flex;
+  align-items: center;
+  border: none;
+  padding: 0;
+}
+
+.header button p {
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 25px;
+  margin-right: 4px;
+  color: #36b44a;
+}
+.header button svg {
+  stroke: #36b44a;
+}
+
+.btnBack {
+  border: none;
+  padding: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.btnBack h2 {
+  margin-left: 8px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  text-decoration-line: underline;
+  color: #344437;
+}

@@ -1,5 +1,5 @@
 .page {
-  padding: 110px 70px 45px 70px;
+  padding: 100px 70px 45px 70px;
 }
 
 .footer {
@@ -20,9 +20,9 @@
   display: flex;
   justify-content: space-between;
   /* align-items: center; */
-  padding: 22px 100px;
+  padding: 18px 100px;
   position: fixed;
-  z-index: 50;
+  z-index: 30;
   right: 0;
   left: 0;
   top: 0;
@@ -39,6 +39,10 @@
 .flexIcons {
   display: flex;
   position: relative;
+}
+.flexIcons button {
+  padding: 0;
+  border: none;
 }
 
 .flexIcons img {
@@ -151,4 +155,23 @@
 .linksContainer .active {
   color: #36b44a;
   text-decoration: underline;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .hiddenMobile {
+    display: none;
+  }
+  .page {
+    padding: 110px 20px 45px 20px;
+  }
+  .headerContainer {
+    padding: 22px 20px;
+  }
+  .mobileMenu {
+    display: flex;
+  }
 }

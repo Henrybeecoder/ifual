@@ -1,7 +1,8 @@
 import Header from "./Header";
 import styles from "./style.module.css";
 
-const LayoutCustomer = ({ user, children }) => {
+const LayoutCustomer = ({ children }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       <Header user={user} />
