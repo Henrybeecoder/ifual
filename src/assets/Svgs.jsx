@@ -79,6 +79,32 @@ export const SvgSearchIcon = (props) => (
   </svg>
 );
 
+export const SearchIconWBorder = (props) => (
+  <svg
+    width={48}
+    height={48}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <rect
+      opacity={0.5}
+      x={0.25}
+      y={0.25}
+      width={47.5}
+      height={47.5}
+      rx={7.75}
+      stroke='#344437'
+      strokeWidth={0.5}
+    />
+    <path
+      d='m34 34-4.833-4.833m2.61-6.278a8.889 8.889 0 1 1-17.777 0 8.889 8.889 0 0 1 17.778 0Z'
+      stroke='#2F3930'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
 export const SvgArrowLeft = (props) => (
   <svg
     width={10}
@@ -264,6 +290,22 @@ export const SvgArrowDown = (props) => (
       opacity={0.5}
       d='M1.354.646a.5.5 0 1 0-.708.708l.708-.708Zm16 .708a.5.5 0 0 0-.708-.708l.708.708ZM9 9l-.354.354a.5.5 0 0 0 .708 0L9 9ZM16.646.646l-8 8 .708.708 8-8-.708-.708Zm-7.292 8-8-8-.708.708 8 8 .708-.708Z'
       fill='#2F3930'
+    />
+  </svg>
+);
+
+export const SvgRightIcon = (props) => (
+  <svg
+    width={7}
+    height={12}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='m1 11 5-5-5-5'
+      stroke='#36B44A'
+      strokeLinecap='round'
+      strokeLinejoin='round'
     />
   </svg>
 );

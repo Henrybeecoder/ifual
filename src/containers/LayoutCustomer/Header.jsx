@@ -3,6 +3,7 @@ import logo from "../../assets/logo.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Button from "../../Components/Button";
 import {
+  SearchIconWBorder,
   SvgBellOutline,
   SvgCartOutline,
   SvgHamburger,
@@ -53,24 +54,31 @@ const Header = ({ user }) => {
           )}
         </div>
         <div className={styles.mobileMenu}>
-          <SvgHamburger />
+          <SearchIconWBorder />
+          {!user && (
+            <button>
+              <SvgHamburger />
+            </button>
+          )}
         </div>
-        <div className={`${styles.flexHeader} ${styles.hiddenMobile}`}>
-          <div className={styles.searchBar}>
+        <div className={`${styles.flexHeader} `}>
+          <div className={`${styles.searchBar} ${styles.hiddenMobile}`}>
             <input placeholder='Enter Keyword' />
             <div className={styles.searchIcon}>
               <SvgSearchIcon />
             </div>
           </div>
           {!user ? (
-            <Button primary text='login' width='150px' onClick={toLogin} />
+            <div className={styles.hiddenMobile}>
+              <Button primary text='login' width='150px' onClick={toLogin} />
+            </div>
           ) : (
             <div className={styles.flexIcons}>
               <button>
                 <SvgBellOutline />
               </button>
-              <button onClick={toCart}>
-                <SvgCartOutline style={{ margin: "0 10px 0 10px" }} />
+              <button onClick={toCart} className={styles.btnCart}>
+                <SvgCartOutline />
               </button>
               <img src={profile} onClick={toggleProfileModal} />
               <ProfileModal user={user} open={open} />

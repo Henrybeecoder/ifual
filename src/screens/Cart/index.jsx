@@ -1,9 +1,10 @@
+import styles from "./style.module.css";
 import { useNavigate } from "react-router-dom";
 import { SvgArrowback, SvgEdit, SvgRating } from "../../assets/Svgs";
+import companyLogo from "../../assets/image/companyLogo2.png";
 import Button from "../../Components/Button";
 import LayoutCustomer from "../../containers/LayoutCustomer";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
-import styles from "./style.module.css";
 
 const promoProducts = [
   {
@@ -107,9 +108,9 @@ const Cart = () => {
           <h3 className={styles.promoHeader}>Promo Products</h3>
           <div className={styles.overflowY}>
             {promoProducts.map((product) => (
-              <div className={styles.promoProduct}>
-                <img />
-                <div>
+              <div key={product.id} className={styles.promoProduct}>
+                <img src={companyLogo} />
+                <div className={styles.promoProductTextArea}>
                   <h2>{product.company}</h2>
                   <h3>
                     {product.price} <span>{product.discount}</span>

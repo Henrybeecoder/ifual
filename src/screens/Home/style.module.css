@@ -122,6 +122,10 @@
   margin-top: 15px;
 }
 
+.productMetaMob {
+  display: none;
+}
+
 @media screen and (max-width: 800px) {
   .filterArea {
     display: none;
@@ -129,5 +133,61 @@
   .header h2 {
     font-size: 23px;
     line-height: 23px;
+  }
+  .productMeta {
+    display: none;
+  }
+
+  .productMetaContainer {
+    border-radius: 8px;
+  }
+
+  .productMetaMob {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .productMetaMob h3 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    color: #344437;
+  }
+
+  .productMetaMob button {
+    border: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .productMetaMob button p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    text-decoration-line: underline;
+    color: #36b44a;
+    margin: 0 7px;
+  }
+
+  .productMetaMob .textArea {
+    padding: 10px;
+  }
+  .ratingReviewMob {
+    display: flex;
+    padding-top: 5px;
+  }
+
+  .ratingReviewMob h3 {
+    margin-right: 7px;
+  }
+
+  .ratingReviewMob p {
+    color: #36b44a;
+  }
+
+  .footer {
+    width: 100%;
+    margin: auto;
   }
 }

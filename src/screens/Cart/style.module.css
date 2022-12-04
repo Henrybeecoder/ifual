@@ -136,7 +136,7 @@
 .promoProduct {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 15px;
   border: 0.5px solid lightgray;
   margin: 10px;
   border-radius: 10px;
@@ -176,6 +176,20 @@
 .ratingView button {
   margin-top: 5px;
   padding: 5px 15px;
+}
+
+.promoProductTextArea {
+  padding: 5px;
+  flex: 1;
+  margin-left: 15px;
+}
+
+.promoProductTextArea h3 {
+  padding-top: 5px;
+}
+
+.promoProductTextArea span {
+  color: #36b44a;
 }
 
 @media screen and (max-width: 800px) {

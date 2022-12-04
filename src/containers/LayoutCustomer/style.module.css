@@ -161,6 +161,10 @@
   display: none;
 }
 
+.flexIcons .btnCart {
+  margin: 0 12px;
+}
+
 @media screen and (max-width: 800px) {
   .hiddenMobile {
     display: none;
@@ -173,5 +177,19 @@
   }
   .mobileMenu {
     display: flex;
+    margin-right: 7px;
+  }
+
+  .linksContainer {
+    display: none;
+  }
+  /* .flexIcons {
+    margin-left: 7px;
+  } */
+  .flexIcons .btnCart {
+    margin: 0 3px;
+  }
+  .modalContainer {
+    width: 300px;
   }
 }

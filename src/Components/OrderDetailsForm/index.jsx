@@ -16,7 +16,7 @@ const OrderDetailsForm = () => {
 
   return (
     <>
-      <div className={styles.flex}>
+      <div className={styles.flexLg}>
         {/* product details */}
         <div className={styles.productDetails}>
           <h3>Product Details</h3>

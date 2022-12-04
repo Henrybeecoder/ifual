@@ -6,6 +6,7 @@ import {
   SvgArrowUp,
   SvgFilterIcon,
   SvgRating,
+  SvgRightIcon,
 } from "../../assets/Svgs";
 import LayoutCustomer from "../../containers/LayoutCustomer";
 import styles from "./style.module.css";
@@ -247,6 +248,24 @@ const OrderPage = ({ backHome, selectedProduct }) => {
             <p>N737 / ltr</p>
             <p>(30% discount applied)</p>
             <span>14 reviews</span>
+          </div>
+          <div className={styles.productMetaMob}>
+            <div className={styles.textArea}>
+              <h3>{selectedProduct.company.name}</h3>
+              <div className={styles.ratingReviewMob}>
+                <h3>
+                  5
+                  <span>
+                    <SvgRating />
+                  </span>
+                </h3>
+                <p>14 reviews</p>
+              </div>
+            </div>
+            <button>
+              <p>See more</p>
+              <SvgRightIcon />
+            </button>
           </div>
         </div>
         {/* gridlike */}
