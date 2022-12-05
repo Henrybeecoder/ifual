@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { SvgArrowDown, SvgArrowUp } from "../../assets/Svgs";
+import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import { statesOptions } from "../../screens/ProductList";
 import { InputTemp, SelectTemp } from "../InputTemp";
 import styles from "./style.module.css";
 
 const OrderDetailsForm = () => {
+  const matches = useMediaQuery("(min-width: 800px)");
   const [productQuantity, setPQ] = useState(0);
 
   const increment = () => {
@@ -56,11 +58,11 @@ const OrderDetailsForm = () => {
         {/* delivery details */}
         <div className={styles.deliveryDetials}>
           <h3>Delivery Details</h3>
-          <div className={styles.flex}>
+          <div className={styles.flexLg}>
             <InputTemp label='FIRST NAME' value='Beatrice' marginRight />
             <InputTemp label='SURNAME' value='Bimpe' marginLeft />
           </div>
-          <div className={styles.flex}>
+          <div className={styles.flexLg}>
             <InputTemp label='PHONE NUMBER' value='08123456789' marginRight />
             <InputTemp
               label='EMAIL ADDRESS'
@@ -68,14 +70,14 @@ const OrderDetailsForm = () => {
               marginLeft
             />
           </div>
-          <div className={styles.flex}>
+          <div className={styles.flexLg}>
             <InputTemp
               label='DELIVERY ADDRESS'
               value='No. 1, Bosipo district, Ikoyi'
               marginRight
             />
             <SelectTemp
-              width='150px'
+              width={matches ? "150px" : "100%"}
               label='STATE'
               placeholder='Lagos'
               options={statesOptions}

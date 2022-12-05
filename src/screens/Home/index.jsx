@@ -5,6 +5,7 @@ import {
   SvgArrowRight,
   SvgArrowUp,
   SvgFilterIcon,
+  SvgRateStars,
   SvgRating,
   SvgRightIcon,
 } from "../../assets/Svgs";
@@ -18,12 +19,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import companyLogo from "../../assets/image/companyLogo.png";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Button from "../../Components/Button";
 import { InputTemp, SelectTemp } from "../../Components/InputTemp";
 import { statesOptions } from "../ProductList";
 import OrderDetailsForm from "../../Components/OrderDetailsForm";
+import Modal from "../../Components/Modals";
 
 export const data = [
   {
@@ -96,10 +98,27 @@ export const data = [
 const Home = () => {
   const navigate = useNavigate();
 
+  const [confmDelivery, setConfmDelivery] = useState(false);
+  const [reviewModal, setReviewModal] = useState(false);
+
+  const [searchParams] = useSearchParams();
+  const orderStatus = searchParams.get("order");
+
+  useEffect(() => {
+    if (!orderStatus) return;
+    setConfmDelivery(true);
+    setReviewModal(false);
+  }, [orderStatus]);
+
   const [page, setPage] = useState("home");
   const [filterSet, setFilterSet] = useState(false);
 
   const [selected, setSelected] = useState(false);
+
+  const confirmDelivery = () => {
+    setConfmDelivery(false);
+    setReviewModal(true);
+  };
 
   const buyProduct = (productId) => {
     setSelected(productId);
@@ -114,10 +133,54 @@ const Home = () => {
     setPage("home");
   };
 
+  const review = () => {
+    setReviewModal(false);
+  };
+
   const selectedProduct = data.find((product) => product.id === selected);
 
   return (
     <LayoutCustomer>
+      <Modal
+        width={"680px"}
+        openModal={confmDelivery}
+        closeModal={() => setConfmDelivery(false)}>
+        <div className={styles.confirmDelivery}>
+          <h2>Confirm Delivery</h2>
+          <p>
+            Sunny Jay has delivered 100 Ltrs Diesel to you at 11:25am on Mon,
+            25th July, 2022.
+          </p>
+          <p>Kindly click to confirm delivery or use code 0234</p>
+          <div className={styles.btnCfm}>
+            <Button text='Cancel' width={"180px"} onClick={confirmDelivery} />
+            <Button
+              primary
+              text='Confirm'
+              width={"260px"}
+              onClick={confirmDelivery}
+            />
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        width={"650px"}
+        openModal={reviewModal}
+        closeModal={() => setReviewModal(false)}>
+        <div className={styles.reviewOrder}>
+          <h2>Rate Sunny Jay & Co’s service</h2>
+          <div>
+            <SvgRateStars />
+          </div>
+          <div className={styles.divider} />
+          <p>Please share your opinion about their service</p>
+          <textarea placeholder='Write review' rows={5} />
+          <div className={styles.btnCfm}>
+            <Button text='Cancel' width={"180px"} onClick={review} />
+            <Button primary text='Submit' width={"260px"} onClick={review} />
+          </div>
+        </div>
+      </Modal>
       {page === "order-page" ? (
         <OrderPage backHome={backHome} selectedProduct={selectedProduct} />
       ) : (

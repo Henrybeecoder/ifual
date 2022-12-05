@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../../Components/Modals";
 import { useState } from "react";
 import PinInput from "react-pin-input";
+import checkSuccess from "../../assets/svg/modalCheck.svg";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ const Checkout = () => {
   const [otpModal, setOtpModal] = useState(false);
 
   const [confm, setCfm] = useState(false);
+
+  const [orderSuccessful, setOrderSuccessful] = useState(false);
 
   const backHome = () => navigate("/");
 
@@ -40,6 +43,11 @@ const Checkout = () => {
 
   const confirm = () => {
     setCfm(false);
+    setOrderSuccessful(true);
+    setTimeout(() => {
+      setOrderSuccessful(false);
+      navigate({ pathname: "/", search: "order=successful" });
+    }, 2000);
   };
 
   return (
@@ -85,6 +93,17 @@ const Checkout = () => {
           </div>
         </div>
       </Modal>
+      <Modal
+        width={"600px"}
+        openModal={orderSuccessful}
+        closeModal={() => setOrderSuccessful(false)}>
+        <div className={styles.orderSuccessful}>
+          <h2>Order Successful</h2>
+          <img src={checkSuccess} />
+          <p>Redirecting to home page...</p>
+        </div>
+      </Modal>
+
       <button className={styles.btnBack} onClick={backHome}>
         <SvgArrowback />
         <h2>Back to Home</h2>

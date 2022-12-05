@@ -103,10 +103,15 @@
   padding: 20px;
 }
 .cfm h2,
-.requestOtp h2 {
+.requestOtp h2,
+.orderSuccessful h2 {
   font-weight: 400;
   font-size: 25px;
   line-height: 42px;
+}
+
+.orderSuccessful h2 {
+  margin: 20px 0 25px 0;
 }
 
 .requestOtp h3 {
@@ -116,9 +121,13 @@
 }
 .requestOtp p {
   padding: 20px;
+  font-weight: 300;
+  font-size: 21px;
+  line-height: 32px;
 }
 
-.cfm {
+.cfm,
+.orderSuccessful {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,6 +135,10 @@
   padding: 40px 20px;
   width: 80%;
   margin: auto;
+}
+
+.orderSuccessful p {
+  margin-top: 20px;
 }
 
 .cfm p {

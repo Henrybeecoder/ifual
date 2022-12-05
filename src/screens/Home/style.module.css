@@ -126,6 +126,79 @@
   display: none;
 }
 
+.confirmDelivery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+}
+
+.confirmDelivery h2 {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 42px;
+  margin: 15px 0 25px 0;
+}
+
+.reviewOrder h2 {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 42px;
+  margin: 10px 0 20px 0;
+}
+
+.confirmDelivery p {
+  font-weight: 300;
+  font-size: 21px;
+  line-height: 21px;
+  margin: 10px 0;
+}
+
+.reviewOrder p {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 20px;
+  margin: 15px 0;
+}
+
+.btnCfm {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.reviewOrder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 85%;
+  margin: auto;
+  padding: 20px;
+}
+
+.divider {
+  border-bottom: 0.5px solid gainsboro;
+  width: 100%;
+}
+
+.reviewOrder textarea {
+  box-shadow: 0px 4px 25px 1px rgba(52, 68, 55, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  padding: 15px;
+  outline: none;
+  border: none;
+  resize: none;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 16px;
+}
+
 @media screen and (max-width: 800px) {
   .filterArea {
     display: none;

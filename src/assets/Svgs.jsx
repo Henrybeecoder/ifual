@@ -33,9 +33,10 @@ export const SvgOptions = (props) => (
 
 export const SvgEdit = (props) => (
   <svg
-    width={13}
-    height={13}
+    width={30}
+    height={30}
     fill='none'
+    viewBox='0 0 20 20'
     xmlns='http://www.w3.org/2000/svg'
     {...props}>
     <path
@@ -306,6 +307,31 @@ export const SvgRightIcon = (props) => (
       stroke='#36B44A'
       strokeLinecap='round'
       strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgRateStars = (props) => (
+  <svg
+    width={200}
+    height={40}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='m20 7.143 3.973 8.463 8.884 1.366-6.428 6.584 1.517 9.301L20 28.463l-7.945 4.394 1.517-9.301-6.429-6.584 8.884-1.366L20 7.143ZM60 7.143l3.973 8.463 8.884 1.366-6.428 6.584 1.517 9.301L60 28.463l-7.946 4.394 1.518-9.301-6.429-6.584 8.884-1.366L60 7.143ZM100 7.143l3.973 8.463 8.884 1.366-6.428 6.584 1.517 9.301L100 28.463l-7.945 4.394 1.517-9.301-6.429-6.584 8.884-1.366L100 7.143ZM140 7.143l3.973 8.463 8.884 1.366-6.428 6.584 1.517 9.301L140 28.463l-7.946 4.394 1.518-9.301-6.429-6.584 8.884-1.366L140 7.143Z'
+      stroke='#36B44A'
+      strokeWidth={1.5}
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+    <path
+      d='m180 7.143 3.973 8.463 8.884 1.366-6.428 6.584 1.517 9.301L180 28.463l-7.946 4.394 1.518-9.301-6.429-6.584 8.884-1.366L180 7.143Z'
+      stroke='#344437'
+      strokeWidth={1.5}
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      opacity={0.5}
     />
   </svg>
 );
