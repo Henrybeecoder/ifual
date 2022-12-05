@@ -15,16 +15,16 @@ export default function AuthForm(props) {
   const matches = useMediaQuery("(min-width: 800px)");
   const [btnLoading, setBtnLoading] = useState(false);
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const login = (email) => {
-    setLoading(true);
+    setBtnLoading(true);
     localStorage.setItem(
       "user",
       JSON.stringify({ email, name: "Bistro Badmus" })
     );
     setTimeout(() => {
-      setLoading(false);
+      setBtnLoading(false);
       navigate("/");
     }, 3000);
   };

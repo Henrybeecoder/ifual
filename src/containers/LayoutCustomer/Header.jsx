@@ -53,15 +53,17 @@ const Header = ({ user }) => {
             </div>
           )}
         </div>
-        <div className={styles.mobileMenu}>
-          <SearchIconWBorder />
-          {!user && (
-            <button>
-              <SvgHamburger />
-            </button>
-          )}
-        </div>
-        <div className={`${styles.flexHeader} `}>
+
+        <div className={`${styles.flexHeader}`}>
+          {/* <div /> */}
+          <div className={styles.mobileMenu}>
+            <SearchIconWBorder />
+            {!user && (
+              <button>
+                <SvgHamburger />
+              </button>
+            )}
+          </div>
           <div className={`${styles.searchBar} ${styles.hiddenMobile}`}>
             <input placeholder='Enter Keyword' />
             <div className={styles.searchIcon}>
