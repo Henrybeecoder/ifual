@@ -148,10 +148,14 @@ const Home = () => {
         <div className={styles.confirmDelivery}>
           <h2>Confirm Delivery</h2>
           <p>
-            Sunny Jay has delivered 100 Ltrs Diesel to you at 11:25am on Mon,
-            25th July, 2022.
+            Sunny Jay has delivered{" "}
+            <span className={styles.spanGreen}>100 Ltrs</span> Diesel to you at
+            11:25am on Mon, 25th July, 2022.
           </p>
-          <p>Kindly click to confirm delivery or use code 0234</p>
+          <p>
+            Kindly click to confirm delivery or use{" "}
+            <span className={styles.spanGreen}>code 0234</span>
+          </p>
           <div className={styles.btnCfm}>
             <Button text='Cancel' width={"180px"} onClick={confirmDelivery} />
             <Button
