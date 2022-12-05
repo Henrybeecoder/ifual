@@ -20,7 +20,7 @@ const Header = ({ user }) => {
   const [menu, setMenu] = useState(false);
 
   const toLogin = () => {
-    navigate({ pathname: "/login", search: "type=customer" });
+    navigate("/login");
   };
 
   const toggleProfileModal = () => {

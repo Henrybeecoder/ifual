@@ -1,9 +1,7 @@
 import {
   SvgArrowback,
-  SvgArrowDown,
   SvgArrowLeft,
   SvgArrowRight,
-  SvgArrowUp,
   SvgFilterIcon,
   SvgRateStars,
   SvgRating,
@@ -22,8 +20,6 @@ import companyLogo from "../../assets/image/companyLogo.png";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../../Components/Button";
-import { InputTemp, SelectTemp } from "../../Components/InputTemp";
-import { statesOptions } from "../ProductList";
 import OrderDetailsForm from "../../Components/OrderDetailsForm";
 import Modal from "../../Components/Modals";
 
@@ -249,7 +245,7 @@ const Home = () => {
                   <StyledTableRow key={row.id}>
                     <StyledTableCell component='th' scope='row'>
                       <div className={styles.companyLogo}>
-                        <img src={companyLogo} />
+                        <img alt='company-logo' src={companyLogo} />
                         <h3 className={styles.subText}>{row.company.name}</h3>
                       </div>
                     </StyledTableCell>
