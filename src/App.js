@@ -20,6 +20,10 @@ import DashboardSuperAdmin from "./screens/SuperAdmin/Dashboard";
 import Settings from "./screens/SuperAdmin/Settings";
 import ManageUsers from "./screens/SuperAdmin/ManageUsers";
 import ManageProducts from "./screens/SuperAdmin/ManageProducts";
+import ManageOrders from "./screens/SuperAdmin/ManageOrders";
+import ComplaintsLog from "./screens/SuperAdmin/ComplaintsLog";
+import ActivityLog from "./screens/SuperAdmin/ActivityLog";
+import LoginSuperAdmin from "./screens/SuperAdmin/Login";
 
 function App() {
   return (
@@ -36,18 +40,28 @@ function App() {
           path='/forgot-password-message'
           element={<ForgotPasswordMessage />}
         />
+
+        <Route path='/vendor'>
+          <Route path='order-status' element={<OrderStatus />} />
+          <Route path='product-list' element={<ProductList />} />
+          <Route path='notification' element={<Notification />} />
+          <Route path='report' element={<Report />} />
+        </Route>
+
         <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/vendor/order-status' element={<OrderStatus />} />
-        <Route path='/vendor/product-list' element={<ProductList />} />
-        <Route path='/vendor/notification' element={<Notification />} />
-        <Route path='/vendor/report' element={<Report />} />
+
         <Route path='/sign-up-message' element={<SignUpMessage />} />
         <Route path='/sign-up-next' element={<SignUpNext />} />
+
         <Route path='/super-admin'>
+          <Route index element={<LoginSuperAdmin />} />
           <Route path='dashboard' element={<DashboardSuperAdmin />} />
           <Route path='settings' element={<Settings />} />
           <Route path='manage-users' element={<ManageUsers />} />
           <Route path='manage-products' element={<ManageProducts />} />
+          <Route path='manage-orders' element={<ManageOrders />} />
+          <Route path='complaints-log' element={<ComplaintsLog />} />
+          <Route path='activity-log' element={<ActivityLog />} />
         </Route>
       </Routes>
     </Router>
