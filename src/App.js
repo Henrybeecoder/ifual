@@ -19,6 +19,7 @@ import Cart from "./screens/Cart";
 import DashboardSuperAdmin from "./screens/SuperAdmin/Dashboard";
 import Settings from "./screens/SuperAdmin/Settings";
 import ManageUsers from "./screens/SuperAdmin/ManageUsers";
+import ManageProducts from "./screens/SuperAdmin/ManageProducts";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path='dashboard' element={<DashboardSuperAdmin />} />
           <Route path='settings' element={<Settings />} />
           <Route path='manage-users' element={<ManageUsers />} />
+          <Route path='manage-products' element={<ManageProducts />} />
         </Route>
       </Routes>
     </Router>

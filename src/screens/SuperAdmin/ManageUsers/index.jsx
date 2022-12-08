@@ -1,60 +1,15 @@
 import styles from "./style.module.css";
 import LayoutSuperAdmin from "../../../containers/LayoutSuperAdmin";
 import { SvgFilterIcon } from "../../../assets/Svgs";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useTable } from "react-table";
-
-const data = [
-  {
-    name: "Esther Dunkwu",
-    location: "Lagos",
-    email: "Esther@gmail.com",
-    lastAct: "2 hrs ago",
-  },
-  {
-    name: "Esther Dunkwu",
-    location: "Lagos",
-    email: "Esther@gmail.com",
-    lastAct: "2 hrs ago",
-  },
-  {
-    name: "Esther Dunkwu",
-    location: "Lagos",
-    email: "Esther@gmail.com",
-    lastAct: "2 hrs ago",
-  },
-  {
-    name: "Esther Dunkwu",
-    location: "Lagos",
-    email: "Esther@gmail.com",
-    lastAct: "2 hrs ago",
-  },
-  {
-    name: "Esther Dunkwu",
-    location: "Lagos",
-    email: "Esther@gmail.com",
-    lastAct: "2 hrs ago",
-  },
-  {
-    name: "Esther Dunkwu",
-    location: "Lagos",
-    email: "Esther@gmail.com",
-    lastAct: "2 hrs ago",
-  },
-  {
-    name: "Esther Dunkwu",
-    location: "Lagos",
-    email: "Esther@gmail.com",
-    lastAct: "2 hrs ago",
-  },
-];
-
-const columns = [
-  { Header: "Name", accessor: "name" },
-  { Header: "Location", accessor: "location" },
-  { Header: "Email", accessor: "email" },
-  { Header: "Last Activity", accessor: "lastAct" },
-];
+import Table from "../../../Components/Table";
+import {
+  customer_columns,
+  customer_data,
+  vendor_data,
+  vendor_columns,
+} from "./data";
 
 const ManageUsers = () => {
   const [page, setPage] = useState("customer");
@@ -97,66 +52,91 @@ const ManageUsers = () => {
 };
 
 const CustomerPage = () => {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
-
   return (
     <>
-      <table
-        {...getTableProps()}
-        style={{
-          width: "100%",
-          border: "1px solid gainsboro",
-          borderRadius: "20px",
-        }}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th
-                  {...column.getHeaderProps()}
-                  style={{
-                    color: "black",
-                    fontWeight: "600",
-                  }}>
-                  {column.render("Header")}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <td
-                      {...cell.getCellProps()}
-                      style={{
-                        padding: "10px",
-                        borderBottom: "1px solid gainsboro",
-                      }}>
-                      {cell.render("Cell")}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <Table columns={customer_columns} data={customer_data} />
     </>
   );
 };
 
 const VendorPage = () => {
-  return <>vendor</>;
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({ columns: vendor_columns, data: vendor_data });
+  return (
+    <>
+      <div className={styles.tableWrapper}>
+        <table {...getTableProps()}>
+          <thead>
+            {headerGroups?.map((headerGroup) => (
+              <tr
+                {...headerGroup.getHeaderGroupProps()}
+                className={styles.tableHeadRow}>
+                {headerGroup.headers?.map((column) => (
+                  <th {...column.getHeaderProps()} key={column}>
+                    {column.render("Header")}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows?.map((row) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()} key={row.id}>
+                  {row?.cells?.map((cell) => {
+                    return (
+                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
 };
 
 const AdminPage = () => {
-  return <>admin</>;
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({ columns: vendor_columns, data: vendor_data });
+  return (
+    <>
+      <div className={styles.tableWrapper}>
+        <table {...getTableProps()}>
+          <thead>
+            {headerGroups?.map((headerGroup) => (
+              <tr
+                {...headerGroup.getHeaderGroupProps()}
+                className={styles.tableHeadRow}>
+                {headerGroup.headers?.map((column) => (
+                  <th {...column.getHeaderProps()} key={column}>
+                    {column.render("Header")}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows?.map((row) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()} key={row.id}>
+                  {row?.cells?.map((cell) => {
+                    return (
+                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
 };
 
 export default ManageUsers;
