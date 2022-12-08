@@ -57,12 +57,12 @@ export const customer_data = [
   },
 ];
 
-export const customer_columns = [
-  { Header: "Name", accessor: "name" },
-  { Header: "Location", accessor: "location" },
-  { Header: "Email", accessor: "email" },
-  { Header: "Last Activity", accessor: "lastAct" },
-];
+// export const customer_columns = [
+//   { Header: "Name", accessor: "name" },
+//   { Header: "Location", accessor: "location" },
+//   { Header: "Email", accessor: "email" },
+//   { Header: "Last Activity", accessor: "lastAct" },
+// ];
 
 export const vendor_data = [
   {
@@ -70,62 +70,100 @@ export const vendor_data = [
     name: "ABC Ventures",
     location: "Lagos",
     email: "Esther@gmail.com",
-    lastAct: "2 hrs ago",
+    status: "Pending",
   },
   {
     id: "2",
     name: "ABC Ventures",
     location: "Lagos",
     email: "Esther@gmail.com",
-    lastAct: "21/09/2022",
+    status: "Pending",
   },
   {
     id: "3",
     name: "ABC Ventures",
     location: "Lagos",
     email: "Esther@gmail.com",
-    lastAct: "21/09/2022",
+    status: "Pending",
   },
   {
     id: "4",
     name: "ABC Ventures",
     location: "Lagos",
     email: "Esther@gmail.com",
-    lastAct: "21/09/2022",
+    status: "Onboarded",
   },
   {
     id: "5",
     name: "ABC Ventures",
     location: "Lagos",
     email: "Esther@gmail.com",
-    lastAct: "21/09/2022",
+    status: "Onboarded",
   },
   {
     id: "6",
     name: "ABC Ventures",
     location: "Lagos",
     email: "Esther@gmail.com",
-    lastAct: "21/09/2022",
+    status: "Rejected",
   },
   {
     id: "7",
     name: "ABC Ventures",
     location: "Lagos",
     email: "Esther@gmail.com",
-    lastAct: "21/09/2022",
-  },
-  {
-    id: "8",
-    name: "ABC Ventures",
-    location: "Lagos",
-    email: "Esther@gmail.com",
-    lastAct: "21/09/2022",
+    status: "Onboarded",
   },
 ];
 
-export const vendor_columns = [
-  { Header: "Name", accessor: "name" },
-  { Header: "Location", accessor: "location" },
-  { Header: "Email", accessor: "email" },
-  { Header: "Last Activity", accessor: "lastAct" },
+// export const vendor_columns = [
+//   { Header: "Name", accessor: "name" },
+//   { Header: "Location", accessor: "location" },
+//   { Header: "Email", accessor: "email" },
+//   { Header: "Last Activity", accessor: "lastAct" },
+// ];
+
+export const admin_data = [
+  {
+    id: "1",
+    name: "Bernard Charles",
+    category: "Super Admin",
+    email: "Esther@gmail.com",
+    action: "Decativate",
+  },
+  {
+    id: "2",
+    name: "Bernard Charles",
+    category: "Admin",
+    email: "Esther@gmail.com",
+    action: "Decativate",
+  },
+  {
+    id: "3",
+    name: "Bernard Charles",
+    category: "Admin",
+    email: "Esther@gmail.com",
+    action: "Decativate",
+  },
+  {
+    id: "4",
+    name: "Bernard Charles",
+    category: "Admin",
+    email: "Esther@gmail.com",
+    action: "Decativated",
+  },
+  {
+    id: "5",
+    name: "Bernard Charles",
+    category: "Admin",
+    email: "Esther@gmail.com",
+    action: "Decativate",
+  },
+  {
+    id: "6",
+    name: "Bernard Charles",
+    category: "Admin",
+    email: "Esther@gmail.com",
+    action: "Decativate",
+  },
 ];

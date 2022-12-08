@@ -1,15 +1,8 @@
 import styles from "./style.module.css";
 import LayoutSuperAdmin from "../../../containers/LayoutSuperAdmin";
-import { SvgFilterIcon } from "../../../assets/Svgs";
+import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
 import { useState } from "react";
-import { useTable } from "react-table";
-import Table from "../../../Components/Table";
-import {
-  customer_columns,
-  customer_data,
-  vendor_data,
-  vendor_columns,
-} from "./data";
+import { customer_data, vendor_data, admin_data } from "./data";
 
 const ManageUsers = () => {
   const [page, setPage] = useState("customer");
@@ -27,6 +20,11 @@ const ManageUsers = () => {
         <div className={styles.filterFlex}>
           <h3>Filter</h3>
           <SvgFilterIcon />
+          {page !== "customer" && (
+            <button className={""}>{`Add ${
+              page === "vendor" ? "Vendor" : page === "admin" && "Admin"
+            }`}</button>
+          )}
         </div>
       </div>
       <div className={styles.flexMenu}>
@@ -54,41 +52,67 @@ const ManageUsers = () => {
 const CustomerPage = () => {
   return (
     <>
-      <Table columns={customer_columns} data={customer_data} />
+      <div className={styles.tableWrapper}>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Email</th>
+              <th>Last ACtivity</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {customer_data?.map((row) => {
+              return (
+                <tr key={row.id}>
+                  <td>{row.name}</td>
+                  <td>{row.location}</td>
+                  <td>{row.email}</td>
+                  <td>{row.lastAct}</td>
+                  <td>
+                    <button>
+                      <SvgOptions />
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
 
 const VendorPage = () => {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns: vendor_columns, data: vendor_data });
   return (
     <>
       <div className={styles.tableWrapper}>
-        <table {...getTableProps()}>
+        <table>
           <thead>
-            {headerGroups?.map((headerGroup) => (
-              <tr
-                {...headerGroup.getHeaderGroupProps()}
-                className={styles.tableHeadRow}>
-                {headerGroup.headers?.map((column) => (
-                  <th {...column.getHeaderProps()} key={column}>
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            ))}
+            <tr>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
           </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows?.map((row) => {
-              prepareRow(row);
+          <tbody>
+            {vendor_data?.map((row) => {
               return (
-                <tr {...row.getRowProps()} key={row.id}>
-                  {row?.cells?.map((cell) => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                    );
-                  })}
+                <tr key={row.id}>
+                  <td>{row.name}</td>
+                  <td>{row.location}</td>
+                  <td>{row.email}</td>
+                  <td>{row.status}</td>
+                  <td>
+                    <button>
+                      <SvgOptions />
+                    </button>
+                  </td>
                 </tr>
               );
             })}
@@ -100,35 +124,28 @@ const VendorPage = () => {
 };
 
 const AdminPage = () => {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns: vendor_columns, data: vendor_data });
   return (
     <>
       <div className={styles.tableWrapper}>
-        <table {...getTableProps()}>
+        <table>
           <thead>
-            {headerGroups?.map((headerGroup) => (
-              <tr
-                {...headerGroup.getHeaderGroupProps()}
-                className={styles.tableHeadRow}>
-                {headerGroup.headers?.map((column) => (
-                  <th {...column.getHeaderProps()} key={column}>
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            ))}
+            <tr>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Email</th>
+              <th>Action</th>
+            </tr>
           </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows?.map((row) => {
-              prepareRow(row);
+          <tbody>
+            {admin_data?.map((row) => {
               return (
-                <tr {...row.getRowProps()} key={row.id}>
-                  {row?.cells?.map((cell) => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                    );
-                  })}
+                <tr key={row.id}>
+                  <td>{row.name}</td>
+                  <td>{row.category}</td>
+                  <td>{row.email}</td>
+                  <td>
+                    <button>{row.action}</button>
+                  </td>
                 </tr>
               );
             })}

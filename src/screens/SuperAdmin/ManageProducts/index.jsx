@@ -1,7 +1,6 @@
 import styles from "./style.module.css";
 import LayoutSuperAdmin from "../../../containers/LayoutSuperAdmin";
 import { SvgFilterIcon } from "../../../assets/Svgs";
-import { useTable } from "react-table";
 
 const data = [
   { category: "Diesel", vendors: 14, locations: "20", price: "N800/ltr" },
@@ -9,16 +8,8 @@ const data = [
   { category: "Kerosene", vendors: 100, locations: "37", price: "N120/ltr" },
   { category: "Petrol", vendors: 20, locations: "37", price: "N300/ltr" },
 ];
-const columns = [
-  { Header: "Product Categories", accessor: "category" },
-  { Header: "Vendors", accessor: "vendors" },
-  { Header: "Locations", accessor: "locations" },
-  { Header: "Price Cap", accessor: "price" },
-];
 
 const ManageProducts = () => {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
   return (
     <LayoutSuperAdmin>
       <div className={styles.header}>
@@ -30,30 +21,23 @@ const ManageProducts = () => {
         </div>
       </div>
       <div className={styles.tableWrapper}>
-        <table {...getTableProps()}>
+        <table>
           <thead>
-            {headerGroups?.map((headerGroup) => (
-              <tr
-                {...headerGroup.getHeaderGroupProps()}
-                className={styles.tableHeadRow}>
-                {headerGroup.headers?.map((column) => (
-                  <th {...column.getHeaderProps()} key={column}>
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            ))}
+            <tr>
+              <th>Product Category</th>
+              <th>Vendors</th>
+              <th>Locations</th>
+              <th>Price Cap</th>
+            </tr>
           </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows?.map((row) => {
-              prepareRow(row);
+          <tbody>
+            {data?.map((row) => {
               return (
-                <tr {...row.getRowProps()} key={row.id}>
-                  {row?.cells?.map((cell) => {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                    );
-                  })}
+                <tr key={row.id}>
+                  <td>{row.category}</td>
+                  <td>{row.vendors}</td>
+                  <td>{row.locations}</td>
+                  <td>{row.price}</td>
                 </tr>
               );
             })}
