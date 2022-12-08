@@ -16,6 +16,9 @@ import Report from "./screens/Report";
 import Home from "./screens/Home";
 import Checkout from "./screens/Checkout";
 import Cart from "./screens/Cart";
+import DashboardSuperAdmin from "./screens/SuperAdmin/Dashboard";
+import Settings from "./screens/SuperAdmin/Settings";
+import ManageUsers from "./screens/SuperAdmin/ManageUsers";
 
 function App() {
   return (
@@ -39,6 +42,11 @@ function App() {
         <Route path='/vendor/report' element={<Report />} />
         <Route path='/sign-up-message' element={<SignUpMessage />} />
         <Route path='/sign-up-next' element={<SignUpNext />} />
+        <Route path='/super-admin'>
+          <Route path='dashboard' element={<DashboardSuperAdmin />} />
+          <Route path='settings' element={<Settings />} />
+          <Route path='manage-users' element={<ManageUsers />} />
+        </Route>
       </Routes>
     </Router>
   );

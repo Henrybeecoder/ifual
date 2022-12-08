@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h3 {
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 21px;
+}
+
+.filterFlex {
+  display: flex;
+  align-items: center;
+}
+
+.filterFlex h3 {
+  margin-right: 10px;
+}
+
+.flexMenu {
+  display: flex;
+  justify-content: space-between;
+  width: 28%;
+}
+
+.flexMenu button {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 17px;
+}
+
+.flexMenu .active {
+  text-decoration: underline;
+  color: #36b44a;
+}

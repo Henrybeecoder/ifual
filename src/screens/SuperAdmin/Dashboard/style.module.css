@@ -1,0 +1,192 @@
+button {
+  padding: 0;
+  border: none;
+}
+
+.flexGreetings {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flexGreetings h3 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.flexGreetings p {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.flexTitle {
+  margin: 25px 0 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flexTitle h3 {
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 21px;
+}
+
+.flexTitle button,
+.actionHeading button {
+  display: flex;
+}
+
+.flexTitle button p,
+.actionHeading button p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  text-decoration: underline;
+  margin-right: 5px;
+}
+
+.statsContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.statsCard {
+  border: 0.5px solid gainsboro;
+  border-radius: 10px;
+  height: 110px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.actionCard {
+  border: 0.5px solid gainsboro;
+  border-radius: 10px;
+  height: 120px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  padding: 10px 20px 0 20px;
+}
+
+.statsCard h3,
+.actionCard h3 {
+  color: #ad9fa0;
+  font-weight: 500;
+  font-size: 12px;
+  /* line-height: 12px; */
+}
+
+.statsCard p {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 28px;
+  margin: 5px 0 5px 0;
+}
+
+.actionCard p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  margin: 10px 0 10px 0;
+  align-self: center;
+}
+
+.statsCard button {
+  border: none;
+  padding: 0;
+  color: #36b44a;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.actionCard button {
+  border: none;
+  padding: 0;
+  color: #36b44a;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  align-self: flex-end;
+  text-decoration: underline;
+}
+
+.chartFlex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.actionsFlex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chartSection {
+  margin: 30px 0 10px 0;
+}
+
+.chartSection h3,
+.actionHeading h3 {
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 19px;
+}
+
+.actionsSection {
+  margin: 20px 0 0 0;
+}
+
+.actionHeading {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.tableTemp {
+  display: flex;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.tableTemp h3 {
+  width: 50%;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.tableTemp p {
+  width: 50%;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.overviewContainer {
+  padding: 20px 0;
+}
+
+.overviewBreadCrumb {
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 21px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(47, 57, 48, 0.5);
+}
+
+.overviewBreadCrumb span {
+  color: #2f3930;
+}

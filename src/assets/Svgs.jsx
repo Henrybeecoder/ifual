@@ -336,3 +336,105 @@ export const SvgRateStars = (props) => (
     />
   </svg>
 );
+
+export const SvgDashboard = (props) => (
+  <svg
+    width={26}
+    height={26}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='M10.333 1H1v9.333h9.333V1ZM25 1h-9.333v9.333H25V1ZM25 15.667h-9.333V25H25v-9.333ZM10.333 15.667H1V25h9.333v-9.333Z'
+      // stroke='#36B44A'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgOrderStatus = (props) => (
+  <svg
+    width={26}
+    height={24}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='M17.8 22.6V3.4A2.4 2.4 0 0 0 15.4 1h-4.8a2.4 2.4 0 0 0-2.4 2.4v19.2M3.4 5.8h19.2A2.4 2.4 0 0 1 25 8.2v12a2.4 2.4 0 0 1-2.4 2.4H3.4A2.4 2.4 0 0 1 1 20.2v-12a2.4 2.4 0 0 1 2.4-2.4Z'
+      // stroke='#2F3930'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgReport = (props) => (
+  <svg
+    width={22}
+    height={27}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='M13.5 1h-10A2.5 2.5 0 0 0 1 3.5v20A2.5 2.5 0 0 0 3.5 26h15a2.5 2.5 0 0 0 2.5-2.5v-15M13.5 1 21 8.5M13.5 1v7.5H21m-5 6.25H6m10 5H6m2.5-10H6'
+      // stroke='#2F3930'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgSettings = (props) => (
+  <svg
+    width={26}
+    height={26}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='M13 15.868a3.273 3.273 0 1 0 0-6.545 3.273 3.273 0 0 0 0 6.545Z'
+      // stroke='#2F3930'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+    <path
+      d='M21.073 15.868a1.8 1.8 0 0 0 .36 1.986l.065.065a2.183 2.183 0 1 1-3.087 3.088l-.066-.066a1.8 1.8 0 0 0-1.985-.36 1.8 1.8 0 0 0-1.09 1.647v.186a2.182 2.182 0 0 1-4.364 0v-.098a1.8 1.8 0 0 0-1.179-1.648 1.8 1.8 0 0 0-1.985.36l-.066.066a2.183 2.183 0 1 1-3.087-3.087l.066-.066a1.8 1.8 0 0 0 .36-1.985 1.8 1.8 0 0 0-1.648-1.091h-.185a2.182 2.182 0 0 1 0-4.364h.098a1.8 1.8 0 0 0 1.647-1.178 1.8 1.8 0 0 0-.36-1.985l-.065-.066a2.182 2.182 0 1 1 3.087-3.087l.066.065a1.8 1.8 0 0 0 1.985.36h.087a1.8 1.8 0 0 0 1.091-1.647v-.185a2.182 2.182 0 0 1 4.364 0v.098a1.8 1.8 0 0 0 1.09 1.647 1.8 1.8 0 0 0 1.986-.36l.066-.065a2.182 2.182 0 1 1 3.087 3.087l-.066.065a1.8 1.8 0 0 0-.36 1.986v.087a1.8 1.8 0 0 0 1.648 1.09h.185a2.182 2.182 0 0 1 0 4.364h-.098a1.8 1.8 0 0 0-1.647 1.091Z'
+      // stroke='#2F3930'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgNotification = (props) => (
+  <svg
+    width={26}
+    height={30}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='M13 4.6A8.4 8.4 0 0 0 4.6 13v6A3.6 3.6 0 0 1 1 22.6h24a3.6 3.6 0 0 1-3.6-3.6v-6A8.4 8.4 0 0 0 13 4.6Zm0 0V1m2.076 26.4a2.4 2.4 0 0 1-4.152 0'
+      // stroke='#2F3930'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const SvgLogOut = (props) => (
+  <svg
+    width={26}
+    height={26}
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    {...props}>
+    <path
+      d='M9 25H3.667A2.667 2.667 0 0 1 1 22.333V3.667A2.667 2.667 0 0 1 3.667 1H9m9.333 18.667L25 13m0 0-6.667-6.667M25 13H9'
+      // stroke='#2F3930'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);

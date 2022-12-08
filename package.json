@@ -11,6 +11,8 @@
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@mui/material": "^5.10.13",
+    "@radix-ui/react-radio-group": "^1.1.0",
+    "@radix-ui/react-switch": "^1.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -22,6 +24,7 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.0",
+    "react-table": "^7.8.0",
     "react-uploader": "^2.1.0",
     "recharts": "^2.1.16",
     "web-vitals": "^2.1.4"
