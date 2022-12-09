@@ -5,75 +5,75 @@ import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
 const data = [
   {
     id: "1",
-    order: "Diesel, 200 l",
-    vendor: "Apex Oil Plc.",
-    location: "Ikoyi, Lagos",
-    due_date: "00:00:00, 23/10/2022",
-    status: "Pending",
+    ref_no: "RE0000001",
+    title: "Payment not see...",
+    category: "Payment",
+    staff: "Bisi Alonge",
+    status: "Ongoing",
   },
   {
     id: "2",
-    order: "Diesel, 200 l",
-    vendor: "Apex Oil Plc.",
-    location: "Ikoyi, Lagos",
-    due_date: "00:00:00, 23/10/2022",
-    status: "Pending",
+    ref_no: "RE0000001",
+    title: "Payment not see...",
+    category: "Payment",
+    staff: "...",
+    status: "New",
   },
   {
     id: "3",
-    order: "Diesel, 200 l",
-    vendor: "Apex Oil Plc.",
-    location: "Ikoyi, Lagos",
-    due_date: "00:00:00, 23/10/2022",
-    status: "Overdue",
+    ref_no: "RE0000001",
+    title: "Rude Vendor",
+    category: "Payment",
+    staff: "Bisi Alonge",
+    status: "Ongoing",
   },
   {
     id: "4",
-    order: "Diesel, 200 l",
-    vendor: "Apex Oil Plc.",
-    location: "Ikoyi, Lagos",
-    due_date: "...",
-    status: "Cancelled",
+    ref_no: "RE0000001",
+    title: "Payment not see...",
+    category: "Payment",
+    staff: "...",
+    status: "New",
   },
   {
     id: "5",
-    order: "Diesel, 200 l",
-    vendor: "Apex Oil Plc.",
-    location: "Ikoyi, Lagos",
-    due_date: "00:00:00, 23/10/2022",
-    status: "Completed",
+    ref_no: "RE0000001",
+    title: "Payment not see...",
+    category: "Payment",
+    staff: "Bisi Alonge",
+    status: "Ongoing",
   },
   {
     id: "6",
-    order: "Diesel, 200 l",
-    vendor: "Apex Oil Plc.",
-    location: "Ikoyi, Lagos",
-    due_date: "...",
-    status: "Cancelled",
+    ref_no: "RE0000001",
+    title: "Payment not see...",
+    category: "Payment",
+    staff: "Bisi Alonge",
+    status: "Resolved",
   },
   {
     id: "7",
-    order: "Diesel, 200 l",
-    vendor: "Apex Oil Plc.",
-    location: "Ikoyi, Lagos",
-    due_date: "00:00:00, 23/10/2022",
-    status: "Paid",
+    ref_no: "RE0000001",
+    title: "Payment not see...",
+    category: "Payment",
+    staff: "Bisi Alonge",
+    status: "Resolved",
   },
   {
     id: "8",
-    order: "Diesel, 200 l",
-    vendor: "Apex Oil Plc.",
-    location: "Ikoyi, Lagos",
-    due_date: "00:00:00, 23/10/2022",
-    status: "Completed",
+    ref_no: "RE0000001",
+    title: "Payment not see...",
+    category: "Payment",
+    staff: "Bisi Alonge",
+    status: "Resolved",
   },
   {
     id: "9",
-    order: "Diesel, 200 l",
-    vendor: "Apex Oil Plc.",
-    location: "Ikoyi, Lagos",
-    due_date: "00:00:00, 23/10/2022",
-    status: "Pending",
+    ref_no: "RE0000001",
+    title: "Payment not see...",
+    category: "Payment",
+    staff: "Bisi Alonge",
+    status: "Resolved",
   },
 ];
 
@@ -88,7 +88,7 @@ const ManageProducts = () => {
           <button>Custom Message</button>
         </div>
       </div>
-      <div className={styles.tableWrapper}>
+      <div className={"tableWrapper"}>
         <table>
           <thead>
             <tr>
@@ -102,13 +102,37 @@ const ManageProducts = () => {
           </thead>
           <tbody>
             {data?.map((row) => {
+              const status = row.status.toLowerCase();
+              const bgColor =
+                status === "ongoing"
+                  ? "#F2F6F2"
+                  : status === "new"
+                  ? "#FCDEE4"
+                  : "#F3FFF3";
+              const color =
+                status === "ongoing"
+                  ? "#344437"
+                  : status === "new"
+                  ? "#CA0814"
+                  : "#36B44A";
               return (
                 <tr key={row.id}>
-                  <td>{row.order}</td>
-                  <td>{row.vendor}</td>
-                  <td>{row.location}</td>
-                  <td>{row.due_date}</td>
-                  <td>{row.status}</td>
+                  <td>{row.ref_no}</td>
+                  <td>{row.title}</td>
+                  <td>{row.category}</td>
+                  <td>{row.staff}</td>
+                  <td className={styles.statusContainer}>
+                    <p
+                      style={{
+                        backgroundColor: bgColor,
+                        color,
+                        padding: "2px 10px",
+                        borderRadius: "20px",
+                        width: "fit-content",
+                      }}>
+                      {row.status}
+                    </p>
+                  </td>
                   <td>
                     <button>
                       <SvgOptions />

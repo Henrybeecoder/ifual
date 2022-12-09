@@ -201,6 +201,7 @@ const Dashboard = () => {
                 heading='MANAGE ORDER'
                 message='Order delivery overdue'
                 onClick={() => {}}
+                messageRed
               />
               <ActionCard
                 heading='COMPLAINT LOG'
@@ -225,9 +226,9 @@ const StatsCard = ({ heading, value, onClick }) => {
   );
 };
 
-const ActionCard = ({ heading, message, onClick }) => {
+const ActionCard = ({ heading, message, onClick, messageRed }) => {
   return (
-    <div className={styles.actionCard}>
+    <div className={`${styles.actionCard} ${messageRed && styles.messageRed}`}>
       <h3>{heading}</h3>
       <p>{message}</p>
       <button onClick={onClick}>ACT</button>

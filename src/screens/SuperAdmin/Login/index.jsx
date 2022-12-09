@@ -51,7 +51,7 @@ const Home = ({ setPage }) => {
       />
       <button
         className={styles.btnLogin}
-        disabled={!!(values.username < 2)}
+        disabled={!!(values.username.length < 2)}
         onClick={() => setPage("m_token")}>
         Log in
       </button>
@@ -71,7 +71,7 @@ const MToken = ({ setPage }) => {
       <h3>MToken</h3>
       <p className={styles.mTokenText}>Enter your Mtoken Code to gain access</p>
       <InputTemp
-        inputType='text'
+        inputType='number'
         value={token}
         placeholder={"Enter code"}
         onValueChange={setToken}
@@ -82,7 +82,7 @@ const MToken = ({ setPage }) => {
         </button>
         <button
           className={styles.btnSubmit}
-          disabled={!!(token < 5)}
+          disabled={!!(token.length < 5)}
           onClick={() => {
             navigate("/super-admin/dashboard");
           }}>

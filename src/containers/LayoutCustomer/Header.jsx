@@ -9,7 +9,7 @@ import {
   SvgHamburger,
   SvgSearchIcon,
 } from "../../assets/Svgs";
-import profile from "../../assets/image/bitch.png";
+import profile from "../../assets/image/profile2.png";
 import { useState } from "react";
 
 const Header = ({ user }) => {

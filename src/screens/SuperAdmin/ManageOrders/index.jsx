@@ -57,7 +57,7 @@ const data = [
     vendor: "Apex Oil Plc.",
     location: "Ikoyi, Lagos",
     due_date: "00:00:00, 23/10/2022",
-    status: "Paid",
+    status: "Completed",
   },
   {
     id: "8",
@@ -87,7 +87,7 @@ const ManageProducts = () => {
           <SvgFilterIcon />
         </div>
       </div>
-      <div className={styles.tableWrapper}>
+      <div className={"tableWrapper"}>
         <table>
           <thead>
             <tr>
@@ -101,13 +101,43 @@ const ManageProducts = () => {
           </thead>
           <tbody>
             {data?.map((row) => {
+              const status = row.status.toLowerCase();
+              const bgColor =
+                status === "pending"
+                  ? "#F2F6F2"
+                  : status === "overdue"
+                  ? "#F2F6F2"
+                  : status === "cancelled"
+                  ? "#FCDEE4"
+                  : "#F3FFF3";
+              const color =
+                status === "pending"
+                  ? "#344437"
+                  : status === "overdue"
+                  ? "#CA0814"
+                  : status === "cancelled"
+                  ? "#CA0814"
+                  : "#36B44A";
               return (
-                <tr key={row.id}>
+                <tr
+                  key={row.id}
+                  className={`${status === "overdue" && styles.overdue}`}>
                   <td>{row.order}</td>
                   <td>{row.vendor}</td>
                   <td>{row.location}</td>
                   <td>{row.due_date}</td>
-                  <td>{row.status}</td>
+                  <td className={styles.statusContainer}>
+                    <p
+                      style={{
+                        backgroundColor: bgColor,
+                        color,
+                        padding: "2px 10px",
+                        borderRadius: "20px",
+                        width: "fit-content",
+                      }}>
+                      {row.status}
+                    </p>
+                  </td>
                   <td>
                     <button>
                       <SvgOptions />
