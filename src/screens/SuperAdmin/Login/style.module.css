@@ -1,14 +1,39 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.container {
+  padding: 20px;
+  height: 100vh;
+}
+.container h2 {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 42px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  color: #2f3930;
+  /* margin: 40px 0; */
 }
 
-.header h3 {
-  font-weight: 500;
-  font-size: 21px;
-  line-height: 21px;
-  color: #2f3930;
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  border: 0.5px solid gainsboro;
+  border-radius: 15px;
+  margin: 50px auto;
+  padding: 55px 50px;
+}
+.logoFlex {
+  display: flex;
+  align-items: center;
+  padding: 5px 50px;
+  margin-bottom: 30px;
+}
+
+.pageContainer h3 {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 42px;
 }
 
 .filterFlex {
@@ -27,29 +52,69 @@
   border-radius: 8px;
 }
 
-table {
+.footer {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  color: #344437;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.btnLogin {
+  background-color: #2f3930;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
   width: 100%;
-  border-collapse: collapse;
+  color: white;
+  padding: 13px;
+  margin: 30px 0;
+}
+.btnLogin:disabled,
+.btnBack:disabled,
+.btnSubmit:disabled {
+  opacity: 0.7;
+  cursor: default;
 }
 
-tr {
-  /* padding: 10px; */
-  border-bottom: 1px solid rgba(52, 68, 55, 0.12);
+.altLink span {
+  color: #36b44a;
 }
 
-th {
-  padding: 15px 20px;
-  text-align: start;
+.mTokenText {
+  margin: 30px 0 15px 0;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
 }
 
-td {
-  padding: 15px;
-}
-
-.tableWrapper {
+.btns {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
   margin-top: 30px;
-  box-shadow: 0px 1px 10px 2px rgba(52, 68, 55, 0.06);
-  border-radius: 15px;
-  overflow: hidden;
-  border: 1px solid rgba(52, 68, 55, 0.12);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  width: 100%;
+  justify-content: space-between;
+}
+.btnBack {
+  border: 0.5px solid #344437;
+  width: 40%;
+  height: 47px;
+}
+
+.btnSubmit {
+  background-color: #2f3930;
+  color: white;
+  width: 55%;
+  height: 47px;
 }
