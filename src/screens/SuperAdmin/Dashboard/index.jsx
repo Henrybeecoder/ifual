@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { SvgRightIcon } from "../../../assets/Svgs";
 import { useState } from "react";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 
 const data = [
   {
@@ -89,6 +90,7 @@ const data = [
 
 const Dashboard = () => {
   const [page, setPage] = useState("home");
+  const matches = useMediaQuery("(min-width: 800px)");
 
   return (
     <LayoutSuperAdmin
@@ -112,18 +114,20 @@ const Dashboard = () => {
               <SvgRightIcon />
             </button>
           </div>
-          <div className={styles.statsContainer}>
-            <StatsCard heading='CUSTOMER COUNT' value='2000' />
-            <StatsCard heading='VENDOR COUNT' value='107' />
-            <StatsCard heading='ADMIN COUNT' value='8' />
-            <StatsCard heading='TOTAL ORDERS PROCESSED' value='2000' />
+          <div className={styles.scrollX}>
+            <div className={styles.statsContainer}>
+              <StatsCard heading='CUSTOMER COUNT' value='2000' />
+              <StatsCard heading='VENDOR COUNT' value='107' />
+              <StatsCard heading='ADMIN COUNT' value='8' />
+              <StatsCard heading='TOTAL ORDERS PROCESSED' value='2000' />
+            </div>
           </div>
           <div className={styles.chartSection}>
             <h3>STATS</h3>
             <div className={styles.chartFlex}>
               <div
                 style={{
-                  width: "48%",
+                  width: matches ? "48%" : "100%",
                   height: 200,
                   border: "1px solid gainsboro",
                   borderRadius: "10px",
@@ -153,7 +157,8 @@ const Dashboard = () => {
               </div>
               <div
                 style={{
-                  width: "48%",
+                  width: matches ? "48%" : "100%",
+                  marginTop: !matches ? "20px" : "",
                   height: 200,
                   border: "1px solid gainsboro",
                   borderRadius: "10px",
@@ -191,23 +196,25 @@ const Dashboard = () => {
                 <SvgRightIcon />
               </button>
             </div>
-            <div className={styles.actionsFlex}>
-              <ActionCard
-                heading='MANAGE VENDOR'
-                message='You have a new Onboarding request'
-                onClick={() => {}}
-              />
-              <ActionCard
-                heading='MANAGE ORDER'
-                message='Order delivery overdue'
-                onClick={() => {}}
-                messageRed
-              />
-              <ActionCard
-                heading='COMPLAINT LOG'
-                message='New Complaint Received - Paymen...'
-                onClick={() => {}}
-              />
+            <div className={styles.scrollX}>
+              <div className={styles.actionsFlex}>
+                <ActionCard
+                  heading='MANAGE VENDOR'
+                  message='You have a new Onboarding request'
+                  onClick={() => {}}
+                />
+                <ActionCard
+                  heading='MANAGE ORDER'
+                  message='Order delivery overdue'
+                  onClick={() => {}}
+                  messageRed
+                />
+                <ActionCard
+                  heading='COMPLAINT LOG'
+                  message='New Complaint Received - Paymen...'
+                  onClick={() => {}}
+                />
+              </div>
             </div>
           </div>
         </>

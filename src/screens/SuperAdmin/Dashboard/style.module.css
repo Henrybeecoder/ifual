@@ -194,3 +194,57 @@ button {
 .messageRed p {
   color: #ca0814;
 }
+
+/* .scrollX {
+  display: flex;
+} */
+
+@media screen and (max-width: 800px) {
+  .flexGreetings h3 {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: #7a857c;
+  }
+  .flexGreetings p {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 12px;
+    color: #2f3930;
+  }
+  .flexTitle h3 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+  }
+  .scrollX {
+    overflow-x: auto;
+  }
+
+  .statsContainer {
+    width: fit-content;
+  }
+  .statsCard {
+    width: 154px;
+    height: 101px;
+    margin-right: 10px;
+  }
+
+  .statsCard h3 {
+    font-size: 11px;
+  }
+  .chartFlex {
+    display: block;
+  }
+  .actionsSection {
+    width: 100%;
+  }
+  .actionsFlex {
+    width: fit-content;
+  }
+  .actionCard {
+    width: 300px;
+    height: 100px;
+    margin-right: 7px;
+  }
+}

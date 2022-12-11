@@ -3,11 +3,13 @@ import logo from "../../../assets/logo.svg";
 import { InputTemp } from "../../../Components/InputTemp";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 
 const Login = () => {
   // const [searchParams] = useSearchParams();
   // const loginType = searchParams.get("type");
   const [page, setPage] = useState("home");
+  const matches = useMediaQuery("(min-width: 800px)");
 
   const renderPage = {
     home: <Home setPage={setPage} />,
@@ -19,7 +21,7 @@ const Login = () => {
       <div className={styles.logoFlex}>
         <img src={logo} />
       </div>
-      {page === "home" && <h2>Welcome Admin</h2>}
+      {page === "home" && matches && <h2>Welcome Admin</h2>}
       <div className={styles.pageContainer}>{renderPage[page]}</div>
       <div className={styles.footer}>
         <p>2022 iFuel. All rights reserved.</p>
@@ -30,10 +32,13 @@ const Login = () => {
 
 const Home = ({ setPage }) => {
   const [values, setValues] = useState({ username: "", password: "" });
+  const matches = useMediaQuery("(min-width: 800px)");
+
   return (
     <>
       <h3>LOGIN</h3>
       <InputTemp
+        label={!matches && "EMAIL USERNAME"}
         inputType='text'
         value={values.username}
         placeholder={"Enter username"}
@@ -42,6 +47,7 @@ const Home = ({ setPage }) => {
         }
       />
       <InputTemp
+        label={!matches && "PASSWORD"}
         inputType='password'
         value={values.password}
         placeholder={"Enter Password"}

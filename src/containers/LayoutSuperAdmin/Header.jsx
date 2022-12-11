@@ -11,9 +11,13 @@ import {
 } from "../../assets/Svgs";
 import profile from "../../assets/image/profile3.png";
 import { useState } from "react";
+import useMediaQuery from "../../Custom hooks/useMediaQuery";
+import logo from "../../assets/logo.svg";
 
 const Header = ({ user, backBtn, onClickBackBtn }) => {
   const navigate = useNavigate();
+
+  const matches = useMediaQuery("(min-width: 800px)");
 
   const [open, setOpen] = useState(false);
 
@@ -37,17 +41,12 @@ const Header = ({ user, backBtn, onClickBackBtn }) => {
               <p>Back</p>
             </button>
           )}
+          {!matches && <img src={logo} />}
         </div>
 
         <div className={`${styles.flexHeader}`}>
-          {/* <div /> */}
           <div className={styles.mobileMenu}>
             <SearchIconWBorder />
-            {!user && (
-              <button>
-                <SvgHamburger />
-              </button>
-            )}
           </div>
           <div className={`${styles.searchBar} ${styles.hiddenMobile}`}>
             <input placeholder='Enter Keyword' />
@@ -65,7 +64,13 @@ const Header = ({ user, backBtn, onClickBackBtn }) => {
                 <SvgBellOutline />
               </button>
 
-              <img src={profile} onClick={toggleProfileModal} />
+              {!matches ? (
+                <button style={{ marginLeft: "7px" }}>
+                  <SvgHamburger />
+                </button>
+              ) : (
+                <img src={profile} onClick={toggleProfileModal} />
+              )}
               <ProfileModal user={user} open={open} />
             </div>
           )}
