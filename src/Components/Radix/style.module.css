@@ -41,7 +41,6 @@ button {
 
 .RadioGroupRoot {
   display: flex;
-
   gap: 10px;
 }
 
@@ -98,4 +97,16 @@ button {
   height: 15px;
   border-radius: 50%;
   background-color: #36b44a;
+}
+
+@media screen and (max-width: 800px) {
+  .radioGroupFlex label {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 15px;
+    margin-left: 5px;
+  }
+  .RadioGroupRoot {
+    gap: 5px;
+  }
 }

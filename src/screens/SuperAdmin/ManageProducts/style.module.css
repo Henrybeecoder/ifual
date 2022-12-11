@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex: 1;
 }
 
 .header h3 {
@@ -18,13 +19,6 @@
 
 .filterFlex h3 {
   margin-right: 10px;
-}
-
-.filterFlex button {
-  margin-left: 15px;
-  padding: 10px 15px;
-  border: 0.5px solid #344437;
-  border-radius: 8px;
 }
 
 table {
@@ -52,4 +46,27 @@ td {
   border-radius: 15px;
   overflow: hidden;
   border: 1px solid rgba(52, 68, 55, 0.12);
+}
+
+.flexLg {
+  display: flex;
+}
+
+.flexLg button {
+  margin-left: 15px;
+  padding: 10px 15px;
+  border: 0.5px solid #344437;
+  border-radius: 8px;
+  align-self: flex-end;
+}
+
+@media screen and (max-width: 800px) {
+  .flexLg {
+    flex-direction: column;
+  }
+  .flexLg button {
+    margin-top: 10px;
+    padding: 5px 20px;
+    border-radius: 5px;
+  }
 }

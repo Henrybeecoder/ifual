@@ -5,9 +5,24 @@ import Switch from "../../../Components/Radix/Switch";
 import RadioGroup from "../../../Components/Radix/RadioGroup";
 import { SelectTemp } from "../../../Components/InputTemp";
 import { useState } from "react";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 
 const Settings = () => {
+  const matches = useMediaQuery("(min-width: 800px)");
   const [edit, setEdit] = useState(false);
+
+  const timeOptions = matches
+    ? [
+        { value: "minute", label: "Minutes" },
+        { value: "hours", label: "Hours" },
+        { value: "days", label: "Days" },
+      ]
+    : [
+        { value: "minute", label: "Min" },
+        { value: "hours", label: "Hrs" },
+        { value: "days", label: "Days" },
+      ];
+
   return (
     <LayoutSuperAdmin>
       <div className={styles.header}>
@@ -27,12 +42,9 @@ const Settings = () => {
             </div>
             <div className={styles.radioGroup}>
               <RadioGroup
+                className={styles.rglabel}
                 defaultValue='minute'
-                options={[
-                  { value: "minute", label: "Minutes" },
-                  { value: "hours", label: "Hours" },
-                  { value: "days", label: "Days" },
-                ]}
+                options={timeOptions}
               />
             </div>
             <div className={styles.flex}>
@@ -72,14 +84,7 @@ const Settings = () => {
             </div>
             <div className={styles.opacityDisabled}>
               <div className={styles.radioGroup}>
-                <RadioGroup
-                  defaultValue='hours'
-                  options={[
-                    { value: "minute", label: "Minutes" },
-                    { value: "hours", label: "Hours" },
-                    { value: "days", label: "Days" },
-                  ]}
-                />
+                <RadioGroup defaultValue='hours' options={timeOptions} />
               </div>
               <div className={styles.flex}>
                 <p>Set Time after Cancellation:</p>

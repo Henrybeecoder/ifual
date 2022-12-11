@@ -7,6 +7,7 @@ const RadioGroup = ({
   value,
   vertical,
   onValueChange,
+  className,
 }) => {
   return (
     <Root
@@ -22,7 +23,9 @@ const RadioGroup = ({
             id={option.label}>
             <Indicator className={styles.RadioGroupIndicator} />
           </Item>
-          <label htmlFor={option.label}>{option.label}</label>
+          <label htmlFor={option.label} className={className}>
+            {option.label}
+          </label>
         </div>
       ))}
     </Root>

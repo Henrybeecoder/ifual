@@ -87,3 +87,34 @@
   width: 310px;
   height: 48px;
 }
+
+.rglabel {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    padding: 0 10px;
+  }
+  .sectionContainer {
+    padding: 10px 5px;
+  }
+  .sectionContainer h3 {
+    width: 28%;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+  }
+  .flex p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+  }
+  .rglabel {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
