@@ -24,6 +24,7 @@ import ManageOrders from "./screens/SuperAdmin/ManageOrders";
 import ComplaintsLog from "./screens/SuperAdmin/ComplaintsLog";
 import ActivityLog from "./screens/SuperAdmin/ActivityLog";
 import LoginSuperAdmin from "./screens/SuperAdmin/Login";
+import Profile from "./screens/Customer/Profile";
 
 function App() {
   return (
@@ -34,7 +35,10 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/vendor/dashboard' element={<Dashboard />} />
+        <Route path='customer'>
+          <Route path='profile' element={<Profile />} />
+        </Route>
+
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route
           path='/forgot-password-message'
@@ -42,6 +46,7 @@ function App() {
         />
 
         <Route path='/vendor'>
+          <Route path='dashboard' element={<Dashboard />} />
           <Route path='order-status' element={<OrderStatus />} />
           <Route path='product-list' element={<ProductList />} />
           <Route path='notification' element={<Notification />} />
