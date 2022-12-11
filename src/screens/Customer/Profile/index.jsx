@@ -5,39 +5,53 @@ import companyLogo from "../../../assets/image/companyLogo2.png";
 import Button from "../../../Components/Button";
 import LayoutCustomer from "../../../containers/LayoutCustomer";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
-import profile from "../../../assets/image/profile2.png";
+import profile from "../../../assets/image/profile2Lg.png";
 import { InputTemp } from "../../../Components/InputTemp";
+import { useState } from "react";
 
 const Profile = () => {
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width: 800px)");
+
+  const [page, setPage] = useState("home");
 
   const backHome = () => navigate("/");
 
   return (
     <LayoutCustomer>
       <div className={styles.breadCrumb}>
-        <button>
+        <button onClick={backHome}>
           <SvgArrowback />
           <p>Back to Home</p>
         </button>
       </div>
       <div className={styles.header}>
         <h3>Basic Profile</h3>
-        <button className={styles.flexEdit}>
+        <button className={styles.flexEdit} onClick={() => setPage("edit")}>
           <h2>Edit</h2>
           <SvgEdit />
         </button>
       </div>
       <div className={styles.container}>
-        <div className={styles.metaSection}>
-          <img src={profile} />
-          <p>Account Details</p>
+        <div
+          className={styles.metaSection}
+          style={{ opacity: page === "edit" ? 0.5 : 1 }}>
+          <div style={{ position: "relative", width: "fit-content" }}>
+            {page === "edit" && (
+              <div className={styles.changeImage}>
+                <button>Change Image</button>
+              </div>
+            )}
+            <img src={profile} />
+          </div>
+          <h3>Account Details</h3>
           <p>0123456789</p>
-          <h3>Sterling Bank</h3>
-          <button>Change account</button>
-          <button>Add Payment Card</button>
-          <button>Change Password</button>
+          <h2>Sterling Bank</h2>
+          <div className={styles.btns}>
+            <button>Change account</button>
+            <button>Add Payment Card</button>
+            <button>Change Password</button>
+          </div>
         </div>
         <div className={styles.inputSection}>
           <div className={styles.inputFlex}>

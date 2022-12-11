@@ -52,13 +52,64 @@
   width: 100%;
 }
 .metaSection {
-  width: 30%;
+  width: 20%;
 }
 .inputSection {
-  width: 70%;
+  width: 80%;
 }
 
 .inputFlex {
   display: flex;
   align-items: center;
+}
+
+.metaSection {
+  margin-top: 30px;
+}
+
+.changeImage button {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.changeImage {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+.metaSection h3 {
+  text-decoration: underline;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  color: #344437;
+  margin: 10px 0;
+}
+
+.metaSection h2 {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 16px;
+  margin: 10px 0 20px 0;
+}
+
+.btns button {
+  display: block;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  text-decoration-line: underline;
+  color: #36b44a;
+  margin: 10px 0;
 }
