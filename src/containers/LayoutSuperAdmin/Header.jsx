@@ -14,12 +14,12 @@ import { useState } from "react";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import logo from "../../assets/logo.svg";
 
-const Header = ({ user, backBtn, onClickBackBtn }) => {
+const Header = ({ user, backBtn, onClickBackBtn, setOpen }) => {
   const navigate = useNavigate();
 
   const matches = useMediaQuery("(min-width: 800px)");
 
-  const [open, setOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
 
   const [menu, setMenu] = useState(false);
 
@@ -28,7 +28,7 @@ const Header = ({ user, backBtn, onClickBackBtn }) => {
   };
 
   const toggleProfileModal = () => {
-    setOpen((state) => !state);
+    setProfileOpen((state) => !state);
   };
 
   return (
@@ -65,13 +65,15 @@ const Header = ({ user, backBtn, onClickBackBtn }) => {
               </button>
 
               {!matches ? (
-                <button style={{ marginLeft: "7px" }}>
+                <button
+                  style={{ marginLeft: "7px" }}
+                  onClick={() => setOpen((state) => !state)}>
                   <SvgHamburger />
                 </button>
               ) : (
                 <img src={profile} onClick={toggleProfileModal} />
               )}
-              <ProfileModal user={user} open={open} />
+              <ProfileModal user={user} open={profileOpen} />
             </div>
           )}
         </div>
