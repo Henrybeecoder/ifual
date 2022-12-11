@@ -46,6 +46,14 @@ input::placeholder {
   margin-right: 15px;
 }
 
+.marginLeftSm {
+  margin-left: 15px;
+}
+
+.marginRightSm {
+  margin-right: 15px;
+}
+
 @media screen and (max-width: 800px) {
   .marginLeft {
     margin-left: auto;

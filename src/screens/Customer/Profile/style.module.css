@@ -42,8 +42,16 @@
   margin-right: 5px;
 }
 
+.flexEditActive h2 {
+  color: gainsboro;
+}
 .flexEdit svg {
   stroke: #36b44a;
+  margin-top: 5px;
+}
+
+.flexEditActive svg {
+  stroke: gainsboro;
   margin-top: 5px;
 }
 
@@ -65,6 +73,12 @@
 
 .metaSection {
   margin-top: 30px;
+}
+
+.metaSection img {
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
 }
 
 .changeImage button {
@@ -112,4 +126,20 @@
   text-decoration-line: underline;
   color: #36b44a;
   margin: 10px 0;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    display: block;
+  }
+  .metaSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .inputSection {
+    width: 100%;
+  }
 }

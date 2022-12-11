@@ -112,7 +112,9 @@ const ProfileModal = ({ user, open }) => {
           </div>
           <div className='divider' />
           <div className={styles.profileLinksContainer}>
-            <button>View Profile</button>
+            <button onClick={() => navigate("/customer/profile")}>
+              View Profile
+            </button>
             <button>View Orders</button>
             <button>Track Order</button>
             <button>Support</button>

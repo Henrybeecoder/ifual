@@ -14,11 +14,15 @@ export const InputTemp = ({
   visibilityPadding,
   marginRight,
   marginLeft,
+  marginLeftSm,
+  marginRightSm,
 }) => {
   return (
     <div
-      className={`${styles.formHolder} ${marginLeft && styles.marginLeft} ${
-        marginRight && styles.marginRight
+      className={`${styles.formHolder} ${
+        marginLeftSm ? styles.marginLeftSm : marginLeft && styles.marginLeft
+      } ${
+        marginRightSm ? styles.marginRightSm : marginRight && styles.marginRight
       }`}>
       <label>{label}</label>
       <input
@@ -45,14 +49,18 @@ export const SelectTemp = ({
   options,
   marginLeft,
   marginRight,
+  marginLeftSm,
+  marginRightSm,
   isMulti,
   width,
 }) => {
   //   const selectRef = useRef(null);
   return (
     <div
-      className={`${styles.formHolder} ${marginLeft && styles.marginLeft} ${
-        marginRight && styles.marginRight
+      className={`${styles.formHolder} ${
+        marginLeftSm ? styles.marginLeftSm : marginLeft && styles.marginLeft
+      } ${
+        marginRightSm ? styles.marginRightSm : marginRight && styles.marginRight
       }`}
       style={{ width: width ? width : "100%" }}>
       <label>{label}</label>

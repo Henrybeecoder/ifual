@@ -7,15 +7,23 @@ import LayoutCustomer from "../../../containers/LayoutCustomer";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import profile from "../../../assets/image/profile2Lg.png";
 import { InputTemp } from "../../../Components/InputTemp";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const Profile = () => {
   const navigate = useNavigate();
+  const imageRef = useRef(null);
   const matches = useMediaQuery("(min-width: 800px)");
 
   const [page, setPage] = useState("home");
 
+  const [profileImage, setProfileImage] = useState(profile);
+
   const backHome = () => navigate("/");
+
+  const handleImage = (e) => {
+    const file = e.target?.files?.[0];
+    setProfileImage(URL.createObjectURL(file));
+  };
 
   return (
     <LayoutCustomer>
@@ -27,7 +35,13 @@ const Profile = () => {
       </div>
       <div className={styles.header}>
         <h3>Basic Profile</h3>
-        <button className={styles.flexEdit} onClick={() => setPage("edit")}>
+        <button
+          className={`${styles.flexEdit} ${
+            page === "edit" && styles.flexEditActive
+          }`}
+          onClick={() =>
+            setPage((state) => (state !== "edit" ? "edit" : "home"))
+          }>
           <h2>Edit</h2>
           <SvgEdit />
         </button>
@@ -39,37 +53,48 @@ const Profile = () => {
           <div style={{ position: "relative", width: "fit-content" }}>
             {page === "edit" && (
               <div className={styles.changeImage}>
-                <button>Change Image</button>
+                <input
+                  hidden
+                  ref={imageRef}
+                  type='file'
+                  accept='image/*'
+                  onChange={handleImage}
+                />
+                <button onClick={() => imageRef.current.click()}>
+                  Change Image
+                </button>
               </div>
             )}
-            <img src={profile} />
+            <img src={profileImage} />
           </div>
-          <h3>Account Details</h3>
-          <p>0123456789</p>
-          <h2>Sterling Bank</h2>
-          <div className={styles.btns}>
-            <button>Change account</button>
-            <button>Add Payment Card</button>
-            <button>Change Password</button>
+          <div>
+            <h3>Account Details</h3>
+            <p>0123456789</p>
+            <h2>Sterling Bank</h2>
+            <div className={styles.btns}>
+              <button>Change account</button>
+              <button>Add Payment Card</button>
+              <button>Change Password</button>
+            </div>
           </div>
         </div>
         <div className={styles.inputSection}>
           <div className={styles.inputFlex}>
             <InputTemp
-              marginRight
+              marginRightSm
               label={"FIRST NAME"}
               placeholder='Beatrice'
             />
-            <InputTemp marginLeft label='SURNAME' placeholder='Bimpe' />
+            <InputTemp marginLeftSm label='SURNAME' placeholder='Bimpe' />
           </div>
           <div className={styles.inputFlex}>
             <InputTemp
-              marginRight
+              marginRightSm
               label='PHONE NUMBER'
               placeholder='0801 234 5678'
             />
             <InputTemp
-              marginLeft
+              marginLeftSm
               label='EMAIL ADDRESS'
               placeholder='beatricebimpe@ifuel.com'
             />
@@ -80,8 +105,8 @@ const Profile = () => {
           />
           <InputTemp label='COMPANY ADDRESS' placeholder='Enter Address' />
           <div className={styles.inputFlex}>
-            <InputTemp marginRight label='STATE' placeholder='Lagos' />
-            <InputTemp marginLeft label='LGA' placeholder='Select LGA' />
+            <InputTemp marginRightSm label='STATE' placeholder='Lagos' />
+            <InputTemp marginLeftSm label='LGA' placeholder='Select LGA' />
           </div>
         </div>
       </div>
