@@ -223,7 +223,13 @@ const Dashboard = () => {
   );
 };
 
-const StatsCard = ({ heading, value, onClick }) => {
+interface StatCardProps {
+  heading: string;
+  value: string;
+  onClick?: () => void;
+}
+
+const StatsCard = ({ heading, value, onClick }: StatCardProps) => {
   return (
     <div className={styles.statsCard}>
       <h3>{heading}</h3>
@@ -233,7 +239,19 @@ const StatsCard = ({ heading, value, onClick }) => {
   );
 };
 
-const ActionCard = ({ heading, message, onClick, messageRed }) => {
+interface ActionCardProps {
+  heading: string;
+  message: string;
+  onClick?: () => void;
+  messageRed?: boolean;
+}
+
+const ActionCard = ({
+  heading,
+  message,
+  onClick,
+  messageRed,
+}: ActionCardProps) => {
   return (
     <div className={`${styles.actionCard} ${messageRed && styles.messageRed}`}>
       <h3>{heading}</h3>
@@ -243,7 +261,7 @@ const ActionCard = ({ heading, message, onClick, messageRed }) => {
   );
 };
 
-const TableTemp = ({ item, value }) => {
+const TableTemp = ({ item, value }: { item: string; value: string }) => {
   return (
     <div className={styles.tableTemp}>
       <h3>{item}</h3>
