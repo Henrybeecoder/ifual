@@ -1,7 +1,39 @@
-import Select from "react-select";
+import { HTMLInputTypeAttribute, ReactNode } from "react";
+import Select, { GroupBase } from "react-select";
 import styles from "./style.module.css";
 
-// const selectStyles =
+interface SelectTempProps {
+  label?: string;
+  name?: string;
+  inputType?: HTMLInputTypeAttribute | undefined;
+  placeholder?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
+  children?: ReactNode;
+  visibilityPadding?: string;
+  marginRight?: boolean;
+  marginLeft?: boolean;
+  marginLeftSm?: boolean;
+  marginRightSm?: boolean;
+  options?: (string | GroupBase<string>)[];
+  isMulti?: boolean;
+  width?: string | number;
+}
+
+interface InputTempProps {
+  label?: string;
+  name?: string;
+  inputType?: HTMLInputTypeAttribute | undefined;
+  placeholder?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
+  children?: ReactNode;
+  visibilityPadding?: string;
+  marginRight?: boolean;
+  marginLeft?: boolean;
+  marginLeftSm?: boolean;
+  marginRightSm?: boolean;
+}
 
 export const InputTemp = ({
   label,
@@ -9,14 +41,14 @@ export const InputTemp = ({
   inputType,
   placeholder,
   value,
-  onValueChange,
+  onValueChange = () => {},
   children,
   visibilityPadding,
   marginRight,
   marginLeft,
   marginLeftSm,
   marginRightSm,
-}) => {
+}: InputTempProps) => {
   return (
     <div
       className={`${styles.formHolder} ${
@@ -46,14 +78,14 @@ export const SelectTemp = ({
   onValueChange,
   children,
   visibilityPadding,
-  options,
+  options = [],
   marginLeft,
   marginRight,
   marginLeftSm,
   marginRightSm,
   isMulti,
   width,
-}) => {
+}: SelectTempProps) => {
   //   const selectRef = useRef(null);
   return (
     <div

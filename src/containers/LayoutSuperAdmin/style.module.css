@@ -297,4 +297,10 @@
   .navLinksContainer button {
     padding: 25px 0;
   }
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background-color: rgba(0, 0, 0, 0.35);
+  }
 }

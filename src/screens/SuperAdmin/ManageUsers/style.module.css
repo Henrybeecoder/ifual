@@ -9,6 +9,9 @@
   font-size: 21px;
   line-height: 21px;
 }
+.header span {
+  color: rgba(47, 57, 48, 0.5);
+}
 
 .filterFlex {
   display: flex;
@@ -68,4 +71,34 @@ th {
 
 td {
   padding: 15px;
+}
+
+.containerAA {
+  width: 45%;
+}
+
+.btnsFooterAA {
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.btnsFooterAA .btnBackAA {
+  width: 38%;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid #344437;
+}
+.btnsFooterAA .btnSaveAA {
+  width: 58%;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: #2f3930;
+  color: white;
+}
+
+.btnsFooterAA .btnSaveAA:disabled {
+  opacity: 0.6;
 }

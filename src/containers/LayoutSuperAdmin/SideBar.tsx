@@ -11,10 +11,15 @@ import {
   SvgReport,
   SvgSettings,
 } from "../../assets/Svgs";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 
-const SideBar = ({ open, setOpen }) => {
+interface SideBarProps {
+  open: boolean;
+  setOpen: (state: boolean) => void;
+}
+
+const SideBar = ({ open, setOpen }: SideBarProps) => {
   const [manage, setManage] = useState(false);
 
   const matches = useMediaQuery("(min-width: 800px)");
@@ -145,7 +150,14 @@ const SideBar = ({ open, setOpen }) => {
   );
 };
 
-const NavLinkItem = ({ heading, to, children, marginMd }) => {
+interface NavLinkProps {
+  heading: string;
+  to: string;
+  children?: ReactNode;
+  marginMd?: boolean;
+}
+
+const NavLinkItem = ({ heading, to, children, marginMd }: NavLinkProps) => {
   return (
     <NavLink to={to} style={{ textDecoration: "none" }}>
       {({ isActive }) => (

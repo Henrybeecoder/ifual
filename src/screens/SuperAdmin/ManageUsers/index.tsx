@@ -3,11 +3,16 @@ import LayoutSuperAdmin from "../../../containers/LayoutSuperAdmin";
 import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
 import { useState } from "react";
 import { customer_data, vendor_data, admin_data } from "./data";
+import { RenderPageProps } from "@type/shared";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const ManageUsers = () => {
-  const [page, setPage] = useState("customer");
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const page = searchParams.get("type");
+  // const [page, setPage] = useState("customer");
 
-  const renderPage = {
+  const renderPage: RenderPageProps = {
     customer: <CustomerPage />,
     vendor: <VendorPage />,
     admin: <AdminPage />,
@@ -20,31 +25,53 @@ const ManageUsers = () => {
         <div className={styles.filterFlex}>
           <h3>Filter</h3>
           <SvgFilterIcon />
-          {page !== "customer" && (
-            <button className={""}>{`Add ${
-              page === "vendor" ? "Vendor" : page === "admin" && "Admin"
-            }`}</button>
+          {page === "vendor" ? (
+            <button>Add Vendor</button>
+          ) : (
+            page === "admin" && (
+              <button
+                onClick={() => navigate("/super-admin/manage-users/add-admin")}>
+                Add Admin
+              </button>
+            )
           )}
         </div>
       </div>
       <div className={styles.flexMenu}>
         <button
-          className={`${page === "customer" && styles.active}`}
-          onClick={() => setPage("customer")}>
+          className={`${
+            page !== "vendor" && page !== "admin" && styles.active
+          }`}
+          onClick={() =>
+            navigate({
+              pathname: "/super-admin/manage-users",
+              search: "type=customer",
+            })
+          }>
           CUSTOMER
         </button>
         <button
           className={`${page === "vendor" && styles.active}`}
-          onClick={() => setPage("vendor")}>
+          onClick={() =>
+            navigate({
+              pathname: "/super-admin/manage-users",
+              search: "type=vendor",
+            })
+          }>
           VENDOR
         </button>
         <button
           className={`${page === "admin" && styles.active}`}
-          onClick={() => setPage("admin")}>
+          onClick={() =>
+            navigate({
+              pathname: "/super-admin/manage-users",
+              search: "type=admin",
+            })
+          }>
           ADMIN
         </button>
       </div>
-      {renderPage[page]}
+      {page ? renderPage[page] : <CustomerPage />}
     </LayoutSuperAdmin>
   );
 };

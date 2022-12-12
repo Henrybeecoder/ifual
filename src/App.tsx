@@ -25,6 +25,8 @@ import ComplaintsLog from "./screens/SuperAdmin/ComplaintsLog";
 import ActivityLog from "./screens/SuperAdmin/ActivityLog";
 import LoginSuperAdmin from "./screens/SuperAdmin/Login";
 import Profile from "./screens/Customer/Profile";
+import AddAdmin from "./screens/SuperAdmin/ManageUsers/AddAdmin";
+import CustomerInfo from "./screens/SuperAdmin/ManageUsers/CustomerInfo";
 
 function App() {
   return (
@@ -62,7 +64,11 @@ function App() {
           <Route index element={<LoginSuperAdmin />} />
           <Route path='dashboard' element={<DashboardSuperAdmin />} />
           <Route path='settings' element={<Settings />} />
-          <Route path='manage-users' element={<ManageUsers />} />
+          <Route path='manage-users'>
+            <Route index element={<ManageUsers />} />
+            <Route path='add-admin' element={<AddAdmin />} />
+            <Route path='customer-info' element={<CustomerInfo />} />
+          </Route>
           <Route path='manage-products' element={<ManageProducts />} />
           <Route path='manage-orders' element={<ManageOrders />} />
           <Route path='complaints-log' element={<ComplaintsLog />} />
