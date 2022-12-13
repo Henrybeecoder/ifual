@@ -17,9 +17,10 @@ import useMediaQuery from "../../Custom hooks/useMediaQuery";
 interface SideBarProps {
   open: boolean;
   setOpen: (state: boolean) => void;
+  baseUrl: "admin" | "super-admin";
 }
 
-const SideBar = ({ open, setOpen }: SideBarProps) => {
+const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
   const [manage, setManage] = useState(false);
 
   const matches = useMediaQuery("(min-width: 800px)");
@@ -34,7 +35,7 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
                 <img alt='logo' src={logo} />
               </div>
               <div className={styles.navLinksContainer}>
-                <NavLinkItem to='/admin/dashboard' heading='Overview'>
+                <NavLinkItem to={`/${baseUrl}/dashboard`} heading='Overview'>
                   <SvgDashboard />
                 </NavLinkItem>
                 <div className='divider' />
@@ -49,37 +50,39 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
                   <div className={styles.manageDropdown}>
                     <NavLinkItem
                       marginMd
-                      to='/admin/manage-users'
+                      to={`/${baseUrl}/manage-users`}
                       heading='Manage Users'
                     />
                     <NavLinkItem
                       marginMd
-                      to='/admin/manage-products'
+                      to={`/${baseUrl}/manage-products`}
                       heading='Manage Products'
                     />
                     <NavLinkItem
                       marginMd
-                      to='/admin/manage-orders'
+                      to={`/${baseUrl}/manage-orders`}
                       heading='Manage Orders'
                     />
                   </div>
                 )}
                 <div className='divider' />
                 <NavLinkItem
-                  to='/admin/complaints-log'
+                  to={`/${baseUrl}/complaints-log`}
                   heading='Complaints Log'>
                   <SvgReport />
                 </NavLinkItem>
                 <div className='divider' />
-                <NavLinkItem to='/admin/activity-log' heading='Activity Log'>
+                <NavLinkItem
+                  to={`/${baseUrl}/activity-log`}
+                  heading='Activity Log'>
                   <SvgNotification />
                 </NavLinkItem>
                 <div className='divider' />
-                <NavLinkItem to='/admin/settings' heading='Settings'>
+                <NavLinkItem to={`/${baseUrl}/settings`} heading='Settings'>
                   <SvgSettings />
                 </NavLinkItem>
                 <div className='divider' />
-                <NavLinkItem to='/admin/log-out' heading='Log out'>
+                <NavLinkItem to={`/${baseUrl}/log-out`} heading='Log out'>
                   <SvgLogOut />
                 </NavLinkItem>
                 <div className='divider' />
@@ -92,7 +95,7 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
           <div className={styles.sidebarInner}>
             <img src={logo} />
             <div className={styles.navLinksContainer}>
-              <NavLinkItem to='/admin/dashboard' heading='Overview'>
+              <NavLinkItem to={`/${baseUrl}/dashboard`} heading='Overview'>
                 <SvgDashboard />
               </NavLinkItem>
               <button
@@ -106,31 +109,35 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
                 <div className={styles.manageDropdown}>
                   <NavLinkItem
                     marginMd
-                    to='/admin/manage-users'
+                    to={`/${baseUrl}/manage-users`}
                     heading='Manage Users'
                   />
                   <NavLinkItem
                     marginMd
-                    to='/admin/manage-products'
+                    to={`/${baseUrl}/manage-products`}
                     heading='Manage Products'
                   />
                   <NavLinkItem
                     marginMd
-                    to='/admin/manage-orders'
+                    to={`/${baseUrl}/manage-orders`}
                     heading='Manage Orders'
                   />
                 </div>
               )}
-              <NavLinkItem to='/admin/complaints-log' heading='Complaints Log'>
+              <NavLinkItem
+                to={`/${baseUrl}/complaints-log`}
+                heading='Complaints Log'>
                 <SvgReport />
               </NavLinkItem>
-              <NavLinkItem to='/admin/activity-log' heading='Activity Log'>
+              <NavLinkItem
+                to={`/${baseUrl}/activity-log`}
+                heading='Activity Log'>
                 <SvgNotification />
               </NavLinkItem>
-              <NavLinkItem to='/admin/settings' heading='Settings'>
+              <NavLinkItem to={`/${baseUrl}/settings`} heading='Settings'>
                 <SvgSettings />
               </NavLinkItem>
-              <NavLinkItem to='/admin/log-out' heading='Log out'>
+              <NavLinkItem to={`/${baseUrl}/log-out`} heading='Log out'>
                 <SvgLogOut />
               </NavLinkItem>
             </div>

@@ -3,6 +3,7 @@ import styles from "./style.module.css";
 import X from "../../assets/svg/x.svg";
 
 interface ModalProps {
+  name?: string;
   children?: ReactNode;
   openModal?: boolean;
   closeModal?: () => void;

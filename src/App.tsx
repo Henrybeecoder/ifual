@@ -26,6 +26,7 @@ import ManageOrdersAdmin from "./screens/Admin/ManageOrders";
 import ComplaintsLogAdmin from "./screens/Admin/ComplaintsLog";
 import ActivityLogAdmin from "./screens/Admin/ActivityLog";
 import ManageUsersAdmin from "./screens/Admin/ManageUsers";
+import NotificationAdmin from "./screens/Admin/Notification";
 // superadmin
 import DashboardSuperAdmin from "./screens/SuperAdmin/Dashboard";
 import SettingsSuperAdmin from "./screens/SuperAdmin/Settings";
@@ -38,6 +39,7 @@ import LoginSuperAdmin from "./screens/SuperAdmin/Login";
 import AddAdmin from "./screens/SuperAdmin/ManageUsers/AddAdmin";
 import CustomerInfo from "./screens/SuperAdmin/ManageUsers/CustomerInfo";
 import CannotLoginSuperAdmin from "./screens/SuperAdmin/Login/CannotLogin";
+import NotificationSuperAdmin from "./screens/SuperAdmin/Notification";
 
 function App() {
   return (
@@ -72,6 +74,7 @@ function App() {
         <Route path='/admin'>
           <Route index element={<LoginAdmin />} />
           <Route path='login-issue' element={<CannotLoginAdmin />} />
+          <Route path='notification' element={<NotificationAdmin />} />
           <Route path='dashboard' element={<DashboardAdmin />} />
           <Route path='settings' element={<SettingsAdmin />} />
           <Route path='manage-users'>

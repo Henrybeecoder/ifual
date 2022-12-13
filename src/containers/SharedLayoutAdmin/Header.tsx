@@ -16,6 +16,7 @@ import logo from "../../assets/logo.svg";
 import { SetStateAction } from "react";
 
 interface HeaderProps {
+  baseUrl: "admin" | "super-admin";
   user?: any;
   backBtn?: boolean;
   onClickBackBtn?: () => void;
@@ -23,6 +24,7 @@ interface HeaderProps {
 }
 
 const Header = ({
+  baseUrl,
   user,
   backBtn,
   onClickBackBtn,
@@ -33,8 +35,6 @@ const Header = ({
   const matches = useMediaQuery("(min-width: 800px)");
 
   const [profileOpen, setProfileOpen] = useState(false);
-
-  const [menu, setMenu] = useState(false);
 
   const toLogin = () => {
     navigate("/login");
@@ -73,9 +73,13 @@ const Header = ({
             </div>
           ) : (
             <div className={styles.flexIcons}>
-              <button>
-                <SvgBellOutline />
-              </button>
+              <NavLink to={`/${baseUrl}/notification`} style={{}}>
+                {({ isActive }) => (
+                  <SvgBellOutline
+                    style={{ stroke: !isActive ? "#344437" : "#36b44a" }}
+                  />
+                )}
+              </NavLink>
 
               {!matches ? (
                 <button

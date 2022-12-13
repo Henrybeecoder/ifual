@@ -18,9 +18,10 @@ const LayoutCustomer = ({ children, backBtn, onClickBackBtn }: LayoutProps) => {
   return (
     <>
       <div className={styles.flex}>
-        <SideBar open={open} setOpen={setOpen} />
+        <SideBar open={open} setOpen={setOpen} baseUrl='admin' />
         <div className={styles.relative}>
           <Header
+            baseUrl='admin'
             setOpen={setOpen}
             user={user}
             backBtn={backBtn}

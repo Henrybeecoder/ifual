@@ -183,12 +183,10 @@ export const SvgBellOutline = (props) => (
       width={55.5}
       height={55.5}
       rx={7.75}
-      stroke='#344437'
       strokeWidth={0.5}
     />
     <path
       d='M28.436 19.13a7.306 7.306 0 0 0-7.305 7.306v5.219A3.13 3.13 0 0 1 18 34.785h20.873a3.131 3.131 0 0 1-3.131-3.13v-5.219a7.306 7.306 0 0 0-7.306-7.305Zm0 0V16m1.806 22.96a2.088 2.088 0 0 1-3.611 0'
-      stroke='#2F3930'
       strokeLinecap='round'
       strokeLinejoin='round'
     />

@@ -9,8 +9,8 @@ import { limitText } from "../../Custom hooks/helpers";
 import Modal from "../../Components/Modals";
 import modalCheck from "../../assets/svg/modalCheck.svg";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
-import { ChevronLeft } from "@material-ui/icons";
-import Checkbox from "../../Components/Checkbox";
+import Checkbox, { CheckboxProps } from "../../Components/Checkbox";
+import { SvgArrowLeft } from "src/assets/Svgs";
 
 const notificationList = [
   {
@@ -47,45 +47,34 @@ const notificationList = [
   },
 ];
 
+// interface ModalState {
+//   accept: boolean;
+//   decline: boolean;
+//   accepted: boolean;
+//   declined: boolean;
+// }
+
+type ModalNames = "accept" | "decline" | "accepted" | "declined" | null;
+
 const Notification = () => {
   const [filterSet, setFilter] = useState(false);
-  const [selected, setSelected] = useState(null);
-  const [modal, setModal] = useState({ open: false, option: "" });
-  const [orderAcceptedModal, setOrderAcceptedModal] = useState(false);
-  const [orderDeclinedModal, setOrderDeclinedModal] = useState(false);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [modalActive, setModalActive] = useState<ModalNames>(null);
+
+  const modalState = {
+    accept: !!(modalActive === "accept"),
+    decline: !!(modalActive === "decline"),
+    accepted: !!(modalActive === "accepted"),
+    declined: !!(modalActive === "declined"),
+  };
+
+  const closeModal = () => {
+    setModalActive(null);
+  };
 
   const selectedContent = notificationList.find(
     (notification) => notification.id === selected
   );
-
-  const declineOrder = () => {
-    setModal({ open: true, option: "decline" });
-  };
-
-  const acceptOrder = () => {
-    setModal({ open: true, option: "accept" });
-  };
-
-  const closeAcceptOrDeclineModal = () => {
-    setModal({ open: false, option: "" });
-  };
-  const confirmAcceptOrder = () => {
-    setModal({ open: false, option: "" });
-    setOrderAcceptedModal(true);
-  };
-
-  const confirmAcceptOrderClose = () => {
-    setOrderAcceptedModal(false);
-  };
-
-  const confirmDeclineOrder = () => {
-    setModal({ open: false, option: "" });
-    setOrderDeclinedModal(true);
-  };
-
-  const confirmDeclineOrderClose = () => {
-    setOrderDeclinedModal(false);
-  };
 
   const removeSelected = () => {
     setSelected(null);
@@ -96,64 +85,65 @@ const Notification = () => {
   return (
     <PageContainer active='notification'>
       <Modal
-        openModal={modal.open}
-        closeModal={closeAcceptOrDeclineModal}
+        name='accept'
+        openModal={modalState.accept}
+        closeModal={closeModal}
         width={"720px"}>
         <div className={styles.modalContainer}>
-          <div>
-            {modal.option === "decline" ? (
-              <>
-                <h2 className={styles.modalHeader}>Decline Order</h2>
-                <p className={styles.modalOption}>
-                  You are about to decline the order for{" "}
-                  <span className={styles.spanGreen}>200l</span> of Diesel at{" "}
-                  <span className={styles.spanGreen}>N34,500</span> from 234
-                  Ventures at Ikoyi, Lagos
-                </p>
-                <p className={styles.clickToConfirm}>Kindly click to confirm</p>
-                <div className={styles.flexCenter}>
-                  <button
-                    className={styles.btnCancelDecline}
-                    onClick={closeAcceptOrDeclineModal}>
-                    Cancel
-                  </button>
+          <>
+            <h2 className={styles.modalHeader}>Accept Order</h2>
+            <p className={styles.modalOption}>
+              You are about to accept the order for{" "}
+              <span className={styles.spanGreen}>200l</span> of Diesel at
+              <span className={styles.spanGreen}>N34,500</span> from 234
+              Ventures at Ikoyi, Lagos
+            </p>
+            <p className={styles.clickToConfirm}>Kindly click to confirm</p>
+            <div className={styles.flexCenter}>
+              <button className={styles.btnCancelAccept} onClick={closeModal}>
+                Cancel
+              </button>
+              <button
+                className={styles.btnAccept}
+                onClick={() => setModalActive("accepted")}>
+                Confirm
+              </button>
+            </div>
+          </>
+        </div>
+      </Modal>
 
-                  <button
-                    className={styles.btnDecline}
-                    onClick={confirmDeclineOrder}>
-                    Decline
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <h2 className={styles.modalHeader}>Accept Order</h2>
-                <p className={styles.modalOption}>
-                  You are about to accept the order for{" "}
-                  <span className={styles.spanGreen}>200l</span> of Diesel at
-                  <span className={styles.spanGreen}>N34,500</span> from 234
-                  Ventures at Ikoyi, Lagos
-                </p>
-                <p className={styles.clickToConfirm}>Kindly click to confirm</p>
-                <div className={styles.flexCenter}>
-                  <button
-                    className={styles.btnCancelAccept}
-                    onClick={closeAcceptOrDeclineModal}>
-                    Cancel
-                  </button>
-                  <button
-                    className={styles.btnAccept}
-                    onClick={confirmAcceptOrder}>
-                    Confirm
-                  </button>
-                </div>
-              </>
-            )}
+      <Modal
+        name='accept'
+        openModal={modalState.decline}
+        closeModal={closeModal}
+        width={"720px"}>
+        {" "}
+        <div className={styles.modalContainer}>
+          <h2 className={styles.modalHeader}>Decline Order</h2>
+          <p className={styles.modalOption}>
+            You are about to decline the order for{" "}
+            <span className={styles.spanGreen}>200l</span> of Diesel at{" "}
+            <span className={styles.spanGreen}>N34,500</span> from 234 Ventures
+            at Ikoyi, Lagos
+          </p>
+          <p className={styles.clickToConfirm}>Kindly click to confirm</p>
+          <div className={styles.flexCenter}>
+            <button className={styles.btnCancelDecline} onClick={closeModal}>
+              Cancel
+            </button>
+
+            <button
+              className={styles.btnDecline}
+              onClick={() => setModalActive("declined")}>
+              Decline
+            </button>
           </div>
         </div>
       </Modal>
+
       <Modal
-        openModal={orderDeclinedModal}
+        openModal={modalState.declined}
         // closeModal={confirmDeclineOrderClose}
         width={"505px"}>
         <div className={styles.orderDeclined}>
@@ -193,14 +183,10 @@ const Notification = () => {
             </div>
             <div className={styles.divider} />
             <div className={styles.flexCenter}>
-              <button
-                className={styles.btnSkip}
-                onClick={confirmDeclineOrderClose}>
+              <button className={styles.btnSkip} onClick={closeModal}>
                 Skip
               </button>
-              <button
-                className={styles.btnSubmit}
-                onClick={confirmDeclineOrderClose}>
+              <button className={styles.btnSubmit} onClick={closeModal}>
                 Submit
               </button>
             </div>
@@ -209,8 +195,8 @@ const Notification = () => {
       </Modal>
       <Modal
         width='720px'
-        openModal={orderAcceptedModal}
-        closeModal={confirmAcceptOrderClose}>
+        openModal={modalState.accepted}
+        closeModal={closeModal}>
         <div className={styles.orderAccepted}>
           <div className={styles.orderAcceptedContent}>
             <h2>Order Accepted</h2>
@@ -237,12 +223,12 @@ const Notification = () => {
       <div className={styles.pageContainer}>
         {!selected ? (
           <button className={styles.breadCrumb}>
-            <ChevronLeft />
+            <SvgArrowLeft />
             <p>Back</p>
           </button>
         ) : (
           <button className={styles.breadCrumb} onClick={removeSelected}>
-            <ChevronLeft />
+            <SvgArrowLeft />
             <p>Back to Notifications</p>
           </button>
         )}
@@ -329,10 +315,14 @@ const Notification = () => {
                 <p>{selectedContent.body}</p>
                 <p>{selectedContent.question}</p>
                 <div className={styles.flexCenter}>
-                  <button className={styles.btnNo} onClick={declineOrder}>
+                  <button
+                    className={styles.btnNo}
+                    onClick={() => setModalActive("decline")}>
                     No
                   </button>
-                  <button className={styles.btnYes} onClick={acceptOrder}>
+                  <button
+                    className={styles.btnYes}
+                    onClick={() => setModalActive("accept")}>
                     Yes I am
                   </button>
                 </div>
@@ -345,7 +335,15 @@ const Notification = () => {
   );
 };
 
-const CheckBoxWithText = ({ checked, setChecked, text }) => {
+interface CheckboxWithTextProps extends CheckboxProps {
+  text: string;
+}
+
+const CheckBoxWithText = ({
+  checked,
+  toggleChecked,
+  text,
+}: CheckboxWithTextProps) => {
   return (
     <div className={styles.checkboxFlex}>
       <Checkbox checked={checked} />
