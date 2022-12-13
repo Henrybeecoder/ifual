@@ -1,8 +1,20 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styles from "./style.module.css";
 import X from "../../assets/svg/x.svg";
 
-export default function Modal({ children, openModal, closeModal, width }) {
+interface ModalProps {
+  children?: ReactNode;
+  openModal?: boolean;
+  closeModal?: () => void;
+  width?: string | number;
+}
+
+export default function Modal({
+  children,
+  openModal,
+  closeModal,
+  width,
+}: ModalProps) {
   return (
     <>
       {openModal && (

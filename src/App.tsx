@@ -1,6 +1,6 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./screens/Login";
-import LoginPage from "./screens/StartPage";
 import SignUp from "./screens/SignUp";
 import Dashboard from "./screens/Dashboard";
 import ForgotPassword from "./screens/ForgotPassword";
@@ -10,23 +10,30 @@ import OrderStatus from "./screens/OrderStatus";
 import ProductList from "./screens/ProductList";
 import SignUpMessage from "./screens/SignUpMessage";
 import SignUpNext from "./screens/SignUpNext";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// customer
 import Notification from "./screens/Notification";
 import Report from "./screens/Report";
 import Home from "./screens/Home";
 import Checkout from "./screens/Checkout";
 import Cart from "./screens/Cart";
+import Profile from "./screens/Customer/Profile";
+// admin
+import LoginAdmin from "./screens/Admin/Login";
+import DashboardAdmin from "./screens/Admin/Dashboard";
+import SettingsAdmin from "./screens/Admin/Settings";
+import CannotLoginAdmin from "./screens/Admin/Login/CannotLogin";
+// superadmin
 import DashboardSuperAdmin from "./screens/SuperAdmin/Dashboard";
-import Settings from "./screens/SuperAdmin/Settings";
+import SettingsSuperAdmin from "./screens/SuperAdmin/Settings";
 import ManageUsers from "./screens/SuperAdmin/ManageUsers";
 import ManageProducts from "./screens/SuperAdmin/ManageProducts";
 import ManageOrders from "./screens/SuperAdmin/ManageOrders";
 import ComplaintsLog from "./screens/SuperAdmin/ComplaintsLog";
 import ActivityLog from "./screens/SuperAdmin/ActivityLog";
 import LoginSuperAdmin from "./screens/SuperAdmin/Login";
-import Profile from "./screens/Customer/Profile";
 import AddAdmin from "./screens/SuperAdmin/ManageUsers/AddAdmin";
 import CustomerInfo from "./screens/SuperAdmin/ManageUsers/CustomerInfo";
+import CannotLoginSuperAdmin from "./screens/SuperAdmin/Login/CannotLogin";
 
 function App() {
   return (
@@ -46,6 +53,9 @@ function App() {
           path='/forgot-password-message'
           element={<ForgotPasswordMessage />}
         />
+        <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/sign-up-message' element={<SignUpMessage />} />
+        <Route path='/sign-up-next' element={<SignUpNext />} />
 
         <Route path='/vendor'>
           <Route path='dashboard' element={<Dashboard />} />
@@ -55,15 +65,27 @@ function App() {
           <Route path='report' element={<Report />} />
         </Route>
 
-        <Route path='/reset-password' element={<ResetPassword />} />
-
-        <Route path='/sign-up-message' element={<SignUpMessage />} />
-        <Route path='/sign-up-next' element={<SignUpNext />} />
+        <Route path='/admin'>
+          <Route index element={<LoginAdmin />} />
+          <Route path='login-issue' element={<CannotLoginAdmin />} />
+          <Route path='dashboard' element={<DashboardAdmin />} />
+          <Route path='settings' element={<SettingsAdmin />} />
+          <Route path='manage-users'>
+            <Route index element={<ManageUsers />} />
+            <Route path='add-admin' element={<AddAdmin />} />
+            <Route path='customer-info' element={<CustomerInfo />} />
+          </Route>
+          <Route path='manage-products' element={<ManageProducts />} />
+          <Route path='manage-orders' element={<ManageOrders />} />
+          <Route path='complaints-log' element={<ComplaintsLog />} />
+          <Route path='activity-log' element={<ActivityLog />} />
+        </Route>
 
         <Route path='/super-admin'>
           <Route index element={<LoginSuperAdmin />} />
+          <Route path='login-issue' element={<CannotLoginSuperAdmin />} />
           <Route path='dashboard' element={<DashboardSuperAdmin />} />
-          <Route path='settings' element={<Settings />} />
+          <Route path='settings' element={<SettingsSuperAdmin />} />
           <Route path='manage-users'>
             <Route index element={<ManageUsers />} />
             <Route path='add-admin' element={<AddAdmin />} />

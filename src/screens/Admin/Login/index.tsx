@@ -2,8 +2,9 @@ import styles from "./style.module.css";
 import logo from "../../../assets/logo.svg";
 import { InputTemp } from "../../../Components/InputTemp";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
+import { RenderPageProps } from "@type/shared";
 
 const Login = () => {
   // const [searchParams] = useSearchParams();
@@ -11,7 +12,7 @@ const Login = () => {
   const [page, setPage] = useState("home");
   const matches = useMediaQuery("(min-width: 800px)");
 
-  const renderPage = {
+  const renderPage: RenderPageProps = {
     home: <Home setPage={setPage} />,
     m_token: <MToken setPage={setPage} />,
   };
@@ -30,7 +31,7 @@ const Login = () => {
   );
 };
 
-const Home = ({ setPage }) => {
+const Home = ({ setPage }: { setPage: (page: string) => void }) => {
   const [values, setValues] = useState({ username: "", password: "" });
   const matches = useMediaQuery("(min-width: 800px)");
 
@@ -38,7 +39,7 @@ const Home = ({ setPage }) => {
     <>
       <h3>LOGIN</h3>
       <InputTemp
-        label={!matches && "EMAIL USERNAME"}
+        label={!matches ? "EMAIL USERNAME" : ""}
         inputType='text'
         value={values.username}
         placeholder={"Enter username"}
@@ -47,7 +48,7 @@ const Home = ({ setPage }) => {
         }
       />
       <InputTemp
-        label={!matches && "PASSWORD"}
+        label={!matches ? "PASSWORD" : ""}
         inputType='password'
         value={values.password}
         placeholder={"Enter Password"}
@@ -62,13 +63,16 @@ const Home = ({ setPage }) => {
         Log in
       </button>
       <p className={styles.altLink}>
-        Can’t log in? <span>Click here</span>
+        Can’t log in?{" "}
+        <NavLink to='/admin/login-issue' style={{ textDecoration: "none" }}>
+          <span>Click here</span>
+        </NavLink>
       </p>
     </>
   );
 };
 
-const MToken = ({ setPage }) => {
+const MToken = ({ setPage }: { setPage: (page: string) => void }) => {
   const navigate = useNavigate();
 
   const [token, setToken] = useState("");
