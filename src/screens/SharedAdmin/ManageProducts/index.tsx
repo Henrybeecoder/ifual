@@ -1,5 +1,4 @@
 import styles from "./style.module.css";
-import LayoutSuperAdmin from "../../../containers/LayoutSuperAdmin";
 import { SvgFilterIcon } from "../../../assets/Svgs";
 
 const data = [
@@ -29,7 +28,7 @@ const data = [
 
 const ManageProducts = () => {
   return (
-    <LayoutSuperAdmin>
+    <>
       <div className={styles.flexLg}>
         <div className={styles.header}>
           <h3>MANAGE PRODUCTS</h3>
@@ -64,7 +63,7 @@ const ManageProducts = () => {
           </tbody>
         </table>
       </div>
-    </LayoutSuperAdmin>
+    </>
   );
 };
 

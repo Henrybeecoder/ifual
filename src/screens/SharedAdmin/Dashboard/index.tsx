@@ -1,4 +1,3 @@
-import Layout from "../../../containers/LayoutAdmin";
 import styles from "./style.module.css";
 import {
   AreaChart,
@@ -92,9 +91,7 @@ const Dashboard = () => {
   const matches = useMediaQuery("(min-width: 800px)");
 
   return (
-    <Layout
-      backBtn={!!(page === "overview-all")}
-      onClickBackBtn={() => setPage("home")}>
+    <>
       {page === "overview-all" ? (
         <>
           <OverViewAll />
@@ -218,7 +215,7 @@ const Dashboard = () => {
           </div>
         </>
       )}
-    </Layout>
+    </>
   );
 };
 

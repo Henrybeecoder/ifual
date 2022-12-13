@@ -1,4 +1,4 @@
-import Layout from "../../../containers/LayoutAdmin";
+import Layout from "../../../containers/LayoutSuperAdmin";
 import SharedActivityLog from "../../SharedAdmin/ActivityLog";
 
 const ActivityLog = () => {
