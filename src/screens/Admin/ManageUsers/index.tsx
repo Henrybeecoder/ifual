@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-import LayoutSuperAdmin from "../../../containers/LayoutSuperAdmin";
+import Layout from "../../../containers/LayoutAdmin";
 import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
 import { useState } from "react";
 import { customer_data, vendor_data, admin_data } from "./data";
@@ -15,11 +15,10 @@ const ManageUsers = () => {
   const renderPage: RenderPageProps = {
     customer: <CustomerPage />,
     vendor: <VendorPage />,
-    admin: <AdminPage />,
   };
 
   return (
-    <LayoutSuperAdmin>
+    <Layout>
       <div className={styles.header}>
         <h3>SETTINGS</h3>
         <div className={styles.filterFlex}>
@@ -29,8 +28,7 @@ const ManageUsers = () => {
             <button>Add Vendor</button>
           ) : (
             page === "admin" && (
-              <button
-                onClick={() => navigate("/super-admin/manage-users/add-admin")}>
+              <button onClick={() => navigate("/admin/manage-users/add-admin")}>
                 Add Admin
               </button>
             )
@@ -44,7 +42,7 @@ const ManageUsers = () => {
           }`}
           onClick={() =>
             navigate({
-              pathname: "/super-admin/manage-users",
+              pathname: "/admin/manage-users",
               search: "type=customer",
             })
           }>
@@ -54,25 +52,15 @@ const ManageUsers = () => {
           className={`${page === "vendor" && styles.active}`}
           onClick={() =>
             navigate({
-              pathname: "/super-admin/manage-users",
+              pathname: "/admin/manage-users",
               search: "type=vendor",
             })
           }>
           VENDOR
         </button>
-        <button
-          className={`${page === "admin" && styles.active}`}
-          onClick={() =>
-            navigate({
-              pathname: "/super-admin/manage-users",
-              search: "type=admin",
-            })
-          }>
-          ADMIN
-        </button>
       </div>
       {page ? renderPage[page] : <CustomerPage />}
-    </LayoutSuperAdmin>
+    </Layout>
   );
 };
 
@@ -139,39 +127,6 @@ const VendorPage = () => {
                     <button>
                       <SvgOptions />
                     </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </>
-  );
-};
-
-const AdminPage = () => {
-  return (
-    <>
-      <div className={styles.tableWrapper}>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Email</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {admin_data?.map((row) => {
-              return (
-                <tr key={row.id}>
-                  <td>{row.name}</td>
-                  <td>{row.category}</td>
-                  <td>{row.email}</td>
-                  <td>
-                    <button>{row.action}</button>
                   </td>
                 </tr>
               );

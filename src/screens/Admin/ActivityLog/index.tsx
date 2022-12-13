@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-import LayoutSuperAdmin from "../../../containers/LayoutSuperAdmin";
+import Layout from "../../../containers/LayoutAdmin";
 import {
   SvgArrowDown,
   SvgArrowUp,
@@ -53,7 +53,7 @@ const data = [
 
 const ManageProducts = () => {
   return (
-    <LayoutSuperAdmin>
+    <Layout>
       <div className={styles.header}>
         <h3>ACTIVITY LOG</h3>
         <div className={styles.filterFlex}>
@@ -82,7 +82,7 @@ const ManageProducts = () => {
           ))}
         </div>
       </div>
-    </LayoutSuperAdmin>
+    </Layout>
   );
 };
 

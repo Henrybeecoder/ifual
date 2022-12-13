@@ -1,6 +1,6 @@
 import { SvgEdit } from "../../../assets/Svgs";
 import styles from "./style.module.css";
-import LayoutSuperAdmin from "../../../containers/LayoutSuperAdmin";
+import Layout from "../../../containers/LayoutAdmin";
 import Switch from "../../../Components/Radix/Switch";
 import RadioGroup from "../../../Components/Radix/RadioGroup";
 import { SelectTemp } from "../../../Components/InputTemp";
@@ -24,7 +24,7 @@ const Settings = () => {
       ];
 
   return (
-    <LayoutSuperAdmin>
+    <Layout>
       <div className={styles.header}>
         <h3>SETTINGS</h3>
         <button onClick={() => setEdit((state) => !state)}>
@@ -103,7 +103,7 @@ const Settings = () => {
           </>
         )}
       </div>
-    </LayoutSuperAdmin>
+    </Layout>
   );
 };
 

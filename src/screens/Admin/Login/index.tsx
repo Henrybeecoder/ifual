@@ -94,7 +94,7 @@ const MToken = ({ setPage }: { setPage: (page: string) => void }) => {
           className={styles.btnSubmit}
           disabled={!!(token.length < 5)}
           onClick={() => {
-            navigate("/super-admin/dashboard");
+            navigate("/admin/dashboard");
           }}>
           Submit
         </button>

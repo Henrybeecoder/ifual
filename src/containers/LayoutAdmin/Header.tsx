@@ -10,11 +10,24 @@ import {
   SvgSearchIcon,
 } from "../../assets/Svgs";
 import profile from "../../assets/image/profile3.png";
-import { useState } from "react";
+import { Dispatch, useState } from "react";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import logo from "../../assets/logo.svg";
+import { SetStateAction } from "react";
 
-const Header = ({ user, backBtn, onClickBackBtn, setOpen }) => {
+interface HeaderProps {
+  user?: any;
+  backBtn?: boolean;
+  onClickBackBtn?: () => void;
+  setOpen?: Dispatch<SetStateAction<boolean>>;
+}
+
+const Header = ({
+  user,
+  backBtn,
+  onClickBackBtn,
+  setOpen = () => {},
+}: HeaderProps) => {
   const navigate = useNavigate();
 
   const matches = useMediaQuery("(min-width: 800px)");
@@ -82,7 +95,7 @@ const Header = ({ user, backBtn, onClickBackBtn, setOpen }) => {
   );
 };
 
-const ProfileModal = ({ user, open }) => {
+const ProfileModal = ({ user, open }: { user: any; open: boolean }) => {
   const navigate = useNavigate();
 
   const logout = () => {

@@ -1,6 +1,16 @@
 import React from "react";
 import styles from "./style.module.css";
 
+interface ButtonProps{
+  loading?:string
+  invalid?:boolean
+  primary?:boolean
+  onClick?:()=>void
+  width?:string
+  className?:string
+  text:string
+}
+
 export default function Button({
   loading,
   invalid,
@@ -9,7 +19,7 @@ export default function Button({
   width,
   className,
   text,
-}) {
+}:ButtonProps) {
   return (
     <>
       {loading && (

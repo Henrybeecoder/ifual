@@ -1,6 +1,15 @@
 import { Root, Item, Indicator } from "@radix-ui/react-radio-group";
 import styles from "./style.module.css";
 
+interface RadioGroupProps {
+  options?: { value: string; label: string }[];
+  defaultValue?: string;
+  value?: string;
+  vertical?: boolean;
+  onValueChange?: (value: string) => void;
+  className?: string;
+}
+
 const RadioGroup = ({
   options,
   defaultValue,
@@ -8,7 +17,7 @@ const RadioGroup = ({
   vertical,
   onValueChange,
   className,
-}) => {
+}: RadioGroupProps) => {
   return (
     <Root
       className={`${styles.RadioGroupRoot} ${vertical && styles.flexColumn}`}

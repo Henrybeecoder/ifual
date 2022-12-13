@@ -22,14 +22,18 @@ import LoginAdmin from "./screens/Admin/Login";
 import DashboardAdmin from "./screens/Admin/Dashboard";
 import SettingsAdmin from "./screens/Admin/Settings";
 import CannotLoginAdmin from "./screens/Admin/Login/CannotLogin";
+import ManageOrdersAdmin from "./screens/Admin/ManageOrders";
+import ComplaintsLogAdmin from "./screens/Admin/ComplaintsLog";
+import ActivityLogAdmin from "./screens/Admin/ActivityLog";
+import ManageUsersAdmin from "./screens/Admin/ManageUsers";
 // superadmin
 import DashboardSuperAdmin from "./screens/SuperAdmin/Dashboard";
 import SettingsSuperAdmin from "./screens/SuperAdmin/Settings";
-import ManageUsers from "./screens/SuperAdmin/ManageUsers";
+import ManageUsersSuperAdmin from "./screens/SuperAdmin/ManageUsers";
 import ManageProducts from "./screens/SuperAdmin/ManageProducts";
-import ManageOrders from "./screens/SuperAdmin/ManageOrders";
-import ComplaintsLog from "./screens/SuperAdmin/ComplaintsLog";
-import ActivityLog from "./screens/SuperAdmin/ActivityLog";
+import ManageOrdersSuperAdmin from "./screens/SuperAdmin/ManageOrders";
+import ComplaintsLogSuperAdmin from "./screens/SuperAdmin/ComplaintsLog";
+import ActivityLogSuperAdmin from "./screens/SuperAdmin/ActivityLog";
 import LoginSuperAdmin from "./screens/SuperAdmin/Login";
 import AddAdmin from "./screens/SuperAdmin/ManageUsers/AddAdmin";
 import CustomerInfo from "./screens/SuperAdmin/ManageUsers/CustomerInfo";
@@ -71,14 +75,14 @@ function App() {
           <Route path='dashboard' element={<DashboardAdmin />} />
           <Route path='settings' element={<SettingsAdmin />} />
           <Route path='manage-users'>
-            <Route index element={<ManageUsers />} />
+            <Route index element={<ManageUsersAdmin />} />
             <Route path='add-admin' element={<AddAdmin />} />
             <Route path='customer-info' element={<CustomerInfo />} />
           </Route>
           <Route path='manage-products' element={<ManageProducts />} />
-          <Route path='manage-orders' element={<ManageOrders />} />
-          <Route path='complaints-log' element={<ComplaintsLog />} />
-          <Route path='activity-log' element={<ActivityLog />} />
+          <Route path='manage-orders' element={<ManageOrdersAdmin />} />
+          <Route path='complaints-log' element={<ComplaintsLogAdmin />} />
+          <Route path='activity-log' element={<ActivityLogAdmin />} />
         </Route>
 
         <Route path='/super-admin'>
@@ -87,14 +91,14 @@ function App() {
           <Route path='dashboard' element={<DashboardSuperAdmin />} />
           <Route path='settings' element={<SettingsSuperAdmin />} />
           <Route path='manage-users'>
-            <Route index element={<ManageUsers />} />
+            <Route index element={<ManageUsersSuperAdmin />} />
             <Route path='add-admin' element={<AddAdmin />} />
             <Route path='customer-info' element={<CustomerInfo />} />
           </Route>
           <Route path='manage-products' element={<ManageProducts />} />
-          <Route path='manage-orders' element={<ManageOrders />} />
-          <Route path='complaints-log' element={<ComplaintsLog />} />
-          <Route path='activity-log' element={<ActivityLog />} />
+          <Route path='manage-orders' element={<ManageOrdersSuperAdmin />} />
+          <Route path='complaints-log' element={<ComplaintsLogSuperAdmin />} />
+          <Route path='activity-log' element={<ActivityLogSuperAdmin />} />
         </Route>
       </Routes>
     </Router>
