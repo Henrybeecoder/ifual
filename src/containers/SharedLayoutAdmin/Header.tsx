@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../../Components/Button";
 import {
   SearchIconWBorder,
@@ -106,6 +106,7 @@ const ProfileModal = ({ user, open }: { user: any; open: boolean }) => {
     localStorage.removeItem("user");
     navigate("/");
   };
+
   return (
     <>
       {open && (

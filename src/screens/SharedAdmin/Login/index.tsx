@@ -5,6 +5,8 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import { RenderPageProps } from "@type/shared";
+import { Form, Formik } from "formik";
+import { authSchema } from "@lib/validation/sharedAdmin";
 
 interface LoginProps {
   redirectUrl: string;
@@ -12,8 +14,6 @@ interface LoginProps {
 }
 
 const Login = ({ redirectUrl, cannotLoginUrl }: LoginProps) => {
-  // const [searchParams] = useSearchParams();
-  // const loginType = searchParams.get("type");
   const [page, setPage] = useState("home");
   const matches = useMediaQuery("(min-width: 800px)");
 
@@ -43,43 +43,49 @@ const Home = ({
   setPage: (page: string) => void;
   cannotLoginUrl: string;
 }) => {
-  const [values, setValues] = useState({ username: "", password: "" });
   const matches = useMediaQuery("(min-width: 800px)");
 
+  const handleLogin = (values: any) => {
+    setPage("m_token");
+  };
+
+  //TODO error placement for forms
+
   return (
-    <>
-      <h3>LOGIN</h3>
-      <InputTemp
-        label={!matches ? "EMAIL USERNAME" : ""}
-        inputType='text'
-        value={values.username}
-        placeholder={"Enter username"}
-        onValueChange={(username) =>
-          setValues((state) => ({ username, password: state.password }))
-        }
-      />
-      <InputTemp
-        label={!matches ? "PASSWORD" : ""}
-        inputType='password'
-        value={values.password}
-        placeholder={"Enter Password"}
-        onValueChange={(password) =>
-          setValues((state) => ({ password, username: state.username }))
-        }
-      />
-      <button
-        className={styles.btnLogin}
-        disabled={!!(values.username.length < 2)}
-        onClick={() => setPage("m_token")}>
-        Log in
-      </button>
-      <p className={styles.altLink}>
-        Can’t log in?{" "}
-        <NavLink to={cannotLoginUrl} style={{ textDecoration: "none" }}>
-          <span>Click here</span>
-        </NavLink>
-      </p>
-    </>
+    <Formik
+      initialValues={{ username_email: "", password: "" }}
+      validationSchema={authSchema.login}
+      onSubmit={handleLogin}>
+      {({ dirty, errors, getFieldProps }) => {
+        console.log(errors);
+        return (
+          <Form style={{ width: "100%" }}>
+            <h3>LOGIN</h3>
+            <InputTemp
+              label={!matches ? "EMAIL USERNAME" : ""}
+              inputType='text'
+              placeholder={"Enter username"}
+              {...getFieldProps("username_email")}
+            />
+            <InputTemp
+              label={!matches ? "PASSWORD" : ""}
+              inputType='password'
+              placeholder={"Enter Password"}
+              {...getFieldProps("password")}
+            />
+            <button className={styles.btnLogin} disabled={!dirty} type='submit'>
+              Log in
+            </button>
+            <p className={styles.altLink}>
+              Can’t log in?{" "}
+              <NavLink to={cannotLoginUrl} style={{ textDecoration: "none" }}>
+                <span>Click here</span>
+              </NavLink>
+            </p>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 };
 
@@ -92,31 +98,46 @@ const MToken = ({
 }) => {
   const navigate = useNavigate();
 
-  const [token, setToken] = useState("");
+  const handleToken = (value: any) => {
+    //handle use m_token
+    navigate(redirectUrl);
+  };
+
   return (
-    <>
-      <h3>MToken</h3>
-      <p className={styles.mTokenText}>Enter your Mtoken Code to gain access</p>
-      <InputTemp
-        inputType='number'
-        value={token}
-        placeholder={"Enter code"}
-        onValueChange={setToken}
-      />
-      <div className={styles.btns}>
-        <button className={styles.btnBack} onClick={() => setPage("home")}>
-          Back
-        </button>
-        <button
-          className={styles.btnSubmit}
-          disabled={!!(token.length < 5)}
-          onClick={() => {
-            navigate(redirectUrl);
-          }}>
-          Submit
-        </button>
-      </div>
-    </>
+    <Formik
+      initialValues={{ token: "" }}
+      validationSchema={authSchema.m_token}
+      onSubmit={handleToken}>
+      {({ dirty, getFieldProps, errors }) => {
+        return (
+          <Form style={{ width: "100%" }}>
+            <h3>MToken</h3>
+            <p className={styles.mTokenText}>
+              Enter your Mtoken Code to gain access
+            </p>
+            <InputTemp
+              inputType='number'
+              placeholder={"Enter code"}
+              {...getFieldProps("token")}
+            />
+            <div className={styles.btns}>
+              <button
+                type='button'
+                className={styles.btnBack}
+                onClick={() => setPage("home")}>
+                Back
+              </button>
+              <button
+                className={styles.btnSubmit}
+                disabled={!dirty}
+                type='submit'>
+                Submit
+              </button>
+            </div>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 };
 

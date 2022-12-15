@@ -91,6 +91,7 @@ function App() {
         <Route path='/super-admin'>
           <Route index element={<LoginSuperAdmin />} />
           <Route path='login-issue' element={<CannotLoginSuperAdmin />} />
+          <Route path='notification' element={<NotificationSuperAdmin />} />
           <Route path='dashboard' element={<DashboardSuperAdmin />} />
           <Route path='settings' element={<SettingsSuperAdmin />} />
           <Route path='manage-users'>

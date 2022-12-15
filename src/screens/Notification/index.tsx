@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageContainer from "../../containers/VendorPageContainer";
+import PageContainer from "../../containers/LayoutVendor";
 import styles from "./style.module.css";
 import right from "../../assets/svg/right.svg";
 import left from "../../assets/svg/left.svg";

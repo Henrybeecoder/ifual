@@ -1,5 +1,6 @@
 import styles from "./style.module.css";
 import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
+import OptionsModal from "@components/OptionsModal";
 
 const data = [
   {
@@ -130,7 +131,7 @@ const ManageOrders = () => {
                       style={{
                         backgroundColor: bgColor,
                         color,
-                        padding: "2px 10px",
+                        padding: "4px 10px",
                         borderRadius: "20px",
                         width: "fit-content",
                       }}>
@@ -138,9 +139,10 @@ const ManageOrders = () => {
                     </p>
                   </td>
                   <td>
-                    <button>
-                      <SvgOptions />
-                    </button>
+                    <OptionsModal>
+                      <button>View</button>
+                      <button>Remap</button>
+                    </OptionsModal>
                   </td>
                 </tr>
               );

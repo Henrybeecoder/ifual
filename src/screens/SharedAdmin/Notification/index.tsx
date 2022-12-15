@@ -71,7 +71,7 @@ const Notification = () => {
             className={styles.notificationsList}
             style={{ display: !matches && selected ? "none" : "unset" }}>
             {notificationList?.map((notification, index) => (
-              <div>
+              <div key={index}>
                 <div
                   key={notification.id}
                   className={styles.notificationContainer}

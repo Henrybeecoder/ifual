@@ -7,17 +7,35 @@ import { useNavigate } from "react-router-dom";
 import { states } from "../../utils/state";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import Button from "../../Components/Button";
-import SignUpMessage from "../../screens/SignUpMessage";
 import Checkbox from "../../Components/Checkbox";
+import { AuthContainerProps } from "@type/shared";
+import { InputTemp } from "@components/InputTemp";
 
-export default function AuthForm(props) {
+interface LoginProps {
+  email: string;
+  setEmail: (value: string) => void;
+  login: (email: string, password: string) => void;
+  btnLoading: boolean;
+}
+
+interface SignUpDetails {
+  email: string;
+}
+
+interface SignUpProps {
+  email: string;
+  setEmail: (value: string) => void;
+  signup: (details: SignUpDetails) => void;
+  btnLoading: boolean;
+}
+
+export default function AuthForm({ page }: AuthContainerProps) {
   const navigate = useNavigate();
-  const matches = useMediaQuery("(min-width: 800px)");
   const [btnLoading, setBtnLoading] = useState(false);
   const [email, setEmail] = useState("");
   // const [loading, setLoading] = useState(false);
 
-  const login = (email) => {
+  const login = (email: string) => {
     setBtnLoading(true);
     localStorage.setItem(
       "user",
@@ -37,7 +55,7 @@ export default function AuthForm(props) {
   return (
     <div className={styles.holder}>
       <div className={styles.container}>
-        {props.login ? (
+        {page === "login" ? (
           <Login
             email={email}
             setEmail={setEmail}
@@ -58,9 +76,8 @@ export default function AuthForm(props) {
   );
 }
 
-const Login = (props) => {
+const Login = ({ email, setEmail, login, btnLoading }: LoginProps) => {
   const navigate = useNavigate();
-  const { email, setEmail, btnLoading, login } = props;
   const [passwordVisible, setPasswordVisibility] = useState(false);
   const [password, setPassword] = useState("");
   const [rememberPassword, setRememberPassword] = useState(false);
@@ -96,7 +113,6 @@ const Login = (props) => {
         label='PASSWORD'
         placeholder='Enter Password'
         value={password}
-        onValueChange={setPassword}
         inputType={passwordVisible ? "text" : "password"}>
         <i className={styles.btnVisibility} onClick={togglePasswordVisiblity}>
           {passwordVisible ? <Visibility /> : <VisibilityOff />}
@@ -108,7 +124,7 @@ const Login = (props) => {
       <div className={styles.rememberMe}>
         <Checkbox
           checked={rememberPassword}
-          setChecked={toggleRememberPassword}
+          toggleChecked={toggleRememberPassword}
         />
         <p>Remember me</p>
       </div>
@@ -118,7 +134,7 @@ const Login = (props) => {
           primary
           invalid={email?.length > 0 && password?.length > 0 ? false : true}
           loading={btnLoading}
-          onClick={() => login(email)}
+          onClick={() => login(email, password)}
         />
         <p>
           <div className={styles.signUp}>
@@ -131,7 +147,7 @@ const Login = (props) => {
   );
 };
 
-const SignUp = ({ email, setEmail, btnLoading, signup }) => {
+const SignUp = ({ email, setEmail, btnLoading, signup }: SignUpProps) => {
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width: 800px)");
   const [passwordVisible, setPasswordVisibility] = useState(false);
@@ -142,7 +158,7 @@ const SignUp = ({ email, setEmail, btnLoading, signup }) => {
 
   const [phase, setPhase] = useState("first");
 
-  const handleStateChange = (event) => {
+  const handleStateChange = (event: any) => {
     setSelectState(event.target.value);
   };
 
@@ -154,7 +170,7 @@ const SignUp = ({ email, setEmail, btnLoading, signup }) => {
     setConfirmPasswordVisibility((state) => !state);
   };
 
-  const switchPhase = (phase) => {
+  const switchPhase = (phase: string) => {
     setPhase(phase);
   };
 
@@ -177,23 +193,27 @@ const SignUp = ({ email, setEmail, btnLoading, signup }) => {
                 placeholder='Name'
                 inputType='text'
                 name='firstName'
+                marginRight
               />
               <InputTemp
                 label='SURNAME'
                 placeholder='Last name'
                 inputType='text'
+                marginLeft
                 name='lastName'
               />
             </div>
             <div className={styles.flexForm}>
               <InputTemp
                 label='PHONE NUMBER'
+                marginRight
                 placeholder='+234  708 ...'
                 inputType='tel'
                 name='phoneNo'
               />
               <InputTemp
                 label='EMAIL ADDRESS'
+                marginLeft
                 placeholder='email@host.co.. '
                 inputType='email'
                 name='email'
@@ -241,7 +261,7 @@ const SignUp = ({ email, setEmail, btnLoading, signup }) => {
           <div className={styles.rememberMe}>
             <Checkbox
               checked={acceptTermsAndConditions}
-              setChecked={toggleATC}
+              toggleChecked={toggleATC}
             />
             <p>
               I accept the <span>Terms and Conditions</span>
@@ -253,7 +273,7 @@ const SignUp = ({ email, setEmail, btnLoading, signup }) => {
               text={"Register"}
               primary
               invalid={email?.length > 0 ? false : true}
-              onClick={signup}
+              onClick={() => signup({ email })}
               loading={btnLoading}
             />
             <p>
@@ -353,14 +373,18 @@ const SignUp = ({ email, setEmail, btnLoading, signup }) => {
             <div className={styles.rememberMe}>
               <Checkbox
                 checked={acceptTermsAndConditions}
-                setChecked={toggleATC}
+                toggleChecked={toggleATC}
               />
               <p>
                 I accept the <span>Terms and Conditions</span>
               </p>
             </div>
             <div className={styles.footer}>
-              <Button text='Register' loading={btnLoading} onClick={signup} />
+              <Button
+                text='Register'
+                loading={btnLoading}
+                onClick={() => signup({ email })}
+              />
               <p>
                 <div className={styles.signUp}>
                   Already have an account?{" "}
@@ -372,31 +396,5 @@ const SignUp = ({ email, setEmail, btnLoading, signup }) => {
         ) : null}
       </form>
     </>
-  );
-};
-
-const InputTemp = ({
-  label,
-  name,
-  inputType,
-  placeholder,
-  value,
-  onValueChange,
-  children,
-  visibilityPadding,
-}) => {
-  return (
-    <div className={styles.formHolder}>
-      <label>{label}</label>
-      <input
-        placeholder={placeholder}
-        type={inputType}
-        name={name}
-        value={value}
-        style={{ paddingRight: visibilityPadding ? "48px" : "7px" }}
-        onChange={(e) => onValueChange(e.target.value)}
-      />
-      {children}
-    </div>
   );
 };

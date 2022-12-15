@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./style.module.css";
-import PageContainer from "../../containers/VendorPageContainer";
+import PageContainer from "../../containers/LayoutVendor";
 import {
   AreaChart,
   Area,
@@ -24,7 +24,7 @@ import tick from "../../assets/svg/tick.svg";
 import { useNavigate } from "react-router-dom";
 import totOrder from "../../assets/svg/totorder.svg";
 import shopOrder from "../../assets/svg/shopOrder.svg";
-import SubModal from "../../Components/SubModal";
+import SubModal from "../../Components/OptionsModal";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

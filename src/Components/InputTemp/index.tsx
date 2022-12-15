@@ -1,47 +1,37 @@
-import { HTMLInputTypeAttribute, ReactNode } from "react";
-import Select, { GroupBase } from "react-select";
+import { ChangeEventHandler, HTMLInputTypeAttribute, ReactNode } from "react";
+import Select, {
+  ActionMeta,
+  GroupBase,
+  MultiValue,
+  OptionsOrGroups,
+  SingleValue,
+} from "react-select";
 import styles from "./style.module.css";
-
-interface SelectTempProps {
-  label?: string;
-  name?: string;
-  inputType?: HTMLInputTypeAttribute | undefined;
-  placeholder?: string;
-  value?: string;
-  onValueChange?: (value: string) => void;
-  children?: ReactNode;
-  visibilityPadding?: string;
-  marginRight?: boolean;
-  marginLeft?: boolean;
-  marginLeftSm?: boolean;
-  marginRightSm?: boolean;
-  options?: (string | GroupBase<string>)[];
-  isMulti?: boolean;
-  width?: string | number;
-}
 
 interface InputTempProps {
   label?: string;
   name?: string;
+  id?: string;
   inputType?: HTMLInputTypeAttribute | undefined;
   placeholder?: string;
   value?: string;
-  onValueChange?: (value: string) => void;
   children?: ReactNode;
-  visibilityPadding?: string;
+  visibilityPadding?: boolean;
   marginRight?: boolean;
   marginLeft?: boolean;
   marginLeftSm?: boolean;
   marginRightSm?: boolean;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export const InputTemp = ({
-  label,
   name,
+  id,
+  label,
   inputType,
   placeholder,
   value,
-  onValueChange = () => {},
+  onChange,
   children,
   visibilityPadding,
   marginRight,
@@ -57,18 +47,42 @@ export const InputTemp = ({
         marginRightSm ? styles.marginRightSm : marginRight && styles.marginRight
       }`}>
       <label>{label}</label>
-      <input
-        placeholder={placeholder}
-        type={inputType}
-        name={name}
-        value={value}
-        style={{ paddingRight: visibilityPadding ? "48px" : "7px" }}
-        onChange={(e) => onValueChange(e.target.value)}
-      />
-      {children}
+      <div className={styles.relative} >
+        <input
+          placeholder={placeholder}
+          type={inputType}
+          id={id}
+          name={name}
+          value={value}
+          style={{ paddingRight: visibilityPadding ? "48px" : "7px" }}
+          onChange={onChange}
+        />
+        {children}
+      </div>
     </div>
   );
 };
+
+interface SelectTempProps {
+  label?: string;
+  name?: string;
+  inputType?: HTMLInputTypeAttribute | undefined;
+  placeholder?: string;
+  value?: any;
+  onValueChange?: (
+    newValue: MultiValue<string> | SingleValue<string>,
+    actionMeta: ActionMeta<string>
+  ) => void;
+  children?: ReactNode;
+  visibilityPadding?: string;
+  marginRight?: boolean;
+  marginLeft?: boolean;
+  marginLeftSm?: boolean;
+  marginRightSm?: boolean;
+  options?: any[];
+  isMulti?: boolean;
+  width?: string | number;
+}
 
 export const SelectTemp = ({
   label,
@@ -98,6 +112,7 @@ export const SelectTemp = ({
       <label>{label}</label>
       <Select
         value={value}
+        onChange={onValueChange}
         styles={{
           multiValueLabel: (styles) => ({
             ...styles,

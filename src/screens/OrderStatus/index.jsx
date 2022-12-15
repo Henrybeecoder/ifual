@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PageContainer from "../../containers/VendorPageContainer";
+import PageContainer from "../../containers/LayoutVendor";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,7 +12,7 @@ import right from "../../assets/svg/right.svg";
 import left from "../../assets/svg/left.svg";
 import filter from "../../assets/svg/filter.svg";
 import tick from "../../assets/svg/tick.svg";
-import SubModal from "../../Components/SubModal";
+import SubModal from "../../Components/OptionsModal";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

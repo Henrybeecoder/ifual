@@ -1,6 +1,5 @@
 import styles from "./style.module.css";
 import logo from "../../assets/logo.svg";
-import { NavLink } from "react-router-dom";
 import {
   SvgArrowDown,
   SvgArrowUp,
@@ -13,6 +12,8 @@ import {
 } from "../../assets/Svgs";
 import { ReactNode, useState } from "react";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
+import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
+import NavLinkItem from "@components/NavLinkItem";
 
 interface SideBarProps {
   open: boolean;
@@ -28,9 +29,10 @@ const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
   return (
     <>
       {!matches ? (
-        <>
-          {open && (
-            <div className={styles.smContainer}>
+        <Root open={open} onOpenChange={setOpen}>
+          <Portal>
+            <Overlay className={styles.overlay} />
+            <Content className={styles.smContainer}>
               <div className={styles.logoSm}>
                 <img alt='logo' src={logo} />
               </div>
@@ -87,9 +89,9 @@ const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
                 </NavLinkItem>
                 <div className='divider' />
               </div>
-            </div>
-          )}
-        </>
+            </Content>
+          </Portal>
+        </Root>
       ) : (
         <div className={styles.sideBarContainer}>
           <div className={styles.sidebarInner}>
@@ -99,7 +101,9 @@ const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
                 <SvgDashboard />
               </NavLinkItem>
               <button
-                className={`${styles.flexLink} ${manage && styles.active}`}
+                className={`${styles.manageDropdownBtn} ${
+                  manage && styles.active
+                }`}
                 onClick={() => setManage((state) => !state)}>
                 <SvgOrderStatus />
                 <h3>Manage</h3>
@@ -148,29 +152,6 @@ const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
         </div>
       )}
     </>
-  );
-};
-
-interface NavLinkProps {
-  heading: string;
-  to: string;
-  children?: ReactNode;
-  marginMd?: boolean;
-}
-
-const NavLinkItem = ({ heading, to, children, marginMd }: NavLinkProps) => {
-  return (
-    <NavLink to={to} style={{ textDecoration: "none" }}>
-      {({ isActive }) => (
-        <div
-          className={`${styles.flexLink} ${
-            marginMd ? styles.marginMd : styles.marginLg
-          } ${isActive && styles.active}`}>
-          {children}
-          <h3>{heading}</h3>
-        </div>
-      )}
-    </NavLink>
   );
 };
 

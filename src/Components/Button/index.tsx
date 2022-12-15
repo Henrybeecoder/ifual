@@ -1,44 +1,37 @@
 import React from "react";
 import styles from "./style.module.css";
 
-interface ButtonProps{
-  loading?:string
-  invalid?:boolean
-  primary?:boolean
-  onClick?:()=>void
-  width?:string
-  className?:string
-  text:string
+interface ButtonProps {
+  invalid?: boolean;
+  primary?: boolean;
+  onClick?: () => void;
+  width?: string;
+  className?: string;
+  text: string;
+  type?: "submit" | "button" | "reset";
 }
 
 export default function Button({
-  loading,
   invalid,
   primary,
   onClick,
   width,
   className,
+  type,
   text,
-}:ButtonProps) {
+}: ButtonProps) {
   return (
-    <>
-      {loading && (
-        <div>
-          <div className={styles.loading}></div>
-        </div>
-      )}
-
-      <button
-        disabled={invalid}
-        className={`
+    <button
+      disabled={invalid}
+      className={`
           ${
             primary ? styles.primaryButton : styles.secondaryButton
           } ${className} ${styles.Btn}
         `}
-        style={{ width: width ? width : "100%" }}
-        onClick={onClick}>
-        {text}
-      </button>
-    </>
+      style={{ width: width ? width : "100%" }}
+      onClick={onClick}
+      type={type}>
+      {text}
+    </button>
   );
 }
