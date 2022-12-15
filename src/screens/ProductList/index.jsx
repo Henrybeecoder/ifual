@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import PageContainer from "../../containers/VendorPageContainer";
+import PageContainer from "../../containers/LayoutVendor";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -14,7 +14,7 @@ import filter from "../../assets/svg/filter.svg";
 import { SvgArrowback, SvgDelete, SvgEdit } from "../../assets/Svgs";
 import { InputTemp, SelectTemp } from "../../Components/InputTemp";
 import { states } from "../../utils/state";
-import SubModal from "../../Components/SubModal";
+import SubModal from "../../Components/OptionsModal";
 import Modal from "../../Components/Modals";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

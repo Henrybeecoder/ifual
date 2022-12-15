@@ -1,79 +1,84 @@
 .container {
-    background: #2F3930;
-    border-radius: 10px;
-    width: 500px;
-    padding: 40px 40px;
+  background: #2f3930;
+  border-radius: 10px;
+  width: 500px;
+  padding: 40px 40px;
 }
 
 .formHolder {
-    color: #ACB5BD;
-    letter-spacing: 0.08em;
-    display: flex;
-    flex-direction: column;
-    margin: 15px 0 0 0;
+  color: #acb5bd;
+  letter-spacing: 0.08em;
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0 0 0;
 }
 
-.formHolder input, .formHolder select {
-    outline: none;
-    border: none;
-    padding: 14px 30px 14px 7px;
-    border-radius: 5px;
+.formHolder input,
+.formHolder select {
+  outline: none;
+  border: none;
+  padding: 14px 30px 14px 7px;
+  border-radius: 5px;
 }
 
 .formHolder label {
-    font-size: 0.7rem;
-    margin: 0 0 8px 0;
+  font-size: 0.7rem;
+  margin: 0 0 8px 0;
 }
 
 .footer button {
-    background: #36B44A;
-    border-radius: 5px;
-    color: #FFFFFF;
-    outline: none;
-    border: none;
-    width: 100%;
-    padding: 13px;
-    cursor: pointer;
+  background: #36b44a;
+  border-radius: 5px;
+  color: #ffffff;
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 13px;
+  cursor: pointer;
 }
 
 .forgotPassword {
-    display: flex;
-    color: rgba(255, 255, 255, 0.87);
-    width: 100%;
-    justify-content: end;
-    padding: 10px 0;
-    cursor: pointer;
+  display: flex;
+  color: rgba(255, 255, 255, 0.87);
+  width: 100%;
+  justify-content: end;
+  padding: 10px 0;
+  cursor: pointer;
 }
 
 .rememberMe {
-    color: rgba(255, 255, 255, 0.87);
-    display: flex;
-    padding: 20px 0;
+  color: rgba(255, 255, 255, 0.87);
+  display: flex;
+  padding: 20px 0;
 }
 
 .rememberMe p {
-    margin: 0 0 0 8px;
+  margin: 0 0 0 8px;
 }
 
 .signUp {
-    color: #FFFFFF;
-    text-align: center;
-    padding: 23px 0;
+  color: #ffffff;
+  text-align: center;
+  padding: 23px 0;
 }
 
 .signUp span {
-    color: #36B44A;
-    cursor: pointer;
+  color: #36b44a;
+  cursor: pointer;
 }
 
 .holder {
-    position: relative;
+  position: relative;
+}
+
+.relative {
+  position: relative;
 }
 
 .emoji {
-    position: absolute;
-    top: 70%;
-    left: -20%;
+  position: absolute;
+  bottom: -10%;
+  left: -20%;
 }
 
 .passWrapper {
@@ -83,7 +88,7 @@
 }
 
 .passWrapper input {
-    width: 100%;
+  width: 100%;
 }
 
 i {
@@ -97,60 +102,67 @@ i {
   justify-content: space-between;
 }
 .flexForm .formHolder {
-    width: 48%;
+  width: 48%;
 }
 
 ::placeholder {
-    color: #DDE2E5;
+  color: #dde2e5;
 }
 
 .buttonContainer {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .rememberMe span {
-     color: #36B44A;
+  color: #36b44a;
+}
+
+.btnVisibility {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 @media screen and (max-width: 800px) {
-    .flexForm {
-        flex-direction: column;
-    }
-.flexForm .formHolder {
+  .flexForm {
+    flex-direction: column;
+  }
+  .flexForm .formHolder {
     width: 100%;
-}
-    ::placeholder {
-        color: rgba(52, 68, 55, 0.3);
-    }
-    .forgotPassword {
-        color: #2F3930;
-        font-size: 0.9rem;
-    }
-    .rememberMe {
-        color: #2F3930;
-        font-size: 0.9rem;
-    }
-    .signUp {
-        color: #2F3930;
-    }
-    .emoji {
-        display: none;
-    }
+  }
+  ::placeholder {
+    color: rgba(52, 68, 55, 0.3);
+  }
+  .forgotPassword {
+    color: #2f3930;
+    font-size: 0.9rem;
+  }
+  .rememberMe {
+    color: #2f3930;
+    font-size: 0.9rem;
+  }
+  .signUp {
+    color: #2f3930;
+  }
+  .emoji {
+    display: none;
+  }
 
-    .container {
-        width: 100%;
-        background: transparent;
-        padding: 20px 0;
-        margin-bottom: 40px;
-    }
+  .container {
+    width: 100%;
+    background: transparent;
+    padding: 20px 0;
+    margin-bottom: 40px;
+  }
 
-    .container label {
-        color: #344437;
-    }
+  .container label {
+    color: #344437;
+  }
 
-    .container input,  .formHolder select {
-        border: 0.5px solid #344437;
-        border-radius: 8px;
-    }
-
+  .container input,
+  .formHolder select {
+    border: 0.5px solid #344437;
+    border-radius: 8px;
+  }
 }
