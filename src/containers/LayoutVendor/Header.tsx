@@ -23,10 +23,6 @@ const Header = ({ user, setOpen = () => {} }: HeaderProps) => {
 
   const [profileModal, setProfileModal] = useState(false);
 
-  const toLogin = () => {
-    navigate("/login");
-  };
-
   return (
     <>
       <div className={styles.headerContainer}>

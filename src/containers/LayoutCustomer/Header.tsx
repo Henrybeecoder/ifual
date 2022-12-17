@@ -11,13 +11,13 @@ import {
 } from "../../assets/Svgs";
 import profile from "../../assets/image/profile2.png";
 import { useState } from "react";
+import { ReactComponent as NotificationSvg } from "../../assets/navbericon/notification-outline.svg";
+import { ReactComponent as CartSvg } from "../../assets/navbericon/cart-outline.svg";
 
-const Header = ({ user }) => {
+const Header = ({ user }: any) => {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
-
-  const [menu, setMenu] = useState(false);
 
   const toLogin = () => {
     navigate("/login");
@@ -72,15 +72,20 @@ const Header = ({ user }) => {
           </div>
           {!user ? (
             <div className={styles.hiddenMobile}>
-              <Button primary text='login' width='150px' onClick={toLogin} />
+              <Button
+                variant='primary'
+                text='login'
+                width='150px'
+                onClick={toLogin}
+              />
             </div>
           ) : (
             <div className={styles.flexIcons}>
               <button>
-                <SvgBellOutline />
+                <NotificationSvg />
               </button>
               <button onClick={toCart} className={styles.btnCart}>
-                <SvgCartOutline />
+                <CartSvg />
               </button>
               <img src={profile} onClick={toggleProfileModal} />
               <ProfileModal user={user} open={open} />
@@ -92,7 +97,7 @@ const Header = ({ user }) => {
   );
 };
 
-const ProfileModal = ({ user, open }) => {
+const ProfileModal = ({ user, open }: { user: any; open: boolean }) => {
   const navigate = useNavigate();
 
   const logout = () => {

@@ -1,5 +1,6 @@
 import styles from "./style.module.css";
 import { SvgFilterIcon } from "../../../assets/Svgs";
+import Button from "@components/Button";
 
 const data = [
   {
@@ -37,7 +38,7 @@ const ManageProducts = () => {
             <SvgFilterIcon />
           </div>
         </div>
-        <button className={""}>Add New</button>
+        <Button text='Add New' height='40px' width='120px' className={""} />
       </div>
       <div className={styles.tableWrapper}>
         <table>

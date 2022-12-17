@@ -1,8 +1,10 @@
+import { ReactNode } from "react";
 import Header from "./Header";
 import styles from "./style.module.css";
 
-const LayoutCustomer = ({ children }) => {
-  const user = JSON.parse(localStorage.getItem("user"));
+const LayoutCustomer = ({ children }: { children: ReactNode }) => {
+  const str = localStorage.getItem("user");
+  const user = str && JSON.parse(str);
   return (
     <>
       <Header user={user} />

@@ -10,12 +10,12 @@ import Button from "../../Components/Button";
 import Checkbox from "../../Components/Checkbox";
 import { AuthContainerProps } from "@type/shared";
 import { InputTemp } from "@components/InputTemp";
+import Loading from "@components/Loading";
 
 interface LoginProps {
   email: string;
   setEmail: (value: string) => void;
   login: (email: string, password: string) => void;
-  btnLoading: boolean;
 }
 
 interface SignUpDetails {
@@ -26,29 +26,28 @@ interface SignUpProps {
   email: string;
   setEmail: (value: string) => void;
   signup: (details: SignUpDetails) => void;
-  btnLoading: boolean;
 }
 
 export default function AuthForm({ page }: AuthContainerProps) {
   const navigate = useNavigate();
-  const [btnLoading, setBtnLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   // const [loading, setLoading] = useState(false);
 
   const login = (email: string) => {
-    setBtnLoading(true);
+    setLoading(true);
     localStorage.setItem(
       "user",
       JSON.stringify({ email, name: "Bistro Badmus" })
     );
     setTimeout(() => {
-      setBtnLoading(false);
+      setLoading(false);
       navigate("/");
     }, 3000);
   };
 
   const submitSignup = () => {
-    setBtnLoading(true);
+    setLoading(true);
     setTimeout(() => navigate("/sign-up-message"), 5000);
   };
 
@@ -56,27 +55,18 @@ export default function AuthForm({ page }: AuthContainerProps) {
     <div className={styles.holder}>
       <div className={styles.container}>
         {page === "login" ? (
-          <Login
-            email={email}
-            setEmail={setEmail}
-            login={login}
-            btnLoading={btnLoading}
-          />
+          <Login email={email} setEmail={setEmail} login={login} />
         ) : (
-          <SignUp
-            email={email}
-            setEmail={setEmail}
-            signup={submitSignup}
-            btnLoading={btnLoading}
-          />
+          <SignUp email={email} setEmail={setEmail} signup={submitSignup} />
         )}
       </div>
       <img src={emoji} alt='' className={styles.emoji} />
+      {loading && <Loading />}
     </div>
   );
 }
 
-const Login = ({ email, setEmail, login, btnLoading }: LoginProps) => {
+const Login = ({ email, setEmail, login }: LoginProps) => {
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisibility] = useState(false);
   const [password, setPassword] = useState("");
@@ -118,8 +108,8 @@ const Login = ({ email, setEmail, login, btnLoading }: LoginProps) => {
           {passwordVisible ? <Visibility /> : <VisibilityOff />}
         </i>
       </InputTemp>
-      <div className={styles.forgotPassword} onClick={navigateToForgotPassword}>
-        <p>Forgot Password</p>
+      <div className={styles.forgotPassword}>
+        <button onClick={navigateToForgotPassword}>Forgot Password</button>
       </div>
       <div className={styles.rememberMe}>
         <Checkbox
@@ -131,9 +121,8 @@ const Login = ({ email, setEmail, login, btnLoading }: LoginProps) => {
       <div className={styles.footer}>
         <Button
           text={"Log in"}
-          primary
+          variant='primary'
           invalid={email?.length > 0 && password?.length > 0 ? false : true}
-          loading={btnLoading}
           onClick={() => login(email, password)}
         />
         <p>
@@ -147,7 +136,7 @@ const Login = ({ email, setEmail, login, btnLoading }: LoginProps) => {
   );
 };
 
-const SignUp = ({ email, setEmail, btnLoading, signup }: SignUpProps) => {
+const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width: 800px)");
   const [passwordVisible, setPasswordVisibility] = useState(false);
@@ -271,10 +260,8 @@ const SignUp = ({ email, setEmail, btnLoading, signup }: SignUpProps) => {
           <div className={styles.footer}>
             <Button
               text={"Register"}
-              primary
               invalid={email?.length > 0 ? false : true}
               onClick={() => signup({ email })}
-              loading={btnLoading}
             />
             <p>
               <div className={styles.signUp}>
@@ -316,11 +303,7 @@ const SignUp = ({ email, setEmail, btnLoading, signup }: SignUpProps) => {
               name='email'
             />
             <div className={styles.buttonContainer}>
-              <Button
-                text='Next'
-                primary
-                onClick={() => switchPhase("second")}
-              />
+              <Button text='Next' onClick={() => switchPhase("second")} />
             </div>
           </>
         ) : null}
@@ -380,11 +363,7 @@ const SignUp = ({ email, setEmail, btnLoading, signup }: SignUpProps) => {
               </p>
             </div>
             <div className={styles.footer}>
-              <Button
-                text='Register'
-                loading={btnLoading}
-                onClick={() => signup({ email })}
-              />
+              <Button text='Register' onClick={() => signup({ email })} />
               <p>
                 <div className={styles.signUp}>
                   Already have an account?{" "}

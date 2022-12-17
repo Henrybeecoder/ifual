@@ -83,7 +83,7 @@ const Notification = () => {
   const matches = useMediaQuery("(min-width: 800px)");
 
   return (
-    <PageContainer active='notification'>
+    <PageContainer>
       <Modal
         name='accept'
         openModal={modalState.accept}

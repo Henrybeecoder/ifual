@@ -1,34 +1,39 @@
-import React from "react";
+import { CSSProperties } from "react";
 import styles from "./style.module.css";
 
 interface ButtonProps {
+  variant?: "primary" | "outline" | "danger";
   invalid?: boolean;
-  primary?: boolean;
   onClick?: () => void;
   width?: string;
+  height?: string;
   className?: string;
+  style?: CSSProperties;
   text: string;
   type?: "submit" | "button" | "reset";
 }
 
+// const applyStyles = {}
+
 export default function Button({
   invalid,
-  primary,
   onClick,
-  width,
+  width = "100%",
+  height = "56px",
   className,
   type,
   text,
+  style,
+  variant = "outline",
 }: ButtonProps) {
   return (
     <button
       disabled={invalid}
-      className={`
-          ${
-            primary ? styles.primaryButton : styles.secondaryButton
-          } ${className} ${styles.Btn}
+      className={`${styles.btn} ${variant ? styles[variant] : ""} ${
+        className || ""
+      } 
         `}
-      style={{ width: width ? width : "100%" }}
+      style={{ width, height, ...style }}
       onClick={onClick}
       type={type}>
       {text}

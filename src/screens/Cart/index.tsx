@@ -97,7 +97,6 @@ const Cart = () => {
           </div>
           <div className={styles.btnCheckout}>
             <Button
-              primary
               text='Proceed to Checkout'
               width={matches ? "400px" : "100%"}
             />

@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./style.module.css";
 import emoji from "../../assets/svg/emoji.svg";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { useNavigate } from "react-router-dom";
 import { states } from "../../utils/state";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
@@ -62,7 +60,7 @@ export default function AuthForm({ page }: AuthContainerProps) {
   return (
     <div className={styles.holder}>
       <div className={styles.container}>
-        <>{loading && <Loading />}\</>
+        <>{loading && <Loading />}</>
         {page === "login" ? (
           <Login email={email} setEmail={setEmail} login={login} />
         ) : (
@@ -77,7 +75,7 @@ export default function AuthForm({ page }: AuthContainerProps) {
 const Login = ({ email, setEmail, login }: LoginProps) => {
   const navigate = useNavigate();
   const [showPwd, setShowPwd] = useState(false);
-  const [rememberPassword, setRememberPassword] = useState(false);
+  const [rP, setRP] = useState(false);
 
   const navigateToForgotPassword = () => {
     navigate({ pathname: "/forgot-password", search: "type=vendor" });
@@ -85,10 +83,6 @@ const Login = ({ email, setEmail, login }: LoginProps) => {
 
   const navigateToSignup = () => {
     navigate({ pathname: "/signup", search: "type=vendor" });
-  };
-
-  const toggleRememberPassword = () => {
-    setRememberPassword((state) => !state);
   };
 
   const initialValues = { email: "", password: "" };
@@ -118,20 +112,23 @@ const Login = ({ email, setEmail, login }: LoginProps) => {
               {showPwd ? <ShowPwd /> : <HidePwd />}
             </i>
           </InputTemp>
-          <div
-            className={styles.forgotPassword}
-            onClick={navigateToForgotPassword}>
-            <p>Forgot Password</p>
+          <div className={styles.forgotPassword}>
+            <button onClick={navigateToForgotPassword}>Forgot Password</button>
           </div>
           <div className={styles.rememberMe}>
             <Checkbox
-              checked={rememberPassword}
-              toggleChecked={toggleRememberPassword}
+              checked={rP}
+              toggleChecked={() => setRP((state) => !state)}
             />
             <p>Remember me</p>
           </div>
           <div className={styles.footer}>
-            <Button text={"Log in"} primary invalid={!dirty} type='submit' />
+            <Button
+              text={"Log in"}
+              variant='primary'
+              invalid={!dirty}
+              type='submit'
+            />
             <div className={styles.signUp}>
               Don’t have an account?{" "}
               <span onClick={navigateToSignup}>Sign up</span>
@@ -146,23 +143,14 @@ const Login = ({ email, setEmail, login }: LoginProps) => {
 const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width: 800px)");
-  const [passwordVisible, setPasswordVisibility] = useState(false);
-  const [confirmPasswordVisible, setConfirmPasswordVisibility] =
-    useState(false);
+  const [pV, setPV] = useState(false);
+  const [cPV, setCPV] = useState(false);
   const [selectState, setSelectState] = useState("");
 
   const [phase, setPhase] = useState("first");
 
   const handleStateChange = (event: any) => {
     setSelectState(event.target.value);
-  };
-
-  const togglePasswordVisiblity = () => {
-    setPasswordVisibility((state) => !state);
-  };
-
-  const toggleConfirmPasswordVisiblity = () => {
-    setConfirmPasswordVisibility((state) => !state);
   };
 
   const navigateToLogin = () => {
@@ -241,24 +229,24 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
                 visibilityPadding
                 label='PASSWORD'
                 placeholder='Enter Preferred Password'
-                inputType={passwordVisible ? "text" : "password"}
+                inputType={pV ? "text" : "password"}
                 {...getFieldProps("password")}>
                 <i
                   className={styles.btnVisibility}
-                  onClick={togglePasswordVisiblity}>
-                  {passwordVisible ? <ShowPwd /> : <HidePwd />}
+                  onClick={() => setPV((state) => !state)}>
+                  {pV ? <ShowPwd /> : <HidePwd />}
                 </i>
               </InputTemp>
 
               <InputTemp
                 visibilityPadding
                 label='RECONFIRM PASSWORD'
-                inputType={confirmPasswordVisible ? "text" : "password"}
+                inputType={cPV ? "text" : "password"}
                 placeholder='Enter Preferred Password'>
                 <i
-                  onClick={toggleConfirmPasswordVisiblity}
+                  onClick={() => setCPV((state) => !state)}
                   className={styles.btnVisibility}>
-                  {confirmPasswordVisible ? <ShowPwd /> : <HidePwd />}
+                  {cPV ? <ShowPwd /> : <HidePwd />}
                 </i>
               </InputTemp>
               <div className={styles.rememberMe}>
@@ -275,9 +263,9 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
 
               <div className={styles.footer}>
                 <Button
+                  variant='primary'
                   text={"Register"}
                   type='submit'
-                  primary
                   invalid={!dirty}
                 />
                 <p>
@@ -299,12 +287,14 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
                     placeholder='Name'
                     inputType='text'
                     name='firstName'
+                    marginRightSm
                   />
                   <InputTemp
                     label='SURNAME'
                     placeholder='Last name'
                     inputType='text'
                     name='lastName'
+                    marginLeftSm
                   />
                 </div>
                 <InputTemp
@@ -320,7 +310,12 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
                   name='email'
                 />
                 <div className={styles.buttonContainer}>
-                  <Button text='Next' primary onClick={() => setPhase(phase)} />
+                  <Button
+                    text='Next'
+                    type='button'
+                    variant='primary'
+                    onClick={() => setPhase(phase)}
+                  />
                 </div>
               </>
             ) : null}
@@ -350,27 +345,23 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
                   visibilityPadding
                   label='PASSWORD'
                   placeholder='Enter Preferred Password'
-                  inputType={passwordVisible ? "text" : "password"}>
+                  inputType={pV ? "text" : "password"}>
                   <i
                     className={styles.btnVisibility}
-                    onClick={togglePasswordVisiblity}>
-                    {passwordVisible ? <Visibility /> : <VisibilityOff />}
+                    onClick={() => setPV((state) => !state)}>
+                    {pV ? <ShowPwd /> : <HidePwd />}
                   </i>
                 </InputTemp>
 
                 <InputTemp
                   visibilityPadding
                   label='RECONFIRM PASSWORD'
-                  inputType={confirmPasswordVisible ? "text" : "password"}
+                  inputType={cPV ? "text" : "password"}
                   placeholder='Enter Preferred Password'>
                   <i
-                    onClick={toggleConfirmPasswordVisiblity}
+                    onClick={() => setCPV((state) => !state)}
                     className={styles.btnVisibility}>
-                    {confirmPasswordVisible ? (
-                      <Visibility />
-                    ) : (
-                      <VisibilityOff />
-                    )}
+                    {pV ? <ShowPwd /> : <HidePwd />}
                   </i>
                 </InputTemp>
 
@@ -386,7 +377,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
                   </p>
                 </div>
                 <div className={styles.footer}>
-                  <Button text='Register' type='submit' />
+                  <Button text='Register' type='submit' variant='primary' />
                   <p>
                     <div className={styles.signUp}>
                       Already have an account?{" "}

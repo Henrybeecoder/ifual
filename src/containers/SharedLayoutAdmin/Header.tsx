@@ -69,7 +69,12 @@ const Header = ({
           </div>
           {!user ? (
             <div className={styles.hiddenMobile}>
-              <Button primary text='login' width='150px' onClick={toLogin} />
+              <Button
+                variant='primary'
+                text='login'
+                width='150px'
+                onClick={toLogin}
+              />
             </div>
           ) : (
             <div className={styles.flexIcons}>

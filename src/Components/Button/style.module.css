@@ -1,25 +1,30 @@
-.primaryButton {
-  background: #36b44a;
+/* button{
+  background-color: red;
+} */
+
+button {
   border-radius: 5px;
-  color: #ffffff;
+  /* padding: 13px; */
   outline: none;
-  border: none;
   width: 100%;
-  padding: 13px;
-  cursor: pointer;
 }
 
-.Btn:disabled {
+button:disabled {
   opacity: 0.3;
 }
 
-.secondaryButton {
-  border: 1px solid #344437;
-  color: #344437;
-  border-radius: 5px;
-  outline: none;
-  width: 100%;
-  padding: 13px;
+.primary {
+  background: #36b44a;
+  color: #ffffff;
+  border: none;
   cursor: pointer;
+}
+
+.outline {
+  color: #344437;
+  border: 1px solid #344437;
   background: transparent;
+}
+
+.danger {
 }

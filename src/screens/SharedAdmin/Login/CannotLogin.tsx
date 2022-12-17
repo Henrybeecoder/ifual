@@ -24,7 +24,7 @@ const CannotLogin = () => {
           inputType='text'
           value={detail}
           placeholder={"Enter detail"}
-          onValueChange={(detail) => setDetail(detail)}
+          onChange={(e) => setDetail(e.target.value)}
         />
         <div className={styles.btns}>
           <button className={styles.btnBack} onClick={() => navigate("/admin")}>

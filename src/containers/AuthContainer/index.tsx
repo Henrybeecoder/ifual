@@ -1,8 +1,8 @@
 import React from "react";
 import PrimaryContainer from "../PrimaryContainer";
 import styles from "./style.module.css";
-import VendorAuthForm from "../../forms/VendorAuthForm";
-import CustomerAuthForm from "../../forms/CustomerAuthForm";
+import VendorAuthForm from "../../forms/AuthForms/Vendor";
+import CustomerAuthForm from "../../forms/AuthForms/Customer";
 import { useSearchParams } from "react-router-dom";
 import { AuthContainerProps, RenderPageProps } from "@type/shared";
 

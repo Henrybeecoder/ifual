@@ -1,5 +1,6 @@
 import styles from "./style.module.css";
 import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
+import Button from "@components/Button";
 
 const data = [
   {
@@ -84,7 +85,7 @@ const ComplaintLog = () => {
         <div className={styles.filterFlex}>
           <h3>Filter</h3>
           <SvgFilterIcon />
-          <button>Custom Message</button>
+          <Button text='Custom Message' height='40px' />
         </div>
       </div>
       <div className={"tableWrapper"}>
