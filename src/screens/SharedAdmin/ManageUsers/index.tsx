@@ -3,6 +3,7 @@ import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
 import { customer_data, vendor_data, admin_data } from "./data";
 import { RenderPageProps } from "@type/shared";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import OptionsModal from "@components/OptionsModal";
 
 interface ManageUsersProps {
   baseUrl: "admin" | "super-admin";
@@ -14,10 +15,14 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
   const page = searchParams.get("type");
 
   const renderPage: RenderPageProps = {
-    customer: <CustomerPage />,
-    vendor: <VendorPage />,
+    customer: <CustomerPage baseUrl={baseUrl} />,
+    vendor: <VendorPage baseUrl={baseUrl} />,
     admin:
-      baseUrl === "super-admin" ? <AdminPage /> : <div>Not a super-admin</div>,
+      baseUrl === "super-admin" ? (
+        <AdminPage baseUrl={baseUrl} />
+      ) : (
+        <div>Not a super-admin</div>
+      ),
   };
 
   return (
@@ -75,12 +80,13 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
           </button>
         )}
       </div>
-      {page ? renderPage[page] : <CustomerPage />}
+      {page ? renderPage[page] : <CustomerPage baseUrl={baseUrl} />}
     </>
   );
 };
 
-const CustomerPage = () => {
+const CustomerPage = ({ baseUrl }: { baseUrl: string }) => {
+  const navigate = useNavigate();
   return (
     <>
       <div className={styles.tableWrapper}>
@@ -103,9 +109,19 @@ const CustomerPage = () => {
                   <td>{row.email}</td>
                   <td>{row.lastAct}</td>
                   <td>
-                    <button>
-                      <SvgOptions />
-                    </button>
+                    <OptionsModal>
+                      <button
+                        onClick={() =>
+                          navigate({
+                            pathname: `/${baseUrl}/manage-users/customer-info`,
+                            search: `customer=${row.id}`,
+                          })
+                        }>
+                        View
+                      </button>
+                      <button>Edit</button>
+                      <button>Suspend</button>
+                    </OptionsModal>
                   </td>
                 </tr>
               );
@@ -117,7 +133,8 @@ const CustomerPage = () => {
   );
 };
 
-const VendorPage = () => {
+const VendorPage = ({ baseUrl }: { baseUrl: string }) => {
+  const navigate = useNavigate();
   return (
     <>
       <div className={styles.tableWrapper}>
@@ -140,9 +157,19 @@ const VendorPage = () => {
                   <td>{row.email}</td>
                   <td>{row.status}</td>
                   <td>
-                    <button>
-                      <SvgOptions />
-                    </button>
+                    <OptionsModal>
+                      <button
+                        onClick={() =>
+                          navigate({
+                            pathname: `/${baseUrl}/manage-users/vendor-info`,
+                            search: `vendor=${row.id}`,
+                          })
+                        }>
+                        View
+                      </button>
+                      <button>Edit</button>
+                      <button>Suspend</button>
+                    </OptionsModal>
                   </td>
                 </tr>
               );
@@ -154,7 +181,7 @@ const VendorPage = () => {
   );
 };
 
-const AdminPage = () => {
+const AdminPage = ({ baseUrl }: { baseUrl: string }) => {
   return (
     <>
       <div className={styles.tableWrapper}>

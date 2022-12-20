@@ -2,6 +2,7 @@
   padding: 100px 50px 45px 50px;
   overflow-y: auto;
   height: 100%;
+  width: 100%;
 }
 
 .headerContainer {
@@ -10,7 +11,7 @@
   /* align-items: center; */
   padding: 15px 50px;
   position: absolute;
-  z-index: 30;
+  /* z-index: 30; */
   right: 0;
   left: 0;
   top: 0;
@@ -215,16 +216,31 @@
   border: none;
 }
 
-.manageDropdownBtn h3 {
+.manageDropdownBtn h3,
+.manageContainerSm h3 {
   margin: 0 10px;
   font-weight: 400;
   font-size: 19px;
   line-height: 21px;
 }
 
-.active {
+.active,
+.active h3,
+.active svg {
   color: #36b44a;
   stroke: #36b44a;
+}
+
+.manageContainerSm button {
+  width: fit-content;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.manageContainerSm {
+  color: #2f3930;
+  stroke: #2f3930;
 }
 
 @media screen and (max-width: 800px) {

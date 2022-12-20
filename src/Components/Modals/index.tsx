@@ -19,7 +19,7 @@ export default function Modal({
   return (
     <>
       {openModal && (
-        <div className={styles.ErrorBg}>
+        <div className={styles.overlay}>
           <div
             className={styles.outerContainer}
             style={!width ? { width: "40%" } : { width }}>

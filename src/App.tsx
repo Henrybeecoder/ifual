@@ -26,6 +26,7 @@ import ManageOrdersAdmin from "./screens/Admin/ManageOrders";
 import ComplaintsLogAdmin from "./screens/Admin/ComplaintsLog";
 import ActivityLogAdmin from "./screens/Admin/ActivityLog";
 import ManageUsersAdmin from "./screens/Admin/ManageUsers";
+import VendorInfoAdmin from "./screens/Admin/ManageUsers/VendorInfo";
 import NotificationAdmin from "./screens/Admin/Notification";
 // superadmin
 import DashboardSuperAdmin from "./screens/SuperAdmin/Dashboard";
@@ -38,6 +39,7 @@ import ActivityLogSuperAdmin from "./screens/SuperAdmin/ActivityLog";
 import LoginSuperAdmin from "./screens/SuperAdmin/Login";
 import AddAdmin from "./screens/SuperAdmin/ManageUsers/AddAdmin";
 import CustomerInfo from "./screens/SuperAdmin/ManageUsers/CustomerInfo";
+import VendorInfoSuperAdmin from "./screens/SuperAdmin/ManageUsers/VendorInfo";
 import CannotLoginSuperAdmin from "./screens/SuperAdmin/Login/CannotLogin";
 import NotificationSuperAdmin from "./screens/SuperAdmin/Notification";
 
@@ -79,8 +81,8 @@ function App() {
           <Route path='settings' element={<SettingsAdmin />} />
           <Route path='manage-users'>
             <Route index element={<ManageUsersAdmin />} />
-            <Route path='add-admin' element={<AddAdmin />} />
             <Route path='customer-info' element={<CustomerInfo />} />
+            <Route path='vendor-info' element={<VendorInfoAdmin />} />
           </Route>
           <Route path='manage-products' element={<ManageProducts />} />
           <Route path='manage-orders' element={<ManageOrdersAdmin />} />
@@ -98,6 +100,7 @@ function App() {
             <Route index element={<ManageUsersSuperAdmin />} />
             <Route path='add-admin' element={<AddAdmin />} />
             <Route path='customer-info' element={<CustomerInfo />} />
+            <Route path='vendor-info' element={<VendorInfoSuperAdmin />} />
           </Route>
           <Route path='manage-products' element={<ManageProducts />} />
           <Route path='manage-orders' element={<ManageOrdersSuperAdmin />} />

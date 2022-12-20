@@ -8,6 +8,11 @@ import Select, {
 } from "react-select";
 import styles from "./style.module.css";
 
+interface TextareaTempProps extends Omit<InputTempProps, "onChange"> {
+  onChange?: ChangeEventHandler<HTMLTextAreaElement>;
+  rows?: number;
+}
+
 interface InputTempProps {
   label?: string;
   name?: string;
@@ -47,7 +52,7 @@ export const InputTemp = ({
         marginRightSm ? styles.marginRightSm : marginRight && styles.marginRight
       }`}>
       <label>{label}</label>
-      <div className={styles.relative} >
+      <div className={styles.relative}>
         <input
           placeholder={placeholder}
           type={inputType}
@@ -181,6 +186,45 @@ export const SelectTemp = ({
         isMulti={isMulti}
       />
       {children}
+    </div>
+  );
+};
+
+export const TextareaTemp = ({
+  name,
+  id,
+  label,
+  rows,
+  placeholder,
+  value,
+  onChange,
+  children,
+  visibilityPadding,
+  marginRight,
+  marginLeft,
+  marginLeftSm,
+  marginRightSm,
+}: TextareaTempProps) => {
+  return (
+    <div
+      className={`${styles.formHolder} ${
+        marginLeftSm ? styles.marginLeftSm : marginLeft && styles.marginLeft
+      } ${
+        marginRightSm ? styles.marginRightSm : marginRight && styles.marginRight
+      }`}>
+      <label>{label}</label>
+      <div className={styles.relative}>
+        <textarea
+          placeholder={placeholder}
+          id={id}
+          name={name}
+          value={value}
+          rows={rows}
+          style={{ paddingRight: visibilityPadding ? "48px" : "7px" }}
+          onChange={onChange}
+        />
+        {children}
+      </div>
     </div>
   );
 };

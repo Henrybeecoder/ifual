@@ -14,6 +14,7 @@ import { ReactNode, useState } from "react";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import NavLinkItem from "@components/NavLinkItem";
+import { ReactComponent as OrderStatusSvg } from "../../assets/navbericon/orderStatus.svg";
 
 interface SideBarProps {
   open: boolean;
@@ -41,32 +42,37 @@ const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
                   <SvgDashboard />
                 </NavLinkItem>
                 <div className='divider' />
-                <button
-                  className={`${styles.flexLink} ${manage && styles.active}`}
-                  onClick={() => setManage((state) => !state)}>
-                  <SvgOrderStatus />
-                  <h3>Manage</h3>
-                  {manage ? <SvgArrowUp /> : <SvgArrowDown />}
-                </button>
-                {manage && (
-                  <div className={styles.manageDropdown}>
-                    <NavLinkItem
-                      marginMd
-                      to={`/${baseUrl}/manage-users`}
-                      heading='Manage Users'
-                    />
-                    <NavLinkItem
-                      marginMd
-                      to={`/${baseUrl}/manage-products`}
-                      heading='Manage Products'
-                    />
-                    <NavLinkItem
-                      marginMd
-                      to={`/${baseUrl}/manage-orders`}
-                      heading='Manage Orders'
-                    />
-                  </div>
-                )}
+                <div
+                  className={`${styles.manageContainerSm} ${
+                    manage && styles.active
+                  }`}>
+                  <button
+                    // className={`${styles.flexLink} ${manage && styles.active}`}
+                    onClick={() => setManage((state) => !state)}>
+                    <OrderStatusSvg />
+                    <h3>Manage</h3>
+                    {manage ? <SvgArrowUp /> : <SvgArrowDown />}
+                  </button>
+                  {manage && (
+                    <div className={styles.manageDropdown}>
+                      <NavLinkItem
+                        marginMd
+                        to={`/${baseUrl}/manage-users`}
+                        heading='Manage Users'
+                      />
+                      <NavLinkItem
+                        marginMd
+                        to={`/${baseUrl}/manage-products`}
+                        heading='Manage Products'
+                      />
+                      <NavLinkItem
+                        marginMd
+                        to={`/${baseUrl}/manage-orders`}
+                        heading='Manage Orders'
+                      />
+                    </div>
+                  )}
+                </div>
                 <div className='divider' />
                 <NavLinkItem
                   to={`/${baseUrl}/complaints-log`}
@@ -105,7 +111,7 @@ const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
                   manage && styles.active
                 }`}
                 onClick={() => setManage((state) => !state)}>
-                <SvgOrderStatus />
+                <OrderStatusSvg />
                 <h3>Manage</h3>
                 {manage ? <SvgArrowUp /> : <SvgArrowDown />}
               </button>

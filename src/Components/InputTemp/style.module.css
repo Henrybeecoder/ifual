@@ -1,5 +1,6 @@
 .formHolder input,
-.formHolder select {
+.formHolder select,
+.formHolder textarea {
   outline: none;
   border: none;
   padding: 14px 16px;
@@ -12,7 +13,13 @@
   line-height: "18px";
 }
 
-input::placeholder {
+.formHolder textarea {
+  height: auto;
+  resize: none;
+}
+
+input::placeholder,
+textarea::placeholder {
   font-weight: 400;
   font-size: "15px";
   line-height: "18px";

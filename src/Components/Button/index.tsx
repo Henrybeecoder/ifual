@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import styles from "./style.module.css";
 
 interface ButtonProps {
-  variant?: "primary" | "outline" | "danger";
+  variant?: "primary" | "outline" | "danger" | "dark" | "danger-outline";
   invalid?: boolean;
   onClick?: () => void;
   width?: string;
@@ -19,7 +19,7 @@ export default function Button({
   invalid,
   onClick,
   width = "100%",
-  height = "56px",
+  height = "52px",
   className,
   type,
   text,

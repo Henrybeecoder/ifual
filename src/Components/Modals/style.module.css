@@ -1,14 +1,13 @@
-.ErrorBg {
+.overlay {
   background: #18171775;
   width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 10px;
-  right: 0;
+  height: 100%;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 30;
+  z-index: 50;
 }
 
 .ErrorContain {
@@ -39,10 +38,11 @@
   align-items: center;
   border: 0.2px solid #344437;
   background-color: white;
+  width: fit-content;
 }
 
 @media screen and (max-width: 800px) {
-  .ErrorBg {
+  .overlay {
     height: 120vh;
   }
   .ErrorContain {

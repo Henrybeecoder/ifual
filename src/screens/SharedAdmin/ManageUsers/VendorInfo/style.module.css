@@ -42,7 +42,7 @@
 .metaSection {
   width: 20%;
 }
-.inputSection {
+.section2 {
   width: 80%;
 }
 
@@ -112,51 +112,88 @@
   border-radius: 8px;
 }
 
-.customerStatus {
+.activeStatus {
   display: flex;
   align-items: center;
   justify-content: end;
   margin: 10px 0;
 }
 
-.customerStatus h3 {
+.activeStatus h3 {
   font-weight: 300;
   font-size: 21px;
   line-height: 21px;
+  color: #36b44a;
 }
 
-.modal {
-  padding: 30px 60px;
+.suspendModal {
+  padding: 40px;
   text-align: center;
 }
 
-.modal h3 {
+.suspendModal h3 {
   margin: 10px 0;
   font-weight: 400;
   font-size: 28px;
   line-height: 42px;
 }
-.modal p {
+.suspendModal p {
   font-weight: 300;
-  font-size: 19px;
+  font-size: 21px;
   line-height: 32px;
   margin: 10px 0;
 }
 
 .btns {
-  margin-top: 30px;
+  margin: 10px 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding: 0 20px;
   font-weight: 500;
-  font-size: 19px;
+  font-size: 18px;
   line-height: 18px;
 }
 
-.disabledBtnContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.btns .btnBack {
+  margin: 10px 0;
+  width: 55%;
+  height: 50px;
+  border: 1px solid #344437;
+  border-radius: 8px;
+}
+
+.btns .btnSuspend {
+  margin: 10px 0;
+  width: 40%;
+  height: 50px;
+}
+.inputSection {
+  padding: 10px 0;
+}
+
+.quickStatsSection h3,
+.inputSection h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  margin: 10px 0;
+}
+
+.quickStatsContainer {
+  margin: 30px 0;
+  padding: 10px 30px;
+  border: 0.5px solid gainsboro;
+  width: 285px;
+  border-radius: 15px;
+}
+
+.quickStatsContainer p {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 14px;
+  margin: 15px 0;
 }
 
 @media screen and (max-width: 800px) {
@@ -170,7 +207,7 @@
     align-items: center;
     width: 100%;
   }
-  .inputSection {
+  .section2 {
     width: 100%;
   }
 }

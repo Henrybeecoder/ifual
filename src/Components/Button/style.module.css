@@ -27,4 +27,19 @@ button:disabled {
 }
 
 .danger {
+  color: #ffffff;
+  background: #ca0814;
+  border: 1px solid transparent;
+}
+
+.dark {
+  color: #ffffff;
+  background: #2f3930;
+  border: 1px solid transparent;
+}
+
+.danger-outline {
+  color: #ca0814;
+  background: transparent;
+  border: 1px solid #ca0814;
 }

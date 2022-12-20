@@ -31,6 +31,7 @@
 
 .flexMenu {
   display: flex;
+  width: fit-content;
   margin: 20px 0;
 }
 
@@ -51,23 +52,4 @@
   border-radius: 15px;
   overflow: hidden;
   border: 1px solid rgba(52, 68, 55, 0.12);
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-tr {
-  /* padding: 10px; */
-  border-bottom: 1px solid rgba(52, 68, 55, 0.12);
-}
-
-th {
-  padding: 15px 20px;
-  text-align: start;
-}
-
-td {
-  padding: 15px;
 }

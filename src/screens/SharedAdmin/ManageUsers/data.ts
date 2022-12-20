@@ -5,6 +5,7 @@ export const customer_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     lastAct: "2 hrs ago",
+    status: "active",
   },
   {
     id: "2",
@@ -12,6 +13,7 @@ export const customer_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     lastAct: "21/09/2022",
+    status: "disabled",
   },
   {
     id: "3",
@@ -19,6 +21,7 @@ export const customer_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     lastAct: "21/09/2022",
+    status: "disabled",
   },
   {
     id: "4",
@@ -26,6 +29,7 @@ export const customer_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     lastAct: "21/09/2022",
+    status: "active",
   },
   {
     id: "5",
@@ -33,6 +37,7 @@ export const customer_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     lastAct: "21/09/2022",
+    status: "active",
   },
   {
     id: "6",
@@ -40,6 +45,7 @@ export const customer_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     lastAct: "21/09/2022",
+    status: "active",
   },
   {
     id: "7",
@@ -47,6 +53,7 @@ export const customer_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     lastAct: "21/09/2022",
+    status: "active",
   },
   {
     id: "8",
@@ -54,6 +61,7 @@ export const customer_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     lastAct: "21/09/2022",
+    status: "active",
   },
 ];
 
