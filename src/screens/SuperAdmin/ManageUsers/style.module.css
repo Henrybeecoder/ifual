@@ -23,22 +23,3 @@
   width: 100%;
   justify-content: space-between;
 }
-
-.btnsFooter .btnBack {
-  width: 38%;
-  height: 50px;
-  border-radius: 8px;
-  border: 1px solid #344437;
-}
-.btnsFooterAA .btnSaveAA {
-  width: 58%;
-  height: 50px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  background-color: #2f3930;
-  color: white;
-}
-
-.btnsFooter .btnSave:disabled {
-  opacity: 0.6;
-}

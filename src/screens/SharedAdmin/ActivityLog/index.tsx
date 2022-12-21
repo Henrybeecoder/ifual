@@ -6,6 +6,7 @@ import {
   SvgOptions,
 } from "../../../assets/Svgs";
 import { limitText } from "../../../Custom hooks/helpers";
+import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-outline.svg";
 
 const data = [
   {
@@ -56,8 +57,10 @@ const ManageProducts = () => {
       <div className={styles.header}>
         <h3>ACTIVITY LOG</h3>
         <div className={styles.filterFlex}>
-          <h3>Filter</h3>
-          <SvgFilterIcon />
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <h3>Filter</h3>
+            <FilterSvg />
+          </div>
         </div>
       </div>
       <div className={styles.container}>

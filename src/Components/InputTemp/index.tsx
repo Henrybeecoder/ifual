@@ -1,4 +1,9 @@
-import { ChangeEventHandler, HTMLInputTypeAttribute, ReactNode } from "react";
+import {
+  ChangeEventHandler,
+  CSSProperties,
+  HTMLInputTypeAttribute,
+  ReactNode,
+} from "react";
 import Select, {
   ActionMeta,
   GroupBase,
@@ -87,6 +92,8 @@ interface SelectTempProps {
   options?: any[];
   isMulti?: boolean;
   width?: string | number;
+  className?: string;
+  style?: CSSProperties;
 }
 
 export const SelectTemp = ({
@@ -103,7 +110,9 @@ export const SelectTemp = ({
   marginLeftSm,
   marginRightSm,
   isMulti,
-  width,
+  width = "100%",
+  className,
+  style,
 }: SelectTempProps) => {
   //   const selectRef = useRef(null);
   return (
@@ -112,8 +121,8 @@ export const SelectTemp = ({
         marginLeftSm ? styles.marginLeftSm : marginLeft && styles.marginLeft
       } ${
         marginRightSm ? styles.marginRightSm : marginRight && styles.marginRight
-      }`}
-      style={{ width: width ? width : "100%" }}>
+      } ${className}`}
+      style={{ width, ...style }}>
       <label>{label}</label>
       <Select
         value={value}

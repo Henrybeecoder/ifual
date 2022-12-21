@@ -112,18 +112,17 @@
   border-radius: 8px;
 }
 
-.activeStatus {
+.status {
   display: flex;
   align-items: center;
   justify-content: end;
   margin: 10px 0;
 }
 
-.activeStatus h3 {
+.status h3 {
   font-weight: 300;
   font-size: 21px;
   line-height: 21px;
-  color: #36b44a;
 }
 
 .suspendModal {
@@ -194,6 +193,62 @@
   font-size: 14px;
   line-height: 14px;
   margin: 15px 0;
+}
+
+.responseDueContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0.5px solid #3444376b;
+  border-radius: 15px;
+  padding: 15px 40px;
+}
+.responseDueContainer .textArea h2 {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 32px;
+}
+.responseDueContainer .textArea p {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  color: #ca0814;
+}
+
+.indicatorsFlex {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.indicator {
+  border: 2px solid #344437;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.indicator p {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.indicator h2 {
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.btnFooter {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
 }
 
 @media screen and (max-width: 800px) {

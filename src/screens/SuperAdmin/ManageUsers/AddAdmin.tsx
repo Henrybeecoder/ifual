@@ -1,3 +1,4 @@
+import Button from "@components/Button";
 import { InputTemp, SelectTemp } from "@components/InputTemp";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../../containers/LayoutSuperAdmin";
@@ -16,17 +17,18 @@ const AddAdmin = () => {
         <InputTemp label='STAFF NAME' placeholder='Type to select staff' />
         <SelectTemp label='CATEGORY' placeholder='Select Admin Category' />
         <div className={styles.btnsFooter}>
-          <button
+          <Button
+            variant='outline'
+            text='Back'
+            width='42%'
             onClick={() =>
               navigate({
                 pathname: "/super-admin/manage-users",
                 search: "type=admin",
               })
             }
-            className={styles.btnBack}>
-            Back
-          </button>
-          <button className={styles.btnSave}>Save</button>
+          />
+          <Button variant='dark' text='Save' width='55%' />
         </div>
       </div>
     </Layout>

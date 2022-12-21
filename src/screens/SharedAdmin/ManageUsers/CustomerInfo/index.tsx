@@ -19,11 +19,7 @@ type ModalNames = "suspend" | "enable" | "delete";
 const CustomerInfo = () => {
   const [page, setPage] = useState("home");
   const [profileImage, setProfileImage] = useState(profile);
-  const [modalState, setModalState] = useState<ModalState>({
-    suspend: false,
-    enable: false,
-    delete: false,
-  });
+  const [activeModal, setActiveModal] = useState<ModalNames | null>(null);
 
   const navigate = useNavigate();
   const imageRef = useRef<HTMLInputElement>(null);
@@ -34,29 +30,14 @@ const CustomerInfo = () => {
     setProfileImage(URL.createObjectURL(file));
   };
 
-  const closeModal = (name?: ModalNames) => {
-    switch (name) {
-      case "suspend":
-        setModalState({ suspend: false, enable: false, delete: false });
-        break;
-
-      default:
-        setModalState({ suspend: false, enable: false, delete: false });
-    }
+  const closeModal = () => {
+    setActiveModal(null);
   };
 
-  const openModal = (name: ModalNames) => {
-    switch (name) {
-      case "suspend":
-        setModalState({ suspend: true, enable: false, delete: false });
-        break;
-      case "enable":
-        setModalState({ suspend: false, enable: true, delete: false });
-        break;
-      case "delete":
-        setModalState({ suspend: false, enable: false, delete: true });
-        break;
-    }
+  const modalState: ModalState = {
+    suspend: !!(activeModal === "suspend"),
+    enable: !!(activeModal === "enable"),
+    delete: !!(activeModal === "delete"),
   };
 
   const [searchparams] = useSearchParams();
@@ -79,7 +60,7 @@ const CustomerInfo = () => {
       <Modal
         width='650px'
         openModal={modalState.suspend}
-        closeModal={() => closeModal("suspend")}>
+        closeModal={closeModal}>
         <div className={styles.modal}>
           <h3>Suspend Customer</h3>
           <p>
@@ -87,7 +68,7 @@ const CustomerInfo = () => {
             temporaily be unable to use iFuel, until enabled by Admin
           </p>
           <div className={styles.btns}>
-            <Button text='Back' width='60%' onClick={() => closeModal()} />
+            <Button text='Back' width='60%' onClick={closeModal} />
             <Button
               text='Suspend Customer'
               variant='danger'
@@ -103,7 +84,7 @@ const CustomerInfo = () => {
       <Modal
         width='650px'
         openModal={modalState.enable}
-        closeModal={() => closeModal("suspend")}>
+        closeModal={closeModal}>
         <div className={styles.modal}>
           <h3>Enable Customer</h3>
           <p>
@@ -111,7 +92,7 @@ const CustomerInfo = () => {
             now be able to use and access the benefits of iFuel.
           </p>
           <div className={styles.btns}>
-            <Button text='Back' width='37%' onClick={() => closeModal()} />
+            <Button text='Back' width='37%' onClick={closeModal} />
             <Button
               text='Enable Customer'
               variant='dark'
@@ -127,7 +108,7 @@ const CustomerInfo = () => {
       <Modal
         width='650px'
         openModal={modalState.delete}
-        closeModal={() => closeModal("suspend")}>
+        closeModal={closeModal}>
         <div className={styles.modal}>
           <h3>Delete Customer</h3>
           <p>
@@ -136,7 +117,7 @@ const CustomerInfo = () => {
             permanent and details of customer will be lost.
           </p>
           <div className={styles.btns}>
-            <Button text='Back' width='60%' onClick={() => closeModal()} />
+            <Button text='Back' width='60%' onClick={closeModal} />
             <Button text='Delete Customer' variant='danger' width='37%' />
           </div>
         </div>
@@ -185,7 +166,7 @@ const CustomerInfo = () => {
                   width='160px'
                   height='50px'
                   variant='danger'
-                  onClick={() => openModal("suspend")}
+                  onClick={() => setActiveModal("suspend")}
                 />
               ) : (
                 <div className={styles.disabledBtnContainer}>
@@ -195,7 +176,7 @@ const CustomerInfo = () => {
                     width='160px'
                     height='50px'
                     variant='dark'
-                    onClick={() => openModal("enable")}
+                    onClick={() => setActiveModal("enable")}
                   />
                   <Button
                     text='Delete'
@@ -203,7 +184,7 @@ const CustomerInfo = () => {
                     width='160px'
                     height='50px'
                     variant='danger-outline'
-                    onClick={() => openModal("delete")}
+                    onClick={() => setActiveModal("delete")}
                   />
                 </div>
               )}

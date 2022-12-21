@@ -39,3 +39,9 @@ td {
   overflow: hidden;
   border: 1px solid rgba(52, 68, 55, 0.12);
 }
+
+.flex-btns {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}

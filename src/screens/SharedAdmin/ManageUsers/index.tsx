@@ -1,16 +1,17 @@
 import styles from "./style.module.css";
-import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
 import { customer_data, vendor_data, admin_data } from "./data";
 import { RenderPageProps } from "@type/shared";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import OptionsModal from "@components/OptionsModal";
+import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-outline.svg";
+import Button from "@components/Button";
 
 interface ManageUsersProps {
   baseUrl: "admin" | "super-admin";
 }
 
 const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const page = searchParams.get("type");
 
@@ -30,18 +31,34 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
       <div className={styles.header}>
         <h3>SETTINGS</h3>
         <div className={styles.filterFlex}>
-          <h3>Filter</h3>
-          <SvgFilterIcon />
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <h3>Filter</h3>
+            <FilterSvg />
+          </div>
+
           {page === "vendor" ? (
-            <button>Add Vendor</button>
-          ) : (
-            page === "admin" && (
-              <button
-                onClick={() => navigate(`/${baseUrl}/manage-users/add-admin`)}>
-                Add Admin
-              </button>
-            )
-          )}
+            // <Button text='Add Vendor' width='100px' height='37px' />
+            <Link
+              to={{ pathname: "vendor-info", search: "vendor=new" }}
+              style={{
+                border: "1px solid gainsboro",
+                padding: "10px",
+                borderRadius: "8px",
+                fontSize: "16px",
+                fontWeight: "500",
+                textDecoration: "none",
+                color: "#344437",
+              }}>
+              Add Vendor
+            </Link>
+          ) : page === "admin" ? (
+            <Button
+              text='Add Admin'
+              width='100px'
+              height='37px'
+              onClick={() => navigate(`/${baseUrl}/manage-users/add-admin`)}
+            />
+          ) : null}
         </div>
       </div>
       <div className={styles.flexMenu}>
@@ -49,33 +66,18 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
           className={`${
             page !== "vendor" && page !== "admin" && styles.active
           }`}
-          onClick={() =>
-            navigate({
-              pathname: `/${baseUrl}/manage-users`,
-              search: "type=customer",
-            })
-          }>
+          onClick={() => setSearchParams("type=customer", { replace: true })}>
           CUSTOMER
         </button>
         <button
           className={`${page === "vendor" && styles.active}`}
-          onClick={() =>
-            navigate({
-              pathname: `/${baseUrl}/manage-users`,
-              search: "type=vendor",
-            })
-          }>
+          onClick={() => setSearchParams("type=vendor", { replace: true })}>
           VENDOR
         </button>
         {baseUrl === "super-admin" && (
           <button
             className={`${page === "admin" && styles.active}`}
-            onClick={() =>
-              navigate({
-                pathname: "/super-admin/manage-users",
-                search: "type=admin",
-              })
-            }>
+            onClick={() => setSearchParams("type=admin", { replace: true })}>
             ADMIN
           </button>
         )}
@@ -202,7 +204,7 @@ const AdminPage = ({ baseUrl }: { baseUrl: string }) => {
                   <td>{row.category}</td>
                   <td>{row.email}</td>
                   <td>
-                    <button>{row.action}</button>
+                    <Button text='deactivate' height='25px' width='80px' />
                   </td>
                 </tr>
               );

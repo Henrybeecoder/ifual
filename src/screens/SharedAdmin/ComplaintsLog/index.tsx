@@ -1,6 +1,8 @@
 import styles from "./style.module.css";
 import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
 import Button from "@components/Button";
+import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-outline.svg";
+import OptionsModal from "@components/OptionsModal";
 
 const data = [
   {
@@ -83,8 +85,10 @@ const ComplaintLog = () => {
       <div className={styles.header}>
         <h3>COMPLAINTS LOG</h3>
         <div className={styles.filterFlex}>
-          <h3>Filter</h3>
-          <SvgFilterIcon />
+          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+            <h3>Filter</h3>
+            <FilterSvg />
+          </div>
           <Button text='Custom Message' height='40px' />
         </div>
       </div>
@@ -134,9 +138,10 @@ const ComplaintLog = () => {
                     </p>
                   </td>
                   <td>
-                    <button>
-                      <SvgOptions />
-                    </button>
+                    <OptionsModal>
+                      <button>View</button>
+                      <button>Edit</button>
+                    </OptionsModal>
                   </td>
                 </tr>
               );

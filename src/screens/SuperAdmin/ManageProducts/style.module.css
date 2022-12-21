@@ -15,10 +15,7 @@
 .filterFlex {
   display: flex;
   align-items: center;
-}
-
-.filterFlex h3 {
-  margin-right: 10px;
+  gap: 20px;
 }
 
 table {
