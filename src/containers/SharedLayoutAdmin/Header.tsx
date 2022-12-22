@@ -47,7 +47,7 @@ const Header = ({
   return (
     <>
       <div className={styles.headerContainer}>
-        <div className={styles.flexHeader}>
+        <div className={styles.flexHeader} style={{ alignItems: "flex-end" }}>
           {backBtn && (
             <button className={styles.btnBack} onClick={onClickBackBtn}>
               <SvgArrowLeft />

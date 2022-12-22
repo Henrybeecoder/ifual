@@ -1,0 +1,66 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h3 {
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 21px;
+  color: #2f3930;
+}
+
+.filterFlex {
+  display: flex;
+  align-items: center;
+}
+
+.filterFlex h3 {
+  margin-right: 10px;
+}
+
+.filterFlex button {
+  margin-left: 15px;
+  padding: 10px 15px;
+  border: 0.5px solid #344437;
+  border-radius: 8px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.status h3 {
+  font-weight: 300;
+  font-size: 21px;
+  line-height: 21px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.datesFlex {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 18px;
+  color: #2f3930;
+}
+
+.trackFlex {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.trackFlex button {
+  width: fit-content;
+  margin-left: 10px;
+}

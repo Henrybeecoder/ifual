@@ -19,7 +19,7 @@ export default function Button({
   invalid,
   onClick,
   width = "100%",
-  height = "52px",
+  height = "48px",
   className,
   type,
   text,

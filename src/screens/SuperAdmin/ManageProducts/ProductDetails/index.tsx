@@ -1,6 +1,6 @@
 import Button from "@components/Button";
 import { InputTemp, SelectTemp } from "@components/InputTemp";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Layout from "../../../../containers/LayoutSuperAdmin";
 import styles from "./style.module.css";
 import { ReactComponent as FilterSvg } from "../../../../assets/navbericon/filter-outline.svg";
@@ -10,12 +10,20 @@ import Modal from "@components/Modals";
 const NewProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const [searchparams] = useSearchParams();
+  const mode = searchparams.get("mode");
   const id = params?.id;
+
+  const edit = !!(mode === "edit");
 
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   return (
-    <Layout backBtn>
+    <Layout
+      backBtn
+      onClickBackBtn={() =>
+        navigate("/super-admin/manage-products", { replace: false })
+      }>
       <>
         <Modal
           width={"650px"}
@@ -41,7 +49,11 @@ const NewProduct = () => {
         <div className={styles.header}>
           <h3>
             MANAGE PRODUCTS /{" "}
-            <span>{id !== "new" ? "PRODUCT DETAILS" : "ADD NEW "}</span>
+            <span>
+              {id !== "new"
+                ? `${edit ? "EDIT PRODUCT DETAILS" : "PRODUCT DETAILS"}`
+                : "ADD NEW "}
+            </span>
           </h3>
           {id !== "new" ? (
             <div className={styles.filterFlex}>
@@ -63,6 +75,7 @@ const NewProduct = () => {
                   variant='danger'
                   width='130px'
                   height='45px'
+                  invalid={edit}
                   onClick={() => setActiveModal("delete")}
                 />
               </div>

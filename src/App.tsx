@@ -23,6 +23,7 @@ import DashboardAdmin from "./screens/Admin/Dashboard";
 import SettingsAdmin from "./screens/Admin/Settings";
 import CannotLoginAdmin from "./screens/Admin/Login/CannotLogin";
 import ManageOrdersAdmin from "./screens/Admin/ManageOrders";
+import OrderDetailsAdmin from "./screens/Admin/ManageOrders/OrderDetails";
 import ComplaintsLogAdmin from "./screens/Admin/ComplaintsLog";
 import ActivityLogAdmin from "./screens/Admin/ActivityLog";
 import ManageUsersAdmin from "./screens/Admin/ManageUsers";
@@ -35,6 +36,7 @@ import ManageUsersSuperAdmin from "./screens/SuperAdmin/ManageUsers";
 import ManageProducts from "./screens/SuperAdmin/ManageProducts";
 import ProductDetails from "./screens/SuperAdmin/ManageProducts/ProductDetails";
 import ManageOrdersSuperAdmin from "./screens/SuperAdmin/ManageOrders";
+import OrderDetailsSuperAdmin from "./screens/SuperAdmin/ManageOrders/OrderDetails";
 import ComplaintsLogSuperAdmin from "./screens/SuperAdmin/ComplaintsLog";
 import ActivityLogSuperAdmin from "./screens/SuperAdmin/ActivityLog";
 import LoginSuperAdmin from "./screens/SuperAdmin/Login";
@@ -85,7 +87,10 @@ function App() {
             <Route path='customer-info' element={<CustomerInfo />} />
             <Route path='vendor-info' element={<VendorInfoAdmin />} />
           </Route>
-          <Route path='manage-orders' element={<ManageOrdersAdmin />} />
+          <Route path='manage-orders'>
+            <Route index element={<ManageOrdersAdmin />} />
+            <Route path=':id' element={<OrderDetailsAdmin />} />
+          </Route>
           <Route path='complaints-log' element={<ComplaintsLogAdmin />} />
           <Route path='activity-log' element={<ActivityLogAdmin />} />
         </Route>
@@ -106,7 +111,10 @@ function App() {
             <Route index element={<ManageProducts />} />
             <Route path=':id' element={<ProductDetails />} />
           </Route>
-          <Route path='manage-orders' element={<ManageOrdersSuperAdmin />} />
+          <Route path='manage-orders'>
+            <Route index element={<ManageOrdersSuperAdmin />} />
+            <Route path=':id' element={<OrderDetailsSuperAdmin />} />
+          </Route>
           <Route path='complaints-log' element={<ComplaintsLogSuperAdmin />} />
           <Route path='activity-log' element={<ActivityLogSuperAdmin />} />
         </Route>

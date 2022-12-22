@@ -78,7 +78,15 @@ const ManageProducts = () => {
                         <button onClick={() => navigate(`${row.id}`)}>
                           View
                         </button>
-                        <button>Edit</button>
+                        <button
+                          onClick={() =>
+                            navigate({
+                              pathname: `${row.id}`,
+                              search: "mode=edit",
+                            })
+                          }>
+                          Edit
+                        </button>
                         <button>Delete</button>
                       </OptionsModal>
                     </td>

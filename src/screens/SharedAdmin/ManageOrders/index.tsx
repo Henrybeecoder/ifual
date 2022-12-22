@@ -1,8 +1,9 @@
 import styles from "./style.module.css";
-import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
+import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-outline.svg";
 import OptionsModal from "@components/OptionsModal";
+import { useNavigate } from "react-router-dom";
 
-const data = [
+export const data = [
   {
     id: "1",
     order: "Diesel, 200 l",
@@ -78,13 +79,15 @@ const data = [
 ];
 
 const ManageOrders = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className={styles.header}>
         <h3>MANAGE ORDERS</h3>
         <div className={styles.filterFlex}>
           <h3>Filter</h3>
-          <SvgFilterIcon />
+          <FilterSvg />
         </div>
       </div>
       <div className={"tableWrapper"}>
@@ -140,7 +143,9 @@ const ManageOrders = () => {
                   </td>
                   <td>
                     <OptionsModal>
-                      <button>View</button>
+                      <button onClick={() => navigate(`${row.id}`)}>
+                        View
+                      </button>
                       <button>Remap</button>
                     </OptionsModal>
                   </td>
