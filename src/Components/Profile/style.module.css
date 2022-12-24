@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+  width: 100%;
+}
+.metaSection {
+  width: 20%;
+}
+.inputSection {
+  width: 80%;
+}
+
+.inputFlex {
+  display: flex;
+  align-items: center;
+}
+
+.metaSection {
+  margin-top: 30px;
+}
+
+.metaSection img {
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+}
+
+.changeImage button {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.changeImage {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+.metaSection h3 {
+  text-decoration: underline;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  color: #344437;
+  margin: 10px 0;
+}
+
+.metaSection h2 {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 16px;
+  margin: 10px 0 20px 0;
+}
+
+.btns button {
+  display: block;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  text-decoration-line: underline;
+  color: #36b44a;
+  margin: 10px 0;
+}
+.inputSection {
+  width: 100%;
+}
+.quickStatsSection h3,
+.inputSection h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  margin: 10px 0;
+}
+
+.quickStatsContainer {
+  margin: 30px 0;
+  padding: 10px 30px;
+  border: 0.5px solid gainsboro;
+  width: 285px;
+  border-radius: 15px;
+}
+
+.quickStatsContainer p {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 14px;
+  margin: 15px 0;
+}
+
+.section2 {
+  width: 80%;
+}
+
+.inputFlex {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    display: block;
+  }
+  .metaSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+}

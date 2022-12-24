@@ -5,9 +5,9 @@ import { ChangeEvent, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import image from "../../../../assets/image/companyName.png";
 import Modal from "@components/Modals";
-import { ReactComponent as StarSvg } from "../../../../assets/svg/star.svg";
 import { customer_data, vendor_data } from "../data";
 import Button from "@components/Button";
+import { VendorProfile } from "@components/Profile";
 
 interface ModalState {
   suspend: boolean;
@@ -22,15 +22,6 @@ const VendorInfo = () => {
   const [page, setPage] = useState("home");
   const [profileImage, setProfileImage] = useState(image);
   const [activeModal, setActiveModal] = useState<ModalNames | null>(null);
-
-  const navigate = useNavigate();
-  const imageRef = useRef<HTMLInputElement>(null);
-
-  const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target?.files?.[0];
-    if (!file) return;
-    setProfileImage(URL.createObjectURL(file));
-  };
 
   const closeModal = () => {
     setActiveModal(null);
@@ -60,48 +51,33 @@ const VendorInfo = () => {
 
   return (
     <>
-      <Modal
-        width='650px'
-        openModal={modalState.decline}
-        closeModal={closeModal}>
-        <div className={styles.suspendModal}>
-          <h3>Decline Vendor</h3>
-          <p>
-            You are about to decline the vendor Aristocrat Plc. To proceed,
-            kindly give a reason for this.
-          </p>
-          <p>
-            Please note that the Vendor would be notified of the reason given.
-          </p>
-          <SelectTemp
-            placeholder='Select from Custom response'
-            style={{ margin: "20px 0", padding: "0 20px" }}
-          />
-          <div className={styles.btns}>
-            <Button text='Back' width='60%' />
-            <Button
-              text='Decline Vendor'
-              width='36%'
-              variant='danger'
-              invalid
-            />
-          </div>
+      <Modal openModal={modalState.decline} closeModal={closeModal}>
+        <h3>Decline Vendor</h3>
+        <p>
+          You are about to decline the vendor Aristocrat Plc. To proceed, kindly
+          give a reason for this.
+        </p>
+        <p>
+          Please note that the Vendor would be notified of the reason given.
+        </p>
+        <SelectTemp
+          placeholder='Select from Custom response'
+          style={{ margin: "20px 0", padding: "0 20px" }}
+        />
+        <div className={styles.btns}>
+          <Button text='Back' width='60%' />
+          <Button text='Decline Vendor' width='36%' variant='danger' invalid />
         </div>
       </Modal>
-      <Modal
-        width='650px'
-        openModal={modalState.suspend}
-        closeModal={closeModal}>
-        <div className={styles.suspendModal}>
-          <h3>Suspend Vendor</h3>
-          <p>
-            You are about to suspend the customer Beatrice Bimpe. Customer will
-            temporaily be unable to use iFuel, until enabled by Admin
-          </p>
-          <div className={styles.btns}>
-            <Button text='Back' width='30%' />
-            <Button text='Suspend Vendor' width='60%' />
-          </div>
+      <Modal openModal={modalState.suspend} closeModal={closeModal}>
+        <h3>Suspend Vendor</h3>
+        <p>
+          You are about to suspend the customer Beatrice Bimpe. Customer will
+          temporaily be unable to use iFuel, until enabled by Admin
+        </p>
+        <div className={styles.btns}>
+          <Button text='Back' width='30%' />
+          <Button text='Suspend Vendor' width='60%' />
         </div>
       </Modal>
       <LayoutSuperAdmin>
@@ -136,123 +112,20 @@ const VendorInfo = () => {
             </div>
           ) : null}
         </>
-        <div className={styles.container}>
-          <div
-            className={styles.metaSection}
-            style={{ opacity: page === "edit" ? 0.5 : 1 }}>
-            <div style={{ position: "relative", width: "fit-content" }}>
-              {page === "edit" && (
-                <div className={styles.changeImage}>
-                  <input
-                    hidden
-                    ref={imageRef}
-                    type='file'
-                    accept='image/*'
-                    onChange={handleImage}
-                  />
-                  <button
-                    onClick={() =>
-                      imageRef.current && imageRef.current.click()
-                    }>
-                    Change Image
-                  </button>
-                </div>
-              )}
-              <img src={profileImage} />
-            </div>
-            <div>
-              <h3>Account Details</h3>
-              <p>0123456789</p>
-              <h2>Sterling Bank</h2>
-              {data?.status && data.status === "onboarded" ? (
-                <>
-                  <Button
-                    text='Suspend'
-                    // style={{ alignSelf: "flex-start" }}
-                    width='165px'
-                    height='47px'
-                    variant='danger'
-                    onClick={() => setActiveModal("suspend")}
-                  />
-                </>
-              ) : null}
-            </div>
-          </div>
-
-          {/* section 2 */}
-          <div className={styles.section2}>
-            {vendorId !== "new" ? (
-              <>
-                <div className={styles.quickStatsSection}>
-                  <h3>QUICK STATS</h3>
-                  <div className={styles.quickStatsContainer}>
-                    <p>
-                      Orders Completed: <span>20</span>
-                    </p>
-                    <div className='divider' />
-                    <p>
-                      Orders Rejacted: <span>5</span>
-                    </p>
-                    <div className='divider' />
-                    <p>
-                      Total Revenue: <span>N2,000,000.00</span>
-                    </p>
-                    <div className='divider' />
-                    <p>
-                      Rating:{" "}
-                      <span>
-                        5 <StarSvg />{" "}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                <div className='divider' />
-              </>
-            ) : null}
-            <div className={styles.inputSection}>
-              <h3>COMPANY DETAILS</h3>
-              <div className={styles.inputFlex}>
-                <InputTemp
-                  marginRightSm
-                  label={"COMPANY NAME"}
-                  placeholder='Aristocrat Plc'
-                />
-                <InputTemp
-                  marginLeftSm
-                  label='REPRESENTATIVE NAME'
-                  placeholder='Aliu Jinadu'
-                />
-              </div>
-              <div className={styles.inputFlex}>
-                <InputTemp
-                  marginRightSm
-                  label='DATE OF REGISTRATION'
-                  placeholder='23/12/2012'
-                />
-                <InputTemp
-                  marginLeftSm
-                  label='REGISTRATION NUMBER'
-                  placeholder='37198jdhs83892'
-                />
-              </div>
-              <TextareaTemp
-                label='OPERATION LOCATIONS'
-                placeholder='Kosafe, Lagos'
-                rows={3}
+        <VendorProfile profileImg={image}>
+          {data?.status && data.status === "onboarded" ? (
+            <>
+              <Button
+                text='Suspend'
+                // style={{ alignSelf: "flex-start" }}
+                width='165px'
+                height='47px'
+                variant='danger'
+                onClick={() => setActiveModal("suspend")}
               />
-              {data?.status === "pending" ? (
-                <div className={styles.btnFooter}>
-                  <Button
-                    text='Decline'
-                    width='40%'
-                    onClick={() => setActiveModal("decline")}
-                  />
-                  <Button text='Approve' variant='dark' width='57%' />
-                </div>
-              ) : null}
-            </div>
-          </div>
-        </div>
+            </>
+          ) : null}
+        </VendorProfile>
       </LayoutSuperAdmin>
     </>
   );

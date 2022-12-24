@@ -44,3 +44,20 @@ button:disabled {
   background: transparent;
   border: 1px solid #ca0814;
 }
+
+.linkBtn {
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.link-primary {
+  color: #36b44a;
+}
+
+.link-danger {
+  color: #36b44a;
+}

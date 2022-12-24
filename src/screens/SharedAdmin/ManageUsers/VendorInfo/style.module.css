@@ -42,14 +42,6 @@
 .metaSection {
   width: 20%;
 }
-.section2 {
-  width: 80%;
-}
-
-.inputFlex {
-  display: flex;
-  align-items: center;
-}
 
 .metaSection {
   margin-top: 30px;
@@ -169,30 +161,6 @@
 }
 .inputSection {
   padding: 10px 0;
-}
-
-.quickStatsSection h3,
-.inputSection h3 {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 16px;
-  margin: 10px 0;
-}
-
-.quickStatsContainer {
-  margin: 30px 0;
-  padding: 10px 30px;
-  border: 0.5px solid gainsboro;
-  width: 285px;
-  border-radius: 15px;
-}
-
-.quickStatsContainer p {
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 14px;
-  margin: 15px 0;
 }
 
 .responseDueContainer {

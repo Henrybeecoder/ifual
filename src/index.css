@@ -16,6 +16,11 @@ code {
   border-bottom: 0.5px solid lightgray;
 }
 
+.divider-dark {
+  opacity: 0.5;
+  border-bottom: 0.5px solid #344437;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -40,8 +45,38 @@ td {
   border: 1px solid rgba(52, 68, 55, 0.12);
 }
 
-.flex-btns {
+.flex-btwn {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+.span-green {
+  color: #36b44a;
+}
+
+.span-danger {
+  color: #ca0814;
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 80%;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  padding: 30px 0;
+}
+
+.breadCrumb {
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 21px;
+  color: #2f3930;
+}
+
+.breadCrumb span {
+  color: rgba(47, 57, 48, 0.5);
 }

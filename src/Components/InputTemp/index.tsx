@@ -24,6 +24,7 @@ interface InputTempProps {
   id?: string;
   inputType?: HTMLInputTypeAttribute | undefined;
   placeholder?: string;
+  defaultValue?: string;
   value?: string;
   children?: ReactNode;
   visibilityPadding?: boolean;
@@ -40,6 +41,7 @@ export const InputTemp = ({
   label,
   inputType,
   placeholder,
+  defaultValue,
   value,
   onChange,
   children,
@@ -64,6 +66,7 @@ export const InputTemp = ({
           id={id}
           name={name}
           value={value}
+          defaultValue={defaultValue}
           style={{ paddingRight: visibilityPadding ? "48px" : "7px" }}
           onChange={onChange}
         />

@@ -107,7 +107,7 @@ const MainInputComponent = () => {
         label='IFUEL COMMISSION PER LITRE'
         placeholder='Enter charge per litre e.g 20'
       />
-      <div className={"flex-btns"}>
+      <div className={"flex-btwn"}>
         <Button
           text='Back'
           width='40%'

@@ -24,6 +24,9 @@ import SettingsAdmin from "./screens/Admin/Settings";
 import CannotLoginAdmin from "./screens/Admin/Login/CannotLogin";
 import ManageOrdersAdmin from "./screens/Admin/ManageOrders";
 import OrderDetailsAdmin from "./screens/Admin/ManageOrders/OrderDetails";
+import CustomerProfileAdmin from "./screens/Admin/ManageOrders/CustomerProfile";
+import TrackOrderAdmin from "./screens/Admin/ManageOrders/TrackOrder";
+import VendorProfileAdmin from "./screens/Admin/ManageOrders/VendorProfile";
 import ComplaintsLogAdmin from "./screens/Admin/ComplaintsLog";
 import ActivityLogAdmin from "./screens/Admin/ActivityLog";
 import ManageUsersAdmin from "./screens/Admin/ManageUsers";
@@ -37,6 +40,9 @@ import ManageProducts from "./screens/SuperAdmin/ManageProducts";
 import ProductDetails from "./screens/SuperAdmin/ManageProducts/ProductDetails";
 import ManageOrdersSuperAdmin from "./screens/SuperAdmin/ManageOrders";
 import OrderDetailsSuperAdmin from "./screens/SuperAdmin/ManageOrders/OrderDetails";
+import CustomerProfileSuperAdmin from "./screens/SuperAdmin/ManageOrders/CustomerProfile";
+import TrackOrderSuperAdmin from "./screens/SuperAdmin/ManageOrders/TrackOrder";
+import VendorProfileSuperAdmin from "./screens/SuperAdmin/ManageOrders/VendorProfile";
 import ComplaintsLogSuperAdmin from "./screens/SuperAdmin/ComplaintsLog";
 import ActivityLogSuperAdmin from "./screens/SuperAdmin/ActivityLog";
 import LoginSuperAdmin from "./screens/SuperAdmin/Login";
@@ -89,7 +95,15 @@ function App() {
           </Route>
           <Route path='manage-orders'>
             <Route index element={<ManageOrdersAdmin />} />
-            <Route path=':id' element={<OrderDetailsAdmin />} />
+            <Route path=':id'>
+              <Route index element={<OrderDetailsAdmin />} />
+              <Route
+                path='profile-customer'
+                element={<CustomerProfileAdmin />}
+              />
+              <Route path='profile-vendor' element={<VendorProfileAdmin />} />
+              <Route path='track-order' element={<TrackOrderAdmin />} />
+            </Route>
           </Route>
           <Route path='complaints-log' element={<ComplaintsLogAdmin />} />
           <Route path='activity-log' element={<ActivityLogAdmin />} />
@@ -113,7 +127,18 @@ function App() {
           </Route>
           <Route path='manage-orders'>
             <Route index element={<ManageOrdersSuperAdmin />} />
-            <Route path=':id' element={<OrderDetailsSuperAdmin />} />
+            <Route path=':id'>
+              <Route index element={<OrderDetailsSuperAdmin />} />
+              <Route
+                path='profile-vendor'
+                element={<VendorProfileSuperAdmin />}
+              />
+              <Route
+                path='profile-customer'
+                element={<CustomerProfileSuperAdmin />}
+              />
+              <Route path='track-order' element={<TrackOrderSuperAdmin />} />
+            </Route>
           </Route>
           <Route path='complaints-log' element={<ComplaintsLogSuperAdmin />} />
           <Route path='activity-log' element={<ActivityLogSuperAdmin />} />

@@ -1,12 +1,12 @@
 import Layout from "../../../../containers/LayoutSuperAdmin";
 import SharedOrderDetails from "../../../SharedAdmin/ManageOrders/OrderDetails";
 
-const ManageOrders = () => {
+const OrderDetails = () => {
   return (
     <Layout>
-      <SharedOrderDetails />
+      <SharedOrderDetails baseUrl='super-admin' />
     </Layout>
   );
 };
 
-export default ManageOrders;
+export default OrderDetails;

@@ -7,29 +7,31 @@ interface ModalProps {
   children?: ReactNode;
   openModal?: boolean;
   closeModal?: () => void;
-  width?: string | number;
+  width?: "lg" | "md" | "sm" | "xl";
+  variant?: "default" | "unstyled";
 }
 
 export default function Modal({
   children,
   openModal,
   closeModal,
-  width,
+  width = "lg",
+  variant = "default",
 }: ModalProps) {
   return (
     <>
       {openModal && (
         <div className={styles.overlay}>
-          <div
-            className={styles.outerContainer}
-            style={!width ? { width: "40%" } : { width }}>
+          <div className={`${styles.outerContainer} ${styles[width]}`}>
             {closeModal && (
               <button className={styles.closeModalX} onClick={closeModal}>
                 <img src={X} />
               </button>
             )}
 
-            <div className={styles.ErrorContain}>{children}</div>
+            <div className={`${styles.modal} ${styles[variant]}`}>
+              {children}
+            </div>
           </div>
         </div>
       )}

@@ -11,6 +11,7 @@ export const data = [
     location: "Ikoyi, Lagos",
     due_date: "00:00:00, 23/10/2022",
     status: "Pending",
+    type: "un-accepted",
   },
   {
     id: "2",
@@ -19,6 +20,7 @@ export const data = [
     location: "Ikoyi, Lagos",
     due_date: "00:00:00, 23/10/2022",
     status: "Pending",
+    type: "accepted",
   },
   {
     id: "3",
@@ -27,6 +29,7 @@ export const data = [
     location: "Ikoyi, Lagos",
     due_date: "00:00:00, 23/10/2022",
     status: "Overdue",
+    type: "old",
   },
   {
     id: "4",
@@ -35,6 +38,7 @@ export const data = [
     location: "Ikoyi, Lagos",
     due_date: "...",
     status: "Cancelled",
+    type: "old",
   },
   {
     id: "5",
@@ -43,6 +47,7 @@ export const data = [
     location: "Ikoyi, Lagos",
     due_date: "00:00:00, 23/10/2022",
     status: "Completed",
+    type: "old",
   },
   {
     id: "6",
@@ -51,6 +56,7 @@ export const data = [
     location: "Ikoyi, Lagos",
     due_date: "...",
     status: "Cancelled",
+    type: "new",
   },
   {
     id: "7",
@@ -59,6 +65,7 @@ export const data = [
     location: "Ikoyi, Lagos",
     due_date: "00:00:00, 23/10/2022",
     status: "Completed",
+    type: "new",
   },
   {
     id: "8",
@@ -67,6 +74,7 @@ export const data = [
     location: "Ikoyi, Lagos",
     due_date: "00:00:00, 23/10/2022",
     status: "Completed",
+    type: "old",
   },
   {
     id: "9",
@@ -75,6 +83,7 @@ export const data = [
     location: "Ikoyi, Lagos",
     due_date: "00:00:00, 23/10/2022",
     status: "Pending",
+    type: "old",
   },
 ];
 
