@@ -7,7 +7,7 @@ const TrackOrder = () => {
   return (
     <div className={styles.container}>
       <div className='flex-btwn'>
-        <h3 className='breadCrumb'>
+        <h3 className='breadcrumb'>
           <span>MANAGE ORDERS</span> / ORDER DETAILS
         </h3>
       </div>

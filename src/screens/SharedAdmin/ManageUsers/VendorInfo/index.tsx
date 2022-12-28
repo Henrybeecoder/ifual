@@ -8,6 +8,7 @@ import Modal from "@components/Modals";
 import { customer_data, vendor_data } from "../data";
 import Button from "@components/Button";
 import { VendorProfile } from "@components/Profile";
+import { PagnHeader } from "@components/PageHeader";
 
 interface ModalState {
   suspend: boolean;
@@ -20,7 +21,6 @@ type ModalNames = "suspend" | "enable" | "delete" | "decline";
 
 const VendorInfo = () => {
   const [page, setPage] = useState("home");
-  const [profileImage, setProfileImage] = useState(image);
   const [activeModal, setActiveModal] = useState<ModalNames | null>(null);
 
   const closeModal = () => {
@@ -76,57 +76,66 @@ const VendorInfo = () => {
           temporaily be unable to use iFuel, until enabled by Admin
         </p>
         <div className={styles.btns}>
-          <Button text='Back' width='30%' />
-          <Button text='Suspend Vendor' width='60%' />
+          <Button text='Back' width='36%' />
+          <Button text='Suspend Vendor' variant='danger' width='60%' />
         </div>
       </Modal>
-      <LayoutSuperAdmin>
-        <div className={styles.header}>
-          <h3>
-            <span>MANAGE VENDOR /</span> VENDOR INFO
-          </h3>
-        </div>
-        <div className={styles.status}>
+      <PagnHeader
+        current={23}
+        pageTitle='VENDOR INFO'
+        total={4200}
+        parentPageTitle='MANAGE VENDORS'
+      />
+      <div className={styles.status}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "end",
+            gap: "7px",
+            color: statusColor(),
+          }}>
           {data && vendorId !== "new" ? (
-            <h3 style={{ color: statusColor() }}>
-              #{data.status.toUpperCase()}
-            </h3>
+            <h3 style={{}}>#{data.status.toUpperCase()}</h3>
           ) : (
             <h3 style={{ color: "#2F3930" }}>#Pending</h3>
           )}
+          {data?.status && data?.status === "rejected" ? (
+            <p>Reason: Fraudulent Company. Flagged for Fraud.</p>
+          ) : null}
         </div>
-        {/* response due section */}
-        <>
-          {vendorId === "new" ? (
-            <div className={styles.responseDueContainer}>
-              <div className={styles.textArea}>
-                <h2>RESPONSE DUE</h2>
-                <p>Wed. 26th Oct. 2022</p>
-              </div>
-              <div className={styles.indicatorsFlex}>
-                <Indicator text='Days' value='2' />
-                <Indicator text='Hours' value='12' />
-                <Indicator text='Minutes' value='15' />
-                <Indicator text='Seconds' value='45' />
-              </div>
+      </div>
+      {/* response due section */}
+      <>
+        {data?.type === "new" ? (
+          <div className={styles.responseDueContainer}>
+            <div className={styles.textArea}>
+              <h2>RESPONSE DUE</h2>
+              <p>Wed. 26th Oct. 2022</p>
             </div>
-          ) : null}
-        </>
-        <VendorProfile profileImg={image}>
-          {data?.status && data.status === "onboarded" ? (
-            <>
-              <Button
-                text='Suspend'
-                // style={{ alignSelf: "flex-start" }}
-                width='165px'
-                height='47px'
-                variant='danger'
-                onClick={() => setActiveModal("suspend")}
-              />
-            </>
-          ) : null}
-        </VendorProfile>
-      </LayoutSuperAdmin>
+            <div className={styles.indicatorsFlex}>
+              <Indicator text='Days' value='2' />
+              <Indicator text='Hours' value='12' />
+              <Indicator text='Minutes' value='15' />
+              <Indicator text='Seconds' value='45' />
+            </div>
+          </div>
+        ) : null}
+      </>
+      <VendorProfile profileImg={image}>
+        {data?.status && data.status === "onboarded" ? (
+          <>
+            <Button
+              text='Suspend'
+              // style={{ alignSelf: "flex-start" }}
+              width='165px'
+              height='47px'
+              variant='danger'
+              onClick={() => setActiveModal("suspend")}
+            />
+          </>
+        ) : null}
+      </VendorProfile>
     </>
   );
 };

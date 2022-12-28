@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  gap: 25px;
   width: 100%;
 }
 .metaSection {
@@ -16,33 +17,6 @@
 
 .metaSection {
   margin-top: 30px;
-}
-
-.metaSection img {
-  width: 160px;
-  height: 160px;
-  border-radius: 20px;
-}
-
-.changeImage button {
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 18px;
-  color: #ffffff;
-  text-align: center;
-}
-
-.changeImage {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
 }
 
 .metaSection h3 {

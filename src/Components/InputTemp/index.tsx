@@ -33,6 +33,7 @@ interface InputTempProps {
   marginLeftSm?: boolean;
   marginRightSm?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  mode?: "light" | "dark";
 }
 
 export const InputTemp = ({
@@ -50,6 +51,7 @@ export const InputTemp = ({
   marginLeft,
   marginLeftSm,
   marginRightSm,
+  mode = "dark",
 }: InputTempProps) => {
   return (
     <div
@@ -58,7 +60,9 @@ export const InputTemp = ({
       } ${
         marginRightSm ? styles.marginRightSm : marginRight && styles.marginRight
       }`}>
-      <label>{label}</label>
+      <label className={mode === "light" ? "text-light" : "text-dark"}>
+        {label}
+      </label>
       <div className={styles.relative}>
         <input
           placeholder={placeholder}
@@ -97,6 +101,7 @@ interface SelectTempProps {
   width?: string | number;
   className?: string;
   style?: CSSProperties;
+  mode?: "light" | "dark";
 }
 
 export const SelectTemp = ({
@@ -116,6 +121,7 @@ export const SelectTemp = ({
   width = "100%",
   className,
   style,
+  mode = "dark",
 }: SelectTempProps) => {
   //   const selectRef = useRef(null);
   return (
@@ -126,7 +132,9 @@ export const SelectTemp = ({
         marginRightSm ? styles.marginRightSm : marginRight && styles.marginRight
       } ${className}`}
       style={{ width, ...style }}>
-      <label>{label}</label>
+      <label className={mode === "light" ? "text-light" : "text-dark"}>
+        {label}
+      </label>
       <Select
         value={value}
         onChange={onValueChange}
@@ -216,6 +224,7 @@ export const TextareaTemp = ({
   marginLeft,
   marginLeftSm,
   marginRightSm,
+  mode = "dark",
 }: TextareaTempProps) => {
   return (
     <div
@@ -224,7 +233,9 @@ export const TextareaTemp = ({
       } ${
         marginRightSm ? styles.marginRightSm : marginRight && styles.marginRight
       }`}>
-      <label>{label}</label>
+      <label className={mode === "light" ? "text-light" : "text-dark"}>
+        {label}
+      </label>
       <div className={styles.relative}>
         <textarea
           placeholder={placeholder}

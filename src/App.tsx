@@ -22,6 +22,7 @@ import LoginAdmin from "./screens/Admin/Login";
 import DashboardAdmin from "./screens/Admin/Dashboard";
 import SettingsAdmin from "./screens/Admin/Settings";
 import CannotLoginAdmin from "./screens/Admin/Login/CannotLogin";
+import CustomMessageAdmin from "./screens/Admin/ComplaintsLog/CustomMessage";
 import ManageOrdersAdmin from "./screens/Admin/ManageOrders";
 import OrderDetailsAdmin from "./screens/Admin/ManageOrders/OrderDetails";
 import CustomerProfileAdmin from "./screens/Admin/ManageOrders/CustomerProfile";
@@ -44,13 +45,17 @@ import CustomerProfileSuperAdmin from "./screens/SuperAdmin/ManageOrders/Custome
 import TrackOrderSuperAdmin from "./screens/SuperAdmin/ManageOrders/TrackOrder";
 import VendorProfileSuperAdmin from "./screens/SuperAdmin/ManageOrders/VendorProfile";
 import ComplaintsLogSuperAdmin from "./screens/SuperAdmin/ComplaintsLog";
+import CustomMessageSuperAdmin from "./screens/SuperAdmin/ComplaintsLog/CustomMessage";
 import ActivityLogSuperAdmin from "./screens/SuperAdmin/ActivityLog";
 import LoginSuperAdmin from "./screens/SuperAdmin/Login";
 import AddAdmin from "./screens/SuperAdmin/ManageUsers/AddAdmin";
 import CustomerInfo from "./screens/SuperAdmin/ManageUsers/CustomerInfo";
 import VendorInfoSuperAdmin from "./screens/SuperAdmin/ManageUsers/VendorInfo";
+import AddVendorSuperAdmin from "./screens/SuperAdmin/ManageUsers/AddVendor";
 import CannotLoginSuperAdmin from "./screens/SuperAdmin/Login/CannotLogin";
 import NotificationSuperAdmin from "./screens/SuperAdmin/Notification";
+// shared admin
+// import CustomMessage from "./screens/SharedAdmin/ComplaintsLog/CustomMessage";
 
 function App() {
   return (
@@ -105,7 +110,10 @@ function App() {
               <Route path='track-order' element={<TrackOrderAdmin />} />
             </Route>
           </Route>
-          <Route path='complaints-log' element={<ComplaintsLogAdmin />} />
+          <Route path='complaints-log'>
+            <Route index element={<ComplaintsLogAdmin />} />
+            <Route path='custom-message' element={<CustomMessageAdmin />} />
+          </Route>
           <Route path='activity-log' element={<ActivityLogAdmin />} />
         </Route>
 
@@ -120,6 +128,7 @@ function App() {
             <Route path='add-admin' element={<AddAdmin />} />
             <Route path='customer-info' element={<CustomerInfo />} />
             <Route path='vendor-info' element={<VendorInfoSuperAdmin />} />
+            <Route path='add-vendor' element={<AddVendorSuperAdmin />} />
           </Route>
           <Route path='manage-products'>
             <Route index element={<ManageProducts />} />
@@ -140,7 +149,13 @@ function App() {
               <Route path='track-order' element={<TrackOrderSuperAdmin />} />
             </Route>
           </Route>
-          <Route path='complaints-log' element={<ComplaintsLogSuperAdmin />} />
+          <Route path='complaints-log'>
+            <Route index element={<ComplaintsLogSuperAdmin />} />
+            <Route
+              path='custom-message'
+              element={<CustomMessageSuperAdmin />}
+            />
+          </Route>
           <Route path='activity-log' element={<ActivityLogSuperAdmin />} />
         </Route>
       </Routes>

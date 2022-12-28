@@ -3,6 +3,8 @@ import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
 import Button from "@components/Button";
 import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-outline.svg";
 import OptionsModal from "@components/OptionsModal";
+import { SharedAdminComponentProps } from "@type/shared";
+import { Link } from "react-router-dom";
 
 const data = [
   {
@@ -79,7 +81,7 @@ const data = [
   },
 ];
 
-const ComplaintLog = () => {
+const ComplaintLog = ({ baseUrl }: SharedAdminComponentProps) => {
   return (
     <>
       <div className={styles.header}>
@@ -89,7 +91,10 @@ const ComplaintLog = () => {
             <h3>Filter</h3>
             <FilterSvg />
           </div>
-          <Button text='Custom Message' height='40px' />
+
+          <Link to='custom-message'>
+            <Button text='Custom Message' height='40px' />
+          </Link>
         </div>
       </div>
       <div className={"tableWrapper"}>

@@ -8,6 +8,7 @@ import Modal from "@components/Modals";
 import { customer_data } from "../data";
 import Button from "@components/Button";
 import { CustomerProfile } from "@components/Profile";
+import { PagnHeader } from "@components/PageHeader";
 
 interface ModalState {
   suspend: boolean;
@@ -99,11 +100,12 @@ const CustomerInfo = () => {
       </Modal>
 
       <LayoutSuperAdmin>
-        <div className={styles.header}>
-          <h3>
-            <span>MANAGE CUSTOMER /</span> CUSTOMER INFO
-          </h3>
-        </div>
+        <PagnHeader
+          pageTitle='CUSTOMER INFO'
+          parentPageTitle='MANAGE CUSTOMER'
+          current={23}
+          total={4200}
+        />
         <div className={styles.customerStatus}>
           {data && (
             <h3 style={{ color: statusColor() }}>
@@ -117,8 +119,7 @@ const CustomerInfo = () => {
               <Button
                 text='Suspend'
                 style={{ alignSelf: "flex-start" }}
-                width='160px'
-                height='50px'
+                width='150px'
                 variant='danger'
                 onClick={() => setActiveModal("suspend")}
               />

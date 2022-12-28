@@ -79,6 +79,7 @@ export const vendor_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     status: "pending",
+    type: "old",
   },
   {
     id: "2",
@@ -86,6 +87,7 @@ export const vendor_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     status: "pending",
+    type: "new",
   },
   {
     id: "3",
@@ -93,6 +95,7 @@ export const vendor_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     status: "pending",
+    type: "old",
   },
   {
     id: "4",
@@ -100,6 +103,7 @@ export const vendor_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     status: "onboarded",
+    type: "old",
   },
   {
     id: "5",
@@ -107,6 +111,7 @@ export const vendor_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     status: "onboarded",
+    type: "old",
   },
   {
     id: "6",
@@ -114,6 +119,7 @@ export const vendor_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     status: "rejected",
+    type: "old",
   },
   {
     id: "7",
@@ -121,6 +127,7 @@ export const vendor_data = [
     location: "Lagos",
     email: "Esther@gmail.com",
     status: "onboarded",
+    type: "old",
   },
 ];
 

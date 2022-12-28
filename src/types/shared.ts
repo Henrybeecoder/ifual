@@ -7,3 +7,7 @@ export type RenderPageProps = {
 export interface AuthContainerProps {
   page: "login" | "register";
 }
+
+export interface SharedAdminComponentProps {
+  baseUrl: "admin" | "super-admin";
+}

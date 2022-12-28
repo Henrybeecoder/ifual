@@ -39,7 +39,7 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
           {page === "vendor" ? (
             // <Button text='Add Vendor' width='100px' height='37px' />
             <Link
-              to={{ pathname: "vendor-info", search: "vendor=new" }}
+              to={{ pathname: "add-vendor" }}
               style={{
                 border: "1px solid gainsboro",
                 padding: "10px",

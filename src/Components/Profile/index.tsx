@@ -7,6 +7,7 @@ import Modal from "@components/Modals";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { customer_data } from "src/screens/SharedAdmin/ManageUsers/data";
 import { ReactComponent as StarSvg } from "../../assets/svg/star.svg";
+import UploadImageTemp from "@components/UploadImageTemp";
 
 interface CustomerProfileProps {
   profileImg: string;
@@ -27,7 +28,6 @@ export const CustomerProfile = ({
 }: CustomerProfileProps) => {
   const page = undefined;
 
-  const imageRef = useRef<HTMLInputElement>(null);
   const matches = useMediaQuery("(min-width: 800px)");
 
   const [profileImage, setProfileImage] = useState(profileImg);
@@ -46,35 +46,18 @@ export const CustomerProfile = ({
         <div
           className={styles.metaSection}
           style={{ opacity: page === "edit" ? 0.5 : 1 }}>
-          <div style={{ position: "relative", width: "fit-content" }}>
-            {page === "edit" && (
-              <div className={styles.changeImage}>
-                <input
-                  hidden
-                  ref={imageRef}
-                  type='file'
-                  accept='image/*'
-                  onChange={handleImage}
-                />
-                <button
-                  onClick={() => imageRef.current && imageRef.current.click()}>
-                  Change Image
-                </button>
-              </div>
-            )}
-            <img src={profileImage} />
-          </div>
+          <UploadImageTemp src={profileImage} btnText='Change Image' />
           <div>
             <h3>Account Details</h3>
             <p>0123456789</p>
             <h2>Sterling Bank</h2>
             {children}
 
-            <div className={styles.btns}>
+            {/* <div className={styles.btns}>
               <button>Change account</button>
               <button>Add Payment Card</button>
               <button>Change Password</button>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={styles.inputSection}>
