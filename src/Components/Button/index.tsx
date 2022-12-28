@@ -19,7 +19,7 @@ const Button = ({
   invalid,
   onClick,
   width = "100%",
-  height = "45px",
+  height = "48px",
   className,
   type,
   text,

@@ -34,6 +34,8 @@ interface InputTempProps {
   marginRightSm?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   mode?: "light" | "dark";
+  width?: string;
+  style?: CSSProperties;
 }
 
 export const InputTemp = ({
@@ -52,6 +54,8 @@ export const InputTemp = ({
   marginLeftSm,
   marginRightSm,
   mode = "dark",
+  width,
+  style,
 }: InputTempProps) => {
   return (
     <div
@@ -59,7 +63,8 @@ export const InputTemp = ({
         marginLeftSm ? styles.marginLeftSm : marginLeft && styles.marginLeft
       } ${
         marginRightSm ? styles.marginRightSm : marginRight && styles.marginRight
-      }`}>
+      }`}
+      style={{ width, ...style }}>
       <label className={mode === "light" ? "text-light" : "text-dark"}>
         {label}
       </label>

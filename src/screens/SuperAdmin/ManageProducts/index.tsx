@@ -1,9 +1,9 @@
 import Layout from "../../../containers/LayoutSuperAdmin";
 import styles from "./style.module.css";
-import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-outline.svg";
 import Button from "@components/Button";
 import OptionsModal from "@components/OptionsModal";
 import { useNavigate } from "react-router-dom";
+import { FilterHeader } from "@components/PageHeader";
 
 const data = [
   {
@@ -36,17 +36,10 @@ const ManageProducts = () => {
   return (
     <Layout>
       <>
-        <div className={styles.flexLg}>
-          <div className={styles.header}>
-            <h3>MANAGE PRODUCTS</h3>
-            <div className={styles.filterFlex}>
-              <div
-                style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                <h3>Filter</h3>
-                <FilterSvg />
-              </div>
-            </div>
-          </div>
+        <FilterHeader
+          pageTitle='MANAGE PRODUCTS'
+          options={["diesel", "kerosene", "petrol", "gas"]}
+          selected='diesel'>
           <Button
             text='Add New'
             height='40px'
@@ -54,7 +47,8 @@ const ManageProducts = () => {
             className={""}
             onClick={() => navigate("new")}
           />
-        </div>
+        </FilterHeader>
+
         <div className={styles.tableWrapper}>
           <table>
             <thead>

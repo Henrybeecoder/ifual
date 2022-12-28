@@ -6,6 +6,7 @@ import styles from "./style.module.css";
 import { ReactComponent as FilterSvg } from "../../../../assets/navbericon/filter-outline.svg";
 import { useState } from "react";
 import Modal from "@components/Modals";
+import { PagnHeader } from "@components/PageHeader";
 
 const NewProduct = () => {
   const navigate = useNavigate();
@@ -19,52 +20,42 @@ const NewProduct = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   return (
-    <Layout
-      backBtn
-      onClickBackBtn={() =>
-        navigate("/super-admin/manage-products", { replace: false })
-      }>
-      <>
+    <>
+      <Layout
+        backBtn
+        onClickBackBtn={() =>
+          navigate("/super-admin/manage-products", { replace: false })
+        }>
         <Modal
-          width={"650px"}
+          // width={"650px"}
           openModal={!!(activeModal === "delete")}
           closeModal={() => setActiveModal(null)}>
-          <div className={styles.deleteModal}>
-            <h2>Delete Product Category</h2>
-            <p>
-              You are about to delete the product category - Diesel. Please note
-              that this action is permanent and vendors will no longer have
-              access to this product category.
-            </p>
-            <div className={styles.modalBtns}>
-              <Button
-                text='Back'
-                width='55%'
-                onClick={() => setActiveModal(null)}
-              />
-              <Button text='Delete Category' width='42%' variant='danger' />
-            </div>
+          <h2>Delete Product Category</h2>
+          <p>
+            You are about to delete the product category - Diesel. Please note
+            that this action is permanent and vendors will no longer have access
+            to this product category.
+          </p>
+          <div className={"flex-btwn"}>
+            <Button
+              text='Back'
+              width='55%'
+              onClick={() => setActiveModal(null)}
+            />
+            <Button text='Delete Category' width='42%' variant='danger' />
           </div>
         </Modal>
-        <div className={styles.header}>
-          <h3>
-            MANAGE PRODUCTS /{" "}
-            <span>
-              {id !== "new"
-                ? `${edit ? "EDIT PRODUCT DETAILS" : "PRODUCT DETAILS"}`
-                : "ADD NEW "}
-            </span>
-          </h3>
-          {id !== "new" ? (
-            <div className={styles.filterFlex}>
-              <div
-                style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                <h3>Filter</h3>
-                <FilterSvg />
-              </div>
-            </div>
-          ) : null}
-        </div>
+        <PagnHeader
+          pageTitle={
+            id !== "new"
+              ? `${edit ? "EDIT PRODUCT DETAILS" : "PRODUCT DETAILS"}`
+              : "ADD NEW "
+          }
+          parentPageTitle='MANAGE PRODUCTS'
+          current={8}
+          total={8}
+          editBtn
+        />
         <div className={styles.flex}>
           <MainInputComponent />
           <>
@@ -82,8 +73,8 @@ const NewProduct = () => {
             ) : null}
           </>
         </div>
-      </>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 

@@ -10,6 +10,7 @@ import deliveredProfile from "../../../../assets/image/deliveredProfile.png";
 import { InputTemp, SelectTemp } from "@components/InputTemp";
 import { RenderPageProps } from "@type/shared";
 import Modal from "@components/Modals";
+import { Root, Trigger, Portal, Content } from "@radix-ui/react-popover";
 
 interface SectionProps {
   data: any;
@@ -282,7 +283,36 @@ const Pending = ({ data, setActiveModal, baseUrl }: SectionProps) => {
           onClick={() => navigate(`track-order`)}
         />
         {data.type !== "accepted" ? (
-          <Button text='Re-map' variant='dark' width='120px' />
+          <Root>
+            <Trigger asChild>
+              <button className={styles.remapBtn}>Re-map</button>
+            </Trigger>
+            <Portal>
+              <Content className={styles.remapContainer}>
+                <h3>Remap;</h3>
+                <div className='divider' />
+                <div className={styles.inputArea}>
+                  <div className={styles.flexWInput}>
+                    <p>Current Vendor:</p>
+                    <InputTemp width={"65%"} placeholder='ABC OIL AND GAS' />
+                  </div>
+                  <div className={styles.flexWInput}>
+                    <p>New Vendor:</p>
+                    <SelectTemp
+                      width={"65%"}
+                      placeholder='Enter or select name'
+                    />
+                  </div>
+                  <p>Showing Vendors delivering to destination only</p>
+                </div>
+                <div className='divider' />
+                <div className={styles.btnsRemap}>
+                  <Button text='Cancel' width='37%' />
+                  <Button text='Remap' width='57%' variant='dark' invalid />
+                </div>
+              </Content>
+            </Portal>
+          </Root>
         ) : null}
         <button onClick={() => setActiveModal("cancel")}>
           <TrashSvg />

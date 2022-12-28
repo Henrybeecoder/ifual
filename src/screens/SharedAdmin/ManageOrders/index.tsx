@@ -2,6 +2,7 @@ import styles from "./style.module.css";
 import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-outline.svg";
 import OptionsModal from "@components/OptionsModal";
 import { useNavigate } from "react-router-dom";
+import { PagnHeaderWFilter } from "@components/PageHeader";
 
 export const data = [
   {
@@ -92,13 +93,12 @@ const ManageOrders = () => {
 
   return (
     <>
-      <div className={styles.header}>
-        <h3>MANAGE ORDERS</h3>
-        <div className={styles.filterFlex}>
-          <h3>Filter</h3>
-          <FilterSvg />
-        </div>
-      </div>
+      <PagnHeaderWFilter
+        current={"1 to 20"}
+        total={400}
+        options={[]}
+        pageTitle='MANAGE ORDERS'
+      />
       <div className={"tableWrapper"}>
         <table>
           <thead>
