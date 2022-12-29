@@ -55,3 +55,43 @@
   font-size: 18px;
   line-height: 18px;
 }
+
+.backBtn {
+  display: none;
+}
+
+.headerFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+.flexLg {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .backBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin: 20px 0 10px 0;
+  }
+
+  .backBtn p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    text-decoration: underline;
+  }
+  .flexLg {
+    display: block;
+  }
+  .actionsContainer {
+    flex-direction: column;
+  }
+  .headerFlex {
+    align-items: flex-start;
+  }
+}

@@ -9,6 +9,7 @@ import { customer_data } from "../data";
 import Button from "@components/Button";
 import { CustomerProfile } from "@components/Profile";
 import { PagnHeader } from "@components/PageHeader";
+import useMediaQuery from "src/Custom hooks/useMediaQuery";
 
 interface ModalState {
   suspend: boolean;
@@ -19,7 +20,10 @@ interface ModalState {
 type ModalNames = "suspend" | "enable" | "delete";
 
 const CustomerInfo = () => {
+  const navigate = useNavigate();
   const [activeModal, setActiveModal] = useState<ModalNames | null>(null);
+
+  const matches = useMediaQuery("(min-width: 800px)");
 
   const closeModal = () => {
     setActiveModal(null);
@@ -57,7 +61,7 @@ const CustomerInfo = () => {
         <div className={styles.btns}>
           <Button text='Back' width='60%' onClick={closeModal} />
           <Button
-            text='Suspend Customer'
+            text={matches ? "Suspend Customer" : "Suspend"}
             variant='danger'
             width='37%'
             onClick={() => {
@@ -103,8 +107,10 @@ const CustomerInfo = () => {
         <PagnHeader
           pageTitle='CUSTOMER INFO'
           parentPageTitle='MANAGE CUSTOMER'
+          backBtn
           current={23}
           total={4200}
+          onClickBackBtn={() => navigate(-1)}
         />
         <div className={styles.customerStatus}>
           {data && (

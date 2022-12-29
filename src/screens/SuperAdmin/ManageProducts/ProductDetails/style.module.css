@@ -33,3 +33,12 @@
   width: 50%;
   padding-top: 40px;
 }
+
+@media screen and (max-width: 800px) {
+  .mainSection {
+    width: 100%;
+  }
+  .flex {
+    flex-direction: column;
+  }
+}

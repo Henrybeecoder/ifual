@@ -30,7 +30,7 @@ const NewProduct = () => {
           // width={"650px"}
           openModal={!!(activeModal === "delete")}
           closeModal={() => setActiveModal(null)}>
-          <h2>Delete Product Category</h2>
+          <h3>Delete Product Category</h3>
           <p>
             You are about to delete the product category - Diesel. Please note
             that this action is permanent and vendors will no longer have access
@@ -46,6 +46,7 @@ const NewProduct = () => {
           </div>
         </Modal>
         <PagnHeader
+          backBtn
           pageTitle={
             id !== "new"
               ? `${edit ? "EDIT PRODUCT DETAILS" : "PRODUCT DETAILS"}`
@@ -57,7 +58,7 @@ const NewProduct = () => {
           editBtn
         />
         <div className={styles.flex}>
-          <MainInputComponent />
+          <MainInputComponent id={id} />
           <>
             {id !== "new" ? (
               <div className={styles.actionSection}>
@@ -78,7 +79,7 @@ const NewProduct = () => {
   );
 };
 
-const MainInputComponent = () => {
+const MainInputComponent = ({ id }: { id?: string }) => {
   const navigate = useNavigate();
   return (
     <div className={styles.mainSection}>
@@ -98,14 +99,16 @@ const MainInputComponent = () => {
         label='IFUEL COMMISSION PER LITRE'
         placeholder='Enter charge per litre e.g 20'
       />
-      <div className={"flex-btwn"}>
-        <Button
-          text='Back'
-          width='40%'
-          onClick={() => navigate("/super-admin/manage-products")}
-        />
-        <Button text='Create Category' width='57%' variant='dark' invalid />
-      </div>
+      {id === "new" ? (
+        <div className={"flex-btwn"}>
+          <Button
+            text='Back'
+            width='40%'
+            onClick={() => navigate("/super-admin/manage-products")}
+          />
+          <Button text='Create Category' width='57%' variant='dark' invalid />
+        </div>
+      ) : null}
     </div>
   );
 };

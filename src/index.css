@@ -45,6 +45,7 @@ td {
   border: 1px solid rgba(52, 68, 55, 0.12);
 }
 
+.input-flex-btwn,
 .flex-btwn {
   display: flex;
   width: 100%;
@@ -76,7 +77,8 @@ td {
   color: rgba(47, 57, 48, 0.5);
 }
 
-.w-50 {
+.w-50,
+.w-50-lg {
   width: 50%;
 }
 
@@ -128,4 +130,22 @@ td {
 
 .w-full {
   width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .breadcrumb {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    color: #2f3930;
+  }
+  .breadcrumb span {
+    display: none;
+  }
+  .input-flex-btwn {
+    display: block;
+  }
+  .w-50-lg {
+    width: 100%;
+  }
 }

@@ -1,3 +1,8 @@
+.container {
+  display: flex;
+  gap: 20px;
+}
+
 .inputSection {
   width: 100%;
   display: flex;
@@ -9,4 +14,10 @@
   font-weight: 300;
   font-size: 14px;
   line-height: 14px;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
 }

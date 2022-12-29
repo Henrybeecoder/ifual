@@ -5,6 +5,8 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import OptionsModal from "@components/OptionsModal";
 import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-outline.svg";
 import Button from "@components/Button";
+import { FilterHeader } from "@components/PageHeader";
+import useMediaQuery from "src/Custom hooks/useMediaQuery";
 
 interface ManageUsersProps {
   baseUrl: "admin" | "super-admin";
@@ -13,6 +15,7 @@ interface ManageUsersProps {
 const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const matches = useMediaQuery("(min-width: 800px)");
   const page = searchParams.get("type");
 
   const renderPage: RenderPageProps = {
@@ -28,14 +31,8 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
 
   return (
     <>
-      <div className={styles.header}>
-        <h3>SETTINGS</h3>
-        <div className={styles.filterFlex}>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <h3>Filter</h3>
-            <FilterSvg />
-          </div>
-
+      <FilterHeader pageTitle='MANAGE USERS' options={[]}>
+        <>
           {page === "vendor" ? (
             // <Button text='Add Vendor' width='100px' height='37px' />
             <Link
@@ -59,8 +56,9 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
               onClick={() => navigate(`/${baseUrl}/manage-users/add-admin`)}
             />
           ) : null}
-        </div>
-      </div>
+        </>
+      </FilterHeader>
+
       <div className={styles.flexMenu}>
         <button
           className={`${

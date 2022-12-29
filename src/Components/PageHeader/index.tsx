@@ -3,13 +3,17 @@ import { ReactComponent as LeftSvg } from "../../assets/svg/left.svg";
 import { ReactComponent as RightSvg } from "../../assets/svg/right.svg";
 import { ReactComponent as FilterSvg } from "../../assets/navbericon/filter-outline.svg";
 import { ReactComponent as EditSvg } from "../../assets/navbericon/edit-outline.svg";
+import { ReactComponent as ArrowBackSvg } from "../../assets/svg/left.svg";
 import styles from "./style.module.css";
 import { Root, Trigger, Portal, Content } from "@radix-ui/react-popover";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   parentPageTitle?: string;
   pageTitle: string;
   children?: ReactNode;
+  backBtn?: boolean;
+  onClickBackBtn?: () => void;
 }
 
 interface PagnProps extends Props {
@@ -27,6 +31,11 @@ interface FilterHeaderProps extends Props {
   selected?: string;
 }
 
+interface TitleProps extends Props {
+  editBtn?: boolean;
+  onClickEditBtn?: () => void;
+}
+
 export const PagnHeader = ({
   pageTitle,
   onLeftArrowClick,
@@ -37,41 +46,82 @@ export const PagnHeader = ({
   editBtn,
   onClickEditBtn,
   children,
+  backBtn,
+  onClickBackBtn,
 }: PagnProps) => {
+  const navigate = useNavigate();
   return (
-    <div className='flex-btwn'>
-      <h3 className='breadcrumb'>
-        {parentPageTitle ? <span>{parentPageTitle} /</span> : null} {pageTitle}
-      </h3>
-      <div className='header-sort'>
+    <>
+      {backBtn ? (
+        <button
+          className={styles.backBtn}
+          onClick={!onClickBackBtn ? () => navigate(-1) : onClickBackBtn}>
+          <ArrowBackSvg />
+          <p>Back</p>
+        </button>
+      ) : null}
+      <div className={styles.headerFlex}>
+        <h3 className='breadcrumb'>
+          {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}
+          {pageTitle}
+        </h3>
+        <div className={styles.flexLg}>
+          <div className='header-sort'>
+            {editBtn ? (
+              <button className={styles.editBtn} onClick={onClickEditBtn}>
+                <h3>EDIT</h3>
+                <EditSvg />
+              </button>
+            ) : null}
+            <div>
+              <span>{current}</span>/<p>{total}</p>
+            </div>
+            <button onClick={onLeftArrowClick}>
+              <LeftSvg />
+            </button>
+            <button onClick={onRightArrowClick}>
+              <RightSvg />
+            </button>
+          </div>
+          {children}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export const TitleHeader = ({
+  pageTitle,
+  parentPageTitle,
+  editBtn,
+  onClickEditBtn,
+  backBtn,
+  onClickBackBtn,
+}: TitleProps) => {
+  const navigate = useNavigate();
+  return (
+    <>
+      {backBtn ? (
+        <button
+          className={styles.backBtn}
+          onClick={!onClickBackBtn ? () => navigate(-1) : onClickBackBtn}>
+          <ArrowBackSvg />
+          <p>Back</p>
+        </button>
+      ) : null}
+      <div className={styles.headerFlex}>
+        <h3 className='breadcrumb'>
+          {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}
+          {pageTitle}
+        </h3>
         {editBtn ? (
           <button className={styles.editBtn} onClick={onClickEditBtn}>
             <h3>EDIT</h3>
             <EditSvg />
           </button>
         ) : null}
-        <div>
-          <span>{current}</span>/<p>{total}</p>
-        </div>
-        <button onClick={onLeftArrowClick}>
-          <LeftSvg />
-        </button>
-        <button onClick={onRightArrowClick}>
-          <RightSvg />
-        </button>
-        {children}
       </div>
-    </div>
-  );
-};
-
-export const TitleHeader = ({ pageTitle, parentPageTitle }: Props) => {
-  return (
-    <div className='flex-btwn'>
-      <h3 className='breadcrumb'>
-        {parentPageTitle ? <span>{parentPageTitle} /</span> : null} {pageTitle}
-      </h3>
-    </div>
+    </>
   );
 };
 
@@ -82,21 +132,36 @@ export const FilterHeader = ({
   options,
   onSelect,
   selected,
+  backBtn,
+  onClickBackBtn,
 }: FilterHeaderProps) => {
+  const navigate = useNavigate();
+
   return (
-    <div className='flex-btwn'>
-      <h3 className='breadcrumb'>
-        {parentPageTitle ? <span>{parentPageTitle} /</span> : null} {pageTitle}
-      </h3>
-      <div className={styles.actionsContainer}>
-        <FilterModal
-          options={options}
-          selected={selected}
-          onSelect={onSelect}
-        />
-        {children}
+    <>
+      {backBtn ? (
+        <button
+          className={styles.backBtn}
+          onClick={!onClickBackBtn ? () => navigate(-1) : onClickBackBtn}>
+          <ArrowBackSvg />
+          <p>Back</p>
+        </button>
+      ) : null}
+      <div className={styles.headerFlex}>
+        <h3 className='breadcrumb'>
+          {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}
+          {pageTitle}
+        </h3>
+        <div className={styles.actionsContainer}>
+          <FilterModal
+            options={options}
+            selected={selected}
+            onSelect={onSelect}
+          />
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -162,7 +227,7 @@ export const PagnHeaderWFilter = ({
   onSelect,
 }: PagnFilterProps) => {
   return (
-    <div className='flex-btwn'>
+    <div className={styles.headerFlex}>
       <h3 className='breadcrumb'>
         {parentPageTitle ? <span>{parentPageTitle} /</span> : null} {pageTitle}
       </h3>

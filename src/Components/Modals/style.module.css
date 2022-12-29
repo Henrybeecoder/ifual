@@ -89,4 +89,14 @@
     width: 80% !important;
     text-align: center;
   }
+  .default h3 {
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 32px;
+  }
+  .default p {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+  }
 }

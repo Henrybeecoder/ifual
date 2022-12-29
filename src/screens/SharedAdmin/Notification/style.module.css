@@ -1,16 +1,8 @@
 .notificationsContainer {
   display: flex;
   width: 100%;
-  border: 0.5px solid #344437;
+  border: 0.5px solid #34443769;
   border-radius: 8px;
-  height: 100%;
-  padding: 0;
-}
-
-.flexBetween {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
 }
 
 .flexCenter {
@@ -20,8 +12,7 @@
 }
 
 .notificationsList {
-  width: 100%;
-  padding: 0;
+  width: 50%;
 }
 
 .notificationContainer {
@@ -35,7 +26,7 @@
 }
 
 .textContents {
-  margin: 10px;
+  margin: 5px;
   width: 100%;
   /* flex: 1; */
 }
@@ -45,7 +36,6 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 18px;
-  margin-bottom: 20px;
 }
 
 .textContents p {
@@ -71,7 +61,7 @@
 
 .selectedContainer {
   border-left: 0.5px solid #344437;
-  width: 100%;
+  width: 50%;
 }
 
 .noneSelected {
@@ -86,7 +76,7 @@
 }
 
 .selectedNotificationContainer {
-  padding: 30px;
+  padding: 20px;
   font-size: 18px;
 }
 
@@ -106,162 +96,6 @@
   line-height: 27px;
   color: #344437;
   margin: 10px 0;
-}
-
-.flexCenter button {
-  font-size: 18px;
-  outline: none;
-  margin-top: 30px;
-}
-
-.btnNo {
-  border: 1px solid #344437;
-  margin: 0 20px 0 0;
-  width: 160px;
-  height: 52px;
-}
-
-.btnYes {
-  background-color: #36b44a;
-  color: #ffffff;
-  border: none;
-  width: 220px;
-  height: 52px;
-}
-
-.closeBtn {
-  position: absolute;
-  outline: none;
-  border: none;
-  top: 0;
-  right: 0;
-}
-
-.modalContainer {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  height: 100%;
-  padding: 40px;
-}
-
-.modalHeader {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 42px;
-  padding: 10px;
-}
-
-.modalOption {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 21px;
-  line-height: 32px;
-}
-
-.clickToConfirm {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 22px;
-  line-height: 32px;
-  margin: 20px 0 7px 0;
-}
-
-.btnCancelAccept {
-  margin: 0 15px 0 0;
-  border: 0.5px solid #344437;
-  width: 205px;
-  height: 54px;
-}
-
-.btnCancelDecline {
-  margin: 0 15px 0 0;
-  border: 0.5px solid #344437;
-  width: 318px;
-  height: 54px;
-}
-
-.btnDecline {
-  background-color: #ca0814;
-  color: white;
-  border: none;
-  font-size: 18px;
-  width: 205px;
-  height: 54px;
-}
-
-.btnAccept {
-  background-color: #36b44a;
-  color: white;
-  border: none;
-  font-size: 18px;
-  width: 318px;
-  height: 54px;
-  border: none;
-}
-
-.spanGreen {
-  color: #36b44a;
-}
-
-.orderAccepted {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 300px;
-}
-
-.orderAcceptedContent h2 {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 42px;
-}
-
-.orderAcceptedContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.orderAcceptedContent img {
-  margin: auto;
-}
-
-.orderDeclinedContent h2 {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 20px;
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 5px;
-}
-
-.divider {
-  opacity: 0.7;
-  border-bottom: 0.5px solid #344437;
-}
-
-.btnSubmit {
-  border: none;
-  background-color: #36b44a;
-  margin-left: 10px;
-  width: 200px;
-  height: 50px;
-  color: #ffffff;
-}
-
-.btnSkip {
-  border: 0.5px solid #344437;
-  margin-right: 5px;
-  width: 140px;
-  height: 50px;
 }
 
 .checkBoxWithTextContainer {

@@ -15,9 +15,7 @@ const UploadImageTemp = ({
 }) => {
   const imageRef = useRef<HTMLInputElement>(null);
   return (
-    <div
-      className={styles.container}
-      style={{ position: "relative", width: "fit-content" }}>
+    <div className={styles.container}>
       <div className={styles.imageContainer}>
         {!src ? (
           <div className={styles.placeholder}>

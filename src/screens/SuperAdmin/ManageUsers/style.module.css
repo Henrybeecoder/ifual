@@ -13,10 +13,6 @@
   color: rgba(47, 57, 48, 0.5);
 }
 
-.container {
-  width: 45%;
-}
-
 .btnsFooter {
   display: flex;
   margin-top: 20px;

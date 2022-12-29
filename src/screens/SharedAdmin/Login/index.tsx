@@ -57,9 +57,9 @@ const Home = ({
       validationSchema={authSchema.login}
       onSubmit={handleLogin}>
       {({ dirty, errors, getFieldProps }) => {
-        console.log(errors);
+        // console.log(errors);
         return (
-          <Form style={{ width: "100%" }}>
+          <Form className={styles.form}>
             <h3>LOGIN</h3>
             <InputTemp
               label={!matches ? "EMAIL USERNAME" : ""}
@@ -110,7 +110,7 @@ const MToken = ({
       onSubmit={handleToken}>
       {({ dirty, getFieldProps, errors }) => {
         return (
-          <Form style={{ width: "100%" }}>
+          <Form className={styles.form}>
             <h3>MToken</h3>
             <p className={styles.mTokenText}>
               Enter your Mtoken Code to gain access

@@ -121,11 +121,12 @@ button {
   text-decoration: underline;
 }
 
-.chartFlex {
+.chartsFlex {
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
+  gap: 20px;
 }
 
 .actionsFlex {
@@ -135,6 +136,49 @@ button {
 
 .chartSection {
   margin: 30px 0 10px 0;
+}
+
+.chartContainer {
+  padding: 10px;
+  width: 48%;
+  border: 1px solid #34443730;
+  border-radius: 10px;
+}
+
+.chartMeta {
+  display: flex;
+  margin: 5px 0;
+  align-items: flex-start;
+}
+.chartMeta div {
+  flex: 1;
+}
+.chartMeta div h3 {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  color: #34443774;
+}
+
+.chartMeta div h2 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+  margin-top: 7px;
+}
+
+.chartMeta button {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.chartArea {
+  fill: linear-gradient(
+    137.51deg,
+    rgba(54, 181, 75, 0.2) 2.76%,
+    rgba(54, 181, 75, 0.5) 90.78%
+  );
 }
 
 .chartSection h3,
@@ -233,8 +277,8 @@ button {
   .statsCard h3 {
     font-size: 11px;
   }
-  .chartFlex {
-    display: block;
+  .chartsFlex {
+    flex-direction: column;
   }
   .actionsSection {
     width: 100%;
@@ -246,5 +290,8 @@ button {
     width: 300px;
     height: 100px;
     margin-right: 7px;
+  }
+  .chartContainer {
+    width: 100%;
   }
 }

@@ -10,79 +10,44 @@ import {
 import { SvgRightIcon } from "../../../assets/Svgs";
 import { useState } from "react";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
+import { ReactComponent as ArrowDownSvg } from "../../../assets/svg/arrowDown.svg";
 
 const data = [
   {
-    name: "JAN",
+    name: "JUN",
     uv: 2000,
     pv: 2400,
     amt: 2400,
   },
   {
-    name: "FEB",
+    name: "JUL",
     uv: 3000,
     pv: 1398,
     amt: 2210,
   },
   {
-    name: "MAR",
+    name: "AUG",
     uv: 2000,
     pv: 9800,
     amt: 2290,
   },
   {
-    name: "APR",
+    name: "SEP",
     uv: 2780,
     pv: 3908,
     amt: 2000,
   },
   {
-    name: "MAY",
+    name: "OCT",
     uv: 1890,
     pv: 4800,
     amt: 2181,
   },
   {
-    name: "JUN",
+    name: "NOV",
     uv: 2390,
     pv: 3800,
     amt: 2500,
-  },
-  {
-    name: "JUL",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "AUG",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "SEP",
-    uv: 4000,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "OCT",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "NOV",
-    uv: 4000,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "DEC",
-    uv: 2000,
-    pv: 4300,
-    amt: 2100,
   },
 ];
 
@@ -120,64 +85,82 @@ const Dashboard = () => {
           </div>
           <div className={styles.chartSection}>
             <h3>STATS</h3>
-            <div className={styles.chartFlex}>
-              <div
-                style={{
-                  width: matches ? "48%" : "100%",
-                  height: 200,
-                  border: "1px solid gainsboro",
-                  borderRadius: "10px",
-                  padding: "5px 0 5px 20px",
-                }}>
-                <ResponsiveContainer>
-                  <AreaChart
-                    data={data}
-                    margin={{
-                      top: 10,
-                      right: 30,
-                      left: 0,
-                      bottom: 0,
-                    }}>
-                    <CartesianGrid strokeDasharray='3 3' />
-                    <XAxis dataKey='name' />
+            <div className={styles.chartsFlex}>
+              <div className={styles.chartContainer}>
+                <div className={styles.chartMeta}>
+                  <div>
+                    <h3>TOTAL VISITS</h3>
+                    <h2>4,000</h2>
+                  </div>
+                  <button>
+                    <p>MONTHLY</p>
+                    <ArrowDownSvg />
+                  </button>
+                  <button>
+                    <p>OCT</p>
+                    <ArrowDownSvg />
+                  </button>
+                </div>
+                <ResponsiveContainer width={"100%"} height={131}>
+                  <AreaChart data={data}>
+                    <XAxis
+                      dataKey='name'
+                      style={{
+                        fontSize: "12",
+                        fontWeight: 600,
+                        color: "#34443774",
+                        width: "100%",
+                      }}
+                      // axisLine={false}
+                      axisLine={{ strokeWidth: "0.5px", height: "0.5px" }}
+                      tickLine={false}
+                    />
 
                     <Tooltip />
                     <Area
                       type='monotone'
                       dataKey='uv'
-                      stroke='#35DB9F'
-                      fill='rgba(53, 219, 159, 0.24)'
+                      stroke='transparent'
+                      fill='rgba(53, 219, 159, 0.20)'
                     />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
-              <div
-                style={{
-                  width: matches ? "48%" : "100%",
-                  marginTop: !matches ? "20px" : "",
-                  height: 200,
-                  border: "1px solid gainsboro",
-                  borderRadius: "10px",
-                  padding: "5px 0 5px 20px",
-                }}>
-                <ResponsiveContainer>
-                  <AreaChart
-                    data={data}
-                    margin={{
-                      top: 10,
-                      right: 30,
-                      left: 0,
-                      bottom: 0,
-                    }}>
-                    <CartesianGrid strokeDasharray='3 3' />
-                    <XAxis dataKey='name' />
+              <div className={styles.chartContainer}>
+                <div className={styles.chartMeta}>
+                  <div>
+                    <h3>TOTAL REVENUE</h3>
+                    <h2>N23,000,000.00</h2>
+                  </div>
+                  <button>
+                    <p>MONTHLY</p>
+                    <ArrowDownSvg />
+                  </button>
+                  <button>
+                    <p>OCT</p>
+                    <ArrowDownSvg />
+                  </button>
+                </div>
+                <ResponsiveContainer width={"100%"} height={131}>
+                  <AreaChart data={data}>
+                    <XAxis
+                      dataKey='name'
+                      style={{
+                        fontSize: "12",
+                        fontWeight: 600,
+                        color: "#34443774",
+                        // width: "100%",
+                      }}
+                      axisLine={{ strokeWidth: "0.5px", height: "0.5px" }}
+                      tickLine={false}
+                    />
 
                     <Tooltip />
                     <Area
                       type='monotone'
                       dataKey='uv'
-                      stroke='#35DB9F'
-                      fill='rgba(53, 219, 159, 0.24)'
+                      stroke='transparent'
+                      fill='rgba(53, 219, 159, 0.20)'
                     />
                   </AreaChart>
                 </ResponsiveContainer>

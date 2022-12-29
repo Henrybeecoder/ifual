@@ -6,10 +6,14 @@ import RadioGroup from "../../../Components/Radix/RadioGroup";
 import { SelectTemp } from "../../../Components/InputTemp";
 import { useState } from "react";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
+import { TitleHeader } from "@components/PageHeader";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const matches = useMediaQuery("(min-width: 800px)");
   const [edit, setEdit] = useState(false);
+
+  const navigate = useNavigate();
 
   const timeOptions = matches
     ? [
@@ -25,13 +29,12 @@ const Settings = () => {
 
   return (
     <>
-      <div className={styles.header}>
-        <h3>SETTINGS</h3>
-        <button onClick={() => setEdit((state) => !state)}>
-          <h2>EDIT</h2>
-          <SvgEdit />
-        </button>
-      </div>
+      <TitleHeader
+        pageTitle='SETTINGS'
+        editBtn
+        backBtn
+        onClickBackBtn={() => navigate(-1)}
+      />
       <div className={styles.container}>
         <div className={styles.sectionContainer}>
           <h3>View Onboarding:</h3>

@@ -8,13 +8,17 @@ import styles from "./style.module.css";
 const AddVendor = () => {
   return (
     <>
-      <TitleHeader pageTitle='ADD VENDOR' parentPageTitle='MANAGE VENDORS' />
-      <div className='flex gap-20' style={{ marginTop: "20px" }}>
+      <TitleHeader
+        backBtn
+        pageTitle='ADD VENDOR'
+        parentPageTitle='MANAGE VENDORS'
+      />
+      <div className={styles.container} style={{ marginTop: "20px" }}>
         <div className={styles.metaSection}>
           <UploadImageTemp btnText='Add Company Logo' />
         </div>
         <div className={styles.inputSection}>
-          <div className='flex-btwn'>
+          <div className='input-flex-btwn'>
             <InputTemp
               label='COMPANY NAME'
               placeholder='Enter name'
@@ -26,7 +30,7 @@ const AddVendor = () => {
               marginLeft
             />
           </div>
-          <div className='flex-btwn'>
+          <div className='input-flex-btwn'>
             <InputTemp
               label='PHONE NUMBER'
               placeholder='Enter number'
@@ -38,7 +42,7 @@ const AddVendor = () => {
               marginLeft
             />
           </div>
-          <div className='flex-btwn'>
+          <div className='input-flex-btwn'>
             <InputTemp
               label='DATE OF REGISTRATIOn'
               placeholder='Enter date'
@@ -56,7 +60,7 @@ const AddVendor = () => {
             label='OPERATION LOCATIONS'
             placeholder='Select locations'
           />
-          <div className='flex-btwn'>
+          <div className='input-flex-btwn'>
             <InputTemp
               label='ACCOUNT NUMBER'
               placeholder='Enter number'
@@ -75,7 +79,7 @@ const AddVendor = () => {
             </Link>{" "}
           </p>
           <InputTemp label='BVN' placeholder='Enter number' />
-          <div className='flex-btwn w-50'>
+          <div className='flex-btwn w-50-lg'>
             <Button text='Cancel' width='38%' />
             <Button text='Register Vendor' variant='dark' invalid width='58%' />
           </div>
