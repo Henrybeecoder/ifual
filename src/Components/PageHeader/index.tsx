@@ -147,19 +147,21 @@ export const FilterHeader = ({
           <p>Back</p>
         </button>
       ) : null}
-      <div className={styles.headerFlex}>
-        <h3 className='breadcrumb'>
-          {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}
-          {pageTitle}
-        </h3>
-        <div className={styles.actionsContainer}>
+      <div className={styles.flexLg}>
+        {" "}
+        <div className={styles.headerFlex}>
+          <h3 className='breadcrumb'>
+            {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}
+            {pageTitle}
+          </h3>
+
           <FilterModal
             options={options}
             selected={selected}
             onSelect={onSelect}
           />
-          {children}
-        </div>
+        </div>{" "}
+        {children}
       </div>
     </>
   );

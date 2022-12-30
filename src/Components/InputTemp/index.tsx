@@ -123,7 +123,7 @@ export const SelectTemp = ({
   marginLeftSm,
   marginRightSm,
   isMulti,
-  width = "100%",
+  width,
   className,
   style,
   mode = "dark",

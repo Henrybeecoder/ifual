@@ -28,7 +28,7 @@
 
 .flexMenu {
   display: flex;
-  width: fit-content;
+  width: 100%;
   margin: 20px 0;
 }
 

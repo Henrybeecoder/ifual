@@ -3,10 +3,11 @@ import { customer_data, vendor_data, admin_data } from "./data";
 import { RenderPageProps } from "@type/shared";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import OptionsModal from "@components/OptionsModal";
-import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-outline.svg";
 import Button from "@components/Button";
 import { FilterHeader } from "@components/PageHeader";
 import useMediaQuery from "src/Custom hooks/useMediaQuery";
+import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
+import { limitText } from "src/Custom hooks/helpers";
 
 interface ManageUsersProps {
   baseUrl: "admin" | "super-admin";
@@ -87,47 +88,83 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
 
 const CustomerPage = ({ baseUrl }: { baseUrl: string }) => {
   const navigate = useNavigate();
+  const matches = useMediaQuery("(min-width: 800px)");
   return (
     <>
       <div className={styles.tableWrapper}>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Location</th>
-              <th>Email</th>
-              <th>Last ACtivity</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {customer_data?.map((row) => {
-              return (
-                <tr key={row.id}>
-                  <td>{row.name}</td>
-                  <td>{row.location}</td>
-                  <td>{row.email}</td>
-                  <td>{row.lastAct}</td>
-                  <td>
-                    <OptionsModal>
+        {matches ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Email</th>
+                <th>Last ACtivity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {customer_data?.map((row) => {
+                return (
+                  <tr key={row.id}>
+                    <td>{row.name}</td>
+                    <td>{row.location}</td>
+                    <td>{row.email}</td>
+                    <td>{row.lastAct}</td>
+                    <td>
+                      <OptionsModal>
+                        <button
+                          onClick={() =>
+                            navigate({
+                              pathname: `/${baseUrl}/manage-users/customer-info`,
+                              search: `customer=${row.id}`,
+                            })
+                          }>
+                          View
+                        </button>
+                        <button>Edit</button>
+                        <button>Suspend</button>
+                      </OptionsModal>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Locat...</th>
+                <th>Last Act</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {customer_data?.map((row) => {
+                return (
+                  <tr key={row.id}>
+                    <td>{row.name}</td>
+                    <td>{row.location}</td>
+                    <td>{row.lastAct}</td>
+                    <td>
                       <button
+                        style={{ marginLeft: "-7px" }}
                         onClick={() =>
                           navigate({
                             pathname: `/${baseUrl}/manage-users/customer-info`,
                             search: `customer=${row.id}`,
                           })
                         }>
-                        View
+                        <ArrowRight />
                       </button>
-                      <button>Edit</button>
-                      <button>Suspend</button>
-                    </OptionsModal>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   );
@@ -135,80 +172,156 @@ const CustomerPage = ({ baseUrl }: { baseUrl: string }) => {
 
 const VendorPage = ({ baseUrl }: { baseUrl: string }) => {
   const navigate = useNavigate();
+  const matches = useMediaQuery("(min-width: 800px)");
   return (
     <>
       <div className={styles.tableWrapper}>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Location</th>
-              <th>Email</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {vendor_data?.map((row) => {
-              return (
-                <tr key={row.id}>
-                  <td>{row.name}</td>
-                  <td>{row.location}</td>
-                  <td>{row.email}</td>
-                  <td>{row.status}</td>
-                  <td>
-                    <OptionsModal>
+        {matches ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {vendor_data?.map((row) => {
+                return (
+                  <tr key={row.id}>
+                    <td>{row.name}</td>
+                    <td>{row.location}</td>
+                    <td>{row.email}</td>
+                    <td>{row.status}</td>
+                    <td>
+                      <OptionsModal>
+                        <button
+                          onClick={() =>
+                            navigate({
+                              pathname: `/${baseUrl}/manage-users/vendor-info`,
+                              search: `vendor=${row.id}`,
+                            })
+                          }>
+                          View
+                        </button>
+                        <button>Edit</button>
+                        <button>Suspend</button>
+                      </OptionsModal>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Locat..</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {vendor_data?.map((row) => {
+                return (
+                  <tr key={row.id}>
+                    <td>{row.name}</td>
+                    <td>{row.location}</td>
+                    <td>{row.status}</td>
+                    <td>
                       <button
+                        style={{ marginLeft: "-7px" }}
                         onClick={() =>
                           navigate({
                             pathname: `/${baseUrl}/manage-users/vendor-info`,
                             search: `vendor=${row.id}`,
                           })
                         }>
-                        View
+                        <ArrowRight />
                       </button>
-                      <button>Edit</button>
-                      <button>Suspend</button>
-                    </OptionsModal>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   );
 };
 
 const AdminPage = ({ baseUrl }: { baseUrl: string }) => {
+  const matches = useMediaQuery("(min-width: 800px)");
+  const navigate = useNavigate();
   return (
     <>
       <div className={styles.tableWrapper}>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Email</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {admin_data?.map((row) => {
-              return (
-                <tr key={row.id}>
-                  <td>{row.name}</td>
-                  <td>{row.category}</td>
-                  <td>{row.email}</td>
-                  <td>
-                    <Button text='deactivate' height='25px' width='80px' />
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        {matches ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {admin_data?.map((row) => {
+                return (
+                  <tr key={row.id}>
+                    <td>{row.name}</td>
+                    <td>{row.category}</td>
+                    <td>{row.email}</td>
+                    <td>
+                      <Button text='deactivate' height='25px' width='80px' />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Cat...</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {admin_data?.map((row) => {
+                return (
+                  <tr key={row.id}>
+                    <td>{limitText(row.name, 7)}</td>
+                    <td>{limitText(row.category, 5)}</td>
+                    <td>
+                      <Button text='Deacti...' height='25px' width='80px' />
+                    </td>
+                    <td>
+                      <button
+                        style={{ marginLeft: "-7px" }}
+                        onClick={() =>
+                          navigate({
+                            pathname: `/${baseUrl}/manage-users/admin-info`,
+                            search: `admin=${row.id}`,
+                          })
+                        }>
+                        <ArrowRight />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   );

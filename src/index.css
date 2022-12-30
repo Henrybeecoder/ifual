@@ -29,12 +29,14 @@ table {
 tr {
   /* padding: 10px; */
   border-bottom: 1px solid rgba(52, 68, 55, 0.12);
+  width: 100%;
 }
 
 th,
 td {
-  padding: 15px 30px;
+  padding: 13px 30px;
   text-align: start;
+  white-space: nowrap;
 }
 
 .tableWrapper {
@@ -135,8 +137,9 @@ td {
 @media screen and (max-width: 800px) {
   .breadcrumb {
     font-weight: 500;
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 19px;
+    line-height: 19px;
+    white-space: nowrap;
     color: #2f3930;
   }
   .breadcrumb span {
@@ -147,5 +150,16 @@ td {
   }
   .w-50-lg {
     width: 100%;
+  }
+  /* tr {
+    padding: 0 10px;
+  } */
+  /* table{
+    margin-left: 10px;
+  } */
+  th,
+  td {
+    padding: 12px 6px 12px 14px;
+    text-align: start;
   }
 }

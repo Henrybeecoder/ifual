@@ -50,7 +50,7 @@ const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
                     // className={`${styles.flexLink} ${manage && styles.active}`}
                     onClick={() => setManage((state) => !state)}>
                     <OrderStatusSvg />
-                    <h3>Manage</h3>
+                    <h3 className={` ${manage && styles.active}`}>Manage</h3>
                     {manage ? <SvgArrowUp /> : <SvgArrowDown />}
                   </button>
                   {manage && (

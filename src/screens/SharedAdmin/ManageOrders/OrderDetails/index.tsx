@@ -11,6 +11,9 @@ import { InputTemp, SelectTemp } from "@components/InputTemp";
 import { RenderPageProps } from "@type/shared";
 import Modal from "@components/Modals";
 import { Root, Trigger, Portal, Content } from "@radix-ui/react-popover";
+import { PagnHeader } from "@components/PageHeader";
+import useMediaQuery from "src/Custom hooks/useMediaQuery";
+import { limitText } from "src/Custom hooks/helpers";
 
 interface SectionProps {
   data: any;
@@ -22,6 +25,8 @@ const ManageOrders = ({ baseUrl }: { baseUrl: string }) => {
   const id = useParams()?.id;
 
   const navigate = useNavigate();
+
+  const matches = useMediaQuery("(min-width: 800px)");
 
   const [data, setData] = useState(orders.find((data) => data.id === id));
 
@@ -82,50 +87,74 @@ const ManageOrders = ({ baseUrl }: { baseUrl: string }) => {
         </div>
       </Modal>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <h3>
-            {" "}
-            <span>MANAGE ORDERS</span> / ORDER DETAILS{" "}
-          </h3>
-          <div className={styles.filterFlex}>
-            <h3>Filter</h3>
-            <FilterSvg />
-          </div>
-        </div>
+        <PagnHeader
+          pageTitle='ORDER DETAILS'
+          parentPageTitle='MANAGE ORDERS'
+          current={23}
+          total={200}
+        />
 
         <>{data && renderSection[data.status.toLowerCase()]}</>
 
         <div className='flex-btwn'>
-          <div className={styles.detailsCard}>
-            <img src={orderedProfile} />
-            <div>
-              <h3>ABC Ventures</h3>
-              <p>
-                Over <span className='span-green'>N300,000</span> purchase
-              </p>
+          {matches ? (
+            <div className={styles.detailsCard}>
+              <img src={orderedProfile} />
+              <div>
+                <h3>ABC Ventures</h3>
+                <p>
+                  Over <span className='span-green'>N300,000</span> purchase
+                </p>
+              </div>
+              <LinkButton
+                text='View'
+                variant='primary'
+                onClick={() => navigate(`profile-customer`)}
+              />
             </div>
-            <LinkButton
-              text='View'
-              variant='primary'
-              onClick={() => navigate(`profile-customer`)}
-            />
-          </div>
-          <div className={styles.detailsCard}>
-            <img src={deliveredProfile} />
-            <div>
-              <h3>Apex Oil Plc</h3>
-              <p>
-                <span className='span-green'> 34 </span>Orders Completed
-              </p>
+          ) : (
+            <div className={styles.detailsCard}>
+              <img src={orderedProfile} />
+              <div>
+                <h3>{limitText("ABC Ventures", 6)}</h3>
+                <LinkButton
+                  text='View'
+                  variant='primary'
+                  onClick={() => navigate(`profile-customer`)}
+                />
+              </div>
             </div>
-            <LinkButton
-              text='View'
-              variant='primary'
-              onClick={() => navigate(`profile-vendor`)}
-            />
-          </div>
+          )}
+          {matches ? (
+            <div className={styles.detailsCard}>
+              <img src={deliveredProfile} />
+              <div>
+                <h3>ABC Ventures</h3>
+                <p>
+                  Over <span className='span-green'>N300,000</span> purchase
+                </p>
+              </div>
+              <LinkButton
+                text='View'
+                variant='primary'
+                onClick={() => navigate(`profile-customer`)}
+              />
+            </div>
+          ) : (
+            <div className={styles.detailsCard}>
+              <img src={deliveredProfile} />
+              <div>
+                <h3>{limitText("ABC Ventures", 6)}</h3>
+                <LinkButton
+                  text='View'
+                  variant='primary'
+                  onClick={() => navigate(`profile-customer`)}
+                />
+              </div>
+            </div>
+          )}
         </div>
-        <div className='flex-btwn'>
+        <div className='input-flex-btwn'>
           <div className={styles.productDetails}>
             <h2 className={styles.headingUdln}>Product Details</h2>
             <div className={styles.table}>
@@ -152,7 +181,7 @@ const ManageOrders = ({ baseUrl }: { baseUrl: string }) => {
           </div>
           <div className={styles.deliveryDetails}>
             <h2 className={styles.headingUdln}>Delivery Details</h2>
-            <div className='flex-btwn'>
+            <div className='input-flex-btwn'>
               <InputTemp
                 marginRight
                 label='FIRST NAME'
@@ -160,7 +189,7 @@ const ManageOrders = ({ baseUrl }: { baseUrl: string }) => {
               />
               <InputTemp marginLeft label='SURNAME' defaultValue='Bimpe' />
             </div>
-            <div className='flex-btwn'>
+            <div className='input-flex-btwn'>
               <InputTemp
                 marginRight
                 label='PHONE NUMBER'
@@ -172,7 +201,7 @@ const ManageOrders = ({ baseUrl }: { baseUrl: string }) => {
                 defaultValue='dash@ifuel.com'
               />
             </div>
-            <div className='flex-btwn'>
+            <div className='input-flex-btwn'>
               <InputTemp
                 marginRight
                 label='DELIVERY ADDRESS'
@@ -180,7 +209,8 @@ const ManageOrders = ({ baseUrl }: { baseUrl: string }) => {
               />
               <SelectTemp
                 marginLeft
-                width='170px'
+                // width='170px'
+                className={styles.selectTemp}
                 label='STATE'
                 placeholder='Lagos'
               />
