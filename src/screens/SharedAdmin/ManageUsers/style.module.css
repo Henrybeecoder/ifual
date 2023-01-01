@@ -30,13 +30,14 @@
   display: flex;
   width: 100%;
   margin: 20px 0;
+  gap: 25px;
 }
 
-.flexMenu button {
+.flexMenu p {
   font-weight: 500;
   font-size: 17px;
   line-height: 17px;
-  margin-right: 30px;
+  /* margin-right: 30px; */
 }
 
 .flexMenu .active {

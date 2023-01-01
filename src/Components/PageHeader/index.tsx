@@ -66,7 +66,7 @@ export const PagnHeader = ({
           {pageTitle}
         </h3>
         <div className={styles.flexLg}>
-          <div className='header-sort'>
+          <div className={styles.headerSort}>
             {editBtn ? (
               <button className={styles.editBtn} onClick={onClickEditBtn}>
                 <h3>EDIT</h3>

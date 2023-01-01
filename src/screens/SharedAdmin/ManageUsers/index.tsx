@@ -1,38 +1,35 @@
 import styles from "./style.module.css";
 import { customer_data, vendor_data, admin_data } from "./data";
 import { RenderPageProps } from "@type/shared";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Route,
+  Routes,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import OptionsModal from "@components/OptionsModal";
 import Button from "@components/Button";
 import { FilterHeader } from "@components/PageHeader";
 import useMediaQuery from "src/Custom hooks/useMediaQuery";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
 import { limitText } from "src/Custom hooks/helpers";
+import VendorInfo from "./VendorInfo";
+import CustomerInfo from "./CustomerInfo";
+import AdminInfo from "../../../screens/SuperAdmin/ManageUsers/AdminInfo";
 
 interface ManageUsersProps {
   baseUrl: "admin" | "super-admin";
 }
 
 const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
-  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  const matches = useMediaQuery("(min-width: 800px)");
-  const page = searchParams.get("type");
-
-  const renderPage: RenderPageProps = {
-    customer: <CustomerPage baseUrl={baseUrl} />,
-    vendor: <VendorPage baseUrl={baseUrl} />,
-    admin:
-      baseUrl === "super-admin" ? (
-        <AdminPage baseUrl={baseUrl} />
-      ) : (
-        <div>Not a super-admin</div>
-      ),
-  };
 
   return (
     <>
-      <FilterHeader pageTitle='MANAGE USERS' options={[]}>
+      {/* <FilterHeader pageTitle='MANAGE USERS' options={[]}>
         <>
           {page === "vendor" ? (
             // <Button text='Add Vendor' width='100px' height='37px' />
@@ -58,30 +55,53 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
             />
           ) : null}
         </>
-      </FilterHeader>
+      </FilterHeader> */}
 
       <div className={styles.flexMenu}>
-        <button
-          className={`${
-            page !== "vendor" && page !== "admin" && styles.active
-          }`}
-          onClick={() => setSearchParams("type=customer", { replace: true })}>
-          CUSTOMER
-        </button>
-        <button
-          className={`${page === "vendor" && styles.active}`}
-          onClick={() => setSearchParams("type=vendor", { replace: true })}>
-          VENDOR
-        </button>
+        <NavLink
+          to='customer'
+          replace={true}
+          style={{ textDecoration: "none", color: "black" }}>
+          {({ isActive }) => (
+            <p className={isActive ? styles.active : ""}>CUSTOMER</p>
+          )}
+        </NavLink>
+        <NavLink
+          to='vendor'
+          replace={true}
+          style={{ textDecoration: "none", color: "black" }}>
+          {({ isActive }) => (
+            <p className={isActive ? styles.active : ""}>VENDOR</p>
+          )}
+        </NavLink>
         {baseUrl === "super-admin" && (
-          <button
-            className={`${page === "admin" && styles.active}`}
-            onClick={() => setSearchParams("type=admin", { replace: true })}>
-            ADMIN
-          </button>
+          <NavLink
+            to='admin'
+            replace={true}
+            style={{ textDecoration: "none", color: "black" }}>
+            {({ isActive }) => (
+              <p className={isActive ? styles.active : ""}>ADMIN</p>
+            )}
+          </NavLink>
         )}
       </div>
-      {page ? renderPage[page] : <CustomerPage baseUrl={baseUrl} />}
+      <Routes>
+        <Route index element={<CustomerPage baseUrl={baseUrl} />} />
+        <Route path='customer'>
+          <Route index element={<CustomerPage baseUrl={baseUrl} />} />
+          <Route path=':id' element={<CustomerInfo />} />
+        </Route>
+        <Route path='vendor'>
+          <Route index element={<VendorPage baseUrl={baseUrl} />} />
+          <Route path=':id' element={<VendorInfo />} />
+        </Route>
+        {baseUrl === "super-admin" && (
+          <Route path='admin'>
+            <Route index element={<AdminPage baseUrl={baseUrl} />} />
+            <Route path=':id' element={<AdminInfo />} />
+          </Route>
+        )}
+      </Routes>
     </>
   );
 };
@@ -112,13 +132,7 @@ const CustomerPage = ({ baseUrl }: { baseUrl: string }) => {
                     <td>{row.lastAct}</td>
                     <td>
                       <OptionsModal>
-                        <button
-                          onClick={() =>
-                            navigate({
-                              pathname: `/${baseUrl}/manage-users/customer-info`,
-                              search: `customer=${row.id}`,
-                            })
-                          }>
+                        <button onClick={() => navigate(`${row.id}`)}>
                           View
                         </button>
                         <button>Edit</button>
@@ -150,12 +164,7 @@ const CustomerPage = ({ baseUrl }: { baseUrl: string }) => {
                     <td>
                       <button
                         style={{ marginLeft: "-7px" }}
-                        onClick={() =>
-                          navigate({
-                            pathname: `/${baseUrl}/manage-users/customer-info`,
-                            search: `customer=${row.id}`,
-                          })
-                        }>
+                        onClick={() => navigate(`${row.id}`)}>
                         <ArrowRight />
                       </button>
                     </td>
@@ -197,13 +206,7 @@ const VendorPage = ({ baseUrl }: { baseUrl: string }) => {
                     <td>{row.status}</td>
                     <td>
                       <OptionsModal>
-                        <button
-                          onClick={() =>
-                            navigate({
-                              pathname: `/${baseUrl}/manage-users/vendor-info`,
-                              search: `vendor=${row.id}`,
-                            })
-                          }>
+                        <button onClick={() => navigate(`${row.id}`)}>
                           View
                         </button>
                         <button>Edit</button>
@@ -235,12 +238,7 @@ const VendorPage = ({ baseUrl }: { baseUrl: string }) => {
                     <td>
                       <button
                         style={{ marginLeft: "-7px" }}
-                        onClick={() =>
-                          navigate({
-                            pathname: `/${baseUrl}/manage-users/vendor-info`,
-                            search: `vendor=${row.id}`,
-                          })
-                        }>
+                        onClick={() => navigate(`${row.id}`)}>
                         <ArrowRight />
                       </button>
                     </td>
@@ -281,6 +279,13 @@ const AdminPage = ({ baseUrl }: { baseUrl: string }) => {
                     <td>
                       <Button text='deactivate' height='25px' width='80px' />
                     </td>
+                    <td>
+                      <OptionsModal>
+                        <button onClick={() => navigate(`${row.id}`)}>
+                          View
+                        </button>
+                      </OptionsModal>
+                    </td>
                   </tr>
                 );
               })}
@@ -307,12 +312,7 @@ const AdminPage = ({ baseUrl }: { baseUrl: string }) => {
                     <td>
                       <button
                         style={{ marginLeft: "-7px" }}
-                        onClick={() =>
-                          navigate({
-                            pathname: `/${baseUrl}/manage-users/admin-info`,
-                            search: `admin=${row.id}`,
-                          })
-                        }>
+                        onClick={() => navigate(`${row.id}`)}>
                         <ArrowRight />
                       </button>
                     </td>

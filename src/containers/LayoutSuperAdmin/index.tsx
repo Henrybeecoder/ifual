@@ -9,7 +9,7 @@ interface LayoutProps {
   onClickBackBtn?: () => void;
 }
 
-const LayoutCustomer = ({ children, backBtn, onClickBackBtn }: LayoutProps) => {
+const Layout = ({ children, backBtn, onClickBackBtn }: LayoutProps) => {
   const userStr = localStorage.getItem("user");
   const user = userStr && JSON.parse(userStr);
 
@@ -34,4 +34,4 @@ const LayoutCustomer = ({ children, backBtn, onClickBackBtn }: LayoutProps) => {
   );
 };
 
-export default LayoutCustomer;
+export default Layout;

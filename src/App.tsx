@@ -48,7 +48,6 @@ import ComplaintsLogSuperAdmin from "./screens/SuperAdmin/ComplaintsLog";
 import CustomMessageSuperAdmin from "./screens/SuperAdmin/ComplaintsLog/CustomMessage";
 import ActivityLogSuperAdmin from "./screens/SuperAdmin/ActivityLog";
 import LoginSuperAdmin from "./screens/SuperAdmin/Login";
-import AddAdmin from "./screens/SuperAdmin/ManageUsers/AddAdmin";
 import CustomerInfo from "./screens/SuperAdmin/ManageUsers/CustomerInfo";
 import VendorInfoSuperAdmin from "./screens/SuperAdmin/ManageUsers/VendorInfo";
 import AddVendorSuperAdmin from "./screens/SuperAdmin/ManageUsers/AddVendor";
@@ -123,13 +122,14 @@ function App() {
           <Route path='notification' element={<NotificationSuperAdmin />} />
           <Route path='dashboard' element={<DashboardSuperAdmin />} />
           <Route path='settings' element={<SettingsSuperAdmin />} />
-          <Route path='manage-users'>
-            <Route index element={<ManageUsersSuperAdmin />} />
-            <Route path='add-admin' element={<AddAdmin />} />
+          <Route path='manage-users/*' element={<ManageUsersSuperAdmin />} />
+          {/* <Route index element={<ManageUsersSuperAdmin />} />
+            <Route path='add-admin' element={<AdminInfo />} />
             <Route path='customer-info' element={<CustomerInfo />} />
             <Route path='vendor-info' element={<VendorInfoSuperAdmin />} />
             <Route path='add-vendor' element={<AddVendorSuperAdmin />} />
-          </Route>
+            <Route path='admin-info' element={<AdminInfo />} /> */}
+          {/* </Route> */}
           <Route path='manage-products'>
             <Route index element={<ManageProducts />} />
             <Route path=':id' element={<ProductDetails />} />

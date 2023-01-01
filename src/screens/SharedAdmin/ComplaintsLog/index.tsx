@@ -5,6 +5,7 @@ import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-o
 import OptionsModal from "@components/OptionsModal";
 import { SharedAdminComponentProps } from "@type/shared";
 import { Link } from "react-router-dom";
+import { FilterHeader } from "@components/PageHeader";
 
 const data = [
   {
@@ -84,19 +85,15 @@ const data = [
 const ComplaintLog = ({ baseUrl }: SharedAdminComponentProps) => {
   return (
     <>
-      <div className={styles.header}>
-        <h3>COMPLAINTS LOG</h3>
-        <div className={styles.filterFlex}>
-          <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-            <h3>Filter</h3>
-            <FilterSvg />
-          </div>
-
-          <Link to='custom-message'>
-            <Button text='Custom Message' height='40px' />
-          </Link>
-        </div>
-      </div>
+      <FilterHeader options={[]} pageTitle='COMPLAINTS LOG'>
+        <Link to='custom-message'>
+          <Button
+            text='Custom Message'
+            height='40px'
+            style={{ width: "130px" }}
+          />
+        </Link>
+      </FilterHeader>
       <div className={"tableWrapper"}>
         <table>
           <thead>
