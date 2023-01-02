@@ -258,3 +258,75 @@ export const PagnHeaderWFilter = ({
     </div>
   );
 };
+
+export const PageHeader = ({
+  pageTitle,
+  parentPageTitle,
+  // editBtn,
+  // onClickEditBtn,
+  backBtn,
+  onClickBackBtn,
+  children,
+}: Props) => {
+  const navigate = useNavigate();
+  return (
+    <>
+      {backBtn ? (
+        <button
+          className={styles.backBtn}
+          onClick={!onClickBackBtn ? () => navigate(-1) : onClickBackBtn}>
+          <ArrowBackSvg />
+          <p>Back</p>
+        </button>
+      ) : null}
+      <div className={styles.headerFlex}>
+        <h3 className='breadcrumb'>
+          {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}
+          {pageTitle}
+        </h3>
+        <div className={styles.childrenFlex}>{children}</div>
+      </div>
+    </>
+  );
+};
+
+export const EditBtn = ({
+  onClickEditBtn,
+}: {
+  onClickEditBtn?: () => void;
+}) => {
+  return (
+    <button className={styles.editBtn} onClick={onClickEditBtn}>
+      <h3>EDIT</h3>
+      <EditSvg />
+    </button>
+  );
+};
+
+interface PaginationProps {
+  onLeftArrowClick?: () => void;
+  onRightArrowClick?: () => void;
+  current: number | string;
+  total: number;
+}
+
+export const Pagination = ({
+  current,
+  total,
+  onLeftArrowClick,
+  onRightArrowClick,
+}: PaginationProps) => {
+  return (
+    <div className={styles.pagn}>
+      <div>
+        <span>{current}</span>/<p>{total}</p>
+      </div>
+      <button onClick={onLeftArrowClick}>
+        <LeftSvg />
+      </button>
+      <button onClick={onRightArrowClick}>
+        <RightSvg />
+      </button>
+    </div>
+  );
+};

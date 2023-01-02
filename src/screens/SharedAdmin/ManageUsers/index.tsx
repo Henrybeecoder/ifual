@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 import OptionsModal from "@components/OptionsModal";
 import Button from "@components/Button";
-import { FilterHeader } from "@components/PageHeader";
+import { FilterHeader, FilterModal, PageHeader } from "@components/PageHeader";
 import useMediaQuery from "src/Custom hooks/useMediaQuery";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
 import { limitText } from "src/Custom hooks/helpers";
@@ -57,34 +57,6 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
         </>
       </FilterHeader> */}
 
-      <div className={styles.flexMenu}>
-        <NavLink
-          to='customer'
-          replace={true}
-          style={{ textDecoration: "none", color: "black" }}>
-          {({ isActive }) => (
-            <p className={isActive ? styles.active : ""}>CUSTOMER</p>
-          )}
-        </NavLink>
-        <NavLink
-          to='vendor'
-          replace={true}
-          style={{ textDecoration: "none", color: "black" }}>
-          {({ isActive }) => (
-            <p className={isActive ? styles.active : ""}>VENDOR</p>
-          )}
-        </NavLink>
-        {baseUrl === "super-admin" && (
-          <NavLink
-            to='admin'
-            replace={true}
-            style={{ textDecoration: "none", color: "black" }}>
-            {({ isActive }) => (
-              <p className={isActive ? styles.active : ""}>ADMIN</p>
-            )}
-          </NavLink>
-        )}
-      </div>
       <Routes>
         <Route index element={<CustomerPage baseUrl={baseUrl} />} />
         <Route path='customer'>
@@ -97,7 +69,7 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
         </Route>
         {baseUrl === "super-admin" && (
           <Route path='admin'>
-            <Route index element={<AdminPage baseUrl={baseUrl} />} />
+            <Route index element={<AdminPage />} />
             <Route path=':id' element={<AdminInfo />} />
           </Route>
         )}
@@ -106,11 +78,57 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
   );
 };
 
+const LinksComponents = ({
+  baseUrl,
+  active,
+}: {
+  baseUrl: string;
+  active: "customer" | "vendor" | "admin";
+}) => {
+  return (
+    <div className={styles.flexMenu}>
+      <Link
+        to={`/${baseUrl}/manage-users/customer`}
+        replace={true}
+        style={{
+          textDecoration: active === "customer" ? "underline" : "none",
+          color: active === "customer" ? "#36b44a" : "black",
+        }}>
+        CUSTOMER
+      </Link>
+      <Link
+        to={`/${baseUrl}/manage-users/vendor`}
+        replace={true}
+        style={{
+          textDecoration: active === "vendor" ? "underline" : "none",
+          color: active === "vendor" ? "#36b44a" : "black",
+        }}>
+        VENDOR
+      </Link>
+      {baseUrl === "super-admin" && (
+        <Link
+          to='/super-admin/manage-users/admin'
+          replace={true}
+          style={{
+            textDecoration: active === "admin" ? "underline" : "none",
+            color: active === "admin" ? "#36b44a" : "black",
+          }}>
+          ADMIN
+        </Link>
+      )}
+    </div>
+  );
+};
+
 const CustomerPage = ({ baseUrl }: { baseUrl: string }) => {
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width: 800px)");
   return (
     <>
+      <PageHeader pageTitle='MANAGE USERS'>
+        <FilterModal options={[]} />
+      </PageHeader>
+      <LinksComponents active='customer' baseUrl={baseUrl} />
       <div className={styles.tableWrapper}>
         {matches ? (
           <table>
@@ -184,6 +202,15 @@ const VendorPage = ({ baseUrl }: { baseUrl: string }) => {
   const matches = useMediaQuery("(min-width: 800px)");
   return (
     <>
+      <PageHeader pageTitle='MANAGE USERS'>
+        <FilterModal options={[]} />
+        <Button
+          text='Add Vendor'
+          width='130px'
+          onClick={() => navigate("new")}
+        />
+      </PageHeader>
+      <LinksComponents active='vendor' baseUrl={baseUrl} />
       <div className={styles.tableWrapper}>
         {matches ? (
           <table>
@@ -253,11 +280,20 @@ const VendorPage = ({ baseUrl }: { baseUrl: string }) => {
   );
 };
 
-const AdminPage = ({ baseUrl }: { baseUrl: string }) => {
+const AdminPage = () => {
   const matches = useMediaQuery("(min-width: 800px)");
   const navigate = useNavigate();
   return (
     <>
+      <PageHeader pageTitle='MANAGE USERS'>
+        <FilterModal options={[]} />
+        <Button
+          text='Add Admin'
+          width='130px'
+          onClick={() => navigate("new")}
+        />
+      </PageHeader>
+      <LinksComponents active='admin' baseUrl={"super-admin"} />
       <div className={styles.tableWrapper}>
         {matches ? (
           <table>

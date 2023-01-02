@@ -64,23 +64,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0;
-  /* flex: 1; */
+  height: 50px;
   width: 100%;
 }
-.headerSort {
+.pagn {
   display: flex;
   margin: 10px 0;
   gap: 15px;
+  align-items: center;
 }
 
-.headerSort div {
+.pagn div {
   display: flex;
   gap: 7px;
   font-size: 16px;
 }
 
-.headerSort p {
+.pagn div p {
   display: inline-flex;
   font-weight: 300;
   font-size: 16px;
@@ -89,7 +89,7 @@
   white-space: nowrap;
 }
 
-.headerSort span {
+.pagn div span {
   border: 0.5px solid #344437;
   border-radius: 5px;
   font-weight: 300;
@@ -108,7 +108,17 @@
   /* width: 100%; */
 }
 
+.childrenFlex {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 @media screen and (max-width: 800px) {
+  .headerFlex {
+    height: auto;
+    margin: 10px 0;
+  }
   .backBtn {
     display: inline-flex;
     align-items: center;
@@ -132,6 +142,11 @@
     align-items: flex-end;
   }
   .headerFlex {
+    align-items: flex-start;
+  }
+  .childrenFlex {
+    flex-wrap: wrap;
+    justify-content: end;
     align-items: flex-start;
   }
 }

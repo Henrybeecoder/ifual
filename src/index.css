@@ -89,7 +89,8 @@ td {
   flex-direction: column;
 }
 
-.flex {
+.flex,
+.flex-lg {
   display: flex;
 }
 
@@ -117,6 +118,9 @@ td {
   }
   .w-50-lg {
     width: 100%;
+  }
+  .flex-lg {
+    flex-direction: column;
   }
   /* tr {
     padding: 0 10px;
