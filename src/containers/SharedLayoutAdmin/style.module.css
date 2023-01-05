@@ -282,15 +282,6 @@
   .modalContainer {
     width: 300px;
   }
-  .smContainer {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    background-color: white;
-    width: 85%;
-    z-index: 50;
-  }
   .logoSm {
     display: flex;
     padding: 35px 0 0 20px;
@@ -300,11 +291,5 @@
   }
   .navLinksContainer button {
     padding: 25px 0;
-  }
-  .overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 40;
-    background-color: rgba(0, 0, 0, 0.35);
   }
 }

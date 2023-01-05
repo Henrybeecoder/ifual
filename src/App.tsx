@@ -6,17 +6,19 @@ import Dashboard from "./screens/Dashboard";
 import ForgotPassword from "./screens/ForgotPassword";
 import ForgotPasswordMessage from "./screens/ForgotPasswordMessage";
 import ResetPassword from "./screens/ResetPassword";
-import OrderStatus from "./screens/OrderStatus";
-import ProductList from "./screens/ProductList";
+import OrderStatus from "./screens/vendor/OrderStatus";
+import ProductList from "./screens/vendor/ProductList";
 import SignUpMessage from "./screens/SignUpMessage";
 import SignUpNext from "./screens/SignUpNext";
 // customer
-import Notification from "./screens/Notification";
-import Report from "./screens/Report";
-import Home from "./screens/Home";
+import Notification from "./screens/vendor/Notification";
+import Report from "./screens/vendor/Report";
+import Home from "./screens/Customer/Home";
 import Checkout from "./screens/Checkout";
 import Cart from "./screens/Cart";
 import Profile from "./screens/Customer/Profile";
+//vendor
+import ProductInfo from "./screens/vendor/ProductList/ProductInfo";
 // admin
 import LoginAdmin from "./screens/Admin/Login";
 import DashboardAdmin from "./screens/Admin/Dashboard";
@@ -49,10 +51,9 @@ import CustomMessageSuperAdmin from "./screens/SuperAdmin/ComplaintsLog/CustomMe
 import ActivityLogSuperAdmin from "./screens/SuperAdmin/ActivityLog";
 import LoginSuperAdmin from "./screens/SuperAdmin/Login";
 import CustomerInfo from "./screens/SuperAdmin/ManageUsers/CustomerInfo";
-import VendorInfoSuperAdmin from "./screens/SuperAdmin/ManageUsers/VendorInfo";
-import AddVendorSuperAdmin from "./screens/SuperAdmin/ManageUsers/AddVendor";
 import CannotLoginSuperAdmin from "./screens/SuperAdmin/Login/CannotLogin";
 import NotificationSuperAdmin from "./screens/SuperAdmin/Notification";
+import Order from "./screens/Customer/Home/Order";
 // shared admin
 // import CustomMessage from "./screens/SharedAdmin/ComplaintsLog/CustomMessage";
 
@@ -60,15 +61,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='customer'>
-          <Route path='profile' element={<Profile />} />
-        </Route>
-
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route
           path='/forgot-password-message'
@@ -77,15 +73,22 @@ function App() {
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/sign-up-message' element={<SignUpMessage />} />
         <Route path='/sign-up-next' element={<SignUpNext />} />
-
+        //customer
+        <Route path='/' element={<Home />} />
+        <Route path=':id' element={<Order />} />
+        <Route path='customer'>
+          <Route path='profile' element={<Profile />} />
+        </Route>
         <Route path='/vendor'>
           <Route path='dashboard' element={<Dashboard />} />
           <Route path='order-status' element={<OrderStatus />} />
-          <Route path='product-list' element={<ProductList />} />
+          <Route path='product-list'>
+            <Route index element={<ProductList />} />
+            <Route path=':id' element={<ProductInfo />} />
+          </Route>
           <Route path='notification' element={<Notification />} />
           <Route path='report' element={<Report />} />
         </Route>
-
         <Route path='/admin'>
           <Route index element={<LoginAdmin />} />
           <Route path='login-issue' element={<CannotLoginAdmin />} />
@@ -115,7 +118,6 @@ function App() {
           </Route>
           <Route path='activity-log' element={<ActivityLogAdmin />} />
         </Route>
-
         <Route path='/super-admin'>
           <Route index element={<LoginSuperAdmin />} />
           <Route path='login-issue' element={<CannotLoginSuperAdmin />} />
@@ -123,13 +125,6 @@ function App() {
           <Route path='dashboard' element={<DashboardSuperAdmin />} />
           <Route path='settings' element={<SettingsSuperAdmin />} />
           <Route path='manage-users/*' element={<ManageUsersSuperAdmin />} />
-          {/* <Route index element={<ManageUsersSuperAdmin />} />
-            <Route path='add-admin' element={<AdminInfo />} />
-            <Route path='customer-info' element={<CustomerInfo />} />
-            <Route path='vendor-info' element={<VendorInfoSuperAdmin />} />
-            <Route path='add-vendor' element={<AddVendorSuperAdmin />} />
-            <Route path='admin-info' element={<AdminInfo />} /> */}
-          {/* </Route> */}
           <Route path='manage-products'>
             <Route index element={<ManageProducts />} />
             <Route path=':id' element={<ProductDetails />} />

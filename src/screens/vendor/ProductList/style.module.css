@@ -173,10 +173,10 @@ button {
 }
 
 .flexFooter {
-  margin-top: 20px;
   display: flex;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-between;
+  width: 50%;
+  margin: 20px auto;
 }
 
 .btnBackFooter {
@@ -274,6 +274,11 @@ button {
   stroke: #36b44a;
 }
 
+.EditDelete {
+  display: flex;
+  gap: 14px;
+}
+
 @media screen and (max-width: 800px) {
   button {
     margin-right: 10px;
@@ -305,5 +310,16 @@ button {
 
   .flexFooter {
     margin-top: 30px;
+    width: 100%;
+  }
+  .title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+  }
+  .subText {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
   }
 }

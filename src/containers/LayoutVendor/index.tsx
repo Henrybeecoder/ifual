@@ -9,7 +9,7 @@ interface Props {
   children: ReactNode;
 }
 
-export default function PageContainer({ children }: Props) {
+export default function Layout({ children }: Props) {
   const matches = useMediaQuery("(min-width: 800px)");
   const navigate = useNavigate();
 

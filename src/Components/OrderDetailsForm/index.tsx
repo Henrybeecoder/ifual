@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { statesOptions } from "src/Custom hooks/helpers";
 import { SvgArrowDown, SvgArrowUp } from "../../assets/Svgs";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
-import { statesOptions } from "../../screens/ProductList";
 import { InputTemp, SelectTemp } from "../InputTemp";
 import styles from "./style.module.css";
 

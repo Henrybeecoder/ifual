@@ -1,3 +1,22 @@
+.breadcrumb {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 28px;
+  color: #2f3930;
+}
+
+.breadcrumbAdmin {
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 21px;
+  color: #2f3930;
+}
+
+.breadcrumb span,
+.breadcrumbAdmin span {
+  color: rgba(47, 57, 48, 0.5);
+}
+
 .actionsContainer {
   display: flex;
   gap: 20px;
@@ -55,8 +74,38 @@
   font-size: 18px;
   line-height: 18px;
 }
+.edit {
+  color: #36b44a;
+}
+
+.edit svg {
+  color: #36b44a;
+  stroke: #36b44a;
+}
+.delete {
+  color: #ca0814;
+}
+
+.delete svg {
+  color: #ca0814;
+  stroke: #ca0814;
+}
 
 .backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 20px 0 10px 0;
+}
+
+.backBtn p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  text-decoration: underline;
+}
+
+.backBtnAdmin {
   display: none;
 }
 
@@ -115,18 +164,29 @@
 }
 
 @media screen and (max-width: 800px) {
+  .breadcrumb {
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 19px;
+    white-space: nowrap;
+    color: #2f3930;
+  }
+  .breadcrumb span {
+    display: none;
+  }
+
   .headerFlex {
     height: auto;
     margin: 10px 0;
   }
-  .backBtn {
+  .backBtnAdmin {
     display: inline-flex;
     align-items: center;
     gap: 5px;
     margin: 20px 0 10px 0;
   }
 
-  .backBtn p {
+  .backBtnAdmin p {
     font-weight: 500;
     font-size: 16px;
     line-height: 16px;

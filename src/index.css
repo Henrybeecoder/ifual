@@ -6,6 +6,10 @@
   font-family: "Sofia pro";
 }
 
+svg {
+  stroke: #344437;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -68,17 +72,6 @@ td {
   color: #acb5bd;
 }
 
-.breadcrumb {
-  font-weight: 500;
-  font-size: 21px;
-  line-height: 21px;
-  color: #2f3930;
-}
-
-.breadcrumb span {
-  color: rgba(47, 57, 48, 0.5);
-}
-
 .w-50,
 .w-50-lg {
   width: 50%;
@@ -102,17 +95,14 @@ td {
   width: 100%;
 }
 
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
 @media screen and (max-width: 800px) {
-  .breadcrumb {
-    font-weight: 500;
-    font-size: 19px;
-    line-height: 19px;
-    white-space: nowrap;
-    color: #2f3930;
-  }
-  .breadcrumb span {
-    display: none;
-  }
   .input-flex-btwn {
     display: block;
   }
@@ -132,5 +122,14 @@ td {
   td {
     padding: 12px 6px 12px 14px;
     text-align: start;
+  }
+  .sideBarContainer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: white;
+    width: 85%;
+    z-index: 50;
   }
 }

@@ -1,16 +1,17 @@
 import { useState } from "react";
-import PageContainer from "../../containers/LayoutVendor";
+import Layout from "../../../containers/LayoutVendor";
 import styles from "./style.module.css";
-import right from "../../assets/svg/right.svg";
-import left from "../../assets/svg/left.svg";
-import filter from "../../assets/svg/filter.svg";
-import noneSelected from "../../assets/svg/noneSelected.svg";
-import { limitText } from "../../Custom hooks/helpers";
-import Modal from "../../Components/Modals";
-import modalCheck from "../../assets/svg/modalCheck.svg";
-import useMediaQuery from "../../Custom hooks/useMediaQuery";
-import Checkbox, { CheckboxProps } from "../../Components/Checkbox";
+// import right from "../../assets/svg/right.svg";
+// import left from "../../assets/svg/left.svg";
+// import filter from "../../assets/svg/filter.svg";
+import noneSelected from "../../../assets/svg/noneSelected.svg";
+import { limitText } from "../../../Custom hooks/helpers";
+import Modal from "../../../Components/Modals";
+import modalCheck from "../../../assets/svg/modalCheck.svg";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
+import Checkbox, { CheckboxProps } from "../../../Components/Checkbox";
 import { SvgArrowLeft } from "src/assets/Svgs";
+import Button from "@components/Button";
 
 const notificationList = [
   {
@@ -59,17 +60,17 @@ type ModalNames = "accept" | "decline" | "accepted" | "declined" | null;
 const Notification = () => {
   const [filterSet, setFilter] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
-  const [modalActive, setModalActive] = useState<ModalNames>(null);
+  const [activeModal, setActiveModal] = useState<ModalNames>(null);
 
   const modalState = {
-    accept: !!(modalActive === "accept"),
-    decline: !!(modalActive === "decline"),
-    accepted: !!(modalActive === "accepted"),
-    declined: !!(modalActive === "declined"),
+    accept: !!(activeModal === "accept"),
+    decline: !!(activeModal === "decline"),
+    accepted: !!(activeModal === "accepted"),
+    declined: !!(activeModal === "declined"),
   };
 
   const closeModal = () => {
-    setModalActive(null);
+    setActiveModal(null);
   };
 
   const selectedContent = notificationList.find(
@@ -83,69 +84,54 @@ const Notification = () => {
   const matches = useMediaQuery("(min-width: 800px)");
 
   return (
-    <PageContainer>
+    <Layout>
       <Modal
         name='accept'
         openModal={modalState.accept}
-        closeModal={closeModal}
-        width={"720px"}>
-        <div className={styles.modalContainer}>
-          <>
-            <h2 className={styles.modalHeader}>Accept Order</h2>
-            <p className={styles.modalOption}>
-              You are about to accept the order for{" "}
-              <span className={styles.spanGreen}>200l</span> of Diesel at
-              <span className={styles.spanGreen}>N34,500</span> from 234
-              Ventures at Ikoyi, Lagos
-            </p>
-            <p className={styles.clickToConfirm}>Kindly click to confirm</p>
-            <div className={styles.flexCenter}>
-              <button className={styles.btnCancelAccept} onClick={closeModal}>
-                Cancel
-              </button>
-              <button
-                className={styles.btnAccept}
-                onClick={() => setModalActive("accepted")}>
-                Confirm
-              </button>
-            </div>
-          </>
+        closeModal={closeModal}>
+        <h3>Accept Order</h3>
+        <p className={styles.modalOption}>
+          You are about to accept the order for{" "}
+          <span className={styles.spanGreen}>200l</span> of Diesel at
+          <span className={styles.spanGreen}>N34,500</span> from 234 Ventures at
+          Ikoyi, Lagos
+        </p>
+        <p className={styles.clickToConfirm}>Kindly click to confirm</p>
+        <div className='flex-btwn'>
+          <Button text='Cancel' width='40%' onClick={closeModal} />
+          <Button
+            text='Confirm'
+            variant='primary'
+            width='55%'
+            onClick={() => setActiveModal("accepted")}
+          />
         </div>
       </Modal>
 
       <Modal
         name='accept'
         openModal={modalState.decline}
-        closeModal={closeModal}
-        width={"720px"}>
-        {" "}
-        <div className={styles.modalContainer}>
-          <h2 className={styles.modalHeader}>Decline Order</h2>
-          <p className={styles.modalOption}>
-            You are about to decline the order for{" "}
-            <span className={styles.spanGreen}>200l</span> of Diesel at{" "}
-            <span className={styles.spanGreen}>N34,500</span> from 234 Ventures
-            at Ikoyi, Lagos
-          </p>
-          <p className={styles.clickToConfirm}>Kindly click to confirm</p>
-          <div className={styles.flexCenter}>
-            <button className={styles.btnCancelDecline} onClick={closeModal}>
-              Cancel
-            </button>
-
-            <button
-              className={styles.btnDecline}
-              onClick={() => setModalActive("declined")}>
-              Decline
-            </button>
-          </div>
+        closeModal={closeModal}>
+        <h3>Decline Order</h3>
+        <p>
+          You are about to decline the order for{" "}
+          <span className={styles.spanGreen}>200l</span> of Diesel at{" "}
+          <span className={styles.spanGreen}>N34,500</span> from 234 Ventures at
+          Ikoyi, Lagos
+        </p>
+        <p>Kindly click to confirm</p>
+        <div className='flex-btwn'>
+          <Button text='Cancel' width='56%' onClick={closeModal} />
+          <Button
+            text='Decline'
+            variant='danger'
+            width='40%'
+            onClick={() => setActiveModal("declined")}
+          />
         </div>
       </Modal>
 
-      <Modal
-        openModal={modalState.declined}
-        // closeModal={confirmDeclineOrderClose}
-        width={"505px"}>
+      <Modal openModal={modalState.declined}>
         <div className={styles.orderDeclined}>
           <div className={styles.orderDeclinedContent}>
             <h2>Why Are you declining this order?</h2>
@@ -182,43 +168,22 @@ const Notification = () => {
               <CheckBoxWithText checked={false} text='Other' />
             </div>
             <div className={styles.divider} />
-            <div className={styles.flexCenter}>
-              <button className={styles.btnSkip} onClick={closeModal}>
-                Skip
-              </button>
-              <button className={styles.btnSubmit} onClick={closeModal}>
-                Submit
-              </button>
+            <div className='flex-btwn'>
+              <Button text='Skip' width='40%' onClick={closeModal} />
+              <Button
+                text='Submit'
+                variant='primary'
+                width='55%'
+                onClick={() => setActiveModal(null)}
+              />
             </div>
           </div>
         </div>
       </Modal>
-      <Modal
-        width='720px'
-        openModal={modalState.accepted}
-        closeModal={closeModal}>
-        <div className={styles.orderAccepted}>
-          <div className={styles.orderAcceptedContent}>
-            <h2>Order Accepted</h2>
-            <img src={modalCheck} />
-          </div>
-        </div>
+      <Modal openModal={modalState.accepted} closeModal={closeModal}>
+        <h3>Order Accepted</h3>
+        <img src={modalCheck} />
       </Modal>
-
-      {filterSet && (
-        <div className={styles.filterContainer}>
-          <div className={styles.filterHeader}>
-            <p>Filter</p>
-          </div>
-          <div className={styles.filterContent}>
-            <p>Delivered</p>
-            <p>Pending</p>
-            <p>Cancelled</p>
-            <p>Newest to Oldest</p>
-            <p>Oldest to Newest</p>
-          </div>
-        </div>
-      )}
 
       <div className={styles.pageContainer}>
         {!selected ? (
@@ -238,15 +203,15 @@ const Notification = () => {
             <div className={styles.paginations}>
               <p>1 - 4 of 4</p>
               <div className={styles.holders}>
-                <img src={left} alt='' />
-                <img src={right} alt='' />
+                {/* <img src={left} alt='' /> */}
+                {/* <img src={right} alt='' /> */}
               </div>
             </div>
             <div
               className={styles.filter}
               onClick={() => setFilter(!filterSet)}>
               <h2>Filter</h2>
-              <img src={filter} alt='' />
+              {/* <img src={filter} alt='' /> */}
             </div>
           </div>
         </div>
@@ -317,12 +282,12 @@ const Notification = () => {
                 <div className={styles.flexCenter}>
                   <button
                     className={styles.btnNo}
-                    onClick={() => setModalActive("decline")}>
+                    onClick={() => setActiveModal("decline")}>
                     No
                   </button>
                   <button
                     className={styles.btnYes}
-                    onClick={() => setModalActive("accept")}>
+                    onClick={() => setActiveModal("accept")}>
                     Yes I am
                   </button>
                 </div>
@@ -331,7 +296,7 @@ const Notification = () => {
           </div>
         </div>
       </div>
-    </PageContainer>
+    </Layout>
   );
 };
 

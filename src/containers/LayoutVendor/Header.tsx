@@ -26,35 +26,40 @@ const Header = ({ user, setOpen = () => {} }: HeaderProps) => {
   return (
     <>
       <div className={styles.headerContainer}>
-        <div className={styles.flexHeaderSm}>
-          <img src={logo} />
-          <button
-            style={{ marginLeft: "7px" }}
-            onClick={() => setOpen((state) => !state)}>
-            <HamburgerSvg />
-          </button>
-        </div>
-        <div className={`${styles.flexHeader}`}>
-          <div className={`${styles.searchBar}`}>
-            <input placeholder='Enter Keyword' />
-
-            <div className={styles.searchIcon}>
-              <SearchIcon />
-            </div>
+        {!matches ? (
+          <div className={styles.flexHeaderSm}>
+            <img src={logo} />
+            <button
+              style={{ marginLeft: "7px" }}
+              onClick={() => setOpen((state) => !state)}>
+              <HamburgerSvg />
+            </button>
           </div>
-          <NavLink to={`/vendor/notification`} style={{ marginRight: "15px" }}>
-            {({ isActive }) => (
-              <NotificationSvg
-                style={{ stroke: !isActive ? "#344437" : "#36b44a" }}
-              />
-            )}
-          </NavLink>
-          <BoxBarSvg style={{ marginRight: "15px" }} />
-          <img
-            src={profile}
-            onClick={() => setProfileModal((state) => !state)}
-          />
-        </div>
+        ) : (
+          <div className={`${styles.flexHeader}`}>
+            <div className={`${styles.searchBar}`}>
+              <input placeholder='Enter Keyword' />
+
+              <div className={styles.searchIcon}>
+                <SearchIcon />
+              </div>
+            </div>
+            <NavLink
+              to={`/vendor/notification`}
+              style={{ marginRight: "15px" }}>
+              {({ isActive }) => (
+                <NotificationSvg
+                  style={{ stroke: !isActive ? "#344437" : "#36b44a" }}
+                />
+              )}
+            </NavLink>
+            <BoxBarSvg style={{ marginRight: "15px" }} />
+            <img
+              src={profile}
+              onClick={() => setProfileModal((state) => !state)}
+            />
+          </div>
+        )}
         <ProfileModal user={user} open={profileModal} />
       </div>
     </>

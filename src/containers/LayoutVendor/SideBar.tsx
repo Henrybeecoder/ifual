@@ -23,33 +23,45 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
       {!matches ? (
         <Root open={open} onOpenChange={setOpen}>
           <Portal>
-            <Overlay className={styles.overlay} />
-            <Content className={styles.smContainer}>
+            <Overlay className={"overlay"} />
+            <Content className={"sideBarContainer"}>
               <div className={styles.logoSm}>
                 <img alt='logo' src={logo} />
               </div>
               <div className={styles.navLinksContainer}>
-                <NavLinkItem to={`/vendor/dashboard`} heading='Dashboard'>
+                <NavLinkItem
+                  marginMd
+                  to={`/vendor/dashboard`}
+                  heading='Dashboard'>
                   <DashboardSvg />
                 </NavLinkItem>
                 <div className='divider' />
-                <NavLinkItem to={`/vendor/product-list`} heading='Product List'>
+                <NavLinkItem
+                  marginMd
+                  to={`/vendor/product-list`}
+                  heading='Product List'>
                   <ProductListSvg />
                 </NavLinkItem>
                 <div className='divider' />
-                <NavLinkItem to={`/vendor/order-status`} heading='Order Status'>
+                <NavLinkItem
+                  marginMd
+                  to={`/vendor/order-status`}
+                  heading='Order Status'>
                   <OrderStatusSvg />
                 </NavLinkItem>
                 <div className='divider' />
-                <NavLinkItem to={`/vendor/notification`} heading='Notification'>
+                <NavLinkItem
+                  marginMd
+                  to={`/vendor/notification`}
+                  heading='Notification'>
                   <NotificationSvg />
                 </NavLinkItem>
                 <div className='divider' />
-                <NavLinkItem to={`/vendor/report`} heading='Report'>
+                <NavLinkItem marginMd to={`/vendor/report`} heading='Report'>
                   <ReportSvg />
                 </NavLinkItem>
                 <div className='divider' />
-                <NavLinkItem to={`/vendor/log-out`} heading='Log out'>
+                <NavLinkItem marginMd to={`/vendor/log-out`} heading='Log out'>
                   <LogoutSvg />
                 </NavLinkItem>
                 <div className='divider' />

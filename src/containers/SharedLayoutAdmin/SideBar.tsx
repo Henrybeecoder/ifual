@@ -32,8 +32,8 @@ const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
       {!matches ? (
         <Root open={open} onOpenChange={setOpen}>
           <Portal>
-            <Overlay className={styles.overlay} />
-            <Content className={styles.smContainer}>
+            <Overlay className={"overlay"} />
+            <Content className={"sideBarContainer"}>
               <div className={styles.logoSm}>
                 <img alt='logo' src={logo} />
               </div>

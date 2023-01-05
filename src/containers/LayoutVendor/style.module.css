@@ -75,10 +75,6 @@
   width: 100%;
 }
 
-.flexHeaderSm {
-  display: none;
-}
-
 .sideBarContainer {
   width: 20%;
   height: 100%;
@@ -155,9 +151,32 @@
 
 @media screen and (max-width: 800px) {
   .page {
-    padding: 110px 20px 45px 20px;
+    padding: 110px 17px 45px 17px;
   }
   .headerContainer {
     padding: 22px 20px;
+    justify-content: center;
+  }
+  .flexHeaderSm {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .smContainer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: white;
+    width: 85%;
+    z-index: 50;
+  }
+  .logoSm {
+    display: flex;
+    padding: 35px 0 0 20px;
+  }
+  .navLinksContainer {
+    padding: 5px 20px;
+    margin: 40px 0 70px 0;
   }
 }
