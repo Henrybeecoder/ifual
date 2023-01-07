@@ -26,7 +26,7 @@ const PageHeader = ({
           <p>Back</p>
         </button>
       ) : null}
-      <div className={styles.headerFlex}>
+      <div className={styles.headerFlexA}>
         <h3 className={styles.breadcrumbAdmin}>
           {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}
           {pageTitle}

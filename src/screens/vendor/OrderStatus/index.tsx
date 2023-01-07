@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
 import { limitText } from "src/Custom hooks/helpers";
 import PageHeader, { FilterModal, PaginationOf } from "@components/PageHeader";
+import { useQuery } from "@tanstack/react-query";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -98,23 +99,20 @@ const rows = [
     "28/07/2022",
     "N30,000.00"
   ),
-  createData(
-    "7",
-    "Pure, distilled Kerosene",
-    "100 l",
-    "Delivered",
-    "28/07/2022",
-    "N30,000.00"
-  ),
 ];
 
 export default function OrderStatus() {
   const matches = useMediaQuery("(min-width: 800px)");
   const navigate = useNavigate();
+
+  const [filter, setFilter] = useState("newest to oldest");
+
+  const { data } = useQuery(["/Order/GetVendorOrders"], { initialData: rows });
+
   return (
     <Layout>
       <PageHeader pageTitle='Order Status'>
-        <PaginationOf current={6} total={6} />
+        <PaginationOf current={[1, 6]} total={6} />
         <FilterModal
           options={[
             "delivered",
@@ -123,7 +121,8 @@ export default function OrderStatus() {
             "newest to oldest",
             "oldest to newest",
           ]}
-          selected='newest to oldest'
+          onSelect={setFilter}
+          selected={filter}
         />
       </PageHeader>
 
@@ -151,41 +150,37 @@ export default function OrderStatus() {
                 </StyledTableCell>
                 <StyledTableCell align='right'></StyledTableCell>
               </StyledTableRow>
-              {rows.map((row) => (
-                <>
-                  <StyledTableRow key={row.id}>
-                    <StyledTableCell component='th' scope='row'>
-                      <h3 className={styles.subText}>{row.name}</h3>
-                    </StyledTableCell>
-                    <StyledTableCell align='center'>
-                      <h3 className={styles.subText}>{row.calories}</h3>
-                    </StyledTableCell>
-                    <StyledTableCell align='center'>
-                      <p
-                        className={`${
-                          row.fat === "Delivered" && styles.delivered
-                        } ${row.fat === "Pending" && styles.pending} ${
-                          row.fat === "Cancelled" && styles.cancelled
-                        } `}>
-                        {row.fat}
-                      </p>
-                    </StyledTableCell>
-                    <StyledTableCell align='center'>
-                      <h3 className={styles.subText}>{row.carbs}</h3>
-                    </StyledTableCell>
-                    <StyledTableCell align='center'>
-                      <h3 className={styles.subText}>{row.protein}</h3>
-                    </StyledTableCell>
-                    <StyledTableCell
-                      align='right'
-                      style={{ cursor: "pointer" }}>
-                      <SubModal>
-                        <button onClick={() => navigate(row.id)}>View</button>
-                        <button>Report</button>
-                      </SubModal>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                </>
+              {data.map((row) => (
+                <StyledTableRow key={row.id}>
+                  <StyledTableCell component='th' scope='row'>
+                    <h3 className={styles.subText}>{row.name}</h3>
+                  </StyledTableCell>
+                  <StyledTableCell align='center'>
+                    <h3 className={styles.subText}>{row.calories}</h3>
+                  </StyledTableCell>
+                  <StyledTableCell align='center'>
+                    <p
+                      className={`${
+                        row.fat === "Delivered" && styles.delivered
+                      } ${row.fat === "Pending" && styles.pending} ${
+                        row.fat === "Cancelled" && styles.cancelled
+                      } `}>
+                      {row.fat}
+                    </p>
+                  </StyledTableCell>
+                  <StyledTableCell align='center'>
+                    <h3 className={styles.subText}>{row.carbs}</h3>
+                  </StyledTableCell>
+                  <StyledTableCell align='center'>
+                    <h3 className={styles.subText}>{row.protein}</h3>
+                  </StyledTableCell>
+                  <StyledTableCell align='right' style={{ cursor: "pointer" }}>
+                    <SubModal>
+                      <button onClick={() => navigate(row.id)}>View</button>
+                      <button>Report</button>
+                    </SubModal>
+                  </StyledTableCell>
+                </StyledTableRow>
               ))}
             </TableBody>
           </Table>
@@ -204,50 +199,46 @@ export default function OrderStatus() {
                 </StyledTableCell>
                 <StyledTableCell align='right'></StyledTableCell>
               </StyledTableRow>
-              {rows.map((row) => (
-                <>
-                  <StyledTableRow key={row.id}>
-                    <StyledTableCell
-                      scope='row'
-                      align='center'
-                      style={{ padding: "10px 3px" }}>
-                      <h3 className={styles.subText}>
-                        {row.name
-                          .split(" ")
-                          [row.name.split(" ").length - 1].toString()}
-                      </h3>
-                    </StyledTableCell>
-                    <StyledTableCell
-                      align='center'
-                      style={{ padding: "10px 3px" }}>
-                      <p
-                        className={`${
-                          row.fat === "Delivered" && styles.delivered
-                        } ${row.fat === "Pending" && styles.pending} ${
-                          row.fat === "Cancelled" && styles.cancelled
-                        } `}>
-                        {row.fat}
-                      </p>
-                    </StyledTableCell>
-                    <StyledTableCell
-                      align='center'
-                      style={{ padding: "10px 3px" }}>
-                      <h3 className={styles.subText}>
-                        {limitText(row.protein, 6)}
-                      </h3>
-                    </StyledTableCell>
-                    <StyledTableCell
-                      align='left'
-                      style={{ padding: "10px 3px" }}>
-                      <ArrowRight
-                        style={{ cursor: "pointer" }}
-                        onClick={() => {
-                          navigate(row.id);
-                        }}
-                      />
-                    </StyledTableCell>
-                  </StyledTableRow>
-                </>
+              {data.map((row) => (
+                <StyledTableRow key={row.id}>
+                  <StyledTableCell
+                    scope='row'
+                    align='center'
+                    style={{ padding: "10px 3px" }}>
+                    <h3 className={styles.subText}>
+                      {row.name
+                        .split(" ")
+                        [row.name.split(" ").length - 1].toString()}
+                    </h3>
+                  </StyledTableCell>
+                  <StyledTableCell
+                    align='center'
+                    style={{ padding: "10px 3px" }}>
+                    <p
+                      className={`${
+                        row.fat === "Delivered" && styles.delivered
+                      } ${row.fat === "Pending" && styles.pending} ${
+                        row.fat === "Cancelled" && styles.cancelled
+                      } `}>
+                      {row.fat}
+                    </p>
+                  </StyledTableCell>
+                  <StyledTableCell
+                    align='center'
+                    style={{ padding: "10px 3px" }}>
+                    <h3 className={styles.subText}>
+                      {limitText(row.protein, 6)}
+                    </h3>
+                  </StyledTableCell>
+                  <StyledTableCell align='left' style={{ padding: "10px 3px" }}>
+                    <ArrowRight
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        navigate(row.id);
+                      }}
+                    />
+                  </StyledTableCell>
+                </StyledTableRow>
               ))}
             </TableBody>
           </Table>

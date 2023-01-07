@@ -38,6 +38,7 @@ interface InputTempProps {
   mode?: "light" | "dark";
   width?: string;
   style?: CSSProperties;
+  disabled?: boolean;
 }
 
 export const InputTemp = ({
@@ -59,6 +60,7 @@ export const InputTemp = ({
   mode = "dark",
   width,
   style,
+  disabled,
 }: InputTempProps) => {
   return (
     <div
@@ -73,6 +75,7 @@ export const InputTemp = ({
       </label>
       <div className={styles.relative}>
         <input
+          disabled={disabled}
           placeholder={placeholder}
           type={inputType}
           id={id}
@@ -111,6 +114,7 @@ interface SelectTempProps {
   className?: string;
   style?: CSSProperties;
   mode?: "light" | "dark";
+  disabled?: boolean;
 }
 
 export const SelectTemp = ({
@@ -131,6 +135,7 @@ export const SelectTemp = ({
   className,
   style,
   mode = "dark",
+  disabled,
 }: SelectTempProps) => {
   //   const selectRef = useRef(null);
   return (
@@ -145,6 +150,7 @@ export const SelectTemp = ({
         {label}
       </label>
       <Select
+        isDisabled={disabled}
         value={value}
         onChange={onValueChange}
         styles={{

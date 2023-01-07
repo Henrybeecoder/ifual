@@ -109,12 +109,16 @@
   display: none;
 }
 
-.headerFlex {
+.headerFlex,
+.headerFlexA {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 50px;
   width: 100%;
+}
+.headerFlex {
+  margin: 25px 0;
 }
 .pagn,
 .pagnOf {

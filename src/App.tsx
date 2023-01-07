@@ -6,20 +6,22 @@ import Dashboard from "./screens/vendor/Dashboard";
 import ForgotPassword from "./screens/ForgotPassword";
 import ForgotPasswordMessage from "./screens/ForgotPasswordMessage";
 import ResetPassword from "./screens/ResetPassword";
-import OrderStatus from "./screens/vendor/OrderStatus";
-import ProductList from "./screens/vendor/ProductList";
 import SignUpMessage from "./screens/SignUpMessage";
 import SignUpNext from "./screens/SignUpNext";
 // customer
 import Notification from "./screens/vendor/Notification";
-import Report from "./screens/vendor/Report";
 import Home from "./screens/Customer/Home";
 import Checkout from "./screens/Checkout";
 import Cart from "./screens/Cart";
 import Profile from "./screens/Customer/Profile";
 //vendor
 import ProductInfo from "./screens/vendor/ProductList/ProductInfo";
+import OrderStatus from "./screens/vendor/OrderStatus";
+import ProductList from "./screens/vendor/ProductList";
 import OrderDetailsVendor from "./screens/vendor/OrderStatus/OrderDetails";
+import ProfileVendor from "./screens/vendor/Profile";
+import Report from "./screens/vendor/Report";
+import NewReport from "./screens/vendor/Report/New";
 // admin
 import LoginAdmin from "./screens/Admin/Login";
 import DashboardAdmin from "./screens/Admin/Dashboard";
@@ -82,6 +84,7 @@ function App() {
           <Route path='profile' element={<Profile />} />
         </Route>
         <Route path='/vendor'>
+          <Route path='profile' element={<ProfileVendor />} />
           <Route path='dashboard' element={<Dashboard />} />
           <Route path='order-status'>
             <Route index element={<OrderStatus />} />
@@ -92,7 +95,10 @@ function App() {
             <Route path=':id' element={<ProductInfo />} />
           </Route>
           <Route path='notification' element={<Notification />} />
-          <Route path='report' element={<Report />} />
+          <Route path='report'>
+            <Route index element={<Report />} />
+            <Route path='new' element={<NewReport />} />
+          </Route>
         </Route>
         <Route path='/admin'>
           <Route index element={<LoginAdmin />} />

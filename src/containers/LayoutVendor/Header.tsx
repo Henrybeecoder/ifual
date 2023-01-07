@@ -87,7 +87,9 @@ const ProfileModal = ({ user, open }: { user: any; open: boolean }) => {
           </div>
           <div className='divider' />
           <div className={styles.profileLinksContainer}>
-            <button>View Profile</button>
+            <button onClick={() => navigate("/vendor/profile")}>
+              View Profile
+            </button>
             <button>View Orders</button>
             <button>Track Order</button>
             <button>Support</button>
