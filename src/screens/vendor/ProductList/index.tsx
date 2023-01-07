@@ -8,12 +8,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styles from "./style.module.css";
-// import right from "../../../assets/svg/right.svg";
-// import left from "../../../assets/svg/left.svg";
-// import filter from "../../assets/svg/filter.svg";
 import OptionsModal from "../../../Components/OptionsModal";
 import Modal from "../../../Components/Modals";
-import { FilterModal, PageHeader, PaginationOf } from "@components/PageHeader";
+import PageHeader, { FilterModal, PaginationOf } from "@components/PageHeader";
 import Button from "@components/Button";
 import { useNavigate } from "react-router-dom";
 import useMediaQuery from "src/Custom hooks/useMediaQuery";
@@ -132,7 +129,7 @@ export const rows = [
     "6 hours",
     "N300.00"
   ),
-];
+].slice(0, 4);
 
 export default function ProductList() {
   const navigate = useNavigate();
@@ -154,7 +151,7 @@ export default function ProductList() {
       </Modal>
       <>
         <PageHeader pageTitle='Product List'>
-          <PaginationOf current={1} total={6} />
+          <PaginationOf current={[1, 4]} total={6} />
           <FilterModal
             selected='In-stock'
             options={[
@@ -166,7 +163,7 @@ export default function ProductList() {
           />
           <Button
             text='Add Product'
-            width='150px'
+            width='190px'
             onClick={() => navigate("new")}
           />
         </PageHeader>

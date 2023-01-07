@@ -9,7 +9,7 @@ import styles from "./style.module.css";
 import { Root, Trigger, Portal, Content } from "@radix-ui/react-popover";
 import { useNavigate } from "react-router-dom";
 
-interface Props {
+export interface Props {
   parentPageTitle?: string;
   pageTitle: string;
   children?: ReactNode;
@@ -17,79 +17,10 @@ interface Props {
   onClickBackBtn?: () => void;
 }
 
-interface PagnProps extends Props {
-  onLeftArrowClick?: () => void;
-  onRightArrowClick?: () => void;
-  current: number | string;
-  total: number;
-  editBtn?: boolean;
-  onClickEditBtn?: () => void;
-}
-
-interface FilterHeaderProps extends Props {
-  options: string[];
-  onSelect?: (value: string) => void;
-  selected?: string;
-}
-
 interface TitleProps extends Props {
   editBtn?: boolean;
   onClickEditBtn?: () => void;
 }
-
-export const PagnHeader = ({
-  pageTitle,
-  onLeftArrowClick,
-  onRightArrowClick,
-  parentPageTitle,
-  current,
-  total,
-  editBtn,
-  onClickEditBtn,
-  children,
-  backBtn,
-  onClickBackBtn,
-}: PagnProps) => {
-  const navigate = useNavigate();
-  return (
-    <>
-      {backBtn ? (
-        <button
-          className={styles.backBtn}
-          onClick={!onClickBackBtn ? () => navigate(-1) : onClickBackBtn}>
-          <ArrowBackSvg />
-          <p>Back</p>
-        </button>
-      ) : null}
-      <div className={styles.headerFlex}>
-        <h3 className='breadcrumb'>
-          {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}
-          {pageTitle}
-        </h3>
-        <div className={styles.flexLg}>
-          <div className={styles.headerSort}>
-            {editBtn ? (
-              <button className={styles.editBtn} onClick={onClickEditBtn}>
-                <h3>EDIT</h3>
-                <EditSvg />
-              </button>
-            ) : null}
-            <div>
-              <span>{current}</span>/<p>{total}</p>
-            </div>
-            <button onClick={onLeftArrowClick}>
-              <LeftSvg />
-            </button>
-            <button onClick={onRightArrowClick}>
-              <RightSvg />
-            </button>
-          </div>
-          {children}
-        </div>
-      </div>
-    </>
-  );
-};
 
 export const TitleHeader = ({
   pageTitle,
@@ -121,48 +52,6 @@ export const TitleHeader = ({
             <EditSvg />
           </button>
         ) : null}
-      </div>
-    </>
-  );
-};
-
-export const FilterHeader = ({
-  pageTitle,
-  parentPageTitle,
-  children,
-  options,
-  onSelect,
-  selected,
-  backBtn,
-  onClickBackBtn,
-}: FilterHeaderProps) => {
-  const navigate = useNavigate();
-
-  return (
-    <>
-      {backBtn ? (
-        <button
-          className={styles.backBtn}
-          onClick={!onClickBackBtn ? () => navigate(-1) : onClickBackBtn}>
-          <ArrowBackSvg />
-          <p>Back</p>
-        </button>
-      ) : null}
-      <div className={styles.flexLg}>
-        {" "}
-        <div className={styles.headerFlex}>
-          <h3 className='breadcrumb'>
-            {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}
-            {pageTitle}
-          </h3>
-
-          <FilterModal
-            options={options}
-            selected={selected}
-            onSelect={onSelect}
-          />
-        </div>{" "}
-        {children}
       </div>
     </>
   );
@@ -212,54 +101,9 @@ export const FilterModal = ({
   );
 };
 
-interface PagnFilterProps extends PagnProps {
-  options: string[];
-  onSelect?: (value: string) => void;
-  selected?: string;
-}
-
-export const PagnHeaderWFilter = ({
-  children,
+const PageHeader = ({
   pageTitle,
   parentPageTitle,
-  current,
-  total,
-  onLeftArrowClick,
-  onRightArrowClick,
-  options,
-  selected,
-  onSelect,
-}: PagnFilterProps) => {
-  return (
-    <div className={styles.headerFlex}>
-      <h3 className='breadcrumb'>
-        {parentPageTitle ? <span>{parentPageTitle} /</span> : null} {pageTitle}
-      </h3>
-      <div className='header-sort'>
-        <div>
-          <p>{current}</p>of<p>{total}</p>
-        </div>
-        <button onClick={onLeftArrowClick}>
-          <LeftSvg />
-        </button>
-        <button onClick={onRightArrowClick}>
-          <RightSvg />
-        </button>
-        <FilterModal
-          options={options}
-          onSelect={onSelect}
-          selected={selected}
-        />
-      </div>
-    </div>
-  );
-};
-
-export const PageHeader = ({
-  pageTitle,
-  parentPageTitle,
-  // editBtn,
-  // onClickEditBtn,
   backBtn,
   onClickBackBtn,
   children,
@@ -286,87 +130,34 @@ export const PageHeader = ({
   );
 };
 
-export const AdminPageHeader = ({
-  pageTitle,
-  parentPageTitle,
-  // editBtn,
-  // onClickEditBtn,
-  backBtn,
-  onClickBackBtn,
-  children,
-}: Props) => {
-  const navigate = useNavigate();
-  return (
-    <>
-      {backBtn ? (
-        <button
-          className={styles.backBtnAdmin}
-          onClick={!onClickBackBtn ? () => navigate(-1) : onClickBackBtn}>
-          <ArrowBackSvg />
-          <p>Back</p>
-        </button>
-      ) : null}
-      <div className={styles.headerFlex}>
-        <h3 className={styles.breadcrumbAdmin}>
-          {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}
-          {pageTitle}
-        </h3>
-        <div className={styles.childrenFlex}>{children}</div>
-      </div>
-    </>
-  );
-};
-
-interface EDBtnProps {
+export interface EDBtnProps {
   onClick?: () => void;
-  admin?: boolean;
   active?: boolean;
 }
 
-export const EditBtn = ({ onClick, admin = false, active }: EDBtnProps) => {
+export const EditBtn = ({ onClick, active }: EDBtnProps) => {
   return (
-    <>
-      {admin ? (
-        <button
-          className={`${styles.editBtn} ${active ? styles.edit : ""}`}
-          onClick={onClick}>
-          <h3>EDIT</h3> <EditOutlineSvg />
-        </button>
-      ) : (
-        <button
-          className={`${styles.editBtn} ${!active ? styles.edit : ""}`}
-          onClick={onClick}>
-          <h3 style={{ fontSize: "23px" }}>Edit</h3>
-          <EditSvg />
-        </button>
-      )}
-    </>
+    <button
+      className={`${styles.editBtn} ${!active ? styles.edit : ""}`}
+      onClick={onClick}>
+      <h3 style={{ fontSize: "23px" }}>Edit</h3>
+      <EditSvg />
+    </button>
   );
 };
 
-export const DeleteBtn = ({ onClick, admin = false, active }: EDBtnProps) => {
+export const DeleteBtn = ({ onClick, active }: EDBtnProps) => {
   return (
-    <>
-      {admin ? (
-        <button
-          className={`${styles.editBtn} ${active ? styles.delete : ""}`}
-          onClick={onClick}>
-          <h3>DELETE</h3>
-          <EditOutlineSvg />
-        </button>
-      ) : (
-        <button
-          className={`${styles.editBtn} ${!active ? styles.delete : ""}`}
-          onClick={onClick}>
-          <h3 style={{ fontSize: "23px" }}>Delete</h3>
-          <EditSvg />
-        </button>
-      )}
-    </>
+    <button
+      className={`${styles.editBtn} ${!active ? styles.delete : ""}`}
+      onClick={onClick}>
+      <h3 style={{ fontSize: "23px" }}>Delete</h3>
+      <EditSvg />
+    </button>
   );
 };
 
-interface PaginationProps {
+export interface PaginationProps {
   onLeftArrowClick?: () => void;
   onRightArrowClick?: () => void;
   current: number | string;
@@ -394,16 +185,23 @@ export const Pagination = ({
   );
 };
 
+interface PaginationOfProps {
+  onLeftArrowClick?: () => void;
+  onRightArrowClick?: () => void;
+  current: [number | string, number | string];
+  total: number;
+}
+
 export const PaginationOf = ({
-  current,
+  current = [0, 0],
   total,
   onLeftArrowClick,
   onRightArrowClick,
-}: PaginationProps) => {
+}: PaginationOfProps) => {
   return (
     <div className={styles.pagnOf}>
       <div>
-        <span>{current}</span>/<p>{total}</p>
+        <p>{current[0]}</p> - <p>{current[1]}</p> of <p>{total}</p>
       </div>
       <button onClick={onLeftArrowClick}>
         <LeftSvg />
@@ -414,3 +212,5 @@ export const PaginationOf = ({
     </div>
   );
 };
+
+export default PageHeader;

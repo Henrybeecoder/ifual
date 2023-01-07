@@ -3,9 +3,10 @@ import styles from "./style.module.css";
 import Button from "@components/Button";
 import OptionsModal from "@components/OptionsModal";
 import { useNavigate } from "react-router-dom";
-import { FilterHeader } from "@components/PageHeader";
+import Header from "@components/PageHeader/Admin";
 import useMediaQuery from "src/Custom hooks/useMediaQuery";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
+import { FilterModal } from "@components/PageHeader";
 
 const data = [
   {
@@ -40,10 +41,11 @@ const ManageProducts = () => {
   return (
     <Layout>
       <>
-        <FilterHeader
-          pageTitle='MANAGE PRODUCTS'
-          options={["diesel", "kerosene", "petrol", "gas"]}
-          selected='diesel'>
+        <Header pageTitle='MANAGE PRODUCTS'>
+          <FilterModal
+            options={["diesel", "kerosene", "petrol", "gas"]}
+            selected='diesel'
+          />
           <Button
             text='Add New'
             height='40px'
@@ -51,9 +53,9 @@ const ManageProducts = () => {
             className={""}
             onClick={() => navigate("new")}
           />
-        </FilterHeader>
+        </Header>
 
-        <div className={styles.tableWrapper}>
+        <div className={"table-wrapper"}>
           {matches ? (
             <table>
               <thead>

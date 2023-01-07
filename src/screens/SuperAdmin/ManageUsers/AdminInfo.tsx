@@ -1,7 +1,8 @@
 import Button from "@components/Button";
 import { InputTemp, SelectTemp } from "@components/InputTemp";
 import Modal from "@components/Modals";
-import { EditBtn, PageHeader, Pagination } from "@components/PageHeader";
+import { Pagination } from "@components/PageHeader";
+import Header, { EditBtn } from "@components/PageHeader/Admin";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../../../containers/LayoutSuperAdmin";
@@ -27,13 +28,13 @@ const AddAdmin = () => {
           <Button text='Deactivate' width='40%' variant='danger' />
         </div>
       </Modal>
-      <PageHeader
+      <Header
         backBtn
         pageTitle={id !== "new" ? "ADMIN DETAILS" : "ADD ADMIN"}
         parentPageTitle='MANAGE USERS'>
         {id !== "new" && <EditBtn />}
         <Pagination current={8} total={8} />
-      </PageHeader>
+      </Header>
       <div className='flex-lg gap-20'>
         <div className={"w-50-lg"}>
           <InputTemp label='STAFF NAME' placeholder='Type to select staff' />

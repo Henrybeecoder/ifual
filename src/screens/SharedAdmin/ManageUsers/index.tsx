@@ -12,7 +12,8 @@ import {
 } from "react-router-dom";
 import OptionsModal from "@components/OptionsModal";
 import Button from "@components/Button";
-import { FilterHeader, FilterModal, PageHeader } from "@components/PageHeader";
+import Header from "@components/PageHeader/Admin";
+import { FilterModal } from "@components/PageHeader";
 import useMediaQuery from "src/Custom hooks/useMediaQuery";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
 import { limitText } from "src/Custom hooks/helpers";
@@ -29,7 +30,7 @@ const ManageUsers = ({ baseUrl }: ManageUsersProps) => {
 
   return (
     <>
-      {/* <FilterHeader pageTitle='MANAGE USERS' options={[]}>
+      {/* <Header pageTitle='MANAGE USERS' options={[]}></Header>
         <>
           {page === "vendor" ? (
             // <Button text='Add Vendor' width='100px' height='37px' />
@@ -125,11 +126,11 @@ const CustomerPage = ({ baseUrl }: { baseUrl: string }) => {
   const matches = useMediaQuery("(min-width: 800px)");
   return (
     <>
-      <PageHeader pageTitle='MANAGE USERS'>
+      <Header pageTitle='MANAGE USERS'>
         <FilterModal options={[]} />
-      </PageHeader>
+      </Header>
       <LinksComponents active='customer' baseUrl={baseUrl} />
-      <div className={styles.tableWrapper}>
+      <div className={"table-wrapper"}>
         {matches ? (
           <table>
             <thead>
@@ -202,16 +203,16 @@ const VendorPage = ({ baseUrl }: { baseUrl: string }) => {
   const matches = useMediaQuery("(min-width: 800px)");
   return (
     <>
-      <PageHeader pageTitle='MANAGE USERS'>
+      <Header pageTitle='MANAGE USERS'>
         <FilterModal options={[]} />
         <Button
           text='Add Vendor'
           width='130px'
           onClick={() => navigate("new")}
         />
-      </PageHeader>
+      </Header>
       <LinksComponents active='vendor' baseUrl={baseUrl} />
-      <div className={styles.tableWrapper}>
+      <div className={"table-wrapper"}>
         {matches ? (
           <table>
             <thead>
@@ -285,16 +286,16 @@ const AdminPage = () => {
   const navigate = useNavigate();
   return (
     <>
-      <PageHeader pageTitle='MANAGE USERS'>
+      <Header pageTitle='MANAGE USERS'>
         <FilterModal options={[]} />
         <Button
           text='Add Admin'
           width='130px'
           onClick={() => navigate("new")}
         />
-      </PageHeader>
+      </Header>
       <LinksComponents active='admin' baseUrl={"super-admin"} />
-      <div className={styles.tableWrapper}>
+      <div className={"table-wrapper"}>
         {matches ? (
           <table>
             <thead>

@@ -8,8 +8,9 @@ import Modal from "@components/Modals";
 import { customer_data } from "../data";
 import Button from "@components/Button";
 import { CustomerProfile } from "@components/Profile";
-import { PagnHeader } from "@components/PageHeader";
+import Header from "@components/PageHeader/Admin";
 import useMediaQuery from "src/Custom hooks/useMediaQuery";
+import { PaginationOf } from "@components/PageHeader";
 
 interface ModalState {
   suspend: boolean;
@@ -104,14 +105,13 @@ const CustomerInfo = () => {
       </Modal>
 
       <LayoutSuperAdmin>
-        <PagnHeader
+        <Header
           pageTitle='CUSTOMER INFO'
           parentPageTitle='MANAGE CUSTOMER'
           backBtn
-          current={23}
-          total={4200}
-          onClickBackBtn={() => navigate(-1)}
-        />
+          onClickBackBtn={() => navigate(-1)}>
+          <PaginationOf current={23} total={4200} />
+        </Header>
         <div className={styles.customerStatus}>
           {data && (
             <h3 style={{ color: statusColor() }}>

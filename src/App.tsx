@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
-import Dashboard from "./screens/Dashboard";
+import Dashboard from "./screens/vendor/Dashboard";
 import ForgotPassword from "./screens/ForgotPassword";
 import ForgotPasswordMessage from "./screens/ForgotPasswordMessage";
 import ResetPassword from "./screens/ResetPassword";
@@ -19,6 +19,7 @@ import Cart from "./screens/Cart";
 import Profile from "./screens/Customer/Profile";
 //vendor
 import ProductInfo from "./screens/vendor/ProductList/ProductInfo";
+import OrderDetailsVendor from "./screens/vendor/OrderStatus/OrderDetails";
 // admin
 import LoginAdmin from "./screens/Admin/Login";
 import DashboardAdmin from "./screens/Admin/Dashboard";
@@ -54,6 +55,7 @@ import CustomerInfo from "./screens/SuperAdmin/ManageUsers/CustomerInfo";
 import CannotLoginSuperAdmin from "./screens/SuperAdmin/Login/CannotLogin";
 import NotificationSuperAdmin from "./screens/SuperAdmin/Notification";
 import Order from "./screens/Customer/Home/Order";
+
 // shared admin
 // import CustomMessage from "./screens/SharedAdmin/ComplaintsLog/CustomMessage";
 
@@ -81,7 +83,10 @@ function App() {
         </Route>
         <Route path='/vendor'>
           <Route path='dashboard' element={<Dashboard />} />
-          <Route path='order-status' element={<OrderStatus />} />
+          <Route path='order-status'>
+            <Route index element={<OrderStatus />} />
+            <Route path=':id' element={<OrderDetailsVendor />} />
+          </Route>
           <Route path='product-list'>
             <Route index element={<ProductList />} />
             <Route path=':id' element={<ProductInfo />} />

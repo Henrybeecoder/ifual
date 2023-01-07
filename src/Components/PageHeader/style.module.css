@@ -116,10 +116,11 @@
   height: 50px;
   width: 100%;
 }
-.pagn {
+.pagn,
+.pagnOf {
   display: flex;
   margin: 10px 0;
-  gap: 15px;
+  gap: 30px;
   align-items: center;
 }
 
@@ -155,6 +156,12 @@
   gap: 20px;
   justify-content: space-between;
   /* width: 100%; */
+}
+
+.pagnOf div {
+  display: flex;
+  gap: 5px;
+  align-items: baseline;
 }
 
 .childrenFlex {

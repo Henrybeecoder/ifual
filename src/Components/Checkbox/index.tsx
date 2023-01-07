@@ -7,7 +7,7 @@ export interface CheckboxProps {
 
 const Checkbox = ({ checked, toggleChecked }: CheckboxProps) => {
   return (
-    <button className={styles.container} onClick={toggleChecked}>
+    <button type='button' className={styles.container} onClick={toggleChecked}>
       {checked && (
         <svg
           width={16}

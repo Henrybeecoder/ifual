@@ -1,6 +1,7 @@
 import {
   ChangeEventHandler,
   CSSProperties,
+  FocusEventHandler,
   HTMLInputTypeAttribute,
   ReactNode,
 } from "react";
@@ -33,6 +34,7 @@ interface InputTempProps {
   marginLeftSm?: boolean;
   marginRightSm?: boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement> | undefined;
   mode?: "light" | "dark";
   width?: string;
   style?: CSSProperties;
@@ -47,6 +49,7 @@ export const InputTemp = ({
   defaultValue,
   value,
   onChange,
+  onBlur,
   children,
   visibilityPadding,
   marginRight,
@@ -76,6 +79,7 @@ export const InputTemp = ({
           name={name}
           value={value}
           defaultValue={defaultValue}
+          onBlur={onBlur}
           style={{ paddingRight: visibilityPadding ? "48px" : "7px" }}
           onChange={onChange}
         />

@@ -1,6 +1,6 @@
 import { object, string, ref, boolean } from "yup";
 
-export const customerAuthSchema = {
+export const authSchema = {
   login: object().shape({
     email: string().email("enter email").required("enter email"),
     password: string().min(6, "password too short").max(40, "oop").required(),

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../../../containers/LayoutVendor";
 import styles from "./style.module.css";
 // import right from "../../assets/svg/right.svg";
@@ -12,6 +12,9 @@ import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import Checkbox, { CheckboxProps } from "../../../Components/Checkbox";
 import { SvgArrowLeft } from "src/assets/Svgs";
 import Button from "@components/Button";
+import PageHeader, { FilterModal, PaginationOf } from "@components/PageHeader";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import axios from "@lib/axios";
 
 const notificationList = [
   {
@@ -20,7 +23,7 @@ const notificationList = [
     body: "A customer, Badu Badmus has ordered for delivery of 100l diesel to be delivered at Oregun Ikeja.",
     question: "Are you available to pick up this order ticket?",
     timeAgo: "2h",
-    opened: true,
+    isRead: true,
   },
   {
     id: "2",
@@ -28,7 +31,7 @@ const notificationList = [
     body: "A customer, Badu Badmus has ordered for delivery of 100l diesel to be delivered at Oregun Ikeja.",
     question: "Are you available to pick up this order ticket?",
     timeAgo: "3h",
-    opened: false,
+    isRead: false,
   },
   {
     id: "3",
@@ -36,7 +39,7 @@ const notificationList = [
     body: `A customer, Badu Badmus has ordered for delivery of 100l diesel to be delivered at Oregun Ikeja.`,
     question: "Are you available to pick up this order ticket?",
     timeAgo: "7h",
-    opened: false,
+    isRead: false,
   },
   {
     id: "4",
@@ -44,7 +47,7 @@ const notificationList = [
     body: "A customer, Badu Badmus has ordered for delivery of 100l diesel to be delivered at Oregun Ikeja.",
     question: "Are you available to pick up this order ticket?",
     timeAgo: "1h",
-    opened: false,
+    isRead: false,
   },
 ];
 
@@ -58,7 +61,7 @@ const notificationList = [
 type ModalNames = "accept" | "decline" | "accepted" | "declined" | null;
 
 const Notification = () => {
-  const [filterSet, setFilter] = useState(false);
+  const matches = useMediaQuery("(min-width: 800px)");
   const [selected, setSelected] = useState<string | null>(null);
   const [activeModal, setActiveModal] = useState<ModalNames>(null);
 
@@ -77,11 +80,9 @@ const Notification = () => {
     (notification) => notification.id === selected
   );
 
-  const removeSelected = () => {
-    setSelected(null);
-  };
-
-  const matches = useMediaQuery("(min-width: 800px)");
+  const { data: notifications } = useQuery(["/Notification/GetNotifications"], {
+    initialData: [],
+  });
 
   return (
     <Layout>
@@ -185,44 +186,31 @@ const Notification = () => {
         <img src={modalCheck} />
       </Modal>
 
-      <div className={styles.pageContainer}>
+      <>
         {!selected ? (
           <button className={styles.breadCrumb}>
             <SvgArrowLeft />
             <p>Back</p>
           </button>
         ) : (
-          <button className={styles.breadCrumb} onClick={removeSelected}>
+          <button
+            className={styles.breadCrumb}
+            onClick={() => setSelected(null)}>
             <SvgArrowLeft />
             <p>Back to Notifications</p>
           </button>
         )}
-        <div className={styles.pageHeader}>
-          <h1>Notifications</h1>
-          <div className={styles.pagerHeaderContainer}>
-            <div className={styles.paginations}>
-              <p>1 - 4 of 4</p>
-              <div className={styles.holders}>
-                {/* <img src={left} alt='' /> */}
-                {/* <img src={right} alt='' /> */}
-              </div>
-            </div>
-            <div
-              className={styles.filter}
-              onClick={() => setFilter(!filterSet)}>
-              <h2>Filter</h2>
-              {/* <img src={filter} alt='' /> */}
-            </div>
-          </div>
-        </div>
+        <PageHeader pageTitle='Notifications'>
+          <PaginationOf current={[1, 4]} total={4} />
+          <FilterModal options={[]} />
+        </PageHeader>
         <div className={styles.notificationsContainer}>
           <div
             className={styles.notificationsList}
             style={{ display: !matches && selected ? "none" : "unset" }}>
             {notificationList?.map((notification, index) => (
-              <div>
+              <div key={notification.id}>
                 <div
-                  key={notification.id}
                   className={styles.notificationContainer}
                   style={{
                     backgroundColor:
@@ -233,14 +221,14 @@ const Notification = () => {
                     <div
                       className={styles.badge}
                       style={{
-                        backgroundColor: !notification.opened
+                        backgroundColor: !notification.isRead
                           ? "#D4D8D5"
                           : "#36B44A",
                       }}
                     />
                   </div>
                   <div className={styles.textContents}>
-                    <div className={styles.flexBetween}>
+                    <div className='flex-btwn'>
                       <h2>{notification.heading}</h2>
                       <p className={styles.timeAgo}>{notification.timeAgo}</p>
                     </div>
@@ -257,45 +245,12 @@ const Notification = () => {
               </div>
             ))}
           </div>
-          <div
-            className={styles.selectedContainer}
-            style={{ display: !matches && !selected ? "none" : "unset" }}>
-            {!selectedContent ? (
-              <div className={styles.noneSelected}>
-                <div className={styles.noneSelectedContent}>
-                  <img src={noneSelected} />
-                  <p>Click to read notifications</p>
-                </div>
-              </div>
-            ) : (
-              <div className={styles.selectedNotificationContainer}>
-                <div className={styles.flexBetween}>
-                  <h2>
-                    {matches
-                      ? selectedContent.heading
-                      : limitText(selectedContent.heading, 30)}
-                  </h2>
-                  <p className={styles.timeAgo}>{selectedContent.timeAgo}</p>
-                </div>
-                <p>{selectedContent.body}</p>
-                <p>{selectedContent.question}</p>
-                <div className={styles.flexCenter}>
-                  <button
-                    className={styles.btnNo}
-                    onClick={() => setActiveModal("decline")}>
-                    No
-                  </button>
-                  <button
-                    className={styles.btnYes}
-                    onClick={() => setActiveModal("accept")}>
-                    Yes I am
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
+          <NotificationView
+            selected={selectedContent}
+            setActiveModal={setActiveModal}
+          />
         </div>
-      </div>
+      </>
     </Layout>
   );
 };
@@ -313,6 +268,78 @@ const CheckBoxWithText = ({
     <div className={styles.checkboxFlex}>
       <Checkbox checked={checked} />
       <p>{text}</p>
+    </div>
+  );
+};
+
+interface ViewProps {
+  selected?: {
+    id: string;
+    heading: string;
+    body: string;
+    question: string;
+    timeAgo: string;
+    isRead: boolean;
+  } | null;
+  setActiveModal: (modalName: ModalNames) => void;
+}
+
+const NotificationView = ({ selected, setActiveModal }: ViewProps) => {
+  const matches = useMediaQuery("(min-width: 800px)");
+
+  const { mutate } = useMutation<any, any, { id: string; isRead: boolean }>({
+    mutationFn: async (variables) =>
+      axios.post("/Notification/UpdateNotification", variables),
+  });
+
+  useEffect(() => {
+    if (selected && !selected.isRead) {
+      mutate({
+        id: selected.id,
+        isRead: true,
+      });
+    }
+  }, [selected]);
+
+  return (
+    <div
+      className={styles.selectedContainer}
+      style={{ display: !matches && !selected ? "none" : "unset" }}>
+      {!selected ? (
+        <div className={styles.noneSelected}>
+          <div className={styles.noneSelectedContent}>
+            <img src={noneSelected} />
+            <p>Click to read notifications</p>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.selectedNotificationContainer}>
+          <div className={styles.flexBetween}>
+            <h2>
+              {matches ? selected.heading : limitText(selected.heading, 30)}
+            </h2>
+            <p className={styles.timeAgo}>{selected.timeAgo}</p>
+          </div>
+          <p>{selected.body}</p>
+          <p>{selected.question}</p>
+          <div className='flex-btwn' style={{ width: "90%" }}>
+            <Button
+              text='No'
+              width='37%'
+              height='55px'
+              onClick={() => setActiveModal("decline")}
+            />
+
+            <Button
+              text='Yes I am'
+              width='58%'
+              height='55px'
+              variant='primary'
+              onClick={() => setActiveModal("accept")}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

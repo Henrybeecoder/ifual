@@ -1,6 +1,6 @@
 import Layout from "../../../containers/LayoutVendor";
 import { InputTemp, SelectTemp } from "@components/InputTemp";
-import { DeleteBtn, EditBtn, PageHeader } from "@components/PageHeader";
+import PageHeader, { DeleteBtn, EditBtn } from "@components/PageHeader";
 import { useState } from "react";
 import styles from "./style.module.css";
 import { rows } from "./index";

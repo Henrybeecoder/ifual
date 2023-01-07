@@ -6,7 +6,8 @@ import styles from "./style.module.css";
 import { ReactComponent as FilterSvg } from "../../../../assets/navbericon/filter-outline.svg";
 import { useState } from "react";
 import Modal from "@components/Modals";
-import { PagnHeader } from "@components/PageHeader";
+import Header, { EditBtn } from "@components/PageHeader/Admin";
+import { PaginationOf } from "@components/PageHeader";
 
 const NewProduct = () => {
   const navigate = useNavigate();
@@ -45,18 +46,17 @@ const NewProduct = () => {
             <Button text='Delete Category' width='42%' variant='danger' />
           </div>
         </Modal>
-        <PagnHeader
+        <Header
           backBtn
           pageTitle={
             id !== "new"
               ? `${edit ? "EDIT PRODUCT DETAILS" : "PRODUCT DETAILS"}`
               : "ADD NEW "
           }
-          parentPageTitle='MANAGE PRODUCTS'
-          current={8}
-          total={8}
-          editBtn
-        />
+          parentPageTitle='MANAGE PRODUCTS'>
+          <PaginationOf current={8} total={8} />
+          <EditBtn />
+        </Header>
         <div className={styles.flex}>
           <MainInputComponent id={id} />
           <>

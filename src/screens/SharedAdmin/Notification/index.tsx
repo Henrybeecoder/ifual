@@ -4,9 +4,10 @@ import styles from "./style.module.css";
 import noneSelected from "../../../assets/svg/noneSelected.svg";
 import useMediaQuery from "src/Custom hooks/useMediaQuery";
 import { limitText } from "src/Custom hooks/helpers";
-import { FilterHeader, TitleHeader } from "@components/PageHeader";
+import Header from "@components/PageHeader/Admin";
 import { useNavigate } from "react-router-dom";
 import Button from "@components/Button";
+import { FilterModal } from "@components/PageHeader";
 
 const notificationList = [
   {
@@ -56,20 +57,15 @@ const Notification = () => {
 
   return (
     <>
-      {!selected ? (
-        <FilterHeader
-          pageTitle='NOTIFICATIONS'
-          backBtn
-          onClickBackBtn={() => navigate(-1)}
-          options={[]}
-        />
-      ) : (
-        <TitleHeader
-          pageTitle='NOTIFICATIONS'
-          backBtn
-          onClickBackBtn={() => removeSelected()}
-        />
-      )}
+      <Header
+        pageTitle='NOTIFICATIONS'
+        backBtn
+        onClickBackBtn={() => {
+          !selected ? navigate(-1) : removeSelected();
+        }}>
+        <FilterModal options={[]} />
+      </Header>
+
       <div className={styles.notificationsContainer}>
         <div
           className={styles.notificationsList}

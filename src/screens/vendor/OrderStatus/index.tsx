@@ -16,6 +16,7 @@ import useMediaQuery from "src/Custom hooks/useMediaQuery";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
 import { limitText } from "src/Custom hooks/helpers";
+import PageHeader, { FilterModal, PaginationOf } from "@components/PageHeader";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -112,22 +113,19 @@ export default function OrderStatus() {
   const navigate = useNavigate();
   return (
     <Layout>
-      <div className={styles.pageHeader}>
-        <h1>Order Status</h1>
-        <div className={styles.pagerHeaderContainer}>
-          <div className={styles.paginations}>
-            <p>1 - 6 of 6</p>
-            <div className={styles.holders}>
-              <img src={left} alt='' />
-              <img src={right} alt='' />
-            </div>
-          </div>
-          <div className={styles.filter} onClick={() => {}}>
-            <h2>Filter</h2>
-            <img src={filter} alt='' />
-          </div>
-        </div>
-      </div>
+      <PageHeader pageTitle='Order Status'>
+        <PaginationOf current={6} total={6} />
+        <FilterModal
+          options={[
+            "delivered",
+            "pending",
+            "cancelled",
+            "newest to oldest",
+            "oldest to newest",
+          ]}
+          selected='newest to oldest'
+        />
+      </PageHeader>
 
       <TableContainer
         style={{ marginTop: "35px", borderRadius: "17px" }}
@@ -181,7 +179,10 @@ export default function OrderStatus() {
                     <StyledTableCell
                       align='right'
                       style={{ cursor: "pointer" }}>
-                      <SubModal />
+                      <SubModal>
+                        <button onClick={() => navigate(row.id)}>View</button>
+                        <button>Report</button>
+                      </SubModal>
                     </StyledTableCell>
                   </StyledTableRow>
                 </>

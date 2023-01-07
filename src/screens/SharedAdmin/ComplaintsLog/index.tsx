@@ -5,7 +5,8 @@ import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-o
 import OptionsModal from "@components/OptionsModal";
 import { SharedAdminComponentProps } from "@type/shared";
 import { Link } from "react-router-dom";
-import { FilterHeader } from "@components/PageHeader";
+import Header from "@components/PageHeader/Admin";
+import { FilterModal } from "@components/PageHeader";
 
 const data = [
   {
@@ -85,7 +86,7 @@ const data = [
 const ComplaintLog = ({ baseUrl }: SharedAdminComponentProps) => {
   return (
     <>
-      <FilterHeader options={[]} pageTitle='COMPLAINTS LOG'>
+      <Header pageTitle='COMPLAINTS LOG'>
         <Link to='custom-message'>
           <Button
             text='Custom Message'
@@ -93,8 +94,9 @@ const ComplaintLog = ({ baseUrl }: SharedAdminComponentProps) => {
             style={{ width: "130px" }}
           />
         </Link>
-      </FilterHeader>
-      <div className={"tableWrapper"}>
+        <FilterModal options={[]} />
+      </Header>
+      <div className={"table-wrapper"}>
         <table>
           <thead>
             <tr>

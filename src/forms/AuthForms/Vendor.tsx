@@ -9,10 +9,12 @@ import Checkbox from "../../Components/Checkbox";
 import { AuthContainerProps } from "@type/shared";
 import { InputTemp, SelectTemp } from "@components/InputTemp";
 import { Formik } from "formik";
-import { customerAuthSchema } from "@lib/validation/customer";
 import { ReactComponent as HidePwd } from "../../assets/svg/hide.svg";
 import { ReactComponent as ShowPwd } from "../../assets/svg/show.svg";
 import Loading from "@components/Loading";
+import { authSchema } from "@lib/validation/vendor";
+import { useMutation } from "@tanstack/react-query";
+import axios from "@lib/axios";
 
 interface LoginValues {
   email: string;
@@ -22,7 +24,7 @@ interface LoginValues {
 interface LoginProps {
   email: string;
   setEmail: (value: string) => void;
-  login: (values: LoginValues) => void;
+  // login: (values: LoginValues) => void;
 }
 
 interface SignUpDetails {
@@ -40,17 +42,17 @@ export default function AuthForm({ page }: AuthContainerProps) {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const login = (values: LoginValues) => {
-    setLoading(true);
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ email: values.email, name: "Bistro Badmus" })
-    );
-    setTimeout(() => {
-      setLoading(false);
-      navigate("/");
-    }, 3000);
-  };
+  // const login = (values: LoginValues) => {
+  //   setLoading(true);
+  //   localStorage.setItem(
+  //     "user",
+  //     JSON.stringify({ email: values.email, name: "Bistro Badmus" })
+  //   );
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //     navigate("/");
+  //   }, 3000);
+  // };
 
   const submitSignup = () => {
     setLoading(true);
@@ -62,7 +64,7 @@ export default function AuthForm({ page }: AuthContainerProps) {
       <div className={styles.container}>
         <>{loading && <Loading />}</>
         {page === "login" ? (
-          <Login email={email} setEmail={setEmail} login={login} />
+          <Login email={email} setEmail={setEmail} />
         ) : (
           <SignUp email={email} setEmail={setEmail} signup={submitSignup} />
         )}
@@ -72,7 +74,7 @@ export default function AuthForm({ page }: AuthContainerProps) {
   );
 }
 
-const Login = ({ email, setEmail, login }: LoginProps) => {
+const Login = ({ email, setEmail }: LoginProps) => {
   const navigate = useNavigate();
   const [showPwd, setShowPwd] = useState(false);
   const [rP, setRP] = useState(false);
@@ -85,20 +87,43 @@ const Login = ({ email, setEmail, login }: LoginProps) => {
     navigate({ pathname: "/signup", search: "type=vendor" });
   };
 
-  const initialValues = { email: "", password: "" };
+  const initialValues = { emailAddress: email, password: "" };
+
+  const { mutate, error } = useMutation({
+    mutationFn: async () => axios.post("Account/Login"),
+    onError: (error) => {},
+    onSuccess: ({ data }) => {},
+  });
+
+  const handleLogin = (values: any) => {
+    mutate(values);
+  };
 
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={customerAuthSchema.login}
-      onSubmit={login}>
-      {({ dirty, handleSubmit, getFieldProps }) => (
+      validationSchema={authSchema.login}
+      onSubmit={handleLogin}>
+      {({
+        dirty,
+        handleSubmit,
+        getFieldProps,
+        handleChange,
+        handleBlur,
+        errors,
+      }) => (
         <form onSubmit={handleSubmit}>
           <InputTemp
             label='EMAIL ADDRESS'
             inputType={"email"}
             placeholder='email@host.co..'
-            {...getFieldProps("email")}
+            // {...getFieldProps("email")}
+            name='emailAddress'
+            onBlur={handleBlur}
+            onChange={(e) => {
+              handleChange(e);
+              setEmail(e.target.value);
+            }}
           />
           <InputTemp
             visibilityPadding
@@ -168,13 +193,21 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
     acceptTOC: false,
   };
 
+  const { mutate, error } = useMutation({
+    mutationFn: async () => axios.post("Account/CreateVendor"),
+    onError: (error) => {},
+    onSuccess: ({ data }) => {},
+  });
+
+  const handleRegister = (values: any) => {
+    mutate(values);
+  };
+
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={customerAuthSchema.register}
-      onSubmit={(values) => {
-        console.log(values);
-      }}>
+      validationSchema={authSchema.register}
+      onSubmit={handleRegister}>
       {({
         dirty,
         handleSubmit,

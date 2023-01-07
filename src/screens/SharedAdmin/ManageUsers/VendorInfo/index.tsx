@@ -8,7 +8,8 @@ import Modal from "@components/Modals";
 import { customer_data, vendor_data } from "../data";
 import Button from "@components/Button";
 import { VendorProfile } from "@components/Profile";
-import { PagnHeader } from "@components/PageHeader";
+import Header from "@components/PageHeader/Admin";
+import { PaginationOf } from "@components/PageHeader";
 
 interface ModalState {
   suspend: boolean;
@@ -20,7 +21,6 @@ interface ModalState {
 type ModalNames = "suspend" | "enable" | "delete" | "decline";
 
 const VendorInfo = () => {
-  const [page, setPage] = useState("home");
   const [activeModal, setActiveModal] = useState<ModalNames | null>(null);
 
   const closeModal = () => {
@@ -80,12 +80,9 @@ const VendorInfo = () => {
           <Button text='Suspend Vendor' variant='danger' width='60%' />
         </div>
       </Modal>
-      <PagnHeader
-        current={23}
-        pageTitle='VENDOR INFO'
-        total={4200}
-        parentPageTitle='MANAGE VENDORS'
-      />
+      <Header pageTitle='VENDOR INFO' parentPageTitle='MANAGE VENDORS'>
+        <PaginationOf current={23} total={4200} />
+      </Header>
       <div className={styles.status}>
         <div
           style={{

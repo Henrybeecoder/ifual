@@ -21,20 +21,28 @@
 }
 
 .chartContainer {
-  /* Tertiary Color */
-
-  border: 0.5px solid #3444374d;
+  border: 0.5px solid #3444372e;
   border-radius: 10px;
-  width: 80%;
+  width: 70%;
+  padding: 20px 20px 0 20px;
 }
 
 .chartHeader {
   display: flex;
-  justify-content: space-between;
-  padding: 20px 10px;
+  /* justify-content: space-between; */
+  /* padding: 20px 10px; */
 }
 
-.revenue {
+.firstCon {
+  flex: 1;
+}
+
+.firstCon h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.firstCon h3 {
   color: #344437;
   font-weight: 600;
   opacity: 0.5;
@@ -43,19 +51,23 @@
 
 .linkContainer {
   display: flex;
-  color: #344437;
-  opacity: 0.5;
+  margin-right: 50px;
+}
+
+.linkContainer button {
+  margin: 0 10px;
+  color: #34443770;
   font-weight: 600;
   font-size: 0.8rem;
 }
 
-.linkContainer p {
-  margin: 0 10px;
+.chartHeader button {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  height: fit-content;
 }
-.firstCon b {
-  font-size: 1.8rem;
-  font-weight: 600;
-}
+
 .title {
   color: #344437;
   font-weight: 300;
@@ -73,6 +85,12 @@
   margin: 30px 0;
 }
 
+.tableHeader h2 {
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 21px;
+}
+
 .orderLink {
   display: flex;
   align-items: center;
@@ -86,36 +104,35 @@
   width: 7%;
 }
 
-.containerHolder {
-  display: flex;
-}
-
 .orderStatusChart {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 30%;
-  margin: 0 0 0 20px;
+  margin-left: 20px;
 }
 
-.totalOrders {
+.orderCard {
   display: flex;
-  border: 0.5px solid #3444374d;
+  border: 0.5px solid #3444373a;
   border-radius: 10px;
-  padding: 20px 10px;
+  padding: 20px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.totalOrders p {
+.orderCard p {
   color: #ad9fa0;
   font-size: 0.8rem;
   margin: 5px 0;
 }
 
-.totalOrders span {
+.orderCard span {
   color: #36b44a;
 }
 
-.totalOrders b {
+.orderCard b {
   font-size: 1.5rem;
   margin: 5px 0;
 }
@@ -123,10 +140,6 @@
 .textContainer {
   display: flex;
   flex-direction: column;
-}
-
-.pendingCon {
-  margin-top: 30px;
 }
 
 .performance {
@@ -138,16 +151,11 @@
 @media screen and (max-width: 800px) {
   .orderStatusChart {
     padding-top: 50px;
-  }
-  .containerHolder {
-    flex-direction: column;
-  }
-
-  .orderStatusChart {
+    gap: 20px;
     width: 100%;
     margin: 0;
+    justify-content: center;
   }
-
   .chartContainer {
     width: 100%;
   }

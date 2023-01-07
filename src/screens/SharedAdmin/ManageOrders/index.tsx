@@ -2,9 +2,10 @@ import styles from "./style.module.css";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
 import OptionsModal from "@components/OptionsModal";
 import { useNavigate } from "react-router-dom";
-import { PagnHeaderWFilter } from "@components/PageHeader";
+import Header from "@components/PageHeader/Admin";
 import useMediaQuery from "src/Custom hooks/useMediaQuery";
 import { limitText } from "src/Custom hooks/helpers";
+import { FilterModal, PaginationOf } from "@components/PageHeader";
 
 export const data = [
   {
@@ -97,13 +98,11 @@ const ManageOrders = () => {
 
   return (
     <>
-      <PagnHeaderWFilter
-        current={"1 to 20"}
-        total={400}
-        options={[]}
-        pageTitle='MANAGE ORDERS'
-      />
-      <div className={"tableWrapper"}>
+      <Header pageTitle='MANAGE ORDERS'>
+        <PaginationOf current={"1 to 20"} total={400} />
+        <FilterModal options={[]} />
+      </Header>
+      <div className={"table-wrapper"}>
         {matches ? (
           <table>
             <thead>

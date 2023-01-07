@@ -11,9 +11,10 @@ import { InputTemp, SelectTemp } from "@components/InputTemp";
 import { RenderPageProps } from "@type/shared";
 import Modal from "@components/Modals";
 import { Root, Trigger, Portal, Content } from "@radix-ui/react-popover";
-import { PagnHeader } from "@components/PageHeader";
+import Header from "@components/PageHeader/Admin";
 import useMediaQuery from "src/Custom hooks/useMediaQuery";
 import { limitText } from "src/Custom hooks/helpers";
+import { PaginationOf } from "@components/PageHeader";
 
 interface SectionProps {
   data: any;
@@ -87,12 +88,9 @@ const ManageOrders = ({ baseUrl }: { baseUrl: string }) => {
         </div>
       </Modal>
       <div className={styles.container}>
-        <PagnHeader
-          pageTitle='ORDER DETAILS'
-          parentPageTitle='MANAGE ORDERS'
-          current={23}
-          total={200}
-        />
+        <Header pageTitle='ORDER DETAILS' parentPageTitle='MANAGE ORDERS'>
+          <PaginationOf current={23} total={200} />
+        </Header>
 
         <>{data && renderSection[data.status.toLowerCase()]}</>
 
