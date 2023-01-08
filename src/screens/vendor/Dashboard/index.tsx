@@ -150,162 +150,160 @@ export default function Dashboard() {
 
   return (
     <Layout>
-      <div className={styles.dashoardContainer}>
-        <p className={styles.performance}>
-          Hello, <b>ABC OIL & GAS</b>
-        </p>
+      <p className={styles.performance}>
+        Hello, <b>ABC OIL & GAS</b>
+      </p>
 
-        <p className={styles.performance}>
-          <b>PERFORMANCE</b>
-        </p>
-        <div className={"flex-lg"}>
-          <div className={styles.chartContainer}>
-            <div className={styles.chartHeader}>
-              <div className={styles.firstCon}>
-                <h3>TOTAL REVENUE</h3>
-                <h2>₦{totalRevenue.data}</h2>
-              </div>
-              <div className={styles.linkContainer}>
-                <button className={styles.active}>WEEKLY</button>
-                <button className={styles.active}>MONTHLY</button>
-                <button className={styles.active}>YEARLY</button>
-              </div>
-              <button>
-                <p>OCT</p>
-                <ArrowDown />
-              </button>
+      <p className={styles.performance}>
+        <b>PERFORMANCE</b>
+      </p>
+      <div className={"flex-lg"}>
+        <div className={styles.chartContainer}>
+          <div className={styles.chartHeader}>
+            <div className={styles.firstCon}>
+              <h3>TOTAL REVENUE</h3>
+              <h2>₦{totalRevenue.data}</h2>
             </div>
+            <div className={styles.linkContainer}>
+              <button className={styles.active}>WEEKLY</button>
+              <button className={styles.active}>MONTHLY</button>
+              <button className={styles.active}>YEARLY</button>
+            </div>
+            <button>
+              <p>OCT</p>
+              <ArrowDown />
+            </button>
+          </div>
 
-            <div style={{ width: "100%", height: 200 }}>
-              <ResponsiveContainer>
-                <AreaChart data={data}>
-                  {/* <CartesianGrid strokeDasharray='3 3' /> */}
-                  <XAxis dataKey='name' />
+          <div style={{ width: "100%", height: 200 }}>
+            <ResponsiveContainer>
+              <AreaChart data={data}>
+                {/* <CartesianGrid strokeDasharray='3 3' /> */}
+                <XAxis dataKey='name' />
 
-                  <Tooltip />
-                  <Area
-                    type='monotone'
-                    dataKey='uv'
-                    stroke='#35DB9F'
-                    fill='rgba(53, 219, 159, 0.24)'
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
+                <Tooltip />
+                <Area
+                  type='monotone'
+                  dataKey='uv'
+                  stroke='#35DB9F'
+                  fill='rgba(53, 219, 159, 0.24)'
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+        <div className={styles.orderStatusChart}>
+          <div className={styles.orderCard}>
+            <div className={styles.textContainer}>
+              <p>TOTAL ORDERS</p>
+              <b>{totalOrderCount}</b>
+              <span>View</span>
+            </div>
+            <div className={styles.imgContainer}>
+              <img src={totOrder} alt='' />
             </div>
           </div>
-          <div className={styles.orderStatusChart}>
-            <div className={styles.orderCard}>
-              <div className={styles.textContainer}>
-                <p>TOTAL ORDERS</p>
-                <b>{totalOrderCount}</b>
-                <span>View</span>
-              </div>
-              <div className={styles.imgContainer}>
-                <img src={totOrder} alt='' />
-              </div>
+          <div className={`${styles.orderCard}`}>
+            <div className={styles.textContainer}>
+              <p>PENDING ORDERS</p>
+              <b>{pendingOrderCount}</b>
+              <span>View</span>
             </div>
-            <div className={`${styles.orderCard}`}>
-              <div className={styles.textContainer}>
-                <p>PENDING ORDERS</p>
-                <b>{pendingOrderCount}</b>
-                <span>View</span>
-              </div>
-              <div className={styles.imgContainer}>
-                <img src={shopOrder} alt='' />
-              </div>
+            <div className={styles.imgContainer}>
+              <img src={shopOrder} alt='' />
             </div>
           </div>
         </div>
-        <div className={styles.table}>
-          <div className={styles.tableHeader}>
-            <h2>ORDERS</h2>
-            <div
-              className={styles.orderLink}
-              onClick={() => navigate("/vendor/order-status")}>
-              <p>VIEW MORE</p>
-              {/* <img src={right} alt='' /> */}
-            </div>
+      </div>
+      <div className={styles.table}>
+        <div className={styles.tableHeader}>
+          <h2>ORDERS</h2>
+          <div
+            className={styles.orderLink}
+            onClick={() => navigate("/vendor/order-status")}>
+            <p>VIEW MORE</p>
+            {/* <img src={right} alt='' /> */}
           </div>
-          {/* table */}
-          <div className='table-wrapper'>
-            {matches ? (
-              <table style={{ minWidth: 700 }} aria-label='customized table'>
-                <tr>
-                  <th>Description</th>
-                  <th align='center'>Quantity</th>
-                  <th align='center'>Status</th>
-                  <th align='center'>Order Date</th>
-                  <th align='center'>Total Price</th>
-                  <th align='right'></th>
-                </tr>
-                {rows.map((row) => (
-                  <>
-                    <tr key={row.name}>
-                      <td>{row.name}</td>
-                      <td align='center'>{row.calories}</td>
-                      <td align='center'>
-                        <p
-                          className={`${
-                            row.fat === "Delivered" && styles.delivered
-                          } ${row.fat === "Pending" && styles.pending} ${
-                            row.fat === "Cancelled" && styles.cancelled
-                          } `}>
-                          {row.fat}
-                        </p>
-                      </td>
-                      <td align='center'>{row.carbs}</td>
-                      <td align='center'>{row.protein}</td>
-                      <td
-                        align='right'
-                        style={{ cursor: "pointer", position: "relative" }}>
-                        <OptionsModal>
-                          <button>View</button>
-                        </OptionsModal>
-                      </td>
-                    </tr>
-                  </>
-                ))}
-              </table>
-            ) : (
-              <table style={{ minWidth: 700 }} aria-label='customized table'>
-                <tr>
-                  <th>Description</th>
-                  <th align='center'>Quantity</th>
-                  <th align='center'>Status</th>
-                  <th align='center'>Order Date</th>
-                  <th align='center'>Total Price</th>
-                  <th align='right'></th>
-                </tr>
-                {rows.map((row) => (
-                  <>
-                    <tr key={row.name}>
-                      <td>{row.name}</td>
-                      <td align='center'>{row.calories}</td>
-                      <td align='center'>
-                        <p
-                          className={`${
-                            row.fat === "Delivered" && styles.delivered
-                          } ${row.fat === "Pending" && styles.pending} ${
-                            row.fat === "Cancelled" && styles.cancelled
-                          } `}>
-                          {row.fat}
-                        </p>
-                      </td>
-                      <td align='center'>{row.carbs}</td>
-                      <td align='center'>{row.protein}</td>
-                      <td
-                        align='right'
-                        style={{ cursor: "pointer", position: "relative" }}>
-                        <OptionsModal>
-                          <button>View</button>
-                        </OptionsModal>
-                      </td>
-                    </tr>
-                  </>
-                ))}
-              </table>
-            )}
-          </div>
+        </div>
+        {/* table */}
+        <div className='table-wrapper'>
+          {matches ? (
+            <table style={{ minWidth: 700 }} aria-label='customized table'>
+              <tr>
+                <th>Description</th>
+                <th align='center'>Quantity</th>
+                <th align='center'>Status</th>
+                <th align='center'>Order Date</th>
+                <th align='center'>Total Price</th>
+                <th align='right'></th>
+              </tr>
+              {rows.map((row) => (
+                <>
+                  <tr key={row.name}>
+                    <td>{row.name}</td>
+                    <td align='center'>{row.calories}</td>
+                    <td align='center'>
+                      <p
+                        className={`${
+                          row.fat === "Delivered" && styles.delivered
+                        } ${row.fat === "Pending" && styles.pending} ${
+                          row.fat === "Cancelled" && styles.cancelled
+                        } `}>
+                        {row.fat}
+                      </p>
+                    </td>
+                    <td align='center'>{row.carbs}</td>
+                    <td align='center'>{row.protein}</td>
+                    <td
+                      align='right'
+                      style={{ cursor: "pointer", position: "relative" }}>
+                      <OptionsModal>
+                        <button>View</button>
+                      </OptionsModal>
+                    </td>
+                  </tr>
+                </>
+              ))}
+            </table>
+          ) : (
+            <table style={{ minWidth: 700 }} aria-label='customized table'>
+              <tr>
+                <th>Description</th>
+                <th align='center'>Quantity</th>
+                <th align='center'>Status</th>
+                <th align='center'>Order Date</th>
+                <th align='center'>Total Price</th>
+                <th align='right'></th>
+              </tr>
+              {rows.map((row) => (
+                <>
+                  <tr key={row.name}>
+                    <td>{row.name}</td>
+                    <td align='center'>{row.calories}</td>
+                    <td align='center'>
+                      <p
+                        className={`${
+                          row.fat === "Delivered" && styles.delivered
+                        } ${row.fat === "Pending" && styles.pending} ${
+                          row.fat === "Cancelled" && styles.cancelled
+                        } `}>
+                        {row.fat}
+                      </p>
+                    </td>
+                    <td align='center'>{row.carbs}</td>
+                    <td align='center'>{row.protein}</td>
+                    <td
+                      align='right'
+                      style={{ cursor: "pointer", position: "relative" }}>
+                      <OptionsModal>
+                        <button>View</button>
+                      </OptionsModal>
+                    </td>
+                  </tr>
+                </>
+              ))}
+            </table>
+          )}
         </div>
       </div>
     </Layout>

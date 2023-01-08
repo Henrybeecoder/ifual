@@ -1,12 +1,4 @@
-import {
-  SvgArrowback,
-  SvgArrowLeft,
-  SvgArrowRight,
-  SvgFilterIcon,
-  SvgRateStars,
-  SvgRating,
-  SvgRightIcon,
-} from "../../../assets/Svgs";
+import { SvgRateStars } from "../../../assets/Svgs";
 import Layout from "../../../containers/LayoutCustomer";
 import styles from "./style.module.css";
 import { styled } from "@mui/material/styles";
@@ -20,8 +12,14 @@ import companyLogo from "../../../assets/image/companyLogo.png";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../../../Components/Button";
-import OrderDetailsForm from "../../../Components/OrderDetailsForm";
 import Modal from "../../../Components/Modals";
+import PageHeader, {
+  FilterModal,
+  PaginationOf,
+} from "../../../Components/PageHeader";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
+import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
+import { limitText } from "../../../Custom hooks/helpers";
 
 export const data = [
   {
@@ -94,6 +92,8 @@ export const data = [
 const Home = () => {
   const navigate = useNavigate();
 
+  const matches = useMediaQuery("(min-width: 800px)");
+
   const [confmDelivery, setConfmDelivery] = useState(false);
   const [reviewModal, setReviewModal] = useState(false);
 
@@ -160,7 +160,11 @@ const Home = () => {
           />
         </div>
       </Modal>
-      <Modal openModal={reviewModal} closeModal={() => setReviewModal(false)}>
+      <Modal
+        variant='unstyled'
+        style={{ top: "50px" }}
+        openModal={reviewModal}
+        closeModal={() => setReviewModal(false)}>
         <div className={styles.reviewOrder}>
           <h2>Rate Sunny Jay & Co’s service</h2>
           <div>
@@ -170,31 +174,22 @@ const Home = () => {
           <p>Please share your opinion about their service</p>
           <textarea placeholder='Write review' rows={5} />
           <div className={styles.btnCfm}>
-            <Button text='Cancel' width={"180px"} onClick={review} />
+            <Button text='Cancel' width={"40%"} onClick={review} />
             <Button
               variant='primary'
               text='Submit'
-              width={"260px"}
+              width={"55%"}
               onClick={review}
             />
           </div>
         </div>
       </Modal>
       <>
-        <div className={styles.header}>
-          <h2>Available Products</h2>
-          <div className={styles.filterArea}>
-            <p>1 - 45 of 45</p>
-            <div className={styles.arrows}>
-              <SvgArrowLeft />
-              <SvgArrowRight />
-            </div>
-            <h3>Filter</h3>
-            <button className={styles.funnelIcon} onClick={toggleFilter}>
-              <SvgFilterIcon />
-            </button>
-          </div>
-        </div>
+        <PageHeader pageTitle='Available Products'>
+          {matches && <PaginationOf current={[1, 20]} total={45} />}
+          <FilterModal options={[]} />
+        </PageHeader>
+
         <TableContainer
           style={{
             marginTop: "35px",
@@ -202,57 +197,106 @@ const Home = () => {
             borderTop: "0.5px solid rgba(52, 68, 55, 0.3)",
           }}
           component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label='customized table'>
-            <TableBody>
-              <StyledTableRow>
-                <StyledTableCell>
-                  <h2 className={styles.title}>Company</h2>
-                </StyledTableCell>
-                <StyledTableCell align='center'>
-                  <h2 className={styles.title}>Location</h2>
-                </StyledTableCell>
-                <StyledTableCell align='center'>
-                  <h2 className={styles.title}>Category</h2>
-                </StyledTableCell>
-                <StyledTableCell align='center'>
-                  <h2 className={styles.title}>Supply Time</h2>
-                </StyledTableCell>
-                <StyledTableCell align='center'>
-                  <h2 className={styles.title}>Price/Ltr</h2>
-                </StyledTableCell>
-                <StyledTableCell align='right'></StyledTableCell>
-              </StyledTableRow>
-              {data.map((row, index) => (
-                <StyledTableRow key={row.id}>
-                  <StyledTableCell component='th' scope='row'>
-                    <div className={styles.companyLogo}>
-                      <img alt='company-logo' src={companyLogo} />
-                      <h3 className={styles.subText}>{row.company.name}</h3>
-                    </div>
+          {matches ? (
+            <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+              <TableBody>
+                <StyledTableRow>
+                  <StyledTableCell>
+                    <h2 className={styles.title}>Company</h2>
                   </StyledTableCell>
                   <StyledTableCell align='center'>
-                    <h3 className={styles.subText}>{row.location}</h3>
+                    <h2 className={styles.title}>Location</h2>
                   </StyledTableCell>
                   <StyledTableCell align='center'>
-                    <h3 className={styles.subText}>{row.category}</h3>
+                    <h2 className={styles.title}>Category</h2>
                   </StyledTableCell>
                   <StyledTableCell align='center'>
-                    <h3 className={styles.subText}>{row.supplyTime}</h3>
+                    <h2 className={styles.title}>Supply Time</h2>
                   </StyledTableCell>
                   <StyledTableCell align='center'>
-                    <h3 className={styles.subText}>{row.price}</h3>
+                    <h2 className={styles.title}>Price/Ltr</h2>
                   </StyledTableCell>
-                  <StyledTableCell align='right'>
-                    <button
-                      className={styles.btnBuy}
-                      onClick={() => navigate(row.id)}>
-                      Buy
-                    </button>
-                  </StyledTableCell>
+                  <StyledTableCell align='right'></StyledTableCell>
                 </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
+                {data.map((row, index) => (
+                  <StyledTableRow key={row.id}>
+                    <StyledTableCell component='th' scope='row'>
+                      <div className={styles.companyLogo}>
+                        <img alt='company-logo' src={companyLogo} />
+                        <h3 className={styles.subText}>{row.company.name}</h3>
+                      </div>
+                    </StyledTableCell>
+                    <StyledTableCell align='center'>
+                      <h3 className={styles.subText}>{row.location}</h3>
+                    </StyledTableCell>
+                    <StyledTableCell align='center'>
+                      <h3 className={styles.subText}>{row.category}</h3>
+                    </StyledTableCell>
+                    <StyledTableCell align='center'>
+                      <h3 className={styles.subText}>{row.supplyTime}</h3>
+                    </StyledTableCell>
+                    <StyledTableCell align='center'>
+                      <h3 className={styles.subText}>{row.price}</h3>
+                    </StyledTableCell>
+                    <StyledTableCell align='right'>
+                      <Button
+                        text='Buy'
+                        width='70px'
+                        height='40px'
+                        onClick={() => navigate(row.id)}
+                      />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          ) : (
+            <Table sx={{ width: "100%" }} aria-label='customized table'>
+              <TableBody>
+                <StyledTableRow>
+                  <StyledTableCell>
+                    <h2 className={styles.title}>Company</h2>
+                  </StyledTableCell>
+                  <StyledTableCell align='center'>
+                    <h2 className={styles.title}>Cat.</h2>
+                  </StyledTableCell>
+                  <StyledTableCell align='center'>
+                    <h2 className={styles.title}>N/Ltr</h2>
+                  </StyledTableCell>
+                  <StyledTableCell align='right'></StyledTableCell>
+                </StyledTableRow>
+                {data.map((row, index) => (
+                  <StyledTableRow key={row.id}>
+                    <StyledTableCell
+                      align='center'
+                      style={{ padding: "15x 3px" }}>
+                      <h3 className={styles.subText}>
+                        {limitText(row.company.name, 9)}
+                      </h3>
+                    </StyledTableCell>
+                    <StyledTableCell align='center'>
+                      <h3 className={styles.subText}>
+                        {limitText(row.category, 3)}
+                      </h3>
+                    </StyledTableCell>
+                    <StyledTableCell align='center'>
+                      <h3 className={styles.subText}>{row.price}</h3>
+                    </StyledTableCell>
+                    <StyledTableCell
+                      align='left'
+                      style={{ padding: "10px 3px" }}>
+                      <ArrowRight
+                        style={{ cursor: "pointer" }}
+                        onClick={() => {
+                          navigate(row.id);
+                        }}
+                      />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
         </TableContainer>
       </>
     </Layout>

@@ -60,11 +60,13 @@ const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
                         to={`/${baseUrl}/manage-users`}
                         heading='Manage Users'
                       />
-                      <NavLinkItem
-                        marginMd
-                        to={`/${baseUrl}/manage-products`}
-                        heading='Manage Products'
-                      />
+                      {baseUrl === "super-admin" ? (
+                        <NavLinkItem
+                          marginMd
+                          to={`/${baseUrl}/manage-products`}
+                          heading='Manage Products'
+                        />
+                      ) : null}
                       <NavLinkItem
                         marginMd
                         to={`/${baseUrl}/manage-orders`}
@@ -122,11 +124,13 @@ const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
                     to={`/${baseUrl}/manage-users`}
                     heading='Manage Users'
                   />
-                  <NavLinkItem
-                    marginMd
-                    to={`/${baseUrl}/manage-products`}
-                    heading='Manage Products'
-                  />
+                  {baseUrl === "super-admin" ? (
+                    <NavLinkItem
+                      marginMd
+                      to={`/${baseUrl}/manage-products`}
+                      heading='Manage Products'
+                    />
+                  ) : null}
                   <NavLinkItem
                     marginMd
                     to={`/${baseUrl}/manage-orders`}
@@ -151,9 +155,9 @@ const SideBar = ({ open, setOpen, baseUrl }: SideBarProps) => {
                 <SvgLogOut />
               </NavLinkItem>
             </div>
-            <div className={styles.footer}>
-              <p>2022 iFuel. All rights reserved.</p>
-            </div>
+          </div>
+          <div className={styles.footer}>
+            <p>&copy; 2022 iFuel. All rights reserved.</p>
           </div>
         </div>
       )}

@@ -1,5 +1,19 @@
 .page {
   padding: 100px 70px 45px 70px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.mobile {
+  display: none;
+}
+/* .flexHeader img {
+  width: 80px;
+} */
+.lg {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
 }
 
 .footer {
@@ -20,8 +34,8 @@
   display: flex;
   justify-content: space-between;
   /* align-items: center; */
-  padding: 18px 100px;
-  position: fixed;
+  padding: 18px 100px 10px 100px;
+  position: absolute;
   z-index: 30;
   right: 0;
   left: 0;
@@ -34,22 +48,29 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  position: relative;
 }
 
 .flexIcons {
   display: flex;
   position: relative;
 }
-.flexIcons button {
-  padding: 0;
-  border: none;
+
+.lg img {
+  width: 53px;
+  height: 53px;
+  cursor: pointer;
 }
 
-.flexIcons img {
-  width: 56px;
-  height: 56px;
-  cursor: pointer;
-  /* position: relative; */
+.fixed {
+  position: fixed;
+  inset: 0;
+}
+
+.relative {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .modalContainer {
@@ -113,8 +134,7 @@
 .searchBar {
   position: relative;
   width: 400px;
-  height: 56px;
-  margin: 0 20px;
+  height: 52px;
 }
 
 .searchBar input {
@@ -157,16 +177,25 @@
   text-decoration: underline;
 }
 
-.mobileMenu {
-  display: none;
-}
-
 .flexIcons .btnCart {
   margin: 0 12px;
 }
 
 @media screen and (max-width: 800px) {
-  .hiddenMobile {
+  .flexHeader img {
+    width: 80px;
+  }
+  .mobile {
+    display: flex;
+    justify-content: center;
+  }
+  .mobile img {
+    width: 48px;
+    height: 48px;
+    margin-top: 4px;
+    cursor: pointer;
+  }
+  .lg {
     display: none;
   }
   .page {
@@ -180,12 +209,6 @@
     margin-right: 7px;
     width: 100%;
     justify-content: end;
-  }
-
-  .mobileMenu button {
-    padding: 0;
-    border: none;
-    margin-left: 10px;
   }
 
   .linksContainer {

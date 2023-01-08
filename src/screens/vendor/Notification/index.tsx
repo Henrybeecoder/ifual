@@ -12,7 +12,10 @@ import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import Checkbox, { CheckboxProps } from "../../../Components/Checkbox";
 import { SvgArrowLeft } from "../../../assets/Svgs";
 import Button from "../../../Components/Button";
-import PageHeader, { FilterModal, PaginationOf } from "../../../Components/PageHeader";
+import PageHeader, {
+  FilterModal,
+  PaginationOf,
+} from "../../../Components/PageHeader";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "../../../lib/axios";
 
@@ -64,6 +67,21 @@ const Notification = () => {
   const matches = useMediaQuery("(min-width: 800px)");
   const [selected, setSelected] = useState<string | null>(null);
   const [activeModal, setActiveModal] = useState<ModalNames>(null);
+
+  const [checkboxes, setCheckboxes] = useState<{ [key: string]: boolean }>({
+    "1": false,
+    "2": false,
+    "3": false,
+    "4": false,
+    "5": false,
+    "6": false,
+    "7": false,
+    "8": false,
+  });
+
+  const tickCheckbox = (key: string) => {
+    setCheckboxes((oldState) => ({ ...oldState, [key]: !oldState[key] }));
+  };
 
   const modalState = {
     accept: !!(activeModal === "accept"),
@@ -132,52 +150,61 @@ const Notification = () => {
         </div>
       </Modal>
 
-      <Modal openModal={modalState.declined}>
+      <Modal variant='unstyled' openModal={modalState.declined}>
         <div className={styles.orderDeclined}>
-          <div className={styles.orderDeclinedContent}>
-            <h2>Why Are you declining this order?</h2>
-            <div className={styles.divider} />
-            <div className={styles.checkBoxWithTextContainer}>
-              <CheckBoxWithText
-                checked={false}
-                text='I don’t deliver to this location'
-              />
-              <CheckBoxWithText
-                checked={false}
-                text='I don’t have order quantity'
-              />
-              <CheckBoxWithText
-                checked={false}
-                text='It will take a long time to deliver'
-              />
-              <CheckBoxWithText
-                checked={false}
-                text='Customer’s delivery location is not accessible'
-              />
-              <CheckBoxWithText
-                checked={false}
-                text='I don’t trust this customer'
-              />
-              <CheckBoxWithText
-                checked={false}
-                text='I would just like to pass'
-              />
-              <CheckBoxWithText
-                checked={false}
-                text='There is a difference in price now'
-              />
-              <CheckBoxWithText checked={false} text='Other' />
-            </div>
-            <div className={styles.divider} />
-            <div className='flex-btwn'>
-              <Button text='Skip' width='40%' onClick={closeModal} />
-              <Button
-                text='Submit'
-                variant='primary'
-                width='55%'
-                onClick={() => setActiveModal(null)}
-              />
-            </div>
+          <h2>Why Are you declining this order?</h2>
+          <div className={styles.divider} />
+          <div className={styles.checkBoxWithTextContainer}>
+            <CheckBoxWithText
+              checked={checkboxes[1]}
+              toggleChecked={() => tickCheckbox("1")}
+              text='I don’t deliver to this location'
+            />
+            <CheckBoxWithText
+              checked={checkboxes[2]}
+              toggleChecked={() => tickCheckbox("2")}
+              text='I don’t have order quantity'
+            />
+            <CheckBoxWithText
+              checked={checkboxes[3]}
+              toggleChecked={() => tickCheckbox("3")}
+              text='It will take a long time to deliver'
+            />
+            <CheckBoxWithText
+              checked={checkboxes[4]}
+              toggleChecked={() => tickCheckbox("4")}
+              text='Customer’s delivery location is not accessible'
+            />
+            <CheckBoxWithText
+              checked={checkboxes[5]}
+              toggleChecked={() => tickCheckbox("5")}
+              text='I don’t trust this customer'
+            />
+            <CheckBoxWithText
+              checked={checkboxes[6]}
+              toggleChecked={() => tickCheckbox("6")}
+              text='I would just like to pass'
+            />
+            <CheckBoxWithText
+              checked={checkboxes[7]}
+              toggleChecked={() => tickCheckbox("7")}
+              text='There is a difference in price now'
+            />
+            <CheckBoxWithText
+              checked={checkboxes[8]}
+              toggleChecked={() => tickCheckbox("8")}
+              text='Other'
+            />
+          </div>
+          <div className={styles.divider} />
+          <div className={styles.declinedBtns}>
+            <Button text='Skip' width='40%' onClick={closeModal} />
+            <Button
+              text='Submit'
+              variant='primary'
+              width='55%'
+              onClick={() => setActiveModal(null)}
+            />
           </div>
         </div>
       </Modal>
@@ -266,7 +293,7 @@ const CheckBoxWithText = ({
 }: CheckboxWithTextProps) => {
   return (
     <div className={styles.checkboxFlex}>
-      <Checkbox checked={checked} />
+      <Checkbox checked={checked} toggleChecked={toggleChecked} />
       <p>{text}</p>
     </div>
   );

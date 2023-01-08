@@ -51,6 +51,7 @@ const Checkout = () => {
       </Modal>
       <Modal
         variant='unstyled'
+        style={{ top: "30px" }}
         openModal={modalState.otp}
         closeModal={closeModals}>
         <div className={styles.requestOtp}>
@@ -84,9 +85,7 @@ const Checkout = () => {
           />
         </div>
       </Modal>
-      <Modal
-        openModal={orderSuccessful}
-        closeModal={() => setOrderSuccessful(false)}>
+      <Modal openModal={orderSuccessful}>
         <div className={styles.orderSuccessful}>
           <h2>Order Successful</h2>
           <img src={checkSuccess} />

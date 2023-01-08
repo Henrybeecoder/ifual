@@ -104,7 +104,7 @@ const CustomerInfo = () => {
         </div>
       </Modal>
 
-      <LayoutSuperAdmin>
+      <>
         <Header
           pageTitle='CUSTOMER INFO'
           parentPageTitle='MANAGE CUSTOMER'
@@ -151,7 +151,7 @@ const CustomerInfo = () => {
             )}
           </>
         </CustomerProfile>
-      </LayoutSuperAdmin>
+      </>
     </>
   );
 };

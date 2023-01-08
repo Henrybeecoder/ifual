@@ -28,4 +28,16 @@ export interface OrderStatusType {
   product: string;
 }
 
+export interface ReportType {
+  vendorId: string;
+  referencNumber: string;
+  title: string;
+  category: string;
+  description: string;
+  sender: string;
+  reportDate: string;
+  status: string;
+  reportId: string;
+}
+
 export interface ProductType {}

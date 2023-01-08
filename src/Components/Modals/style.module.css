@@ -15,7 +15,6 @@
   position: relative;
   z-index: 30;
   border-radius: 15px;
-  padding: 60px 0;
   box-shadow: 0px 1px 10px 2px rgba(52, 68, 55, 0.06);
 }
 
@@ -32,12 +31,13 @@
   gap: 20px;
   width: 80%;
   height: 80%;
+  padding: 60px 0;
 }
 
 .default h3 {
   font-weight: 400;
   font-size: 28px;
-  line-height: 42px;
+  line-height: 30px;
 }
 
 .default p {

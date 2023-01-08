@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { CSSProperties, ReactNode } from "react";
 import styles from "./style.module.css";
 import X from "../../assets/svg/x.svg";
 
@@ -9,6 +9,7 @@ interface ModalProps {
   closeModal?: () => void;
   width?: "lg" | "md" | "sm" | "xl";
   variant?: "default" | "unstyled";
+  style?: CSSProperties;
 }
 
 export default function Modal({
@@ -17,12 +18,16 @@ export default function Modal({
   closeModal,
   width = "lg",
   variant = "default",
+  style,
 }: ModalProps) {
   return (
     <>
       {openModal && (
-        <div className={styles.overlay}>
-          <div className={`${styles.outerContainer} ${styles[width]}`}>
+        <div className={styles.overlay} style={style}>
+          <div
+            className={`${styles.outerContainer} ${
+              variant !== "unstyled" ? styles[width] : ""
+            }`}>
             {closeModal && (
               <button className={styles.closeModalX} onClick={closeModal}>
                 <img src={X} />

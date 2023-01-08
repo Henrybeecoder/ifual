@@ -101,11 +101,7 @@ function App() {
           <Route path='notification' element={<NotificationAdmin />} />
           <Route path='dashboard' element={<DashboardAdmin />} />
           <Route path='settings' element={<SettingsAdmin />} />
-          <Route path='manage-users'>
-            <Route index element={<ManageUsersAdmin />} />
-            <Route path='customer-info' element={<CustomerInfo />} />
-            <Route path='vendor-info' element={<VendorInfoAdmin />} />
-          </Route>
+          <Route path='manage-users/*' element={<ManageUsersAdmin />} />
           <Route path='manage-orders'>
             <Route index element={<ManageOrdersAdmin />} />
             <Route path=':id'>

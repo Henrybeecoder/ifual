@@ -1,4 +1,4 @@
-import Layout from "../../../containers/LayoutSuperAdmin";
+import Layout from "../../../containers/LayoutAdmin";
 import SharedManageUsers from "../../SharedAdmin/ManageUsers";
 
 const ManageUsers = () => {

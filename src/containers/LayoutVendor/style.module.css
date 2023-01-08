@@ -149,6 +149,26 @@
   padding: 10px 15px;
 }
 
+.navLogout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navLogout p {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 20px;
+}
+.footer {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  white-space: nowrap;
+  text-align: center;
+  width: 100%;
+  color: #344437;
+}
+
 @media screen and (max-width: 800px) {
   .page {
     padding: 110px 17px 45px 17px;
@@ -178,5 +198,8 @@
   .navLinksContainer {
     padding: 5px 20px;
     margin: 40px 0 70px 0;
+  }
+  .navLogout {
+    padding: 12px 0;
   }
 }

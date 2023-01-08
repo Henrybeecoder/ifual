@@ -158,23 +158,28 @@
   margin: auto;
 }
 
-.orderDeclinedContent h2 {
+.orderDeclined {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  /* padding: 20px 0; */
+}
+
+.orderDeclined h2 {
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 20px;
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 5px;
+  /* text-align: center; */
+  padding: 20px 0 5px 30px;
 }
 
 .divider {
-  opacity: 0.7;
-  border-bottom: 0.5px solid #344437;
+  border-bottom: 0.5px solid #3444375f;
 }
 
 .checkBoxWithTextContainer {
-  padding: 10px 25px;
+  padding: 10px 15px;
 }
 
 .breadCrumb {
@@ -192,7 +197,13 @@
   font-weight: 300;
   font-size: 16px;
   line-height: 16px;
-  margin-left: 20px;
+  margin-left: 15px;
+}
+
+.declinedBtns {
+  display: flex;
+  padding: 20px 20px 30px 20px;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 800px) {

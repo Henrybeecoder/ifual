@@ -16,9 +16,6 @@
   background: #fcdee4;
   border-radius: 20px;
 }
-.dashoardContainer {
-  padding: 0 40px;
-}
 
 .chartContainer {
   border: 0.5px solid #3444372e;
@@ -160,9 +157,6 @@
     width: 100%;
   }
 
-  .dashoardContainer {
-    padding: 0 10px;
-  }
   .linkContainer {
     display: none;
   }

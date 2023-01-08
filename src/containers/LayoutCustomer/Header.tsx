@@ -1,99 +1,96 @@
 import styles from "./style.module.css";
 import logo from "../../assets/logo.svg";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../../Components/Button";
-import {
-  SearchIconWBorder,
-  SvgBellOutline,
-  SvgCartOutline,
-  SvgHamburger,
-  SvgSearchIcon,
-} from "../../assets/Svgs";
 import profile from "../../assets/image/profile2.png";
 import { useState } from "react";
 import { ReactComponent as NotificationSvg } from "../../assets/navbericon/notification-outline.svg";
 import { ReactComponent as CartSvg } from "../../assets/navbericon/cart-outline.svg";
+import { ReactComponent as HamburgerSvg } from "../../assets/navbericon/cart-outline.svg";
+import { ReactComponent as SvgSearchIcon } from "../../assets/navbericon/mobileSearch.svg";
+import { ReactComponent as SearchIconWBorder } from "../../assets/navbericon/cart-outline.svg";
 
 const Header = ({ user }: any) => {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
 
-  const toLogin = () => {
-    navigate("/login");
-  };
-
-  const toggleProfileModal = () => {
-    setOpen((state) => !state);
-  };
-
   const toCart = () => {
     navigate("/cart");
   };
 
-  return (
-    <>
-      <div className={styles.headerContainer}>
-        <div className={styles.flexHeader}>
-          <img src={logo} />
-          {!user && (
-            <div className={styles.linksContainer}>
-              <NavLink to='/' style={{ textDecoration: "none" }}>
-                {({ isActive }) => (
-                  <span className={`${isActive && styles.active}`}>Home</span>
-                )}
-              </NavLink>
-              <NavLink to='/support' style={{ textDecoration: "none" }}>
-                {({ isActive }) => (
-                  <span className={`${isActive && styles.active}`}>
-                    Support
-                  </span>
-                )}
-              </NavLink>
-            </div>
-          )}
-        </div>
+  const toLogin = () => {
+    navigate("/login");
+  };
 
-        <div className={`${styles.flexHeader}`}>
-          {/* <div /> */}
-          <div className={styles.mobileMenu}>
-            <SearchIconWBorder />
-            {!user && (
-              <button>
-                <SvgHamburger />
-              </button>
-            )}
+  return (
+    <div className={styles.headerContainer}>
+      <div className={styles.flexHeader}>
+        <img src={logo} />
+        {!user && (
+          <div className={styles.linksContainer}>
+            <NavLink to='/' style={{ textDecoration: "none" }}>
+              {({ isActive }) => (
+                <span className={`${isActive && styles.active}`}>Home</span>
+              )}
+            </NavLink>
+            <NavLink to='/support' style={{ textDecoration: "none" }}>
+              {({ isActive }) => (
+                <span className={`${isActive && styles.active}`}>Support</span>
+              )}
+            </NavLink>
           </div>
-          <div className={`${styles.searchBar} ${styles.hiddenMobile}`}>
-            <input placeholder='Enter Keyword' />
-            <div className={styles.searchIcon}>
-              <SvgSearchIcon />
-            </div>
-          </div>
+        )}
+      </div>
+
+      <div className={`${styles.flexHeader}`}>
+        <div className={styles.mobile}>
+          <button>
+            <SearchIconWBorder width={48} />
+          </button>
           {!user ? (
-            <div className={styles.hiddenMobile}>
-              <Button
-                variant='primary'
-                text='login'
-                width='150px'
-                onClick={toLogin}
-              />
-            </div>
+            <button>
+              <HamburgerSvg width={48} />
+            </button>
           ) : (
-            <div className={styles.flexIcons}>
+            <>
               <button>
-                <NotificationSvg />
+                <NotificationSvg width={48} />
               </button>
               <button onClick={toCart} className={styles.btnCart}>
-                <CartSvg />
+                <CartSvg width={48} />
               </button>
-              <img src={profile} onClick={toggleProfileModal} />
-              <ProfileModal user={user} open={open} />
-            </div>
+              <img src={profile} onClick={() => setOpen((state) => !state)} />
+            </>
           )}
         </div>
+        <div className={styles.lg}>
+          <div className={`${styles.searchBar}`}>
+            <input placeholder='Enter Keyword' />
+            <SvgSearchIcon className={styles.searchIcon} />
+          </div>
+          {!user ? (
+            <Button
+              variant='primary'
+              text='login'
+              width='150px'
+              onClick={toLogin}
+            />
+          ) : (
+            <>
+              <button>
+                <NotificationSvg width={52} />
+              </button>
+              <button onClick={toCart} className={styles.btnCart}>
+                <CartSvg width={52} />
+              </button>
+              <img src={profile} onClick={() => setOpen((state) => !state)} />
+            </>
+          )}
+        </div>
+        <ProfileModal user={user} open={open} />
       </div>
-    </>
+    </div>
   );
 };
 

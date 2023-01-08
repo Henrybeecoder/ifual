@@ -2,58 +2,89 @@ import { useState } from "react";
 import Layout from "../../../containers/LayoutVendor";
 import styles from "./style.module.css";
 import noneSelected from "../../../assets/svg/noneSelected.svg";
-import { limitText } from "../../../Custom hooks/helpers";
+import { limitText, localeDate } from "../../../Custom hooks/helpers";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import { ChevronLeft } from "@material-ui/icons";
 import Checkbox from "../../../Components/Checkbox";
 import PageHeader, { FilterModal } from "../../../Components/PageHeader";
 import Button from "../../../Components/Button";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { ReportType } from "src/types/vendor";
+import TimeAgo from "react-timeago";
 
-const reportList = [
+const reportList: ReportType[] = [
   {
-    id: "RE0000001 ; Payment",
-    heading: "Delayed payment",
-    body: "Payment for transaction not received.Customer refused order, while transportation cost has been incured",
-    question: "Are you available to pick up this order ticket?",
-    timeAgo: "2h",
+    reportId: "1",
+    referencNumber: "RE0000001 ; Payment",
+    title: "Delayed payment",
+    description:
+      "Payment for transaction not received.Customer refused order, while transportation cost has been incured",
+    // question: "Are you available to pick up this order ticket?",
     status: "resolved",
-    details: { origin: "Order from 234Estate", date: "18/09/2022" },
+    sender: "Order from 234Estate",
+    reportDate: "2022-12-22T20:32:22.1361054",
+    category: "",
+    vendorId: "0000000-00-0t-9-009",
   },
   {
-    id: "RE0000002 ; Payment",
-    heading: "Delayed payment",
-    body: "Payment for transaction not received.Customer refused order, while transportation cost has been incured",
-    question: "Are you available to pick up this order ticket?",
-    timeAgo: "3h",
-    status: "un-resolved",
-    details: { origin: "Order from 234Estate", date: "18/09/2022" },
+    reportId: "2",
+    referencNumber: "RE0000002 ; Payment",
+    title: "Delayed payment",
+    description:
+      "Payment for transaction not received.Customer refused order, while transportation cost has been incured",
+    // question: "Are you available to pick up this order ticket?",
+    status: "un-resolve",
+    sender: "Order from 234Estate",
+    reportDate: "2022-12-23T08:25:33.0912979",
+    category: "",
+    vendorId: "0000000-00-0t-9-009",
   },
   {
-    id: "RE0000003 ; Payment",
-    heading: "Delayed payment",
-    body: `Payment for transaction not received.Customer refused order, while transportation cost has been incured`,
-    question: "Are you available to pick up this order ticket?",
-    timeAgo: "7h",
+    reportId: "3",
+    referencNumber: "RE0000003 ; Payment",
+    title: "Delayed payment",
+    description: `Payment for transaction not received.Customer refused order, while transportation cost has been incured`,
+    // question: "Are you available to pick up this order ticket?",
     status: "resolved",
-    details: { origin: "Order from 234Estate", date: "18/09/2022" },
+    sender: "Order from 234Estate",
+    reportDate: "2022-12-23T21:46:12.315134",
+    category: "",
+    vendorId: "0000000-00-0t-9-009",
   },
   {
-    id: "RE0000004 ; Payment",
-    heading: "Delayed payment",
-    body: "Payment for transaction not received.Customer refused order, while transportation cost has been incured",
-    question: "Are you available to pick up this order ticket?",
-    timeAgo: "1h",
+    reportId: "4",
+    referencNumber: "RE0000004 ; Payment",
+    title: "Delayed payment",
+    description:
+      "Payment for transaction not received.Customer refused order, while transportation cost has been incured",
+    // question: "Are you available to pick up this order ticket?",
     status: "resolved",
-    details: { origin: "Order from 234Estate", date: "18/09/2022" },
+    sender: "Order from 234Estate",
+    reportDate: "2022-12-23T21:46:27.921535",
+    category: "",
+    vendorId: "0000000-00-0t-9-009",
   },
 ];
+
+interface ResponseType {
+  data: ReportType[];
+  responseCode: "0";
+  responseDescription: "SUCCESSFUL";
+}
 
 const Report = () => {
   const matches = useMediaQuery("(min-width: 800px)");
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string | null>(null);
-  const selectedContent = reportList.find((report) => report.id === selected);
+  const selectedContent = reportList.find(
+    (report) => report.reportId === selected
+  );
+
+  const { data: reports } = useQuery(["/Reports/GetReports"], {
+    initialData: { data: reportList },
+    enabled: false,
+  });
 
   return (
     <Layout>
@@ -70,16 +101,15 @@ const Report = () => {
         <div
           className={styles.reportsList}
           style={{ display: !matches && selected ? "none" : "unset" }}>
-          {reportList?.map((report, index) => (
-            <div key={report.id}>
+          {reports?.data?.map((report, index) => (
+            <div key={report.reportId}>
               <div
-                key={report.id}
                 className={styles.reportContainer}
                 style={{
                   backgroundColor:
-                    selected === report.id ? "#F2F6F2" : "transparent",
+                    selected === report.reportId ? "#F2F6F2" : "transparent",
                 }}
-                onClick={() => setSelected(report.id)}>
+                onClick={() => setSelected(report.reportId)}>
                 <div>
                   <div
                     className={styles.indicator}
@@ -90,11 +120,11 @@ const Report = () => {
                   />
                 </div>
                 <div className={styles.textContents}>
-                  <div className={styles.flexBetween}>
-                    <h2>{report.heading}</h2>
-                    <p className={styles.timeAgo}>{report.timeAgo}</p>
+                  <div className={"flex-btwn"}>
+                    <h2>{report.title}</h2>
+                    <TimeAgo date={report.reportDate} />
                   </div>
-                  <p>{limitText(report.body, 60)}</p>
+                  <p>{limitText(report.description, 60)}</p>
                   <p>Customer refused order</p>
                 </div>
               </div>
@@ -122,18 +152,18 @@ const Report = () => {
               <div className={styles.flexBetweenPadding}>
                 <h2>
                   {matches
-                    ? selectedContent.id
-                    : limitText(selectedContent.heading, 30)}
+                    ? selectedContent.referencNumber
+                    : limitText(selectedContent.title, 30)}
                 </h2>
                 <p className={styles.timeAgo}>
-                  {selectedContent.details?.date}
+                  {localeDate(selectedContent?.reportDate)}
                 </p>
               </div>
               <div className={styles.flexBetweenPadding}>
                 <h2>
                   {matches
-                    ? selectedContent.heading
-                    : limitText(selectedContent.heading, 30)}
+                    ? selectedContent.title
+                    : limitText(selectedContent.title, 30)}
                 </h2>
                 <p
                   style={{
@@ -148,11 +178,11 @@ const Report = () => {
                     .toUpperCase()}${selectedContent.status.slice(1)}`}
                 </p>
               </div>
-              <p>{selectedContent.body}</p>
+              <p>{selectedContent.description}</p>
               <div className={styles.details}>
                 <h2>Details</h2>
-                <p>{selectedContent.details.origin}</p>
-                <p>Date:{selectedContent.details.date}</p>
+                <p>{selectedContent.sender}</p>
+                <p>Date:{localeDate(selectedContent.reportDate)}</p>
               </div>
             </div>
           )}

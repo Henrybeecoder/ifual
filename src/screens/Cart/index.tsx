@@ -118,7 +118,7 @@ const Cart = () => {
                 </div>
                 <div className={styles.ratingView}>
                   <SvgRating />
-                  <button>View</button>
+                  <Button text='View' width='60px' height='36px' />
                 </div>
               </div>
             ))}

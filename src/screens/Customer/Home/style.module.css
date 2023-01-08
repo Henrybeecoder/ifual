@@ -146,8 +146,7 @@
 .reviewOrder h2 {
   font-weight: 400;
   font-size: 28px;
-  line-height: 42px;
-  margin: 10px 0 20px 0;
+  line-height: 28px;
 }
 
 .confirmDelivery p {
@@ -176,9 +175,10 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 85%;
+  width: 500px;
   margin: auto;
-  padding: 20px;
+  padding: 50px 30px;
+  gap: 13px;
 }
 
 .divider {

@@ -61,9 +61,10 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
                   <ReportSvg />
                 </NavLinkItem>
                 <div className='divider' />
-                <NavLinkItem marginMd to={`/vendor/log-out`} heading='Log out'>
+                <button className={styles.navLogout}>
                   <LogoutSvg />
-                </NavLinkItem>
+                  <p>Logout</p>
+                </button>
                 <div className='divider' />
               </div>
             </Content>
@@ -89,13 +90,14 @@ const SideBar = ({ open, setOpen }: SideBarProps) => {
               <NavLinkItem to={`/vendor/report`} heading='Report'>
                 <ReportSvg />
               </NavLinkItem>
-              <NavLinkItem to={`/vendor/log-out`} heading='Log out'>
+              <button className={styles.navLogout}>
                 <LogoutSvg />
-              </NavLinkItem>
+                <p>Logout</p>
+              </button>
             </div>
-            <div className={styles.footer}>
-              <p>2022 iFuel. All rights reserved.</p>
-            </div>
+          </div>
+          <div className={styles.footer}>
+            <p>&copy; 2022 iFuel. All rights reserved.</p>
           </div>
         </div>
       )}

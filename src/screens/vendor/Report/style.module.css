@@ -178,6 +178,7 @@
 }
 .textContents {
   padding: 5px;
+  width: 100%;
 }
 
 .textContents h2 {
@@ -320,6 +321,13 @@
   border: 1px solid transparent;
   margin-left: 10px;
   color: #ffffff;
+}
+
+.btnsNewR {
+  display: flex;
+  justify-content: space-between;
+  width: 47%;
+  margin: 20px auto 0 auto;
 }
 
 @media screen and (max-width: 800px) {
