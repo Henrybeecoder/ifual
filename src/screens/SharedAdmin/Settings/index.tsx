@@ -6,7 +6,7 @@ import RadioGroup from "../../../Components/Radix/RadioGroup";
 import { SelectTemp } from "../../../Components/InputTemp";
 import { useState } from "react";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
-import { TitleHeader } from "@components/PageHeader";
+import { TitleHeader } from "../../../Components/PageHeader";
 import { useNavigate } from "react-router-dom";
 
 const Settings = () => {

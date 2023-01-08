@@ -4,9 +4,9 @@ import { InputTemp } from "../../../Components/InputTemp";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
-import { RenderPageProps } from "@type/shared";
+import { RenderPageProps } from "../../../types/shared";
 import { Form, Formik } from "formik";
-import { authSchema } from "@lib/validation/sharedAdmin";
+import { authSchema } from "../../../lib/validation/sharedAdmin";
 
 interface LoginProps {
   redirectUrl: string;

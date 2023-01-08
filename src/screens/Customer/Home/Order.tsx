@@ -1,10 +1,10 @@
 import Layout from "../../../containers/LayoutCustomer";
 import { useNavigate } from "react-router-dom";
-import { SvgArrowback, SvgRating, SvgRightIcon } from "src/assets/Svgs";
+import { SvgArrowback, SvgRating, SvgRightIcon } from "../../../assets/Svgs";
 import styles from "./style.module.css";
 import companyLogo from "../../../assets/image/companyLogo.png";
-import OrderDetailsForm from "@components/OrderDetailsForm";
-import Button from "@components/Button";
+import OrderDetailsForm from "../../../Components/OrderDetailsForm";
+import Button from "../../../Components/Button";
 
 const Order = () => {
   const navigate = useNavigate();

@@ -1,5 +1,9 @@
-import Button from "@components/Button";
-import { InputTemp, SelectTemp, TextareaTemp } from "@components/InputTemp";
+import Button from "../../../Components/Button";
+import {
+  InputTemp,
+  SelectTemp,
+  TextareaTemp,
+} from "../../../Components/InputTemp";
 import styles from "./style.module.css";
 
 const CustomMessage = () => {

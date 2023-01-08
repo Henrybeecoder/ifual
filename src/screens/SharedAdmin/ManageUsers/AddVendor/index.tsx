@@ -1,7 +1,7 @@
-import Button from "@components/Button";
-import { InputTemp, SelectTemp } from "@components/InputTemp";
-import { TitleHeader } from "@components/PageHeader";
-import UploadImageTemp from "@components/UploadImageTemp";
+import Button from "../../../../Components/Button";
+import { InputTemp, SelectTemp } from "../../../../Components/InputTemp";
+import { TitleHeader } from "../../../../Components/PageHeader";
+import UploadImageTemp from "../../../../Components/UploadImageTemp";
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 

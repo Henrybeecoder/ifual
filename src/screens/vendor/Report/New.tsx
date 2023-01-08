@@ -1,6 +1,10 @@
-import { InputTemp, SelectTemp, TextareaTemp } from "@components/InputTemp";
-import PageHeader from "@components/PageHeader";
-import Layout from "src/containers/LayoutVendor";
+import {
+  InputTemp,
+  SelectTemp,
+  TextareaTemp,
+} from "../../../Components/InputTemp";
+import PageHeader from "../../../Components/PageHeader";
+import Layout from "../../../containers/LayoutVendor";
 
 const New = () => {
   return (

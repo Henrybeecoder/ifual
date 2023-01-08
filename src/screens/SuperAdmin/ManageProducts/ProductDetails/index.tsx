@@ -1,13 +1,12 @@
-import Button from "@components/Button";
-import { InputTemp, SelectTemp } from "@components/InputTemp";
+import Button from "../../../../Components/Button";
+import { InputTemp, SelectTemp } from "../../../../Components/InputTemp";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Layout from "../../../../containers/LayoutSuperAdmin";
 import styles from "./style.module.css";
-import { ReactComponent as FilterSvg } from "../../../../assets/navbericon/filter-outline.svg";
 import { useState } from "react";
-import Modal from "@components/Modals";
-import Header, { EditBtn } from "@components/PageHeader/Admin";
-import { PaginationOf } from "@components/PageHeader";
+import Modal from "../../../../Components/Modals";
+import Header, { EditBtn } from "../../../../Components/PageHeader/Admin";
+import { PaginationOf } from "../../../../Components/PageHeader";
 
 const NewProduct = () => {
   const navigate = useNavigate();
@@ -54,7 +53,7 @@ const NewProduct = () => {
               : "ADD NEW "
           }
           parentPageTitle='MANAGE PRODUCTS'>
-          <PaginationOf current={8} total={8} />
+          <PaginationOf current={[1, 8]} total={8} />
           <EditBtn />
         </Header>
         <div className={styles.flex}>

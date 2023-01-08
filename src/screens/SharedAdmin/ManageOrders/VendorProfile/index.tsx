@@ -1,4 +1,4 @@
-import { VendorProfile as ProfileTemp } from "@components/Profile";
+import { VendorProfile as ProfileTemp } from "../../../../Components/Profile";
 import image from "../../../../assets/image/companyName.png";
 
 const CustomerProfile = () => {

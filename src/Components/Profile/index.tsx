@@ -1,13 +1,12 @@
 import styles from "./style.module.css";
-import { InputTemp, TextareaTemp } from "@components/InputTemp";
+import { InputTemp, TextareaTemp } from "../InputTemp";
 import { ChangeEvent, ReactNode, useRef, useState } from "react";
-import useMediaQuery from "src/Custom hooks/useMediaQuery";
-import Button from "@components/Button";
-import Modal from "@components/Modals";
+import useMediaQuery from "../../Custom hooks/useMediaQuery";
+import Button from "../Button";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { customer_data } from "src/screens/SharedAdmin/ManageUsers/data";
+import { customer_data } from "../../screens/SharedAdmin/ManageUsers/data";
 import { ReactComponent as StarSvg } from "../../assets/svg/star.svg";
-import UploadImageTemp from "@components/UploadImageTemp";
+import UploadImageTemp from "../UploadImageTemp";
 
 interface CustomerProfileProps {
   profileImg: string;

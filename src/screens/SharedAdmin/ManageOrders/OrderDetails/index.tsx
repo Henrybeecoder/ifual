@@ -4,17 +4,17 @@ import { ReactComponent as TrashSvg } from "../../../../assets/svg/trash-outline
 import { data as orders } from "../index";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Button, { LinkButton } from "@components/Button";
+import Button, { LinkButton } from "../../../../Components/Button";
 import orderedProfile from "../../../../assets/image/orderedProfile.png";
 import deliveredProfile from "../../../../assets/image/deliveredProfile.png";
-import { InputTemp, SelectTemp } from "@components/InputTemp";
-import { RenderPageProps } from "@type/shared";
-import Modal from "@components/Modals";
+import { InputTemp, SelectTemp } from "../../../../Components/InputTemp";
+import { RenderPageProps } from "../../../../types/shared";
+import Modal from "../../../../Components/Modals";
 import { Root, Trigger, Portal, Content } from "@radix-ui/react-popover";
-import Header from "@components/PageHeader/Admin";
-import useMediaQuery from "src/Custom hooks/useMediaQuery";
-import { limitText } from "src/Custom hooks/helpers";
-import { PaginationOf } from "@components/PageHeader";
+import Header from "../../../../Components/PageHeader/Admin";
+import useMediaQuery from "../../../../Custom hooks/useMediaQuery";
+import { limitText } from "../../../../Custom hooks/helpers";
+import { PaginationOf } from "../../../../Components/PageHeader";
 
 interface SectionProps {
   data: any;
@@ -89,7 +89,7 @@ const ManageOrders = ({ baseUrl }: { baseUrl: string }) => {
       </Modal>
       <div className={styles.container}>
         <Header pageTitle='ORDER DETAILS' parentPageTitle='MANAGE ORDERS'>
-          <PaginationOf current={23} total={200} />
+          <PaginationOf current={[0, 23]} total={200} />
         </Header>
 
         <>{data && renderSection[data.status.toLowerCase()]}</>

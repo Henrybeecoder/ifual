@@ -1,6 +1,6 @@
 import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
-import NavLinkItem from "@components/NavLinkItem";
-import useMediaQuery from "src/Custom hooks/useMediaQuery";
+import NavLinkItem from "../../Components/NavLinkItem";
+import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import styles from "./style.module.css";
 import logo from "../../assets/logo.svg";
 import { ReactComponent as DashboardSvg } from "../../assets/navbericon/dashboard.svg";

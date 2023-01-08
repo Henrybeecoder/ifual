@@ -1,12 +1,12 @@
 import styles from "./style.module.css";
 import { SvgFilterIcon, SvgOptions } from "../../../assets/Svgs";
-import Button from "@components/Button";
+import Button from "../../../Components/Button";
 import { ReactComponent as FilterSvg } from "../../../assets/navbericon/filter-outline.svg";
-import OptionsModal from "@components/OptionsModal";
-import { SharedAdminComponentProps } from "@type/shared";
+import OptionsModal from "../../../Components/OptionsModal";
+import { SharedAdminComponentProps } from "../../../types/shared";
 import { Link } from "react-router-dom";
-import Header from "@components/PageHeader/Admin";
-import { FilterModal } from "@components/PageHeader";
+import Header from "../../../Components/PageHeader/Admin";
+import { FilterModal } from "../../../Components/PageHeader";
 
 const data = [
   {

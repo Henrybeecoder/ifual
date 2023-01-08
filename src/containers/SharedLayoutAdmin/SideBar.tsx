@@ -13,7 +13,7 @@ import {
 import { ReactNode, useState } from "react";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
-import NavLinkItem from "@components/NavLinkItem";
+import NavLinkItem from "../../Components/NavLinkItem";
 import { ReactComponent as OrderStatusSvg } from "../../assets/navbericon/orderStatus.svg";
 
 interface SideBarProps {

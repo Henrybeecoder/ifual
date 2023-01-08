@@ -4,7 +4,7 @@ import styles from "./style.module.css";
 import VendorAuthForm from "../../forms/AuthForms/Vendor";
 import CustomerAuthForm from "../../forms/AuthForms/Customer";
 import { useSearchParams } from "react-router-dom";
-import { AuthContainerProps, RenderPageProps } from "@type/shared";
+import { AuthContainerProps, RenderPageProps } from "../../types/shared";
 
 export default function AuthContainer(props: AuthContainerProps) {
   const [searchParams] = useSearchParams();

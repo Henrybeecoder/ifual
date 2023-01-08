@@ -11,7 +11,7 @@ import {
 import { SvgRightIcon } from "../../../assets/Svgs";
 import { useState } from "react";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
-import DashboardShared from "src/screens/SharedAdmin/Dashboard";
+import DashboardShared from "../../../screens/SharedAdmin/Dashboard";
 
 const data = [
   {

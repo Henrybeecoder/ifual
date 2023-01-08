@@ -4,7 +4,7 @@ import SharedOrderDetails from "../../../SharedAdmin/ManageOrders/OrderDetails";
 const ManageOrders = () => {
   return (
     <Layout>
-      <SharedOrderDetails />
+      <SharedOrderDetails baseUrl='admin' />
     </Layout>
   );
 };

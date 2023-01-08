@@ -59,8 +59,8 @@ export const TitleHeader = ({
 
 interface FilterModalProps {
   children?: ReactNode;
-  options: string[];
-  onSelect?: (value: string) => void;
+  options: { value: string; code?: number }[];
+  onSelect?: ({ value, code }: { value: string; code?: number }) => void;
   selected?: string;
 }
 
@@ -87,10 +87,14 @@ export const FilterModal = ({
             <div className={styles.optionsContainer}>
               {options.map((option) => (
                 <button
-                  key={option}
-                  className={`${active(option) ? "text-green" : ""}`}
-                  onClick={() => onSelect(option)}>
-                  {`${option.charAt(0).toUpperCase()}${option.slice(1)}`}
+                  key={option.value}
+                  className={`${active(option.value) ? "text-green" : ""}`}
+                  onClick={() =>
+                    onSelect({ code: option.code, value: option.value })
+                  }>
+                  {`${option.value.charAt(0).toUpperCase()}${option.value.slice(
+                    1
+                  )}`}
                 </button>
               ))}
             </div>

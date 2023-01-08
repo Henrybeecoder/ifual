@@ -1,6 +1,6 @@
 import Layout from "../../../containers/LayoutAdmin";
 import { useState } from "react";
-import DashboardShared from "src/screens/SharedAdmin/Dashboard";
+import DashboardShared from "../../../screens/SharedAdmin/Dashboard";
 
 const Dashboard = () => {
   const [page, setPage] = useState("home");

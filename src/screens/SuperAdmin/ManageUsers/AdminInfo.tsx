@@ -1,8 +1,8 @@
-import Button from "@components/Button";
-import { InputTemp, SelectTemp } from "@components/InputTemp";
-import Modal from "@components/Modals";
-import { Pagination } from "@components/PageHeader";
-import Header, { EditBtn } from "@components/PageHeader/Admin";
+import Button from "../../../Components/Button";
+import { InputTemp, SelectTemp } from "../../../Components/InputTemp";
+import Modal from "../../../Components/Modals";
+import { Pagination } from "../../../Components/PageHeader";
+import Header, { EditBtn } from "../../../Components/PageHeader/Admin";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../../../containers/LayoutSuperAdmin";

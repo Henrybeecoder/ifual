@@ -8,7 +8,7 @@ import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import profile from "../../../assets/image/profile2Lg.png";
 
 import { useRef, useState } from "react";
-import { CustomerProfile } from "@components/Profile";
+import { CustomerProfile } from "../../../Components/Profile";
 
 const Profile = () => {
   const navigate = useNavigate();

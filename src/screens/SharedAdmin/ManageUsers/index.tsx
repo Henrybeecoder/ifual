@@ -1,6 +1,6 @@
 import styles from "./style.module.css";
 import { customer_data, vendor_data, admin_data } from "./data";
-import { RenderPageProps } from "@type/shared";
+import { RenderPageProps } from "../../../types/shared";
 import {
   Link,
   NavLink,
@@ -10,13 +10,13 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
-import OptionsModal from "@components/OptionsModal";
-import Button from "@components/Button";
-import Header from "@components/PageHeader/Admin";
-import { FilterModal } from "@components/PageHeader";
-import useMediaQuery from "src/Custom hooks/useMediaQuery";
+import OptionsModal from "../../../Components/OptionsModal";
+import Button from "../../../Components/Button";
+import Header from "../../../Components/PageHeader/Admin";
+import { FilterModal } from "../../../Components/PageHeader";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
-import { limitText } from "src/Custom hooks/helpers";
+import { limitText } from "../../../Custom hooks/helpers";
 import VendorInfo from "./VendorInfo";
 import CustomerInfo from "./CustomerInfo";
 import AdminInfo from "../../../screens/SuperAdmin/ManageUsers/AdminInfo";

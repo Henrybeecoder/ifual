@@ -10,12 +10,16 @@ import Paper from "@mui/material/Paper";
 import styles from "./style.module.css";
 import OptionsModal from "../../../Components/OptionsModal";
 import Modal from "../../../Components/Modals";
-import PageHeader, { FilterModal, PaginationOf } from "@components/PageHeader";
-import Button from "@components/Button";
+import PageHeader, {
+  FilterModal,
+  PaginationOf,
+} from "../../../Components/PageHeader";
+import Button from "../../../Components/Button";
 import { useNavigate } from "react-router-dom";
-import useMediaQuery from "src/Custom hooks/useMediaQuery";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
-import { limitText } from "src/Custom hooks/helpers";
+import { limitText } from "../../../Custom hooks/helpers";
+import { useQuery } from "@tanstack/react-query";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -135,6 +139,9 @@ export default function ProductList() {
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width: 800px)");
   const [deleteCfmModal, setDCfM] = useState(false);
+
+  const {} = useQuery(["/Product/GetAllProducts"]);
+
   return (
     <Layout>
       <Modal openModal={deleteCfmModal} closeModal={() => setDCfM(false)}>
@@ -155,10 +162,10 @@ export default function ProductList() {
           <FilterModal
             selected='In-stock'
             options={[
-              "In-stock",
-              "Out of Stock",
-              "Newest to Oldest",
-              "Oldest to Newest",
+              { value: "In-stock" },
+              { value: "Out of Stock" },
+              { value: "Newest to Oldest" },
+              { value: "Oldest to Newest" },
             ]}
           />
           <Button

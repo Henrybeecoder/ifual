@@ -1,11 +1,11 @@
 import styles from "./style.module.css";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
-import OptionsModal from "@components/OptionsModal";
+import OptionsModal from "../../../Components/OptionsModal";
 import { useNavigate } from "react-router-dom";
-import Header from "@components/PageHeader/Admin";
-import useMediaQuery from "src/Custom hooks/useMediaQuery";
-import { limitText } from "src/Custom hooks/helpers";
-import { FilterModal, PaginationOf } from "@components/PageHeader";
+import Header from "../../../Components/PageHeader/Admin";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
+import { limitText } from "../../../Custom hooks/helpers";
+import { FilterModal, PaginationOf } from "../../../Components/PageHeader";
 
 export const data = [
   {
@@ -99,7 +99,7 @@ const ManageOrders = () => {
   return (
     <>
       <Header pageTitle='MANAGE ORDERS'>
-        <PaginationOf current={"1 to 20"} total={400} />
+        <PaginationOf current={[0, 20]} total={400} />
         <FilterModal options={[]} />
       </Header>
       <div className={"table-wrapper"}>

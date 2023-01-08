@@ -4,7 +4,6 @@ import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import Dashboard from "./screens/vendor/Dashboard";
 import ForgotPassword from "./screens/ForgotPassword";
-import ForgotPasswordMessage from "./screens/ForgotPasswordMessage";
 import ResetPassword from "./screens/ResetPassword";
 import SignUpMessage from "./screens/SignUpMessage";
 import SignUpNext from "./screens/SignUpNext";
@@ -70,10 +69,6 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route
-          path='/forgot-password-message'
-          element={<ForgotPasswordMessage />}
-        />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/sign-up-message' element={<SignUpMessage />} />
         <Route path='/sign-up-next' element={<SignUpNext />} />

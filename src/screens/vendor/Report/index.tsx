@@ -6,8 +6,8 @@ import { limitText } from "../../../Custom hooks/helpers";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import { ChevronLeft } from "@material-ui/icons";
 import Checkbox from "../../../Components/Checkbox";
-import PageHeader, { FilterModal } from "@components/PageHeader";
-import Button from "@components/Button";
+import PageHeader, { FilterModal } from "../../../Components/PageHeader";
+import Button from "../../../Components/Button";
 import { useNavigate } from "react-router-dom";
 
 const reportList = [
@@ -95,6 +95,7 @@ const Report = () => {
                     <p className={styles.timeAgo}>{report.timeAgo}</p>
                   </div>
                   <p>{limitText(report.body, 60)}</p>
+                  <p>Customer refused order</p>
                 </div>
               </div>
               <div

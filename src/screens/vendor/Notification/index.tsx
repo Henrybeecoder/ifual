@@ -10,11 +10,11 @@ import Modal from "../../../Components/Modals";
 import modalCheck from "../../../assets/svg/modalCheck.svg";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import Checkbox, { CheckboxProps } from "../../../Components/Checkbox";
-import { SvgArrowLeft } from "src/assets/Svgs";
-import Button from "@components/Button";
-import PageHeader, { FilterModal, PaginationOf } from "@components/PageHeader";
+import { SvgArrowLeft } from "../../../assets/Svgs";
+import Button from "../../../Components/Button";
+import PageHeader, { FilterModal, PaginationOf } from "../../../Components/PageHeader";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import axios from "@lib/axios";
+import axios from "../../../lib/axios";
 
 const notificationList = [
   {

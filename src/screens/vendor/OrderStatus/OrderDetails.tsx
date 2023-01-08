@@ -1,6 +1,6 @@
-import PageHeader from "@components/PageHeader";
-import Layout from "src/containers/LayoutVendor";
-import OrderDetailsForm from "@components/OrderDetailsForm";
+import PageHeader from "../../../Components/PageHeader";
+import Layout from "../../../containers/LayoutVendor";
+import OrderDetailsForm from "../../../Components/OrderDetailsForm";
 
 const OrderDetails = () => {
   return (

@@ -17,10 +17,10 @@ import { useNavigate } from "react-router-dom";
 import totOrder from "../../../assets/svg/totorder.svg";
 import shopOrder from "../../../assets/svg/shopOrder.svg";
 import OptionsModal from "../../../Components/OptionsModal";
-import useMediaQuery from "src/Custom hooks/useMediaQuery";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import { ReactComponent as ArrowDown } from "../../../assets/svg/ArrowDownActive.svg";
 import { useQuery } from "@tanstack/react-query";
-import { vendorId } from "@lib/constant";
+import { vendorId } from "../../../lib/constant";
 
 function createData(
   name: string,

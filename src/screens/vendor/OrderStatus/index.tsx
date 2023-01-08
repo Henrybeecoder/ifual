@@ -12,12 +12,14 @@ import right from "../../../assets/svg/right.svg";
 import left from "../../../assets/svg/left.svg";
 import filter from "../../../assets/svg/filter.svg";
 import SubModal from "../../../Components/OptionsModal";
-import useMediaQuery from "src/Custom hooks/useMediaQuery";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
-import { limitText } from "src/Custom hooks/helpers";
-import PageHeader, { FilterModal, PaginationOf } from "@components/PageHeader";
+import { limitText } from "../../../Custom hooks/helpers";
+import PageHeader, { FilterModal, PaginationOf } from "../../../Components/PageHeader";
 import { useQuery } from "@tanstack/react-query";
+import { OrderStatusType } from "../../../types/vendor";
+import { AxiosError } from "axios";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,23 +41,30 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  id: string,
-  name: string,
-  calories: string,
-  fat: string,
-  carbs: string,
-  protein: string
-) {
-  return { id, name, calories, fat, carbs, protein };
-}
+const createData = (
+  orderId: string,
+  description: string,
+  quantity: string,
+  orderStatus: number,
+  dateCreated: string,
+  unitPrice: string
+) => {
+  return {
+    orderId,
+    description,
+    quantity,
+    orderStatus,
+    dateCreated,
+    unitPrice,
+  };
+};
 
 const rows = [
   createData(
     "1",
     ".88 Distilled Diesel",
     "100 l",
-    "Delivered",
+    1,
     "28/07/2022",
     "N30,000.00"
   ),
@@ -63,7 +72,7 @@ const rows = [
     "2",
     "Unadulterated Petrol",
     "100 l",
-    "Pending",
+    0,
     "28/07/2022",
     "N30,000.00"
   ),
@@ -71,7 +80,7 @@ const rows = [
     "3",
     ".9 Distilled Diesel",
     "100 l",
-    "Cancelled",
+    3,
     "28/07/2022",
     "N30,000.00"
   ),
@@ -79,7 +88,7 @@ const rows = [
     "4",
     "Pure, distilled Kerosene",
     "100 l",
-    "Delivered",
+    1,
     "28/07/2022",
     "N30,000.00"
   ),
@@ -87,7 +96,7 @@ const rows = [
     "5",
     "Pure, distilled Kerosene",
     "100 l",
-    "Delivered",
+    2,
     "28/07/2022",
     "N30,000.00"
   ),
@@ -95,19 +104,32 @@ const rows = [
     "6",
     ".9 Distilled Diesel",
     "100 l",
-    "Cancelled",
+    3,
     "28/07/2022",
     "N30,000.00"
   ),
 ];
 
+type FilterCode = 0 | 1 | 2 | 3 | 4 | 5 | number;
+
 export default function OrderStatus() {
   const matches = useMediaQuery("(min-width: 800px)");
   const navigate = useNavigate();
 
-  const [filter, setFilter] = useState("newest to oldest");
+  const toText = (code: FilterCode) => (code === 0 ? "Pending" : "");
 
-  const { data } = useQuery(["/Order/GetVendorOrders"], { initialData: rows });
+  const [filter, setFilter] = useState<{ value: string; code?: number }>({
+    value: "newest to oldest",
+  });
+
+  const { data } = useQuery<unknown, AxiosError, { data: OrderStatusType[] }>(
+    ["/Order/GetVendorOrders"],
+    {
+      initialData: { data: rows },
+    }
+  );
+
+  const orders = data?.data;
 
   return (
     <Layout>
@@ -115,14 +137,14 @@ export default function OrderStatus() {
         <PaginationOf current={[1, 6]} total={6} />
         <FilterModal
           options={[
-            "delivered",
-            "pending",
-            "cancelled",
-            "newest to oldest",
-            "oldest to newest",
+            { value: "delivered" },
+            { value: "pending" },
+            { value: "cancelled" },
+            { value: "newest to oldest" },
+            { value: "oldest to newest" },
           ]}
           onSelect={setFilter}
-          selected={filter}
+          selected={filter.value}
         />
       </PageHeader>
 
@@ -150,33 +172,35 @@ export default function OrderStatus() {
                 </StyledTableCell>
                 <StyledTableCell align='right'></StyledTableCell>
               </StyledTableRow>
-              {data.map((row) => (
-                <StyledTableRow key={row.id}>
+              {orders?.map((row) => (
+                <StyledTableRow key={row.orderId}>
                   <StyledTableCell component='th' scope='row'>
-                    <h3 className={styles.subText}>{row.name}</h3>
+                    <h3 className={styles.subText}>{row.description}</h3>
                   </StyledTableCell>
                   <StyledTableCell align='center'>
-                    <h3 className={styles.subText}>{row.calories}</h3>
+                    <h3 className={styles.subText}>{row.quantity}</h3>
                   </StyledTableCell>
                   <StyledTableCell align='center'>
                     <p
                       className={`${
-                        row.fat === "Delivered" && styles.delivered
-                      } ${row.fat === "Pending" && styles.pending} ${
-                        row.fat === "Cancelled" && styles.cancelled
+                        row.orderStatus === 1 && styles.delivered
+                      } ${row.orderStatus === 0 && styles.pending} ${
+                        row.orderStatus === 3 && styles.cancelled
                       } `}>
-                      {row.fat}
+                      {toText(row.orderStatus)}
                     </p>
                   </StyledTableCell>
                   <StyledTableCell align='center'>
-                    <h3 className={styles.subText}>{row.carbs}</h3>
+                    <h3 className={styles.subText}>{row.dateCreated}</h3>
                   </StyledTableCell>
                   <StyledTableCell align='center'>
-                    <h3 className={styles.subText}>{row.protein}</h3>
+                    <h3 className={styles.subText}>{row.unitPrice}</h3>
                   </StyledTableCell>
                   <StyledTableCell align='right' style={{ cursor: "pointer" }}>
                     <SubModal>
-                      <button onClick={() => navigate(row.id)}>View</button>
+                      <button onClick={() => navigate(row.orderId)}>
+                        View
+                      </button>
                       <button>Report</button>
                     </SubModal>
                   </StyledTableCell>
@@ -199,16 +223,16 @@ export default function OrderStatus() {
                 </StyledTableCell>
                 <StyledTableCell align='right'></StyledTableCell>
               </StyledTableRow>
-              {data.map((row) => (
-                <StyledTableRow key={row.id}>
+              {orders?.map((row) => (
+                <StyledTableRow key={row.orderId}>
                   <StyledTableCell
                     scope='row'
                     align='center'
                     style={{ padding: "10px 3px" }}>
                     <h3 className={styles.subText}>
-                      {row.name
+                      {row.description
                         .split(" ")
-                        [row.name.split(" ").length - 1].toString()}
+                        [row.description.split(" ").length - 1].toString()}
                     </h3>
                   </StyledTableCell>
                   <StyledTableCell
@@ -216,25 +240,25 @@ export default function OrderStatus() {
                     style={{ padding: "10px 3px" }}>
                     <p
                       className={`${
-                        row.fat === "Delivered" && styles.delivered
-                      } ${row.fat === "Pending" && styles.pending} ${
-                        row.fat === "Cancelled" && styles.cancelled
+                        row.orderStatus === 1 && styles.delivered
+                      } ${row.orderStatus === 0 && styles.pending} ${
+                        row.orderStatus === 2 && styles.cancelled
                       } `}>
-                      {row.fat}
+                      {row.orderStatus}
                     </p>
                   </StyledTableCell>
                   <StyledTableCell
                     align='center'
                     style={{ padding: "10px 3px" }}>
                     <h3 className={styles.subText}>
-                      {limitText(row.protein, 6)}
+                      {limitText(row.dateCreated, 6)}
                     </h3>
                   </StyledTableCell>
                   <StyledTableCell align='left' style={{ padding: "10px 3px" }}>
                     <ArrowRight
                       style={{ cursor: "pointer" }}
                       onClick={() => {
-                        navigate(row.id);
+                        navigate(row.orderId);
                       }}
                     />
                   </StyledTableCell>

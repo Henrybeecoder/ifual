@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { SvgArrowLeft } from "src/assets/Svgs";
+import { SvgArrowLeft } from "../../../assets/Svgs";
 import styles from "./style.module.css";
 import noneSelected from "../../../assets/svg/noneSelected.svg";
-import useMediaQuery from "src/Custom hooks/useMediaQuery";
-import { limitText } from "src/Custom hooks/helpers";
-import Header from "@components/PageHeader/Admin";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
+import { limitText } from "../../../Custom hooks/helpers";
+import Header from "../../../Components/PageHeader/Admin";
 import { useNavigate } from "react-router-dom";
-import Button from "@components/Button";
-import { FilterModal } from "@components/PageHeader";
+import Button from "../../../Components/Button";
+import { FilterModal } from "../../../Components/PageHeader";
 
 const notificationList = [
   {

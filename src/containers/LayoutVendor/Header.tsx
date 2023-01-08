@@ -9,7 +9,6 @@ import { ReactComponent as HamburgerSvg } from "../../assets/navbericon/hamburge
 import { ReactComponent as NotificationSvg } from "../../assets/navbericon/notification-outline.svg";
 import { ReactComponent as BoxBarSvg } from "../../assets/navbericon/boxBar.svg";
 import { ReactComponent as SearchIcon } from "../../assets/navbericon/mobileSearch.svg";
-import Button from "@components/Button";
 
 interface HeaderProps {
   user?: any;

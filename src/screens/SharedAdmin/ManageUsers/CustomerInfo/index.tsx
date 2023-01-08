@@ -1,16 +1,16 @@
 import LayoutSuperAdmin from "../../../../containers/LayoutSuperAdmin";
-import { InputTemp } from "@components/InputTemp";
+import { InputTemp } from "../../../../Components/InputTemp";
 import styles from "./style.module.css";
 import { ChangeEvent, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import profile from "../../../../assets/image/profile2Lg.png";
-import Modal from "@components/Modals";
+import Modal from "../../../../Components/Modals";
 import { customer_data } from "../data";
-import Button from "@components/Button";
-import { CustomerProfile } from "@components/Profile";
-import Header from "@components/PageHeader/Admin";
-import useMediaQuery from "src/Custom hooks/useMediaQuery";
-import { PaginationOf } from "@components/PageHeader";
+import Button from "../../../../Components/Button";
+import { CustomerProfile } from "../../../../Components/Profile";
+import Header from "../../../../Components/PageHeader/Admin";
+import useMediaQuery from "../../../../Custom hooks/useMediaQuery";
+import { PaginationOf } from "../../../../Components/PageHeader";
 
 interface ModalState {
   suspend: boolean;
@@ -110,7 +110,7 @@ const CustomerInfo = () => {
           parentPageTitle='MANAGE CUSTOMER'
           backBtn
           onClickBackBtn={() => navigate(-1)}>
-          <PaginationOf current={23} total={4200} />
+          <PaginationOf current={[0, 23]} total={4200} />
         </Header>
         <div className={styles.customerStatus}>
           {data && (

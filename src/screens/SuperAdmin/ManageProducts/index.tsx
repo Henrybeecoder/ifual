@@ -1,12 +1,12 @@
 import Layout from "../../../containers/LayoutSuperAdmin";
 import styles from "./style.module.css";
-import Button from "@components/Button";
-import OptionsModal from "@components/OptionsModal";
+import Button from "../../../Components/Button";
+import OptionsModal from "../../../Components/OptionsModal";
 import { useNavigate } from "react-router-dom";
-import Header from "@components/PageHeader/Admin";
-import useMediaQuery from "src/Custom hooks/useMediaQuery";
+import Header from "../../../Components/PageHeader/Admin";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
-import { FilterModal } from "@components/PageHeader";
+import { FilterModal } from "../../../Components/PageHeader";
 
 const data = [
   {
@@ -43,7 +43,12 @@ const ManageProducts = () => {
       <>
         <Header pageTitle='MANAGE PRODUCTS'>
           <FilterModal
-            options={["diesel", "kerosene", "petrol", "gas"]}
+            options={[
+              { value: "diesel" },
+              { value: "kerosene" },
+              { value: "petrol" },
+              { value: "gas" },
+            ]}
             selected='diesel'
           />
           <Button

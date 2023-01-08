@@ -8,9 +8,9 @@ import { states } from "../../utils/state";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import Button from "../../Components/Button";
 import Checkbox from "../../Components/Checkbox";
-import { AuthContainerProps } from "@type/shared";
-import { InputTemp } from "@components/InputTemp";
-import Loading from "@components/Loading";
+import { AuthContainerProps } from "../../types/shared";
+import { InputTemp } from "../../Components/InputTemp";
+import Loading from "../../Components/Loading";
 
 interface LoginProps {
   email: string;

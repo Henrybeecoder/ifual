@@ -4,7 +4,7 @@ import SharedComplaintLog from "../../SharedAdmin/ComplaintsLog";
 const ComplaintLog = () => {
   return (
     <Layout>
-      <SharedComplaintLog />
+      <SharedComplaintLog baseUrl='admin' />
     </Layout>
   );
 };

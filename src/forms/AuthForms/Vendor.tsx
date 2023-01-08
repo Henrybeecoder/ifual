@@ -6,15 +6,15 @@ import { states } from "../../utils/state";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import Button from "../../Components/Button";
 import Checkbox from "../../Components/Checkbox";
-import { AuthContainerProps } from "@type/shared";
-import { InputTemp, SelectTemp } from "@components/InputTemp";
+import { AuthContainerProps } from "../../types/shared";
+import { InputTemp, SelectTemp } from "../../Components/InputTemp";
 import { Formik } from "formik";
 import { ReactComponent as HidePwd } from "../../assets/svg/hide.svg";
 import { ReactComponent as ShowPwd } from "../../assets/svg/show.svg";
-import Loading from "@components/Loading";
-import { authSchema } from "@lib/validation/vendor";
+import Loading from "../../Components/Loading";
+import { authSchema } from "../../lib/validation/vendor";
 import { useMutation } from "@tanstack/react-query";
-import axios from "@lib/axios";
+import axios from "../../lib/axios";
 
 interface LoginValues {
   email: string;
@@ -114,6 +114,7 @@ const Login = ({ email, setEmail }: LoginProps) => {
       }) => (
         <form onSubmit={handleSubmit}>
           <InputTemp
+            mode='light'
             label='EMAIL ADDRESS'
             inputType={"email"}
             placeholder='email@host.co..'
@@ -220,6 +221,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
           {matches && (
             <>
               <InputTemp
+                mode='light'
                 label='COMPANY NAME'
                 placeholder='Enter name'
                 inputType='text'
@@ -227,6 +229,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
               />
               <div className={styles.flexForm}>
                 <InputTemp
+                  mode='light'
                   label='PHONE NUMBER'
                   marginRight
                   placeholder='+234  708 ...'
@@ -234,6 +237,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
                   {...getFieldProps("phoneNo")}
                 />
                 <InputTemp
+                  mode='light'
                   label='EMAIL ADDRESS'
                   marginLeft
                   placeholder='email@host.co.. '
@@ -243,12 +247,14 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
               </div>
 
               <InputTemp
+                mode='light'
                 label='COMPANY ADDRESS'
                 placeholder='Enter address'
                 {...getFieldProps("companyAddress")}
               />
 
               <SelectTemp
+                mode='light'
                 options={states.map((state) => ({
                   label: state.name,
                   value: state.name.toLowerCase(),
@@ -259,6 +265,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
               />
 
               <InputTemp
+                mode='light'
                 visibilityPadding
                 label='PASSWORD'
                 placeholder='Enter Preferred Password'
@@ -272,6 +279,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
               </InputTemp>
 
               <InputTemp
+                mode='light'
                 visibilityPadding
                 label='RECONFIRM PASSWORD'
                 inputType={cPV ? "text" : "password"}
@@ -316,6 +324,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
               <>
                 <div className={styles.flexForm}>
                   <InputTemp
+                    mode='light'
                     label='FIRST NAME'
                     placeholder='Name'
                     inputType='text'
@@ -323,6 +332,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
                     marginRightSm
                   />
                   <InputTemp
+                    mode='light'
                     label='SURNAME'
                     placeholder='Last name'
                     inputType='text'
@@ -331,12 +341,14 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
                   />
                 </div>
                 <InputTemp
+                  mode='light'
                   label='PHONE NUMBER'
                   placeholder='+234  708 ...'
                   inputType='tel'
                   name='phoneNo'
                 />
                 <InputTemp
+                  mode='light'
                   label='EMAIL ADDRESS'
                   placeholder='email@host.co.. '
                   inputType='email'
@@ -356,6 +368,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
             {phase === "second" && !matches ? (
               <>
                 <InputTemp
+                  mode='light'
                   label='HOUSE ADDRESS'
                   placeholder='Enter address'
                   inputType='text'
@@ -375,6 +388,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
                   </select>
                 </div>
                 <InputTemp
+                  mode='light'
                   visibilityPadding
                   label='PASSWORD'
                   placeholder='Enter Preferred Password'
@@ -387,6 +401,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
                 </InputTemp>
 
                 <InputTemp
+                  mode='light'
                   visibilityPadding
                   label='RECONFIRM PASSWORD'
                   inputType={cPV ? "text" : "password"}
