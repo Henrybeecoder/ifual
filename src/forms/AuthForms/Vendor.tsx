@@ -96,7 +96,15 @@ const Login = ({ email, setEmail }: LoginProps) => {
   });
 
   const handleLogin = (values: any) => {
-    mutate(values);
+    // mutate(values);
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ email: values.email, name: "Bistro Badmus" })
+    );
+    setTimeout(() => {
+      // setLoading(false);
+      navigate("/");
+    }, 3000);
   };
 
   return (

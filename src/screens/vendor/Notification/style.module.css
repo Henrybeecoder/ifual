@@ -170,7 +170,6 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 20px;
-  /* text-align: center; */
   padding: 20px 0 5px 30px;
 }
 
@@ -215,5 +214,29 @@
   .selectedContainer {
     border-left: none;
     width: 90%;
+  }
+  .orderDeclined {
+    width: 100%;
+  }
+  .orderDeclined h2 {
+    padding: 20px 0 5px 10px;
+  }
+  .checkBoxWithTextContainer {
+    padding: 10px 5px;
+  }
+  .checkboxFlex {
+    padding: 5px;
+  }
+
+  .checkboxFlex p {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    margin-left: 5px;
+    text-align: start;
+  }
+  .declinedBtns {
+    padding: 10px 10px 30px 10px;
   }
 }

@@ -293,7 +293,9 @@ const CheckBoxWithText = ({
 }: CheckboxWithTextProps) => {
   return (
     <div className={styles.checkboxFlex}>
-      <Checkbox checked={checked} toggleChecked={toggleChecked} />
+      <div>
+        <Checkbox checked={checked} toggleChecked={toggleChecked} />
+      </div>
       <p>{text}</p>
     </div>
   );

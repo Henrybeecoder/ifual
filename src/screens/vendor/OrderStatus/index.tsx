@@ -15,8 +15,11 @@ import SubModal from "../../../Components/OptionsModal";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/dark-arrow-right.svg";
-import { limitText } from "../../../Custom hooks/helpers";
-import PageHeader, { FilterModal, PaginationOf } from "../../../Components/PageHeader";
+import { limitText, localeDate } from "../../../Custom hooks/helpers";
+import PageHeader, {
+  FilterModal,
+  PaginationOf,
+} from "../../../Components/PageHeader";
 import { useQuery } from "@tanstack/react-query";
 import { OrderStatusType } from "../../../types/vendor";
 import { AxiosError } from "axios";
@@ -46,7 +49,7 @@ const createData = (
   description: string,
   quantity: string,
   orderStatus: number,
-  dateCreated: string,
+  purchasedDate: string,
   unitPrice: string
 ) => {
   return {
@@ -54,7 +57,7 @@ const createData = (
     description,
     quantity,
     orderStatus,
-    dateCreated,
+    purchasedDate,
     unitPrice,
   };
 };
@@ -65,7 +68,7 @@ const rows = [
     ".88 Distilled Diesel",
     "100 l",
     1,
-    "28/07/2022",
+    "2019-05-02T04:52:33",
     "N30,000.00"
   ),
   createData(
@@ -73,7 +76,7 @@ const rows = [
     "Unadulterated Petrol",
     "100 l",
     0,
-    "28/07/2022",
+    "2019-05-02T04:52:33",
     "N30,000.00"
   ),
   createData(
@@ -81,7 +84,7 @@ const rows = [
     ".9 Distilled Diesel",
     "100 l",
     3,
-    "28/07/2022",
+    "2019-05-02T04:52:33",
     "N30,000.00"
   ),
   createData(
@@ -89,7 +92,7 @@ const rows = [
     "Pure, distilled Kerosene",
     "100 l",
     1,
-    "28/07/2022",
+    "2019-05-02T04:52:33",
     "N30,000.00"
   ),
   createData(
@@ -97,7 +100,7 @@ const rows = [
     "Pure, distilled Kerosene",
     "100 l",
     2,
-    "28/07/2022",
+    "2019-05-02T04:52:33",
     "N30,000.00"
   ),
   createData(
@@ -105,7 +108,7 @@ const rows = [
     ".9 Distilled Diesel",
     "100 l",
     3,
-    "28/07/2022",
+    "2019-05-02T04:52:33",
     "N30,000.00"
   ),
 ];
@@ -172,7 +175,7 @@ export default function OrderStatus() {
                 </StyledTableCell>
                 <StyledTableCell align='right'></StyledTableCell>
               </StyledTableRow>
-              {orders?.map((row) => (
+              {orders?.slice(0, 6).map((row) => (
                 <StyledTableRow key={row.orderId}>
                   <StyledTableCell component='th' scope='row'>
                     <h3 className={styles.subText}>{row.description}</h3>
@@ -191,7 +194,9 @@ export default function OrderStatus() {
                     </p>
                   </StyledTableCell>
                   <StyledTableCell align='center'>
-                    <h3 className={styles.subText}>{row.dateCreated}</h3>
+                    <h3 className={styles.subText}>
+                      {localeDate(row.purchasedDate)}
+                    </h3>
                   </StyledTableCell>
                   <StyledTableCell align='center'>
                     <h3 className={styles.subText}>{row.unitPrice}</h3>
@@ -223,7 +228,7 @@ export default function OrderStatus() {
                 </StyledTableCell>
                 <StyledTableCell align='right'></StyledTableCell>
               </StyledTableRow>
-              {orders?.map((row) => (
+              {orders?.slice(0, 6).map((row) => (
                 <StyledTableRow key={row.orderId}>
                   <StyledTableCell
                     scope='row'
@@ -251,7 +256,7 @@ export default function OrderStatus() {
                     align='center'
                     style={{ padding: "10px 3px" }}>
                     <h3 className={styles.subText}>
-                      {limitText(row.dateCreated, 6)}
+                      {limitText(localeDate(row.purchasedDate), 6)}
                     </h3>
                   </StyledTableCell>
                   <StyledTableCell align='left' style={{ padding: "10px 3px" }}>
