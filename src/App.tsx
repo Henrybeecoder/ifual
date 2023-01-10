@@ -21,6 +21,7 @@ import OrderDetailsVendor from "./screens/vendor/OrderStatus/OrderDetails";
 import ProfileVendor from "./screens/vendor/Profile";
 import Report from "./screens/vendor/Report";
 import NewReport from "./screens/vendor/Report/New";
+import KycVendor from "./screens/vendor/Kyc";
 // admin
 import LoginAdmin from "./screens/Admin/Login";
 import DashboardAdmin from "./screens/Admin/Dashboard";
@@ -81,6 +82,7 @@ function App() {
         <Route path='/vendor'>
           <Route path='profile' element={<ProfileVendor />} />
           <Route path='dashboard' element={<Dashboard />} />
+          <Route path='kyc' element={<KycVendor />} />
           <Route path='order-status'>
             <Route index element={<OrderStatus />} />
             <Route path=':id' element={<OrderDetailsVendor />} />

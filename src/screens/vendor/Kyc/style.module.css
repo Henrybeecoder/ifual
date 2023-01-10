@@ -1,0 +1,41 @@
+.header {
+  padding: 30px 70px;
+}
+
+.header img {
+  width: 72px;
+}
+
+.container {
+  padding: 20px 50px;
+  width: 100%;
+}
+
+.inputSection {
+  width: 100%;
+}
+
+.infoText {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 14px;
+  margin: 10px 0;
+  color: #2f3930;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  margin: 20px auto;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    padding: 0 20px;
+    width: 100%;
+  }
+  .btns {
+    width: 100%;
+  }
+}

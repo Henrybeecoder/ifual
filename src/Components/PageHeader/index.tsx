@@ -8,6 +8,7 @@ import { ReactComponent as ArrowBackSvg } from "../../assets/svg/left.svg";
 import styles from "./style.module.css";
 import { Root, Trigger, Portal, Content } from "@radix-ui/react-popover";
 import { useNavigate } from "react-router-dom";
+import { BackBtn } from "../Button";
 
 export interface Props {
   parentPageTitle?: string;
@@ -30,17 +31,9 @@ export const TitleHeader = ({
   backBtn,
   onClickBackBtn,
 }: TitleProps) => {
-  const navigate = useNavigate();
   return (
     <>
-      {backBtn ? (
-        <button
-          className={styles.backBtn}
-          onClick={!onClickBackBtn ? () => navigate(-1) : onClickBackBtn}>
-          <ArrowBackSvg />
-          <p>Back</p>
-        </button>
-      ) : null}
+      {backBtn ? <BackBtn onClick={onClickBackBtn} /> : null}
       <div className={styles.headerFlex}>
         <h3 className='breadcrumb'>
           {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}

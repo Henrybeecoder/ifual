@@ -1,8 +1,16 @@
 import { CSSProperties } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./style.module.css";
+import { ReactComponent as ArrowBackSvg } from "../../assets/svg/backIcon.svg";
 
 interface ButtonProps {
-  variant?: "primary" | "outline" | "danger" | "dark" | "danger-outline";
+  variant?:
+    | "primary"
+    | "outlinePrimary"
+    | "outline"
+    | "danger"
+    | "dark"
+    | "danger-outline";
   invalid?: boolean;
   onClick?: () => void;
   width?: string;
@@ -76,6 +84,22 @@ export const LinkButton = ({
       onClick={onClick}
       type={type}>
       {text}
+    </button>
+  );
+};
+
+interface BackBtnProps {
+  onClick?: () => void;
+}
+
+export const BackBtn = ({ onClick }: BackBtnProps) => {
+  const navigate = useNavigate();
+  return (
+    <button
+      className={styles.backBtn}
+      onClick={!onClick ? () => navigate(-1) : onClick}>
+      <ArrowBackSvg />
+      <p>Back</p>
     </button>
   );
 };

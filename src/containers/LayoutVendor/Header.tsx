@@ -9,6 +9,8 @@ import { ReactComponent as HamburgerSvg } from "../../assets/navbericon/hamburge
 import { ReactComponent as NotificationSvg } from "../../assets/navbericon/notification-outline.svg";
 import { ReactComponent as BoxBarSvg } from "../../assets/navbericon/boxBar.svg";
 import { ReactComponent as SearchIcon } from "../../assets/navbericon/mobileSearch.svg";
+import { ReactComponent as SvgSearchIcon } from "../../assets/navbericon/mobileSearch.svg";
+import { ReactComponent as SearchIconWBorder } from "../../assets/navbericon/searchIcon.svg";
 
 interface HeaderProps {
   user?: any;
@@ -22,12 +24,24 @@ const Header = ({ user, setOpen = () => {} }: HeaderProps) => {
 
   const [profileModal, setProfileModal] = useState(false);
 
+  const [searchActive, setSearchActive] = useState(false);
+
   return (
     <>
       <div className={styles.headerContainer}>
+        <img src={logo} style={{ width: searchActive ? "40px" : "" }} />
         {!matches ? (
           <div className={styles.flexHeaderSm}>
-            <img src={logo} />
+            {searchActive ? (
+              <div className={styles.searchBarSm}>
+                <input placeholder='Enter Keyword' />
+                <SvgSearchIcon className={styles.searchIcon} />
+              </div>
+            ) : (
+              <button onClick={() => setSearchActive(true)}>
+                <SearchIconWBorder width={48} />
+              </button>
+            )}
             <button
               style={{ marginLeft: "7px" }}
               onClick={() => setOpen((state) => !state)}>

@@ -158,7 +158,7 @@ export default function ProductList() {
       </Modal>
       <>
         <PageHeader pageTitle='Product List'>
-          <PaginationOf current={[1, 4]} total={6} />
+          {matches && <PaginationOf current={[1, 4]} total={6} />}
           <FilterModal
             selected='In-stock'
             options={[
@@ -169,15 +169,16 @@ export default function ProductList() {
             ]}
           />
           <Button
-            text='Add Product'
-            width='190px'
+            text={matches ? "Add Product" : "Add"}
+            width={matches ? "190px" : "80px"}
+            height={matches ? "48px" : "30px"}
+            variant='outlinePrimary'
             onClick={() => navigate("new")}
           />
         </PageHeader>
 
         <TableContainer
           style={{ marginTop: "35px", borderRadius: "17px" }}
-          // className={styles.tableContainer}
           component={Paper}>
           {matches ? (
             <Table sx={{ minWidth: 700 }} aria-label='customized table'>
