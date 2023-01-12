@@ -23,7 +23,7 @@ export default function SignUp() {
     );
   return (
     <div>
-      <AuthContainer />
+      <AuthContainer page='register' />
     </div>
   );
 }

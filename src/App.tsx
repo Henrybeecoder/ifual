@@ -4,14 +4,15 @@ import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import Dashboard from "./screens/vendor/Dashboard";
 import ForgotPassword from "./screens/ForgotPassword";
+import ForgotPasswordMessage from "./screens/ForgotPassword/Message";
 import ResetPassword from "./screens/ResetPassword";
-import SignUpMessage from "./screens/SignUpMessage";
-import SignUpNext from "./screens/SignUpNext";
+import SignUpMessage from "./screens/messages/SignUpMessage";
+import KycNotification from "./screens/messages/Kyc/Message";
 // customer
 import Notification from "./screens/vendor/Notification";
 import Home from "./screens/Customer/Home";
 import Checkout from "./screens/Checkout";
-import Cart from "./screens/Cart";
+import Cart from "./screens/Customer/Cart";
 import Profile from "./screens/Customer/Profile";
 //vendor
 import ProductInfo from "./screens/vendor/ProductList/ProductInfo";
@@ -21,7 +22,7 @@ import OrderDetailsVendor from "./screens/vendor/OrderStatus/OrderDetails";
 import ProfileVendor from "./screens/vendor/Profile";
 import Report from "./screens/vendor/Report";
 import NewReport from "./screens/vendor/Report/New";
-import KycVendor from "./screens/vendor/Kyc";
+import KycVendor from "./screens/messages/Kyc";
 // admin
 import LoginAdmin from "./screens/Admin/Login";
 import DashboardAdmin from "./screens/Admin/Dashboard";
@@ -36,7 +37,6 @@ import VendorProfileAdmin from "./screens/Admin/ManageOrders/VendorProfile";
 import ComplaintsLogAdmin from "./screens/Admin/ComplaintsLog";
 import ActivityLogAdmin from "./screens/Admin/ActivityLog";
 import ManageUsersAdmin from "./screens/Admin/ManageUsers";
-import VendorInfoAdmin from "./screens/Admin/ManageUsers/VendorInfo";
 import NotificationAdmin from "./screens/Admin/Notification";
 // superadmin
 import DashboardSuperAdmin from "./screens/SuperAdmin/Dashboard";
@@ -70,9 +70,13 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route
+          path='/forgot-password-notification'
+          element={<ForgotPasswordMessage />}
+        />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/sign-up-message' element={<SignUpMessage />} />
-        <Route path='/sign-up-next' element={<SignUpNext />} />
+        <Route path='/kyc-notification' element={<KycNotification />} />
         //customer
         <Route path='/' element={<Home />} />
         <Route path=':id' element={<Order />} />

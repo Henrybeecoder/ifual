@@ -31,7 +31,11 @@ export default function ResetPassword() {
   >({
     mutationFn: async (variables) =>
       axios.post("/Account/ForgetPassword", { email, ...variables }),
-    onSuccess: () => {},
+    onSuccess: () => {
+      setOpen(true);
+      setTimeout(() => setOpen(false), 3000);
+      navigate("login");
+    },
   });
 
   return (

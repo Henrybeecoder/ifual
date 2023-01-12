@@ -1,4 +1,3 @@
-import LayoutSuperAdmin from "../../../../containers/LayoutSuperAdmin";
 import {
   InputTemp,
   SelectTemp,
@@ -14,6 +13,7 @@ import Button from "../../../../Components/Button";
 import { VendorProfile } from "../../../../Components/Profile";
 import Header from "../../../../Components/PageHeader/Admin";
 import { PaginationOf } from "../../../../Components/PageHeader";
+import { Indicator } from "../../../../Components/Countdown";
 
 interface ModalState {
   suspend: boolean;
@@ -138,15 +138,6 @@ const VendorInfo = () => {
         ) : null}
       </VendorProfile>
     </>
-  );
-};
-
-const Indicator = ({ text, value }: { text: string; value: string }) => {
-  return (
-    <div className={styles.indicator}>
-      <p>{text}</p>
-      <h2>{value}</h2>
-    </div>
   );
 };
 

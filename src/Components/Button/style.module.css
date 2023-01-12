@@ -85,4 +85,16 @@ button:disabled {
     cursor: pointer;
     font-size: 17px;
   }
+
+  .backBtn {
+    gap: 5px;
+  }
+
+  .backBtn p {
+    font-size: 15px;
+    line-height: 15px;
+  }
+  .backBtn svg {
+    width: 8px;
+  }
 }

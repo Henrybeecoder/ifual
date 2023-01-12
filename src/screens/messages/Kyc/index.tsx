@@ -13,8 +13,8 @@ const Kyc = () => {
       </div>
       <div className={styles.container}>
         <BackBtn />
-        <PageHeader pageTitle='KYC' />
-        <div className='flex-lg w-full gap-20'>
+        <h3 className={styles.headerText}>KYC</h3>
+        <div className='flex-lg w-full gap-50'>
           <UploadImageTemp btnText='Add Company Logo' />
           <div className={styles.inputSection}>
             <div className='input-flex-btwn'>
@@ -64,7 +64,7 @@ const Kyc = () => {
             <InputTemp label='BVN' value='2838908744729' />
             <div className={styles.btns}>
               <Button text='Cancel' width='39%' />
-              <Button text='Sign up' variant='primary' width='57%' />
+              <Button text='Sign up' variant='primary' width='57%' invalid />
             </div>
           </div>
         </div>

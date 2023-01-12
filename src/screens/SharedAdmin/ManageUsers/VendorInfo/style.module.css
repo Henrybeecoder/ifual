@@ -189,29 +189,6 @@
   gap: 50px;
 }
 
-.indicator {
-  border: 2px solid #344437;
-  border-radius: 50%;
-  width: 90px;
-  height: 90px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.indicator p {
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 14px;
-}
-
-.indicator h2 {
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 40px;
-}
-
 .btnFooter {
   margin: 10px 0;
   display: flex;

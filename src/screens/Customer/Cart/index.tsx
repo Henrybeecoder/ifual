@@ -1,10 +1,10 @@
 import styles from "./style.module.css";
 import { useNavigate } from "react-router-dom";
-import { SvgArrowback, SvgEdit, SvgRating } from "../../assets/Svgs";
-import companyLogo from "../../assets/image/companyLogo2.png";
-import Button from "../../Components/Button";
-import LayoutCustomer from "../../containers/LayoutCustomer";
-import useMediaQuery from "../../Custom hooks/useMediaQuery";
+import { SvgArrowback, SvgEdit, SvgRating } from "../../../assets/Svgs";
+import companyLogo from "../../../assets/image/companyLogo2.png";
+import Button from "../../../Components/Button";
+import LayoutCustomer from "../../../containers/LayoutCustomer";
+import useMediaQuery from "../../../Custom hooks/useMediaQuery";
 
 const promoProducts = [
   {

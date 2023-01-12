@@ -104,6 +104,10 @@ td {
   gap: 20px;
 }
 
+.gap-50 {
+  gap: 50px;
+}
+
 .w-full {
   width: 100%;
 }
@@ -125,12 +129,7 @@ td {
   .flex-lg {
     flex-direction: column;
   }
-  /* tr {
-    padding: 0 10px;
-  } */
-  /* table{
-    margin-left: 10px;
-  } */
+
   th,
   td {
     padding: 12px 6px 12px 14px;
