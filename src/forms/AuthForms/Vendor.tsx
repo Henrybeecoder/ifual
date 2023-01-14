@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./style.module.css";
 import emoji from "../../assets/svg/emoji.svg";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +5,6 @@ import { states } from "../../utils/state";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import Button from "../../Components/Button";
 import Checkbox from "../../Components/Checkbox";
-import { AuthContainerProps } from "../../types/shared";
 import { InputTemp, SelectTemp } from "../../Components/InputTemp";
 import { Formik } from "formik";
 import { ReactComponent as HidePwd } from "../../assets/svg/hide.svg";
@@ -15,69 +13,22 @@ import Loading from "../../Components/Loading";
 import { authSchema } from "../../lib/validation/vendor";
 import { useMutation } from "@tanstack/react-query";
 import axios from "../../lib/axios";
+import { useState } from "react";
 
 interface LoginValues {
   email: string;
   password: string;
 }
 
-interface LoginProps {
-  email: string;
-  setEmail: (value: string) => void;
-  // login: (values: LoginValues) => void;
-}
-
 interface SignUpDetails {
   email: string;
 }
 
-interface SignUpProps {
-  email: string;
-  setEmail: (value: string) => void;
-  signup: (details: SignUpDetails) => void;
-}
-
-export default function AuthForm({ page }: AuthContainerProps) {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  // const login = (values: LoginValues) => {
-  //   setLoading(true);
-  //   localStorage.setItem(
-  //     "user",
-  //     JSON.stringify({ email: values.email, name: "Bistro Badmus" })
-  //   );
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //     navigate("/");
-  //   }, 3000);
-  // };
-
-  const submitSignup = () => {
-    setLoading(true);
-    setTimeout(() => navigate("/sign-up-message"), 5000);
-  };
-
-  return (
-    <div className={styles.holder}>
-      <div className={styles.container}>
-        <>{loading && <Loading />}</>
-        {page === "login" ? (
-          <Login email={email} setEmail={setEmail} />
-        ) : (
-          <SignUp email={email} setEmail={setEmail} signup={submitSignup} />
-        )}
-        <img src={emoji} alt='' className={styles.emoji} />
-      </div>
-    </div>
-  );
-}
-
-const Login = ({ email, setEmail }: LoginProps) => {
+export const LoginForm = () => {
   const navigate = useNavigate();
   const [showPwd, setShowPwd] = useState(false);
   const [rP, setRP] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigateToForgotPassword = () => {
     navigate({ pathname: "/forgot-password", search: "type=vendor" });
@@ -87,7 +38,7 @@ const Login = ({ email, setEmail }: LoginProps) => {
     navigate({ pathname: "/signup", search: "type=vendor" });
   };
 
-  const initialValues = { emailAddress: email, password: "" };
+  const initialValues = { emailAddress: "", password: "" };
 
   const { mutate, error } = useMutation({
     mutationFn: async () => axios.post("Account/Login"),
@@ -97,13 +48,14 @@ const Login = ({ email, setEmail }: LoginProps) => {
 
   const handleLogin = (values: any) => {
     // mutate(values);
+    setLoading(true);
     localStorage.setItem(
       "user",
       JSON.stringify({ email: values.email, name: "Bistro Badmus" })
     );
     setTimeout(() => {
-      // setLoading(false);
-      navigate("/");
+      setLoading(false);
+      navigate("/vendor/dashboard");
     }, 3000);
   };
 
@@ -112,27 +64,21 @@ const Login = ({ email, setEmail }: LoginProps) => {
       initialValues={initialValues}
       validationSchema={authSchema.login}
       onSubmit={handleLogin}>
-      {({
-        dirty,
-        handleSubmit,
-        getFieldProps,
-        handleChange,
-        handleBlur,
-        errors,
-      }) => (
+      {({ dirty, handleSubmit, getFieldProps, errors }) => (
         <form onSubmit={handleSubmit}>
+          {loading && <Loading />}
           <InputTemp
             mode='light'
             label='EMAIL ADDRESS'
             inputType={"email"}
             placeholder='email@host.co..'
-            // {...getFieldProps("email")}
-            name='emailAddress'
-            onBlur={handleBlur}
-            onChange={(e) => {
-              handleChange(e);
-              setEmail(e.target.value);
-            }}
+            {...getFieldProps("emailAddress")}
+            // name='emailAddress'
+            // onBlur={handleBlur}
+            // onChange={(e) => {
+            //   handleChange(e);
+            //   setEmail(e.target.value);
+            // }}
           />
           <InputTemp
             visibilityPadding
@@ -174,7 +120,7 @@ const Login = ({ email, setEmail }: LoginProps) => {
   );
 };
 
-const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
+export const SignUpForm = () => {
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width: 800px)");
   const [pV, setPV] = useState(false);

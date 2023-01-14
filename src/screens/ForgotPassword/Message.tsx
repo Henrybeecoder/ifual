@@ -1,4 +1,4 @@
-import PrimaryContainer from "src/containers/PrimaryContainer";
+import PrimaryContainer from "../../containers/PrimaryContainer";
 import styles from "./style.module.css";
 
 const Message = () => {

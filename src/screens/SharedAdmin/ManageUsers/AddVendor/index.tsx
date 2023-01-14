@@ -1,6 +1,6 @@
 import Button from "../../../../Components/Button";
 import { InputTemp, SelectTemp } from "../../../../Components/InputTemp";
-import { TitleHeader } from "../../../../Components/PageHeader";
+import PageHeader from "../../../../Components/PageHeader";
 import UploadImageTemp from "../../../../Components/UploadImageTemp";
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
@@ -8,7 +8,7 @@ import styles from "./style.module.css";
 const AddVendor = () => {
   return (
     <>
-      <TitleHeader
+      <PageHeader
         backBtn
         pageTitle='ADD VENDOR'
         parentPageTitle='MANAGE VENDORS'

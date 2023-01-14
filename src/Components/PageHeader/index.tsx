@@ -2,13 +2,11 @@ import { ReactNode } from "react";
 import { ReactComponent as LeftSvg } from "../../assets/svg/left.svg";
 import { ReactComponent as RightSvg } from "../../assets/svg/right.svg";
 import { ReactComponent as FilterSvg } from "../../assets/navbericon/filter-outline.svg";
-import { ReactComponent as EditOutlineSvg } from "../../assets/navbericon/edit-outline.svg";
 import { ReactComponent as EditSvg } from "../../assets/navbericon/edit.svg";
 import { ReactComponent as ArrowBackSvg } from "../../assets/svg/left.svg";
 import styles from "./style.module.css";
 import { Root, Trigger, Portal, Content } from "@radix-ui/react-popover";
 import { useNavigate } from "react-router-dom";
-import { BackBtn } from "../Button";
 
 export interface Props {
   parentPageTitle?: string;
@@ -17,38 +15,6 @@ export interface Props {
   backBtn?: boolean;
   onClickBackBtn?: () => void;
 }
-
-interface TitleProps extends Props {
-  editBtn?: boolean;
-  onClickEditBtn?: () => void;
-}
-
-export const TitleHeader = ({
-  pageTitle,
-  parentPageTitle,
-  editBtn,
-  onClickEditBtn,
-  backBtn,
-  onClickBackBtn,
-}: TitleProps) => {
-  return (
-    <>
-      {backBtn ? <BackBtn onClick={onClickBackBtn} /> : null}
-      <div className={styles.headerFlex}>
-        <h3 className='breadcrumb'>
-          {parentPageTitle ? <span>{parentPageTitle} /</span> : null}{" "}
-          {pageTitle}
-        </h3>
-        {editBtn ? (
-          <button className={styles.editBtn} onClick={onClickEditBtn}>
-            <h3>EDIT</h3>
-            <EditSvg />
-          </button>
-        ) : null}
-      </div>
-    </>
-  );
-};
 
 interface FilterModalProps {
   children?: ReactNode;

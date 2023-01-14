@@ -6,8 +6,9 @@ import RadioGroup from "../../../Components/Radix/RadioGroup";
 import { SelectTemp } from "../../../Components/InputTemp";
 import { useState } from "react";
 import useMediaQuery from "../../../Custom hooks/useMediaQuery";
-import { TitleHeader } from "../../../Components/PageHeader";
+import PageHeader from "../../../Components/PageHeader";
 import { useNavigate } from "react-router-dom";
+import { EditBtn } from "../../../Components/PageHeader/Admin";
 
 const Settings = () => {
   const matches = useMediaQuery("(min-width: 800px)");
@@ -29,12 +30,12 @@ const Settings = () => {
 
   return (
     <>
-      <TitleHeader
+      <PageHeader
         pageTitle='SETTINGS'
-        editBtn
         backBtn
-        onClickBackBtn={() => navigate(-1)}
-      />
+        onClickBackBtn={() => navigate(-1)}>
+        <EditBtn />
+      </PageHeader>
       <div className={styles.container}>
         <div className={styles.sectionContainer}>
           <h3>View Onboarding:</h3>

@@ -2,28 +2,25 @@ import React from "react";
 import styles from "./style.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import AuthContainer from "../../containers/AuthContainer";
+import StartPage from "../../screens/StartPage";
+import { SignUpForm as Vendor } from "../../forms/AuthForms/Vendor";
+import { SignUpForm as Customer } from "../../forms/AuthForms/Customer";
+import { RenderPageProps } from "../../types/shared";
 
 export default function SignUp() {
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const signUpType = searchParams.get("type");
+  const signupType = searchParams.get("type");
 
-  const goBackToStartPage = () => {
-    navigate("/");
+  const renderPage: RenderPageProps = {
+    customer: <Customer />,
+    vendor: <Vendor />,
   };
 
-  if (signUpType !== "customer" && signUpType !== "vendor")
-    return (
-      <div className={styles.container}>
-        <p>please select a user type</p>
-        <button className={styles.btnBack} onClick={goBackToStartPage}>
-          Back
-        </button>
-      </div>
-    );
+  if (signupType !== "customer" && signupType !== "vendor")
+    return <StartPage />;
   return (
     <div>
-      <AuthContainer page='register' />
+      <AuthContainer page='register'>{renderPage[signupType]}</AuthContainer>
     </div>
   );
 }

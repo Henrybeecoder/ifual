@@ -15,6 +15,7 @@ import Checkout from "./screens/Checkout";
 import Cart from "./screens/Customer/Cart";
 import Profile from "./screens/Customer/Profile";
 //vendor
+import LoginVendor from "./screens/vendor/Login";
 import ProductInfo from "./screens/vendor/ProductList/ProductInfo";
 import OrderStatus from "./screens/vendor/OrderStatus";
 import ProductList from "./screens/vendor/ProductList";
@@ -84,6 +85,8 @@ function App() {
           <Route path='profile' element={<Profile />} />
         </Route>
         <Route path='/vendor'>
+          <Route path='login' element={<LoginVendor />} />
+          <Route index element={<Dashboard />} />
           <Route path='profile' element={<ProfileVendor />} />
           <Route path='dashboard' element={<Dashboard />} />
           <Route path='kyc' element={<KycVendor />} />

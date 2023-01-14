@@ -8,69 +8,19 @@ import { states } from "../../utils/state";
 import useMediaQuery from "../../Custom hooks/useMediaQuery";
 import Button from "../../Components/Button";
 import Checkbox from "../../Components/Checkbox";
-import { AuthContainerProps } from "../../types/shared";
 import { InputTemp } from "../../Components/InputTemp";
 import Loading from "../../Components/Loading";
-
-interface LoginProps {
-  email: string;
-  setEmail: (value: string) => void;
-  login: (email: string, password: string) => void;
-}
 
 interface SignUpDetails {
   email: string;
 }
 
-interface SignUpProps {
-  email: string;
-  setEmail: (value: string) => void;
-  signup: (details: SignUpDetails) => void;
-}
-
-export default function AuthForm({ page }: AuthContainerProps) {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  // const [loading, setLoading] = useState(false);
-
-  const login = (email: string) => {
-    setLoading(true);
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ email, name: "Bistro Badmus" })
-    );
-    setTimeout(() => {
-      setLoading(false);
-      navigate("/");
-    }, 3000);
-  };
-
-  const submitSignup = () => {
-    setLoading(true);
-    setTimeout(() => navigate("/sign-up-message"), 5000);
-  };
-
-  return (
-    <div className={styles.holder}>
-      <div className={styles.container}>
-        {page === "login" ? (
-          <Login email={email} setEmail={setEmail} login={login} />
-        ) : (
-          <SignUp email={email} setEmail={setEmail} signup={submitSignup} />
-        )}
-      </div>
-      <img src={emoji} alt='' className={styles.emoji} />
-      {loading && <Loading />}
-    </div>
-  );
-}
-
-const Login = ({ email, setEmail, login }: LoginProps) => {
+export const LoginForm = () => {
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisibility] = useState(false);
   const [password, setPassword] = useState("");
   const [rememberPassword, setRememberPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisiblity = () => {
     setPasswordVisibility((state) => !state);
@@ -87,22 +37,36 @@ const Login = ({ email, setEmail, login }: LoginProps) => {
     setRememberPassword((state) => !state);
   };
 
+  const login = () => {
+    setLoading(true);
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ email: "email.com", name: "Bistro Badmus" })
+    );
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/");
+    }, 3000);
+  };
+
+  const submitSignup = () => {
+    setLoading(true);
+    setTimeout(() => navigate("/sign-up-message"), 5000);
+  };
+
   return (
     <>
-      <div className={styles.formHolder}>
-        <label>EMAIL ADDRESS</label>
-        <input
-          placeholder='email@host.co..'
-          type='email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
+      {loading && <Loading />}
+      <InputTemp
+        label='EMAIL ADDRESS'
+        placeholder='email@host.co..'
+        inputType='email'
+      />
       <InputTemp
         visibilityPadding
         label='PASSWORD'
         placeholder='Enter Password'
-        value={password}
+        // value={password}
         inputType={passwordVisible ? "text" : "password"}>
         <i className={styles.btnVisibility} onClick={togglePasswordVisiblity}>
           {passwordVisible ? <Visibility /> : <VisibilityOff />}
@@ -122,8 +86,8 @@ const Login = ({ email, setEmail, login }: LoginProps) => {
         <Button
           text={"Log in"}
           variant='primary'
-          invalid={email?.length > 0 && password?.length > 0 ? false : true}
-          onClick={() => login(email, password)}
+          // invalid={email?.length > 0 && password?.length > 0 ? false : true}
+          onClick={() => login()}
         />
         <p>
           <div className={styles.signUp}>
@@ -136,7 +100,7 @@ const Login = ({ email, setEmail, login }: LoginProps) => {
   );
 };
 
-const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
+export const SignUpForm = () => {
   const navigate = useNavigate();
   const matches = useMediaQuery("(min-width: 800px)");
   const [passwordVisible, setPasswordVisibility] = useState(false);
@@ -260,8 +224,8 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
           <div className={styles.footer}>
             <Button
               text={"Register"}
-              invalid={email?.length > 0 ? false : true}
-              onClick={() => signup({ email })}
+              // invalid={email?.length > 0 ? false : true}
+              // onClick={() => signup({ email })}
             />
             <p>
               <div className={styles.signUp}>
@@ -363,7 +327,7 @@ const SignUp = ({ email, setEmail, signup }: SignUpProps) => {
               </p>
             </div>
             <div className={styles.footer}>
-              <Button text='Register' onClick={() => signup({ email })} />
+              <Button text='Register' />
               <p>
                 <div className={styles.signUp}>
                   Already have an account?{" "}
